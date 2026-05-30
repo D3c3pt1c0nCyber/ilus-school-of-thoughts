@@ -330,7 +330,7 @@ nav.main a.active::after{content:""; position:absolute; left:.82em; right:.82em;
 .continue{display:flex; align-items:center; gap:18px; padding:18px; border:1px solid var(--line); border-radius:6px; background:var(--paper-2); cursor:pointer; transition:.2s; margin-bottom:14px}
 .continue:hover{border-color:var(--gold); box-shadow:var(--sh-1); transform:translateY(-2px)}
 .continue .thumb{width:52px; height:52px; border-radius:6px; flex:none; display:grid; place-items:center; color:#fff; font-family:var(--disp); font-weight:600}
-.continue .thumb.verd{background:var(--verd)} .continue .thumb.gold{background:var(--gold)}
+.continue .thumb.verd{background:var(--verd)} .continue .thumb.gold{background:var(--gold)} .continue .thumb.garnet{background:var(--garnet)}
 .continue .ct{flex:1}
 .continue .ct .tl{font-size:12px; letter-spacing:.05em; color:var(--gold-deep); text-transform:uppercase; font-weight:600}
 .continue .ct b{display:block; font-size:16px; font-family:var(--disp); margin-top:2px}
@@ -810,28 +810,19 @@ footer .base b{color:var(--gold-soft)}
             </div>
           </div>
           <div style="display:flex; gap:22px; margin-top:14px; font-size:14.5px; color:var(--ink-soft)">
-            <div>🔥 <b id="dStreak" style="color:var(--ink)">12</b>-day drill streak</div>
-            <div>⚔ <b style="color:var(--ink)">8</b> debates won</div>
+            <div>📚 <b id="dLessons" style="color:var(--ink)">0</b> lessons complete</div>
+            <div>⚔ <b id="dWins" style="color:var(--ink)">0</b> debates won</div>
           </div>
         </div>
 
         <div class="panel">
           <h3>Continue learning</h3>
-          <div class="continue" onclick="openLesson('L2','2.1')">
-            <div class="thumb gold">II</div>
-            <div class="ct"><div class="tl">The Crucible &middot; Module 2</div><b>2.1 &mdash; Answering the cosmological arguments</b><span>Causation, actual infinities &amp; the composition fallacy</span></div>
-            <span class="arrow" style="color:var(--gold-deep); font-size:22px">→</span>
-          </div>
-          <div class="continue" onclick="openLesson('L1','1.2')">
-            <div class="thumb verd">I</div>
-            <div class="ct"><div class="tl">First Light &middot; Interactive</div><b>1.2 &mdash; Belief vs. Knowledge</b><span>Revisit the foundations &middot; includes a graded check ✦</span></div>
-            <span class="arrow" style="color:var(--gold-deep); font-size:22px">→</span>
-          </div>
+          <div id="continueCards"></div>
 
           <h3 style="margin-top:24px">Level progress</h3>
-          <div class="lvltrack"><div class="t"><b>Level I &middot; First Light</b><span class="pc" id="pcL1">0%</span></div><div class="pbar"><i id="barL1" style="width:0"></i></div></div>
-          <div class="lvltrack"><div class="t"><b>Level II &middot; The Crucible</b><span class="pc" id="pcL2">0%</span></div><div class="pbar"><i id="barL2" style="width:0"></i></div></div>
-          <div class="lvltrack locked"><div class="t"><b>Level III &middot; Illumination</b><span class="pc">Locked 🔒</span></div><div class="pbar"><i style="width:0"></i></div></div>
+          <div class="lvltrack" id="trackL1"><div class="t"><b>Level I &middot; First Light</b><span class="pc" id="pcL1">0%</span></div><div class="pbar"><i id="barL1" style="width:0"></i></div></div>
+          <div class="lvltrack" id="trackL2"><div class="t"><b>Level II &middot; The Crucible</b><span class="pc" id="pcL2">0%</span></div><div class="pbar"><i id="barL2" style="width:0"></i></div></div>
+          <div class="lvltrack" id="trackL3"><div class="t"><b>Level III &middot; Illumination</b><span class="pc" id="pcL3">Locked 🔒</span></div><div class="pbar"><i id="barL3" style="width:0"></i></div></div>
         </div>
       </div>
 
@@ -1263,18 +1254,18 @@ const LESSON_CONTENT={
 function sealSVG(){
   return `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
     <defs>
-      <path id="topArc" d="M28,100 A72,72 0 0 1 172,100"/>
-      <path id="botArc" d="M30,100 A70,70 0 0 0 170,100"/>
+      <path id="topArc" d="M24,103 A76,76 0 0 1 176,103"/>
+      <path id="botArc" d="M28,100 A72,72 0 0 0 172,100"/>
       <radialGradient id="sealBg" cx="40%" cy="32%"><stop offset="0%" stop-color="#2c2517"/><stop offset="100%" stop-color="#14110a"/></radialGradient>
     </defs>
     <circle cx="100" cy="100" r="96" fill="url(#sealBg)"/>
     <circle cx="100" cy="100" r="95" fill="none" stroke="#B8893B" stroke-width="2.5"/>
-    <circle cx="100" cy="100" r="80" fill="none" stroke="#8A6A2B" stroke-width="1"/>
+    <circle cx="100" cy="100" r="82" fill="none" stroke="#8A6A2B" stroke-width="1"/>
     <g fill="#E7CF94">${beads()}</g>
-    <g fill="#E7CF94" font-family="Fraunces, serif" font-weight="600" letter-spacing="3.4" font-size="12.5">
+    <g fill="#E7CF94" font-family="Fraunces, serif" font-weight="600" letter-spacing="1.9" font-size="11">
       <text text-anchor="middle"><textPath href="#topArc" startOffset="50%">ILU&#8217;S SCHOOL OF THOUGHTS</textPath></text>
     </g>
-    <g fill="#C9A24A" font-family="Fraunces, serif" font-weight="500" letter-spacing="5" font-size="11">
+    <g fill="#C9A24A" font-family="Fraunces, serif" font-weight="500" letter-spacing="4.5" font-size="10.5">
       <text text-anchor="middle"><textPath href="#botArc" startOffset="50%">&#8226; SAPERE AUDE &#8226;</textPath></text>
     </g>
     <!-- lamp of reason: open book + flame -->
@@ -1604,14 +1595,46 @@ function toast(msg,rp){
    PROGRESS BARS
    ============================================================ */
 function refreshProgress(){
-  ['L1','L2'].forEach(id=>{
+  ['L1','L2','L3'].forEach(id=>{
     const pr=lvlProgress(id);
-    const bar=document.getElementById('bar'+id), pc=document.getElementById('pc'+id);
-    if(bar) bar.style.width=pr.pc+'%'; if(pc) pc.textContent=pr.pc+'%';
+    const unlocked=isLevelUnlocked(id);
+    const bar=document.getElementById('bar'+id), pc=document.getElementById('pc'+id), track=document.getElementById('track'+id);
+    if(bar) bar.style.width=(unlocked?pr.pc:0)+'%';
+    if(pc) pc.textContent = unlocked ? pr.pc+'%' : 'Locked 🔒';
+    if(track) track.classList.toggle('locked', !unlocked);
   });
+  // dashboard headline stats — real numbers
+  const dl=document.getElementById('dLessons'); if(dl) dl.textContent=state.done.size;
+  const dw=document.getElementById('dWins'); if(dw) dw.textContent=(state.debateHistory||[]).filter(d=>d.result==='win').length;
   renderCurriculum();
   calcSkills(); renderRadar();
   updateLockUI();
+  renderContinue();
+  renderBadges();
+}
+
+/* Continue learning — points at the student's actual next lesson */
+function renderContinue(){
+  const box=document.getElementById('continueCards'); if(!box) return;
+  let target=null;
+  for(const L of CURRICULUM){
+    if(!isLevelUnlocked(L.id)) break;            // stop at the first locked level
+    const next=flatLessons(L).find(x=>!state.done.has(L.id+':'+x.code));
+    if(next){ target={L,x:next}; break; }
+  }
+  if(!target){
+    box.innerHTML=`<div class="continue" onclick="go('certificate')">
+      <div class="thumb gold">✓</div>
+      <div class="ct"><div class="tl">All caught up</div><b>Every unlocked lesson is complete</b><span>Claim your certificate, or sharpen in the Arena</span></div>
+      <span class="arrow" style="color:var(--gold-deep);font-size:22px">→</span></div>`;
+    return;
+  }
+  const {L,x}=target;
+  const thumb = L.accent==='verd'?'verd':L.accent==='garnet'?'garnet':'gold';
+  box.innerHTML=`<div class="continue" onclick="openLesson('${L.id}','${x.code}')">
+    <div class="thumb ${thumb}">${L.numeral}</div>
+    <div class="ct"><div class="tl">${L.name} &middot; Module ${x.mi+1}</div><b>${x.code} &mdash; ${x.title}</b><span>${x.desc||''}</span></div>
+    <span class="arrow" style="color:var(--gold-deep);font-size:22px">→</span></div>`;
 }
 
 /* ============================================================
@@ -1822,21 +1845,43 @@ function answerDrill(i){
 /* ============================================================
    BADGES
    ============================================================ */
+/* Badges unlock from real progress. Each has a check() over state. */
+function modDone(keys){ return keys.every(k=>state.done.has(k)); }
+function wins(){ return (state.debateHistory||[]).filter(d=>d.result==='win').length; }
 const BADGES=[
- ["Fallacy Hunter","Identify 100 fallacies",1,'<path d="M12 2l2.5 6.5L21 9l-5 4 2 7-6-4-6 4 2-7-5-4 6.5-.5z"/>'],
- ["Steelman","Score 90%+ on a charitable reconstruction",1,'<path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/>'],
- ["First Blood","Win your first judged debate",1,'<path d="M12 3l3 7 7 .5-5.5 4.5 2 7-6.5-4-6.5 4 2-7L2 10.5 9 10z"/>'],
- ["Devil’s Advocate","Win a debate on the side you reject",0,'<path d="M5 4l4 6-4 4 7-1 0 7 0-7 7 1-4-4 4-6-7 3z"/>'],
- ["Cross-Examiner","Finish the CX module with distinction",0,'<circle cx="11" cy="11" r="7"/><path d="M16 16l5 5"/>'],
- ["Charitable Mind","Peer-nominated for civility",0,'<path d="M12 21C6 17 3 13 3 8.5 3 6 5 4 7.5 4 9.4 4 11 5 12 6.5 13 5 14.6 4 16.5 4 19 4 21 6 21 8.5 21 13 18 17 12 21z"/>'],
- ["Socratic","Lead five Socratic Circles",0,'<circle cx="12" cy="12" r="9"/><circle cx="9" cy="10" r="1.4" fill="currentColor"/><circle cx="15" cy="10" r="1.4" fill="currentColor"/><path d="M8 15c1.5 2 6.5 2 8 0"/>'],
- ["Sapere Aude","Earn the Master Diploma",0,'<path d="M12 2l2.2 5.6L20 8l-4.5 3.7L17 18l-5-3-5 3 1.5-6.3L4 8l5.8-.4z"/>']
+ {n:"Fallacy Hunter", how:"Complete the Fallacy Field Guide (Level I, Module 3)",
+   icon:'<path d="M12 2l2.5 6.5L21 9l-5 4 2 7-6-4-6 4 2-7-5-4 6.5-.5z"/>',
+   check:()=>modDone(['L1:3.1','L1:3.2','L1:3.3','L1:3.4'])},
+ {n:"Steelman", how:"Complete ‘The Case for God, Steelmanned’ (Level II, Module 1)",
+   icon:'<path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/>',
+   check:()=>modDone(['L2:1.1','L2:1.2','L2:1.3','L2:1.4'])},
+ {n:"First Blood", how:"Win your first debate in the Arena",
+   icon:'<path d="M12 3l3 7 7 .5-5.5 4.5 2 7-6.5-4-6.5 4 2-7L2 10.5 9 10z"/>',
+   check:()=>wins()>=1},
+ {n:"Devil’s Advocate", how:"Win three debates in the Arena",
+   icon:'<path d="M5 4l4 6-4 4 7-1 0 7 0-7 7 1-4-4 4-6-7 3z"/>',
+   check:()=>wins()>=3},
+ {n:"Cross-Examiner", how:"Complete ‘The Art of Public Reason’ (Level III, Module 5)",
+   icon:'<circle cx="11" cy="11" r="7"/><path d="M16 16l5 5"/>',
+   check:()=>modDone(['L3:5.1','L3:5.2','L3:5.3','L3:5.4','L3:5.5'])},
+ {n:"Charitable Mind", how:"Finish ‘The ethics of discourse’ (Level III, 5.5)",
+   icon:'<path d="M12 21C6 17 3 13 3 8.5 3 6 5 4 7.5 4 9.4 4 11 5 12 6.5 13 5 14.6 4 16.5 4 19 4 21 6 21 8.5 21 13 18 17 12 21z"/>',
+   check:()=>state.done.has('L3:5.5')},
+ {n:"Socratic", how:"Complete ‘The Cognitive Science of Religion’ (Level III, Module 2)",
+   icon:'<circle cx="12" cy="12" r="9"/><circle cx="9" cy="10" r="1.4" fill="currentColor"/><circle cx="15" cy="10" r="1.4" fill="currentColor"/><path d="M8 15c1.5 2 6.5 2 8 0"/>',
+   check:()=>modDone(['L3:2.1','L3:2.2','L3:2.3'])},
+ {n:"Sapere Aude", how:"Earn the Master Diploma — complete all of Level III",
+   icon:'<path d="M12 2l2.2 5.6L20 8l-4.5 3.7L17 18l-5-3-5 3 1.5-6.3L4 8l5.8-.4z"/>',
+   check:()=>lvlProgress('L3').pc===100}
 ];
 function renderBadges(){
-  document.getElementById('badges').innerHTML=BADGES.map(b=>`
-    <div class="badge ${b[2]?'':'locked'}" title="${b[1]}">
-      <div class="med"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">${b[3]}</svg></div>
-      <div class="bn">${b[0]}</div></div>`).join('');
+  const box=document.getElementById('badges'); if(!box) return;
+  box.innerHTML=BADGES.map(b=>{
+    const earned=b.check();
+    return `<div class="badge ${earned?'':'locked'}" title="${earned?'✓ Unlocked — '+b.how:'Locked — '+b.how}">
+      <div class="med"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">${b.icon}</svg></div>
+      <div class="bn">${b.n}</div></div>`;
+  }).join('');
 }
 
 /* ============================================================
