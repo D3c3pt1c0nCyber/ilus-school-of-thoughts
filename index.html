@@ -64,6 +64,13 @@ button{font-family:inherit}
 .cert-name-input{width:100%;padding:.75em 1em;border:1.5px solid var(--line-2);border-radius:2px;font-family:var(--disp);font-size:20px;font-weight:600;color:var(--ink);background:var(--paper);margin-bottom:24px;outline:none}
 .cert-name-input:focus{border-color:var(--gold)}
 .cert-modal-btns{display:flex;gap:12px;justify-content:flex-end}
+/* ---------- level lock overlay ---------- */
+.lvl{position:relative;overflow:hidden}
+.lock-overlay{position:absolute;inset:0;background:rgba(28,26,20,.72);backdrop-filter:blur(3px);display:flex;align-items:center;justify-content:center;border-radius:inherit;cursor:not-allowed}
+.lock-inner{display:flex;flex-direction:column;align-items:center;gap:10px;color:#F0E6CE;font-family:var(--serif);font-size:15px;text-align:center;padding:20px}
+.lock-inner b{color:var(--gold-soft)}
+.lock-prog{font-size:12px;color:rgba(240,230,206,.6);letter-spacing:.08em;margin-top:2px}
+.lvl.locked-card .go{opacity:.4;pointer-events:none}
 /* ---------- topbar ---------- */
 .topbar{position:sticky; top:0; z-index:200; background:rgba(244,236,216,.82); backdrop-filter:saturate(140%) blur(10px);
   border-bottom:1px solid var(--line)}
@@ -603,7 +610,7 @@ footer .base b{color:var(--gold-soft)}
             <div class="go">Explore the level <span class="arrow">→</span></div>
           </div>
         </article>
-        <article class="lvl gold reveal" onclick="go('curriculum','L2')">
+        <article class="lvl gold reveal" id="homeCardL2" onclick="clickLevelCard('L2')">
           <div class="band"></div>
           <div class="pad">
             <div class="num">Level II &middot; Intermediate</div>
@@ -611,10 +618,17 @@ footer .base b{color:var(--gold-soft)}
             <div class="tier">Where arguments are tested.</div>
             <div class="tg">Steelman and dismantle the major arguments for God, take on the problem of evil, defend a secular ethics, and master rebuttal.</div>
             <dl><dt>Time</dt><dd>~18 hrs &middot; 6 weeks</dd><dt>Earns</dt><dd>Certificate of Argumentation</dd></dl>
-            <div class="go">Explore the level <span class="arrow">→</span></div>
+            <div class="go" id="goL2">Explore the level <span class="arrow">→</span></div>
+          </div>
+          <div class="lock-overlay" id="lockL2" style="display:none">
+            <div class="lock-inner">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              <div>Complete <b>Level I</b> to unlock</div>
+              <div class="lock-prog" id="lockProgL2"></div>
+            </div>
           </div>
         </article>
-        <article class="lvl garnet reveal" onclick="go('curriculum','L3')">
+        <article class="lvl garnet reveal" id="homeCardL3" onclick="clickLevelCard('L3')">
           <div class="band"></div>
           <div class="pad">
             <div class="num">Level III &middot; Expert</div>
@@ -622,7 +636,14 @@ footer .base b{color:var(--gold-soft)}
             <div class="tier">Where the room is mastered.</div>
             <div class="tg">Advanced philosophy of religion, the cognitive science of religion, competitive debate formats, and a judged capstone.</div>
             <dl><dt>Time</dt><dd>~30 hrs &middot; 10 weeks</dd><dt>Earns</dt><dd>Advanced Cert. + Master Diploma</dd></dl>
-            <div class="go">Explore the level <span class="arrow">→</span></div>
+            <div class="go" id="goL3">Explore the level <span class="arrow">→</span></div>
+          </div>
+          <div class="lock-overlay" id="lockL3" style="display:none">
+            <div class="lock-inner">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              <div>Complete <b>Level II</b> to unlock</div>
+              <div class="lock-prog" id="lockProgL3"></div>
+            </div>
           </div>
         </article>
       </div>
@@ -1147,34 +1168,86 @@ function go(view,arg){
 /* ============================================================
    CURRICULUM RENDER
    ============================================================ */
+/* ── Level lock helpers ── */
+function isLevelUnlocked(lvlId){
+  if(lvlId==='L1') return true;
+  if(lvlId==='L2') return lvlProgress('L1').pc===100;
+  if(lvlId==='L3') return lvlProgress('L2').pc===100;
+  return false;
+}
+
+function updateLockUI(){
+  // Home page cards
+  ['L2','L3'].forEach(id=>{
+    const overlay = document.getElementById('lock'+id);
+    const card    = document.getElementById('homeCard'+id);
+    const prog    = document.getElementById('lockProg'+id);
+    const prereq  = id==='L2'?'L1':'L2';
+    const unlocked = isLevelUnlocked(id);
+    if(overlay) overlay.style.display = unlocked ? 'none' : 'flex';
+    if(card) card.classList.toggle('locked-card', !unlocked);
+    if(prog && !unlocked){
+      const pr = lvlProgress(prereq);
+      prog.textContent = `Level ${prereq==='L1'?'I':'II'}: ${pr.pc}% complete`;
+    }
+  });
+}
+
+function clickLevelCard(lvlId){
+  if(!isLevelUnlocked(lvlId)){
+    const prereq = lvlId==='L2'?'Level I':'Level II';
+    toast('Complete '+prereq+' first to unlock this level','');
+    return;
+  }
+  go('curriculum', lvlId);
+}
+
 function renderCurriculum(){
-  const wrap=document.getElementById('curriculumList'); let h='';
+  const wrap=document.getElementById('curriculumList'); if(!wrap) return; let h='';
   CURRICULUM.forEach(L=>{
-    h+=`<div class="lvlblock" id="block-${L.id}">
-      <div class="lvlhd ${L.accent}"><span class="dot"></span><div><div class="tag">Level ${L.numeral} &middot; ${L.tier}</div><h2>${L.name}</h2></div>
-      <div class="meta"><b>${L.duration}</b><br>Earns: ${L.credential}</div></div>`;
-    L.modules.forEach((M,mi)=>{
-      const total=M.lessons.length;
-      h+=`<div class="module" data-lvl="${L.id}">
-        <div class="mhd" onclick="this.parentNode.classList.toggle('open')">
-          <span class="mi">M${mi+1}</span><h3>${M.title}</h3><span class="cnt">${total} lessons</span>
-          <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>
-        </div><div class="lessons">`;
-      M.lessons.forEach(les=>{
-        const key=L.id+':'+les[0]; const done=state.done.has(key);
-        const inter=LESSON_CONTENT[key]?' ✦':'';
-        h+=`<div class="lrow ${done?'done':''}" data-key="${key}" onclick="openLesson('${L.id}','${les[0]}')">
-          <span class="lc">${les[0]}</span>
-          <div class="lt"><b>${les[1]}${inter}</b> <span>— ${les[2]}</span></div>
-          <svg class="play" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-          <span class="st">${done?'<svg width=12 height=12 viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg>':''}</span>
-        </div>`;
+    const unlocked = isLevelUnlocked(L.id);
+    const pr = lvlProgress(L.id);
+    h+=`<div class="lvlblock" id="block-${L.id}" style="${!unlocked?'opacity:.55;pointer-events:none':''}">
+      <div class="lvlhd ${L.accent}">
+        <span class="dot"></span>
+        <div><div class="tag">Level ${L.numeral} &middot; ${L.tier}</div><h2>${L.name}</h2></div>
+        <div class="meta"><b>${L.duration}</b><br>Earns: ${L.credential}</div>
+        ${!unlocked?`<span style="margin-left:12px;font-size:13px;color:var(--muted);display:flex;align-items:center;gap:6px">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          Complete Level ${L.id==='L2'?'I':'II'} first</span>`:''}
+      </div>`;
+    if(!unlocked){
+      const prereqId = L.id==='L2'?'L1':'L2';
+      const prereqPr = lvlProgress(prereqId);
+      h+=`<div style="padding:20px;text-align:center;color:var(--muted);font-style:italic;font-size:15px">
+        🔒 This level unlocks when Level ${prereqId==='L1'?'I':'II'} is 100% complete.
+        Currently at <b>${prereqPr.pc}%</b> (${prereqPr.d}/${prereqPr.t} lessons).
+      </div>`;
+    } else {
+      L.modules.forEach((M,mi)=>{
+        const total=M.lessons.length;
+        h+=`<div class="module" data-lvl="${L.id}">
+          <div class="mhd" onclick="this.parentNode.classList.toggle('open')">
+            <span class="mi">M${mi+1}</span><h3>${M.title}</h3><span class="cnt">${total} lessons</span>
+            <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>
+          </div><div class="lessons">`;
+        M.lessons.forEach(les=>{
+          const key=L.id+':'+les[0]; const done=state.done.has(key);
+          const inter=LESSON_CONTENT[key]?' ✦':'';
+          h+=`<div class="lrow ${done?'done':''}" data-key="${key}" onclick="openLesson('${L.id}','${les[0]}')">
+            <span class="lc">${les[0]}</span>
+            <div class="lt"><b>${les[1]}${inter}</b> <span>— ${les[2]}</span></div>
+            <svg class="play" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            <span class="st">${done?'<svg width=12 height=12 viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg>':''}</span>
+          </div>`;
+        });
+        h+=`</div></div>`;
       });
-      h+=`</div></div>`;
-    });
+    }
     h+=`</div>`;
   });
   wrap.innerHTML=h;
+  updateLockUI();
 }
 function openModuleFor(lvlId){
   const block=document.getElementById('block-'+lvlId);
@@ -1190,6 +1263,10 @@ function flatLessons(L){ const a=[]; L.modules.forEach((m,mi)=>m.lessons.forEach
 function lvlProgress(id){ const L=lvlObj(id); const all=flatLessons(L); const d=all.filter(x=>state.done.has(id+':'+x.code)).length; return {d,t:all.length,pc:Math.round(d/all.length*100)}; }
 
 function openLesson(lvlId,code){
+  if(!isLevelUnlocked(lvlId)){
+    const prereq = lvlId==='L2'?'Level I':'Level II';
+    toast('Complete '+prereq+' to unlock this lesson 🔒',''); return;
+  }
   curLevel=lvlId; saveLastPosition(lvlId,code);
   const L=lvlObj(lvlId); const all=flatLessons(L);
   const meta=all.find(x=>x.code===code); const key=lvlId+':'+code;
@@ -1317,6 +1394,7 @@ function refreshProgress(){
   });
   renderCurriculum();
   calcSkills(); renderRadar();
+  updateLockUI();
 }
 
 /* ============================================================
