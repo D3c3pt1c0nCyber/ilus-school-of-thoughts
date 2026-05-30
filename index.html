@@ -768,25 +768,6 @@ footer .base b{color:var(--gold-soft)}
     </div>
   </section>
 
-  <!-- certificate showcase -->
-  <section class="section dark">
-    <div class="wrap certshow">
-      <div class="reveal">
-        <div class="eyebrow lt">Verifiable credentials</div>
-        <h2 style="font-size:clamp(28px,3.6vw,44px); color:#F6EAD0; margin-top:14px">A certificate that actually means something.</h2>
-        <p style="color:#C8BCA1; font-size:18px; margin-top:16px">Because every level is gated by a graded performance task, the credential signals real ability &mdash; not just hours watched. Each level earns a verifiable digital certificate; the full programme culminates in the Master Diploma.</p>
-        <ul class="checklist">
-          <li><span class="ck">✓</span><div>Issued as <b>Open Badges 3.0 / W3C Verifiable Credentials</b>, cryptographically signed by the school.</div></li>
-          <li><span class="ck">✓</span><div>A public <b>verification page</b> and QR code confirm authenticity instantly.</div></li>
-          <li><span class="ck">✓</span><div>Download as a print-ready <b>PDF</b> once all three levels are complete.</div></li>
-        </ul>
-        <button class="btn gold" style="margin-top:26px" onclick="go('certificate')">See a sample certificate <span class="arrow">→</span></button>
-      </div>
-      <div class="reveal" style="cursor:pointer" onclick="go('certificate')">
-        <div class="cert" style="max-width:none; transform:rotate(-1.4deg)" id="certPreview"></div>
-      </div>
-    </div>
-  </section>
 </section>
 
 <!-- ============ CURRICULUM ============ -->
@@ -2128,7 +2109,7 @@ document.head.appendChild(revStyle);
    ============================================================ */
 (function init(){
   document.getElementById('heroSeal').innerHTML=sealSVG();
-  document.getElementById('certPreview').innerHTML=certHTML();
+  const cp=document.getElementById('certPreview'); if(cp) cp.innerHTML=certHTML();
   document.getElementById('certFull').innerHTML=certHTML();
   renderCurriculum(); renderRadar(); renderBadges(); newDrill();
   renderBotQueue(); renderDebateRecord();
@@ -2790,7 +2771,7 @@ window.generateCertificate = async function(){
   const cid = 'ISOT-L1-' + now.getFullYear() + '-' + Math.random().toString(36).substr(2,6).toUpperCase();
   const html = certHTML({ name, date: dateStr, cid });
   document.getElementById('certFull').innerHTML    = html;
-  document.getElementById('certPreview').innerHTML = html;
+  const cp=document.getElementById('certPreview'); if(cp) cp.innerHTML = html;
   closeCertModal();
   go('certificate');
   toast('Certificate generated for ' + name + '!', '');
