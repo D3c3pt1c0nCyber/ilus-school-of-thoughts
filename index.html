@@ -931,7 +931,7 @@ footer .base b{color:var(--gold-soft)}
       <div id="arenaStage" style="display:none;margin-top:20px;background:rgba(0,0,0,.25);border:1px solid rgba(231,207,148,.18);border-radius:4px;padding:20px">
         <div style="display:flex;justify-content:space-between;align-items:center;gap:14px;margin-bottom:16px;flex-wrap:wrap">
           <div id="stagePhase" style="font-family:var(--disp);font-size:19px;font-weight:600;color:#F0E6CE">Opening Statement</div>
-          <div id="stageTimer" class="arena-timer">03:00</div>
+          <div id="stageTimer" class="arena-timer">10:00</div>
         </div>
         <!-- Bot statement for this phase -->
         <div id="botStatementBox" style="font-size:15px;line-height:1.62;color:#E8DDCA;margin-bottom:18px;padding:14px 16px;background:rgba(123,44,44,.12);border-left:3px solid var(--garnet);border-radius:0 3px 3px 0">
@@ -2725,9 +2725,9 @@ const BOT_TIERS = [
 ];
 
 const PHASES = [
-  { key:'opening', label:'Opening Statement', secs:180, prompt:'Open your case FOR the motion — state your two or three strongest reasons clearly.' },
-  { key:'cross',   label:'Cross-Examination', secs:120, prompt:'Answer the bot’s challenge directly, then press the weakest link in its case.' },
-  { key:'closing', label:'Closing Statement', secs:120, prompt:'Summarise why your case outweighs the opposition. Don’t introduce brand-new arguments.' },
+  { key:'opening', label:'Opening Statement', secs:600, prompt:'Open your case FOR the motion — state your two or three strongest reasons clearly.' },
+  { key:'cross',   label:'Cross-Examination', secs:300, prompt:'Answer the bot’s challenge directly, then press the weakest link in its case.' },
+  { key:'closing', label:'Closing Statement', secs:600, prompt:'Summarise why your case outweighs the opposition. Don’t introduce brand-new arguments.' },
 ];
 
 let arenaState = { topicIdx:0, phaseIdx:0, scoreYou:0, scoreBot:0, botName:'Socrates-9', botRating:1050, active:false, timer:null, timeLeft:0 };
