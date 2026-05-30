@@ -1672,9 +1672,10 @@ function renderQuiz(key,content){
       <div class="explain" id="ex${qi}"><b>Why:</b> ${q.ex}</div>
     </div>`).join('')
     +`<div class="quizbar"><button class="btn gold" id="checkBtn" onclick="checkQuiz('${key}')">Check answers</button>
-      <button class="btn ghost sm" onclick="openLesson('${key.split(':')[0]}','${key.split(':')[1]}')">Reset</button>
+      <button class="btn gold" id="tryAgainBtn" style="display:none" onclick="openLesson('${key.split(':')[0]}','${key.split(':')[1]}')">Try again ↻</button>
       <button class="btn gold" id="continueBtn" style="display:none" onclick="advanceLesson('${key}')">Continue <span class="arrow">→</span></button>
-      <span class="scorepill" id="scorePill"></span></div>`;
+      <span class="scorepill" id="scorePill"></span></div>
+      <div style="font-size:12.5px;color:var(--muted);margin-top:8px">You need <b>60%</b> or better to complete this lesson.</div>`;
   box._sel=sel; box._content=content;
 }
 function pick(qi,oi){
@@ -1698,15 +1699,31 @@ function checkQuiz(key){
     if(sel[qi]===q.ans) correct++;
   });
   box._locked=true;
-  const pill=document.getElementById('scorePill'); pill.textContent=`Score: ${correct}/${c.quiz.length}`; pill.classList.add('show');
-  document.getElementById('checkBtn').style.display='none';
-  const contBtn=document.getElementById('continueBtn'); if(contBtn) contBtn.style.display='inline-flex';
-  if(!state.done.has(key)){ state.done.add(key); refreshProgress(); }
-  award(key,40,correct===c.quiz.length?'Perfect — lesson complete!':'Lesson complete');
-  // store locally for skill calc
-  state.quizScores[key.replace(':','-')]={score:correct,total:c.quiz.length,pct:Math.round(correct/c.quiz.length*100)};
-  saveQuizScore(key, correct, c.quiz.length);
+  const total=c.quiz.length, pct=Math.round(correct/total*100);
+  const passed = pct >= 60;   // must pass to complete the lesson
+  // record the attempt (for the skill radar) regardless of pass/fail
+  state.quizScores[key.replace(':','-')]={score:correct,total,pct};
+  saveQuizScore(key, correct, total);
   calcSkills(); renderRadar();
+
+  const pill=document.getElementById('scorePill'); pill.classList.add('show');
+  document.getElementById('checkBtn').style.display='none';
+  const contBtn=document.getElementById('continueBtn'); const tryBtn=document.getElementById('tryAgainBtn');
+
+  if(passed){
+    pill.textContent = `Passed · ${correct}/${total} (${pct}%)`;
+    pill.style.color = 'var(--verd)';
+    if(contBtn) contBtn.style.display='inline-flex';
+    if(tryBtn)  tryBtn.style.display='none';
+    if(!state.done.has(key)){ state.done.add(key); refreshProgress(); }   // ← checkmark only here
+    award(key,40, correct===total ? 'Perfect — lesson passed!' : 'Lesson passed!');
+  } else {
+    pill.textContent = `Score ${correct}/${total} (${pct}%) — 60% needed to pass`;
+    pill.style.color = 'var(--garnet)';
+    if(tryBtn)  tryBtn.style.display='inline-flex';
+    if(contBtn) contBtn.style.display='none';
+    toast('Not passed yet — review the explanations and try again','');
+  }
 }
 
 /* ============================================================
