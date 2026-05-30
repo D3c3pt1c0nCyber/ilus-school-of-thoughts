@@ -1293,7 +1293,10 @@ function openLesson(lvlId,code){
     h+=`<div class="lblk"><span class="eyebrow">Overview</span>
       <p style="font-size:18px">This lesson covers <b>${meta.desc}.</b></p>
       <div class="notecard">In the full build this screen carries the reading, narrated video, primary-source excerpts, and a knowledge check. Lesson <b>1.2 — Belief vs. Knowledge</b> (Level I) is wired up as a fully interactive example with a graded quiz.</div>
-      <button class="btn gold" onclick="markComplete('${key}')">Mark lesson complete <span class="arrow">→</span></button>
+      ${state.done.has(key)
+        ? `<button class="btn gold" onclick="advanceLesson('${key}')">Next lesson <span class="arrow">→</span></button>`
+        : `<button class="btn gold" onclick="markComplete('${key}')">Mark lesson complete <span class="arrow">→</span></button>`
+      }
     </div>`;
   }
   document.getElementById('lessonMain').innerHTML=h;
@@ -1301,25 +1304,29 @@ function openLesson(lvlId,code){
   go('lesson');
 }
 
-function markComplete(key){
+function advanceLesson(key){
+  /* Move to the next lesson in the flat list — used by both markComplete and "Next lesson" button */
   const [lvl,code]=key.split(':');
-  if(state.done.has(key)){ toast('Already completed',''); openLesson(lvl,code); return; }
-  state.done.add(key); award(key,30,'Lesson complete'); refreshProgress(); saveProgress();
-  // Auto-advance to next lesson after a short pause so the toast is visible
   const all=flatLessons(lvlObj(lvl));
   const idx=all.findIndex(x=>x.code===code);
   const next=all[idx+1];
   if(next){
-    setTimeout(()=>openLesson(lvl,next.code), 1200);
+    openLesson(lvl,next.code);
   } else {
-    // Last lesson in this level — check if next level unlocks
-    setTimeout(()=>{
-      refreshProgress();
-      if(lvl==='L1' && isLevelUnlocked('L2')) toast('Level II unlocked! 🎉','');
-      else if(lvl==='L2' && isLevelUnlocked('L3')) toast('Level III unlocked! 🎉','');
-      else toast('Level complete! 🏆','');
-    }, 1200);
+    refreshProgress();
+    if(lvl==='L1' && isLevelUnlocked('L2')) toast('Level II unlocked! 🎉','');
+    else if(lvl==='L2' && isLevelUnlocked('L3')) toast('Level III unlocked! 🎉','');
+    else toast('Level complete! 🏆','');
   }
+}
+
+function markComplete(key){
+  const [lvl,code]=key.split(':');
+  if(!state.done.has(key)){
+    state.done.add(key); award(key,30,'Lesson complete'); refreshProgress(); saveProgress();
+  }
+  // Always advance — whether first time or already done
+  setTimeout(()=>advanceLesson(key), state.done.has(key) ? 0 : 1200);
 }
 
 /* ---- quiz ---- */
