@@ -859,30 +859,31 @@ footer .base b{color:var(--gold-soft)}
     </div>
 
     <div class="arena-cols">
+      <!-- Left: Bot challenge queue -->
       <div>
-        <div class="eyebrow" style="margin-bottom:14px; display:block">Your asynchronous debates</div>
-        <div class="async">
-          <div class="row"><div class="mo"><b>Faith is not a reliable path to truth.</b><div style="font-size:13px; color:var(--muted)">Written &middot; Round 2 of 3</div></div><span class="status turn">Your turn</span></div>
-          <div class="row"><div class="mo"><b>Objective morality does not require God.</b><div style="font-size:13px; color:var(--muted)">Written &middot; Round 3 of 3</div></div><span class="status judge">Awaiting judge</span></div>
-          <div class="row"><div class="mo"><b>Fine-tuning is better explained without a designer.</b><div style="font-size:13px; color:var(--muted)">Open challenge &middot; BP format</div></div><span class="status open">Join →</span></div>
+        <div class="eyebrow" style="margin-bottom:14px;display:block">Bot challenge queue</div>
+        <div class="async" id="botChallengeQueue">
+          <!-- populated by renderBotQueue() -->
         </div>
-        <div class="notecard" style="margin-top:22px"><b style="color:var(--gold-deep)">Rules of engagement.</b> Attack arguments, never people. Steelman before you strike. Concede what is true. The goal is truth and skill &mdash; never humiliating anyone.</div>
+        <div class="notecard" style="margin-top:22px">
+          <b style="color:var(--gold-deep)">Rules of engagement.</b>
+          Attack arguments, never people. Steelman before you strike. Concede what is true. The goal is truth and skill &mdash; never humiliating anyone.
+        </div>
       </div>
+      <!-- Right: Your debate record -->
       <div>
         <div class="panel" style="padding:24px 26px">
-          <h3>Sparring ladder &middot; ELO</h3>
-          <table class="lboard">
-            <thead><tr><th class="rk">#</th><th>Disputant</th><th class="el">Rating</th></tr></thead>
-            <tbody>
-              <tr><td class="rk">1</td><td>A. Renford</td><td class="el">1612</td></tr>
-              <tr><td class="rk">2</td><td>M. Okonkwo</td><td class="el">1588</td></tr>
-              <tr><td class="rk">3</td><td>S. Vance</td><td class="el">1547</td></tr>
-              <tr class="you"><td class="rk">4</td><td>You &middot; Rhetor</td><td class="el">1521</td></tr>
-              <tr><td class="rk">5</td><td>J. Pareja</td><td class="el">1498</td></tr>
-              <tr><td class="rk">6</td><td>K. Adeyemi</td><td class="el">1463</td></tr>
-            </tbody>
-          </table>
-          <button class="btn ghost sm" style="margin-top:18px; width:100%; justify-content:center" onclick="toast('Searching for a ranked match…','')">Find a ranked match</button>
+          <h3>Your debate record</h3>
+          <div id="debateRecord" style="margin-top:12px">
+            <div style="color:var(--muted);font-size:14px;font-style:italic;padding:12px 0">
+              No debates completed yet — challenge a bot above to start your record.
+            </div>
+          </div>
+          <div id="debateStats" style="display:none;margin-top:16px;padding-top:16px;border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;text-align:center">
+            <div><div id="statWins" style="font-family:var(--disp);font-size:28px;font-weight:700;color:var(--verd)">0</div><div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)">Wins</div></div>
+            <div><div id="statDraws" style="font-family:var(--disp);font-size:28px;font-weight:700;color:var(--gold-deep)">0</div><div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)">Draws</div></div>
+            <div><div id="statLosses" style="font-family:var(--disp);font-size:28px;font-weight:700;color:var(--garnet)">0</div><div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)">Losses</div></div>
+          </div>
         </div>
       </div>
     </div>
@@ -1568,6 +1569,7 @@ document.head.appendChild(revStyle);
   document.getElementById('certPreview').innerHTML=certHTML();
   document.getElementById('certFull').innerHTML=certHTML();
   renderCurriculum(); renderRadar(); renderBadges(); newDrill();
+  renderBotQueue(); renderDebateRecord();
   syncRP(); refreshProgress(); revealScan();
 })();
 </script>
@@ -1595,6 +1597,7 @@ const firebaseConfig = {
 const app  = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db   = getFirestore(app);
+window._db = db; // expose for overridden saveProgress
 const provider = new GoogleAuthProvider();
 
 /* ---- Expose helpers to global scope so inline JS can call them ---- */
@@ -1698,6 +1701,7 @@ async function loadProgress(uid){
       state.rp = d.rp || 0;
       state.done = new Set(d.done || []);
       state.awarded = new Set(d.awarded || []);
+      state.debateHistory = d.debateHistory || [];
       certName = d.certName || '';
     }
     // load quiz scores
@@ -1912,20 +1916,95 @@ window.submitDebateRound = function(){
   setTimeout(()=>{ showBotArg(); }, 1200);
 };
 
+/* ── Debate history stored in memory (saved to Firestore via saveProgress) ── */
+if(!state.debateHistory) state.debateHistory = [];
+
+function renderBotQueue(){
+  const el = document.getElementById('botChallengeQueue'); if(!el) return;
+  const BOT_LEVELS = [
+    { name:'Socrates-9',  level:'Beginner',     rating:1050, motions:[0,1,2] },
+    { name:'Hume-5',      level:'Intermediate', rating:1320, motions:[0,2,4] },
+    { name:'Kant-3',      level:'Advanced',     rating:1580, motions:[0,3,6] },
+    { name:'Aristotle-6', level:'Expert',       rating:1820, motions:[1,4,5] },
+  ];
+  el.innerHTML = BOT_LEVELS.map((b,i)=>`
+    <div class="row" style="cursor:pointer" onclick="challengeBot(${i})">
+      <div class="mo">
+        <b>${b.name}</b>
+        <div style="font-size:13px;color:var(--muted)">${b.level} · Rating ${b.rating}</div>
+      </div>
+      <span class="status open">Challenge →</span>
+    </div>`).join('');
+}
+
+function challengeBot(idx){
+  const BOT_LEVELS = [
+    { name:'Socrates-9',  level:'Beginner',     rating:1050, motions:[0,1,2] },
+    { name:'Hume-5',      level:'Intermediate', rating:1320, motions:[0,2,4] },
+    { name:'Kant-3',      level:'Advanced',     rating:1580, motions:[0,3,6] },
+    { name:'Aristotle-6', level:'Expert',       rating:1820, motions:[1,4,5] },
+  ];
+  const bot = BOT_LEVELS[idx];
+  arenaState.motionIdx = bot.motions[0];
+  document.getElementById('arenaMotion').textContent = MOTIONS[arenaState.motionIdx];
+  document.getElementById('arenaBotName').textContent = bot.name + ' (' + bot.level + ')';
+  document.getElementById('arenaMotion').scrollIntoView({behavior:'smooth', block:'center'});
+  startBotDebate();
+}
+
+function renderDebateRecord(){
+  const el = document.getElementById('debateRecord');
+  const statsEl = document.getElementById('debateStats');
+  if(!el) return;
+  if(!state.debateHistory || !state.debateHistory.length){
+    el.innerHTML = '<div style="color:var(--muted);font-size:14px;font-style:italic;padding:12px 0">No debates completed yet — challenge a bot above to start your record.</div>';
+    if(statsEl) statsEl.style.display = 'none';
+    return;
+  }
+  const wins   = state.debateHistory.filter(d=>d.result==='win').length;
+  const draws  = state.debateHistory.filter(d=>d.result==='draw').length;
+  const losses = state.debateHistory.filter(d=>d.result==='loss').length;
+  document.getElementById('statWins').textContent   = wins;
+  document.getElementById('statDraws').textContent  = draws;
+  document.getElementById('statLosses').textContent = losses;
+  if(statsEl) statsEl.style.display = 'grid';
+  el.innerHTML = state.debateHistory.slice(-6).reverse().map(d=>{
+    const col = d.result==='win'?'var(--verd)':d.result==='draw'?'var(--gold-deep)':'var(--garnet)';
+    const label = d.result==='win'?'Won':d.result==='draw'?'Draw':'Lost';
+    return `<div class="row">
+      <div class="mo"><b style="font-size:14px">${d.motion}</b>
+      <div style="font-size:12px;color:var(--muted)">${d.bot} · Score ${d.you}–${d.bot_score}</div></div>
+      <span style="font-size:12px;font-weight:700;color:${col};white-space:nowrap">${label}</span>
+    </div>`;
+  }).join('');
+}
+
 function endDebate(){
   document.getElementById('arenaExchange').style.display = 'none';
   const you = arenaState.scoreYou, bot = arenaState.scoreBot;
-  const won = you > bot;
-  const tied = you === bot;
-  const rp = won ? 80 : tied ? 40 : 20;
+  const won = you > bot, tied = you === bot;
+  const rp  = won ? 80 : tied ? 40 : 20;
+  const result = won ? 'win' : tied ? 'draw' : 'loss';
+
+  // Save to debate history
+  if(!state.debateHistory) state.debateHistory = [];
+  state.debateHistory.push({
+    result, you, bot_score: bot,
+    motion: MOTIONS[arenaState.motionIdx].replace(/["""]/g,''),
+    bot: document.getElementById('arenaBotName').textContent,
+    date: new Date().toLocaleDateString(),
+  });
+  renderDebateRecord();
+  if(typeof saveProgress === 'function') saveProgress();
+
   const res = document.getElementById('arenaResult');
   res.style.display = 'block';
   res.style.background = won ? 'rgba(62,107,84,.18)' : tied ? 'rgba(184,137,59,.15)' : 'rgba(123,44,44,.18)';
   res.style.border = '1px solid ' + (won ? 'rgba(62,107,84,.4)' : tied ? 'rgba(184,137,59,.3)' : 'rgba(123,44,44,.4)');
   res.innerHTML = `
-    <div style="font-size:28px;margin-bottom:10px">${won ? '🏆' : tied ? '🤝' : '📚'}</div>
+    <div style="font-size:28px;margin-bottom:10px">${won?'🏆':tied?'🤝':'📚'}</div>
     <div style="font-family:var(--disp);font-size:24px;font-weight:700;color:${won?'#7ecfa4':tied?'var(--gold-soft)':'#e07070'};margin-bottom:8px">
-      ${won ? 'You won!' : tied ? 'Draw' : 'Bot wins this round'}
+      ${won?'You won!':tied?'Draw':'Bot wins this round'}
     </div>
     <div style="font-size:14px;color:#C8BCA1;margin-bottom:16px">
       Final score: <b style="color:#7ecfa4">${you}</b> – <b style="color:#e07070">${bot}</b>
@@ -1935,10 +2014,27 @@ function endDebate(){
       <button class="btn gold" onclick="startBotDebate()">Rematch →</button>
       <button class="btn lt" onclick="pickNewMotion()">New motion</button>
     </div>`;
-  if(typeof award === 'function') award('debate-'+Date.now(), rp, won ? 'Debate won!' : 'Debate complete');
+  if(typeof award==='function') award('debate-'+Date.now(), rp, won?'Debate won!':'Debate complete');
   arenaState.active = false;
   document.getElementById('arenaStartRow').style.display = 'flex';
 }
+
+// Also update saveProgress to include debateHistory
+const _origSaveProgress = window.saveProgress;
+window.saveProgress = async function(){
+  if(!currentUser) return;
+  try {
+    const { doc, setDoc, serverTimestamp } = await import('https://www.gstatic.com/firebasejs/12.14.0/firebase-firestore.js');
+    await setDoc(doc(window._db,'users',currentUser.uid,'progress','state'),{
+      rp: state.rp,
+      done: [...state.done],
+      awarded: [...state.awarded],
+      certName: certName || currentUser.displayName || '',
+      debateHistory: state.debateHistory || [],
+      updatedAt: serverTimestamp()
+    });
+  } catch(e){ console.warn('saveProgress failed',e); }
+};
 </script>
 </body>
 </html>
