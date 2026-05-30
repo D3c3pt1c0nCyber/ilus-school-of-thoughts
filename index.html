@@ -1002,6 +1002,18 @@ footer .base b{color:var(--gold-soft)}
         </div>
       </div>
     </div>
+
+    <!-- Manage admins — founder only -->
+    <div id="adminTeamPanel" class="panel" style="padding:24px 26px;margin-top:24px;display:none">
+      <h3 style="margin-bottom:4px">Roles &amp; access</h3>
+      <p style="font-size:13.5px;color:var(--muted);margin-bottom:16px">Grant a student account admin rights — they'll be able to edit lessons, videos, and quizzes. Only you (the founder) can manage this list.</p>
+      <div id="adminTeamList" style="margin-bottom:16px"></div>
+      <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+        <input id="newAdminEmail" class="adm-input" style="flex:1;min-width:220px;margin:0" type="email" placeholder="person@email.com — must have an account already">
+        <button class="btn gold" onclick="addAdminEmail()">Grant admin →</button>
+      </div>
+      <p style="font-size:12px;color:var(--muted);margin-top:10px;font-style:italic">The person must create an account first (Google or email/password). Granting admin to an email that hasn't signed up yet works the moment they do.</p>
+    </div>
   </div>
 </section>
 
@@ -1092,8 +1104,10 @@ let certName='';
 /* ============================================================
    RBAC + ADMIN CONTENT LAYER
    ============================================================ */
-const ADMIN_EMAILS = ['joiesayen1223@gmail.com'];   // accounts that get admin role
-let isAdmin = false;
+const ADMIN_EMAILS = ['joiesayen1223@gmail.com'];   // founder account(s) — can manage other admins
+let isAdmin = false;     // can edit content (founder OR promoted)
+let isFounder = false;   // can manage the admin roster (founder only)
+let siteAdmins = [];     // promoted admin emails, loaded from Firestore content/roles
 
 /* Admin-authored content, loaded once from Firestore content/site:
    - SITE.lessonContent : { 'L1:1.1': {read,terms,quiz,youtubeId}, ... } overrides/extends SEED
@@ -1605,12 +1619,12 @@ function refreshProgress(){
    ============================================================ */
 /* Skill → lesson mapping: which lessons build which skill */
 const SKILL_MAP=[
-  ['Logic',    ['L1:3.1','L1:3.2','L1:3.3','L1:3.4','L2:1.1','L2:1.2','L2:1.3','L2:1.4','L3:1.1','L3:1.3']],
-  ['Evidence', ['L1:2.1','L1:2.2','L1:2.3','L1:2.4','L2:4.1','L2:4.2','L2:4.3','L3:1.2','L3:1.5']],
-  ['Rebuttal', ['L2:2.1','L2:2.2','L2:2.3','L2:2.4','L3:5.1','L3:5.2','L3:5.3','L2:3.1','L2:3.2']],
-  ['Charity',  ['L1:1.4','L2:1.4','L2:1.1','L3:2.3','L3:5.3','L3:5.5']],
-  ['Rhetoric', ['L3:5.1','L3:5.2','L3:5.4','L3:5.5','L2:5.3','L3:4.3']],
-  ['Composure',['L3:3.1','L3:3.2','L3:3.3','L3:4.1','L3:4.2','L2:5.1','L2:5.2']],
+  ['Logic',    ['L1:1.1','L1:1.2','L1:1.3','L1:3.1','L1:3.2','L1:3.3','L1:3.4','L2:1.1','L2:1.2','L2:1.3','L2:1.4','L3:1.1','L3:1.2','L3:1.3']],
+  ['Evidence', ['L1:2.1','L1:2.2','L1:2.3','L1:2.4','L2:4.1','L2:4.2','L2:4.3','L3:1.4','L3:1.5','L3:2.1','L3:2.2']],
+  ['Rebuttal', ['L1:1.4','L2:2.1','L2:2.2','L2:2.3','L2:2.4','L2:3.1','L2:3.2','L2:3.3','L3:5.1','L3:5.2','L3:6.1']],
+  ['Charity',  ['L1:1.4','L2:1.1','L2:1.4','L3:2.3','L3:5.3','L3:5.5','L3:4.3','L3:6.2']],
+  ['Rhetoric', ['L1:3.4','L2:5.3','L3:5.1','L3:5.2','L3:5.4','L3:5.5','L3:6.1','L3:6.2']],
+  ['Composure',['L1:4.1','L1:4.2','L1:4.3','L1:4.4','L2:5.1','L2:5.2','L3:3.1','L3:3.2','L3:3.3','L3:4.1','L3:4.2']],
 ];
 let SKILLS=SKILL_MAP.map(([name])=>[name,0]);
 
@@ -2004,9 +2018,54 @@ async function loadSiteContent(){
       SITE.extraLessons  = d.extraLessons  || [];
     } else { SITE.lessonContent={}; SITE.extraLessons=[]; }
   } catch(e){ console.warn('loadSiteContent failed',e); SITE.lessonContent={}; SITE.extraLessons=[]; }
+  // load the promoted-admin roster
+  try {
+    const rs = await getDoc(doc(db,'content','roles'));
+    siteAdmins = (rs.exists() && Array.isArray(rs.data().admins)) ? rs.data().admins.map(e=>String(e).toLowerCase()) : [];
+  } catch(e){ siteAdmins = []; }
   applyExtraLessons();
   if(typeof renderCurriculum==='function') renderCurriculum();
 }
+
+async function saveRoles(){
+  try {
+    await setDoc(doc(db,'content','roles'),{ admins: siteAdmins, updatedAt: serverTimestamp(), updatedBy: currentUser?currentUser.email:'' });
+    return true;
+  } catch(e){ console.warn('saveRoles failed',e); toast('Could not save roles — only the founder can change admins',''); return false; }
+}
+
+window.addAdminEmail = async function(){
+  if(!isFounder){ toast('Only the founder can grant admin',''); return; }
+  const inp = document.getElementById('newAdminEmail');
+  const email = (inp.value||'').trim().toLowerCase();
+  if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){ toast('Enter a valid email',''); return; }
+  if(ADMIN_EMAILS.includes(email)){ toast('That account is already the founder',''); return; }
+  if(siteAdmins.includes(email)){ toast('Already an admin',''); return; }
+  siteAdmins.push(email);
+  const ok = await saveRoles();
+  inp.value=''; renderAdminTeam();
+  if(ok) toast(email+' is now an admin','✦');
+};
+
+window.removeAdminEmail = async function(email){
+  if(!isFounder){ toast('Only the founder can revoke admin',''); return; }
+  siteAdmins = siteAdmins.filter(e=>e!==email);
+  const ok = await saveRoles();
+  renderAdminTeam();
+  if(ok) toast('Admin access revoked for '+email,'');
+};
+
+window.renderAdminTeam = function(){
+  const box = document.getElementById('adminTeamList'); if(!box) return;
+  const founders = ADMIN_EMAILS.map(e=>`<div class="adm-lrow" style="cursor:default">
+      <span class="lt">${e}<small>Founder · full control</small></span>
+      <span class="lstatus full">Founder</span></div>`).join('');
+  const admins = siteAdmins.length ? siteAdmins.map(e=>`<div class="adm-lrow" style="cursor:default">
+      <span class="lt">${e}<small>Admin · can edit content</small></span>
+      <button class="btn ghost sm" onclick="removeAdminEmail('${e}')">Revoke</button></div>`).join('')
+      : '<p style="color:var(--muted);font-size:14px;font-style:italic;padding:8px 0">No promoted admins yet. Add one below.</p>';
+  box.innerHTML = founders + admins;
+};
 
 async function saveSiteContent(){
   try {
@@ -2031,6 +2090,9 @@ window.renderAdmin = function(){
     refreshAddModules();
   }
   renderAdminLessonList();
+  // founder-only roles panel
+  const tp = document.getElementById('adminTeamPanel');
+  if(tp){ tp.style.display = isFounder ? 'block' : 'none'; if(isFounder) renderAdminTeam(); }
 };
 
 window.refreshAddModules = function(){
@@ -2250,12 +2312,13 @@ onAuthStateChanged(auth, async user => {
   currentUser = user;
   const btn = document.getElementById('authBtn');
   if(user){
-    // ── RBAC: determine admin role ──
-    isAdmin = ADMIN_EMAILS.includes((user.email||'').toLowerCase());
+    // ── RBAC: load roster, then resolve roles ──
+    const email = (user.email||'').toLowerCase();
+    isFounder = ADMIN_EMAILS.includes(email);
+    await loadSiteContent();                       // loads shared content + admin roster
+    isAdmin = isFounder || siteAdmins.includes(email);
     const adminLink = document.getElementById('adminNavLink');
     if(adminLink) adminLink.style.display = isAdmin ? '' : 'none';
-    // ── Load shared admin content (lessons/videos/quizzes) for everyone ──
-    await loadSiteContent();
     if(isAdmin && typeof renderAdmin==='function') renderAdmin();
     // ── Show the app, hide the gate ──
     showApp();
@@ -2277,7 +2340,7 @@ onAuthStateChanged(auth, async user => {
   } else {
     // ── Show the gate, hide the app ──
     showGate();
-    isAdmin = false;
+    isAdmin = false; isFounder = false; siteAdmins = [];
     const adminLink = document.getElementById('adminNavLink');
     if(adminLink) adminLink.style.display = 'none';
     if(btn){
