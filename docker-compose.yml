@@ -1,0 +1,7 @@
+services:
+  ilus-school:
+    build: .
+    container_name: ilus-school-of-thoughts
+    ports:
+      - "0.0.0.0:7575:7575"
+    restart: unless-stopped

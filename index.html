@@ -1,0 +1,1284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ilu's School of Thoughts — Reason. Argue. Illuminate.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,500&family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Pinyon+Script&family=Spline+Sans+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F4ECD8; --paper-2:#FBF7EC; --card:#FCF9F0;
+  --ink:#1C1A14; --ink-soft:#4A4536; --muted:#7A7361;
+  --gold:#B8893B; --gold-deep:#8A6A2B; --gold-soft:#E7CF94;
+  --garnet:#7B2C2C; --verd:#3E6B54; --line:#DCD2BB; --line-2:#C9BD9F;
+  --night:#15130D; --night-2:#1F1B12;
+  --sh-1:0 1px 2px rgba(28,26,20,.06), 0 6px 22px rgba(28,26,20,.08);
+  --sh-2:0 2px 6px rgba(28,26,20,.10), 0 22px 50px rgba(28,26,20,.16);
+  --serif:"Spectral",Georgia,serif; --disp:"Fraunces",Georgia,serif; --mono:"Spline Sans Mono",ui-monospace,monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; font-family:var(--serif); color:var(--ink); background:var(--paper);
+  font-size:17px; line-height:1.65; -webkit-font-smoothing:antialiased;
+  background-image:radial-gradient(1200px 600px at 80% -10%, #fbf4e2 0%, rgba(251,244,226,0) 60%);
+}
+/* paper grain */
+body::before{
+  content:""; position:fixed; inset:0; z-index:9999; pointer-events:none; opacity:.05; mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+h1,h2,h3,h4{font-family:var(--disp); font-weight:600; line-height:1.08; margin:0; letter-spacing:-.01em}
+a{color:inherit; text-decoration:none}
+button{font-family:inherit}
+.wrap{max-width:1180px; margin:0 auto; padding:0 28px}
+.eyebrow{font-family:var(--serif); text-transform:uppercase; letter-spacing:.26em; font-size:12px; font-weight:600; color:var(--gold-deep)}
+.eyebrow.lt{color:var(--gold-soft)}
+.rule{height:1px; background:linear-gradient(90deg,transparent,var(--line-2),transparent); border:0; margin:0}
+
+/* ---------- buttons ---------- */
+.btn{display:inline-flex; align-items:center; gap:.55em; padding:.82em 1.5em; border-radius:2px; font-weight:600; font-size:15px;
+  background:var(--ink); color:var(--paper-2); border:1px solid var(--ink); cursor:pointer; transition:.22s; letter-spacing:.01em}
+.btn:hover{transform:translateY(-2px); box-shadow:var(--sh-2)}
+.btn.gold{background:linear-gradient(180deg,#caa14f,var(--gold)); border-color:var(--gold-deep); color:#241a07; box-shadow:inset 0 1px 0 rgba(255,255,255,.45)}
+.btn.ghost{background:transparent; color:var(--ink)}
+.btn.ghost:hover{background:rgba(28,26,20,.05)}
+.btn.lt{background:transparent; color:var(--paper); border-color:rgba(231,207,148,.55)}
+.btn.lt:hover{background:rgba(231,207,148,.12)}
+.btn.sm{padding:.55em 1.05em; font-size:13.5px}
+.arrow{transition:.22s}
+.btn:hover .arrow{transform:translateX(3px)}
+
+/* ---------- topbar ---------- */
+.topbar{position:sticky; top:0; z-index:200; background:rgba(244,236,216,.82); backdrop-filter:saturate(140%) blur(10px);
+  border-bottom:1px solid var(--line)}
+.topbar .row{display:flex; align-items:center; gap:18px; height:68px}
+.brand{display:flex; align-items:center; gap:11px; cursor:pointer}
+.monogram{width:38px; height:38px; border-radius:50%; display:grid; place-items:center; flex:none;
+  background:radial-gradient(circle at 35% 30%,#2a2418,#15130d); border:1.5px solid var(--gold); box-shadow:inset 0 0 0 2px rgba(184,137,59,.25)}
+.monogram span{font-family:var(--disp); font-weight:700; color:var(--gold-soft); font-size:20px; line-height:1; transform:translateY(1px)}
+.brand b{font-family:var(--disp); font-weight:600; font-size:18.5px; letter-spacing:-.01em; white-space:nowrap}
+.brand small{display:block; font-size:10.5px; letter-spacing:.24em; text-transform:uppercase; color:var(--gold-deep); margin-top:1px; font-weight:600}
+nav.main{display:flex; gap:4px; margin-left:8px}
+nav.main a{padding:.5em .82em; font-size:14.5px; color:var(--ink-soft); border-radius:2px; position:relative; cursor:pointer; transition:.18s; font-weight:500}
+nav.main a:hover{color:var(--ink); background:rgba(28,26,20,.04)}
+nav.main a.active{color:var(--ink)}
+nav.main a.active::after{content:""; position:absolute; left:.82em; right:.82em; bottom:.18em; height:2px; background:var(--gold)}
+.spacer{flex:1}
+.rp-pill{display:flex; align-items:center; gap:9px; padding:.42em .42em .42em .85em; border:1px solid var(--line-2); border-radius:30px; background:var(--paper-2); cursor:pointer; transition:.2s}
+.rp-pill:hover{border-color:var(--gold); box-shadow:var(--sh-1)}
+.rp-pill .v{font-family:var(--mono); font-weight:500; font-size:14px}
+.rp-pill .rk{font-size:12px; background:var(--ink); color:var(--paper-2); padding:.32em .7em; border-radius:30px; letter-spacing:.04em}
+.rp-pill .star{color:var(--gold)}
+.hamb{display:none; width:42px; height:42px; border:1px solid var(--line-2); background:var(--paper-2); border-radius:3px; cursor:pointer; flex-direction:column; gap:4px; align-items:center; justify-content:center}
+.hamb i{width:18px; height:2px; background:var(--ink); display:block}
+@media(max-width:940px){
+  nav.main{position:absolute; top:68px; left:0; right:0; background:var(--paper); border-bottom:1px solid var(--line); flex-direction:column; padding:8px 18px 14px; gap:2px; display:none; box-shadow:var(--sh-2)}
+  nav.main.open{display:flex}
+  nav.main a{padding:.7em .6em; font-size:16px}
+  .hamb{display:flex}
+  .brand small{display:none}
+}
+
+/* ---------- views ---------- */
+.view{display:none; animation:fade .5s ease both}
+.view.show{display:block}
+@keyframes fade{from{opacity:0; transform:translateY(8px)}to{opacity:1; transform:none}}
+
+/* ---------- hero ---------- */
+.hero{position:relative; background:var(--night); color:#EDE3CC; overflow:hidden; border-bottom:3px solid var(--gold-deep)}
+.hero::before{content:""; position:absolute; inset:0;
+  background:radial-gradient(900px 520px at 72% 18%, rgba(184,137,59,.30), rgba(184,137,59,0) 60%),
+             radial-gradient(700px 500px at 12% 90%, rgba(123,44,44,.22), rgba(123,44,44,0) 55%)}
+.hero::after{content:""; position:absolute; inset:0; opacity:.06; mix-blend-mode:screen; pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.hero .wrap{position:relative; z-index:2; display:grid; grid-template-columns:1.15fr .85fr; gap:40px; align-items:center; padding-top:74px; padding-bottom:84px}
+.hero h1{font-size:clamp(42px,6.4vw,82px); font-weight:600; color:#F6EAD0; letter-spacing:-.02em}
+.hero h1 .it{font-style:italic; font-weight:400; color:var(--gold-soft)}
+.hero p.lead{font-size:19px; color:#D9CEB6; max-width:34ch; margin:22px 0 30px; line-height:1.6}
+.hero .ctas{display:flex; gap:14px; flex-wrap:wrap}
+.hero .motto{margin-top:30px; font-size:13px; letter-spacing:.24em; text-transform:uppercase; color:#A99A78}
+.hero .motto b{color:var(--gold-soft); font-weight:600}
+.sealwrap{display:grid; place-items:center; position:relative}
+.sealwrap .glow{position:absolute; width:330px; height:330px; border-radius:50%;
+  background:radial-gradient(circle, rgba(231,207,148,.30), rgba(231,207,148,0) 65%); animation:pulse 6s ease-in-out infinite}
+@keyframes pulse{0%,100%{transform:scale(1); opacity:.8}50%{transform:scale(1.08); opacity:1}}
+.seal{width:288px; height:288px; position:relative; z-index:2; filter:drop-shadow(0 18px 30px rgba(0,0,0,.45))}
+@media(max-width:860px){
+  .hero .wrap{grid-template-columns:1fr; text-align:center; padding-bottom:60px}
+  .hero p.lead{margin-left:auto; margin-right:auto}
+  .hero .ctas{justify-content:center}
+  .sealwrap{order:-1; margin-bottom:8px}
+  .seal{width:200px;height:200px}.sealwrap .glow{width:230px;height:230px}
+}
+
+/* ---------- generic sections ---------- */
+.section{padding:84px 0; position:relative}
+.section.tint{background:var(--paper-2); border-top:1px solid var(--line); border-bottom:1px solid var(--line)}
+.section.dark{background:var(--night-2); color:#E7DCC4; border-top:3px solid var(--gold-deep); border-bottom:3px solid var(--gold-deep)}
+.shead{max-width:680px; margin-bottom:46px}
+.shead.ctr{margin-left:auto; margin-right:auto; text-align:center}
+.shead h2{font-size:clamp(28px,3.6vw,44px); margin:14px 0 0}
+.shead p{color:var(--ink-soft); font-size:18px; margin:16px 0 0}
+.section.dark .shead p{color:#C8BCA1}
+
+/* stats */
+.stats{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:4px; overflow:hidden}
+.stat{background:var(--paper-2); padding:26px 22px; text-align:center}
+.stat .n{font-family:var(--disp); font-size:34px; font-weight:600; color:var(--garnet); line-height:1}
+.stat .l{font-size:13px; letter-spacing:.04em; color:var(--muted); margin-top:8px}
+@media(max-width:760px){.stats{grid-template-columns:repeat(2,1fr)}}
+
+/* level cards */
+.levels{display:grid; grid-template-columns:repeat(3,1fr); gap:24px}
+.lvl{background:var(--card); border:1px solid var(--line); border-radius:6px; overflow:hidden; cursor:pointer; transition:.25s; display:flex; flex-direction:column; box-shadow:var(--sh-1)}
+.lvl:hover{transform:translateY(-5px); box-shadow:var(--sh-2); border-color:var(--gold)}
+.lvl .band{height:7px}
+.lvl.verd .band{background:var(--verd)} .lvl.gold .band{background:var(--gold)} .lvl.garnet .band{background:var(--garnet)}
+.lvl .pad{padding:26px 26px 24px; flex:1; display:flex; flex-direction:column}
+.lvl .num{font-family:var(--disp); font-size:13px; letter-spacing:.28em; font-weight:600; color:var(--muted); text-transform:uppercase}
+.lvl .nm{font-family:var(--disp); font-size:30px; font-weight:600; margin:6px 0 2px}
+.lvl .tier{font-style:italic; color:var(--ink-soft); font-size:15px}
+.lvl .tg{margin:16px 0 18px; color:var(--ink-soft); font-size:15.5px; flex:1}
+.lvl dl{display:grid; grid-template-columns:auto 1fr; gap:6px 14px; margin:0 0 20px; font-size:14px}
+.lvl dt{color:var(--gold-deep); font-weight:600} .lvl dd{margin:0; color:var(--ink-soft)}
+.lvl .go{display:flex; align-items:center; gap:.5em; font-weight:600; color:var(--ink); font-size:15px; border-top:1px solid var(--line); padding-top:16px}
+.lvl:hover .go .arrow{transform:translateX(4px)}
+@media(max-width:860px){.levels{grid-template-columns:1fr}}
+
+/* steps */
+.steps{display:grid; grid-template-columns:repeat(4,1fr); gap:22px; counter-reset:s}
+.step{position:relative; padding-top:8px}
+.step .k{width:54px; height:54px; border-radius:50%; border:1.5px solid var(--gold); display:grid; place-items:center; font-family:var(--disp); font-weight:600; font-size:22px; color:var(--gold-deep); background:var(--paper-2); margin-bottom:16px}
+.section.dark .step .k{background:transparent; color:var(--gold-soft)}
+.step h4{font-size:20px; margin-bottom:7px}
+.step p{font-size:14.5px; color:var(--ink-soft); margin:0}
+.section.dark .step p{color:#C2B697}
+@media(max-width:860px){.steps{grid-template-columns:repeat(2,1fr)}}
+
+/* feature grid */
+.feat{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:6px; overflow:hidden}
+.fcard{background:var(--paper-2); padding:30px 26px; transition:.2s}
+.fcard:hover{background:#fff}
+.fcard .ic{width:42px; height:42px; color:var(--garnet); margin-bottom:16px}
+.fcard h4{font-size:19px; margin-bottom:8px}
+.fcard p{font-size:14.5px; color:var(--ink-soft); margin:0}
+@media(max-width:860px){.feat{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.feat{grid-template-columns:1fr}}
+
+/* cert showcase */
+.certshow{display:grid; grid-template-columns:1.1fr .9fr; gap:48px; align-items:center}
+@media(max-width:860px){.certshow{grid-template-columns:1fr}}
+.checklist{list-style:none; padding:0; margin:24px 0 0}
+.checklist li{display:flex; gap:13px; padding:11px 0; border-bottom:1px solid rgba(231,207,148,.18); font-size:16px}
+.section.dark .checklist li{color:#DBD0B8}
+.checklist .ck{flex:none; width:24px; height:24px; border-radius:50%; background:var(--gold); color:#241a07; display:grid; place-items:center; font-weight:700; font-size:13px; margin-top:2px}
+
+/* ---------- curriculum view ---------- */
+.pagehd{padding:54px 0 34px; border-bottom:1px solid var(--line); background:var(--paper-2)}
+.pagehd h1{font-size:clamp(32px,4.4vw,52px); margin-top:12px}
+.pagehd p{color:var(--ink-soft); font-size:18px; max-width:62ch; margin:16px 0 0}
+.lvlblock{margin-top:40px}
+.lvlhd{display:flex; align-items:flex-end; gap:18px; flex-wrap:wrap; padding-bottom:14px; border-bottom:2px solid var(--ink)}
+.lvlhd .tag{font-family:var(--disp); font-size:13px; letter-spacing:.26em; text-transform:uppercase; color:var(--muted); font-weight:600}
+.lvlhd h2{font-size:34px; margin:2px 0 0}
+.lvlhd .dot{width:14px; height:14px; border-radius:50%; margin-bottom:6px}
+.lvlhd.verd .dot{background:var(--verd)} .lvlhd.gold .dot{background:var(--gold)} .lvlhd.garnet .dot{background:var(--garnet)}
+.lvlhd .meta{margin-left:auto; text-align:right; font-size:14px; color:var(--ink-soft)}
+.lvlhd .meta b{color:var(--gold-deep)}
+.module{border:1px solid var(--line); border-radius:6px; margin-top:18px; background:var(--card); overflow:hidden; box-shadow:var(--sh-1)}
+.mhd{display:flex; align-items:center; gap:14px; padding:18px 22px; cursor:pointer; user-select:none; transition:.15s}
+.mhd:hover{background:var(--paper-2)}
+.mhd .mi{font-family:var(--mono); font-size:13px; color:var(--gold-deep); font-weight:500}
+.mhd h3{font-size:20px; flex:1}
+.mhd .cnt{font-size:13px; color:var(--muted)}
+.mhd .chev{transition:.25s; color:var(--muted)}
+.module.open .chev{transform:rotate(90deg)}
+.lessons{display:none; border-top:1px solid var(--line)}
+.module.open .lessons{display:block}
+.lrow{display:flex; align-items:center; gap:15px; padding:14px 22px; border-bottom:1px solid var(--line); cursor:pointer; transition:.15s}
+.lrow:last-child{border-bottom:0}
+.lrow:hover{background:var(--paper-2)}
+.lrow .lc{font-family:var(--mono); font-size:13px; color:var(--gold-deep); font-weight:500; width:34px; flex:none}
+.lrow .lt b{font-weight:600} .lrow .lt span{color:var(--ink-soft)}
+.lrow .st{margin-left:auto; flex:none; width:22px; height:22px; border-radius:50%; border:1.5px solid var(--line-2); display:grid; place-items:center}
+.lrow.done .st{background:var(--verd); border-color:var(--verd); color:#fff}
+.lrow .play{flex:none; color:var(--muted); opacity:0; transition:.15s}
+.lrow:hover .play{opacity:1; color:var(--gold-deep)}
+
+/* ---------- lesson player ---------- */
+.lesson-grid{display:grid; grid-template-columns:280px 1fr; gap:0; min-height:70vh}
+.lside{border-right:1px solid var(--line); background:var(--paper-2); padding:26px 0}
+.lside .back{display:flex; align-items:center; gap:8px; padding:0 24px 16px; color:var(--ink-soft); font-size:14px; cursor:pointer; font-weight:500}
+.lside .back:hover{color:var(--ink)}
+.lside .lvlname{padding:0 24px 6px; font-family:var(--disp); font-size:19px}
+.lside .prog{padding:0 24px 18px; font-size:13px; color:var(--muted)}
+.lside .sl{display:flex; gap:11px; align-items:center; padding:10px 24px; cursor:pointer; font-size:14.5px; transition:.12s}
+.lside .sl:hover{background:#fff}
+.lside .sl.active{background:#fff; box-shadow:inset 3px 0 0 var(--gold)}
+.lside .sl .sc{font-family:var(--mono); font-size:12px; color:var(--gold-deep); width:26px; flex:none}
+.lside .sl .dt{width:16px; height:16px; border-radius:50%; border:1.5px solid var(--line-2); flex:none; display:grid; place-items:center}
+.lside .sl.done .dt{background:var(--verd); border-color:var(--verd); color:#fff}
+.lmain{padding:42px 50px 70px; max-width:760px}
+.crumb{font-size:13px; color:var(--muted); letter-spacing:.05em; margin-bottom:14px}
+.crumb b{color:var(--gold-deep)}
+.lmain h1{font-size:clamp(28px,3.6vw,40px); margin-bottom:6px}
+.lmeta{display:flex; gap:18px; color:var(--muted); font-size:13.5px; margin:14px 0 30px; padding-bottom:22px; border-bottom:1px solid var(--line); flex-wrap:wrap}
+.lmeta span{display:flex; align-items:center; gap:6px}
+.lblk{margin:34px 0}
+.lblk .eyebrow{margin-bottom:14px; display:block}
+.lblk p{margin:0 0 16px; font-size:17.5px}
+.termcard{display:grid; grid-template-columns:auto 1fr; gap:8px 18px; background:var(--paper-2); border:1px solid var(--line); border-left:3px solid var(--gold); border-radius:4px; padding:18px 22px; font-size:15.5px}
+.termcard dt{font-weight:600; color:var(--ink)} .termcard dd{margin:0; color:var(--ink-soft)}
+@media(max-width:860px){
+  .lesson-grid{grid-template-columns:1fr} .lside{border-right:0; border-bottom:1px solid var(--line)}
+  .lmain{padding:30px 24px 60px}
+}
+
+/* quiz */
+.quiz{background:var(--card); border:1px solid var(--line); border-radius:8px; padding:8px 26px 26px; box-shadow:var(--sh-1)}
+.q{padding:22px 0; border-bottom:1px solid var(--line)}
+.q:last-of-type{border-bottom:0}
+.q .qn{font-weight:600; font-size:16.5px; margin-bottom:14px; display:flex; gap:10px}
+.q .qn i{font-family:var(--mono); color:var(--gold-deep); font-style:normal; font-weight:500}
+.opt{display:flex; align-items:center; gap:12px; padding:12px 15px; border:1px solid var(--line-2); border-radius:4px; margin-bottom:9px; cursor:pointer; transition:.14s; font-size:15.5px; background:var(--paper-2)}
+.opt:hover{border-color:var(--gold); background:#fff}
+.opt .bx{width:20px; height:20px; border-radius:50%; border:2px solid var(--line-2); flex:none; transition:.14s}
+.opt.sel{border-color:var(--ink); background:#fff}
+.opt.sel .bx{border-color:var(--ink); background:var(--ink); box-shadow:inset 0 0 0 3px var(--paper-2)}
+.opt.correct{border-color:var(--verd); background:rgba(62,107,84,.09)} .opt.correct .bx{border-color:var(--verd); background:var(--verd)}
+.opt.wrong{border-color:var(--garnet); background:rgba(123,44,44,.08)} .opt.wrong .bx{border-color:var(--garnet); background:var(--garnet)}
+.opt.lock{pointer-events:none}
+.explain{display:none; margin-top:10px; padding:12px 15px; border-radius:4px; font-size:14.5px; background:var(--paper-2); border-left:3px solid var(--gold)}
+.explain.show{display:block; animation:fade .3s both}
+.explain b{color:var(--gold-deep)}
+.quizbar{display:flex; align-items:center; gap:14px; margin-top:22px; flex-wrap:wrap}
+.scorepill{font-family:var(--disp); font-weight:600; font-size:15px; color:var(--verd); display:none}
+.scorepill.show{display:inline}
+
+/* generic mark-complete card */
+.notecard{background:var(--paper-2); border:1px solid var(--line); border-left:3px solid var(--gold); border-radius:4px; padding:20px 24px; margin:30px 0; color:var(--ink-soft); font-size:15.5px}
+
+/* ---------- dashboard ---------- */
+.dgrid{display:grid; grid-template-columns:1.4fr 1fr; gap:24px; margin-top:34px}
+@media(max-width:900px){.dgrid{grid-template-columns:1fr}}
+.panel{background:var(--card); border:1px solid var(--line); border-radius:8px; padding:24px 26px; box-shadow:var(--sh-1)}
+.panel h3{font-size:13px; letter-spacing:.2em; text-transform:uppercase; color:var(--muted); font-weight:600; margin-bottom:18px; font-family:var(--serif)}
+.rankrow{display:flex; align-items:center; gap:18px; margin-bottom:8px}
+.rankbadge{width:64px; height:64px; border-radius:50%; flex:none; display:grid; place-items:center; background:radial-gradient(circle at 35% 30%,#2a2418,#15130d); border:2px solid var(--gold)}
+.rankbadge svg{width:32px;height:32px;color:var(--gold-soft)}
+.rankrow .big{font-family:var(--disp); font-size:30px; font-weight:600; line-height:1}
+.rankrow .sub{font-size:14px; color:var(--ink-soft); margin-top:3px}
+.pbar{height:9px; border-radius:30px; background:var(--paper); border:1px solid var(--line); overflow:hidden; margin:14px 0 7px}
+.pbar i{display:block; height:100%; background:linear-gradient(90deg,var(--gold),#d8b25e); border-radius:30px; transition:width .8s cubic-bezier(.2,.7,.2,1)}
+.pmeta{display:flex; justify-content:space-between; font-size:13px; color:var(--muted)}
+.continue{display:flex; align-items:center; gap:18px; padding:18px; border:1px solid var(--line); border-radius:6px; background:var(--paper-2); cursor:pointer; transition:.2s; margin-bottom:14px}
+.continue:hover{border-color:var(--gold); box-shadow:var(--sh-1); transform:translateY(-2px)}
+.continue .thumb{width:52px; height:52px; border-radius:6px; flex:none; display:grid; place-items:center; color:#fff; font-family:var(--disp); font-weight:600}
+.continue .thumb.verd{background:var(--verd)} .continue .thumb.gold{background:var(--gold)}
+.continue .ct{flex:1}
+.continue .ct .tl{font-size:12px; letter-spacing:.05em; color:var(--gold-deep); text-transform:uppercase; font-weight:600}
+.continue .ct b{display:block; font-size:16px; font-family:var(--disp); margin-top:2px}
+.continue .ct span{font-size:13.5px; color:var(--ink-soft)}
+.lvltrack{margin:16px 0}
+.lvltrack .t{display:flex; justify-content:space-between; font-size:14.5px; margin-bottom:7px}
+.lvltrack .t b{font-weight:600} .lvltrack .t .pc{font-family:var(--mono); font-size:13px; color:var(--muted)}
+.lvltrack.locked{opacity:.5}
+/* radar */
+.radarwrap{display:grid; place-items:center}
+.radarwrap svg{width:100%; max-width:340px; height:auto}
+.legend{display:grid; grid-template-columns:1fr 1fr; gap:6px 14px; margin-top:6px; font-size:13.5px}
+.legend span{display:flex; justify-content:space-between; color:var(--ink-soft)}
+.legend b{font-family:var(--mono); font-weight:500; color:var(--ink)}
+/* badges */
+.badges{display:grid; grid-template-columns:repeat(4,1fr); gap:14px}
+@media(max-width:560px){.badges{grid-template-columns:repeat(3,1fr)}}
+.badge{text-align:center; cursor:default}
+.badge .med{width:58px; height:58px; margin:0 auto 7px; border-radius:50%; display:grid; place-items:center; border:1.5px solid var(--gold); background:radial-gradient(circle at 35% 30%,#3a3320,#1d1a11); color:var(--gold-soft); transition:.2s}
+.badge.locked .med{filter:grayscale(1) brightness(.7); border-color:var(--line-2); opacity:.6}
+.badge .med svg{width:26px;height:26px}
+.badge .bn{font-size:12px; line-height:1.25; color:var(--ink-soft)}
+.badge.locked .bn{color:var(--muted)}
+/* drill */
+.drill .arg{font-family:var(--disp); font-style:italic; font-size:19px; line-height:1.5; padding:18px 22px; background:var(--paper-2); border-left:3px solid var(--garnet); border-radius:4px; margin-bottom:18px}
+.dopts{display:grid; grid-template-columns:1fr 1fr; gap:10px}
+@media(max-width:560px){.dopts{grid-template-columns:1fr}}
+.dopt{padding:11px 14px; border:1px solid var(--line-2); border-radius:4px; background:var(--paper-2); cursor:pointer; font-size:14.5px; text-align:center; transition:.14s}
+.dopt:hover{border-color:var(--gold); background:#fff}
+.dopt.correct{border-color:var(--verd); background:rgba(62,107,84,.1); color:var(--verd); font-weight:600}
+.dopt.wrong{border-color:var(--garnet); background:rgba(123,44,44,.08); color:var(--garnet)}
+.dopt.lock{pointer-events:none}
+.drillfb{display:none; margin-top:16px; font-size:14.5px; padding:14px 16px; border-radius:4px; background:var(--paper-2); border-left:3px solid var(--gold)}
+.drillfb.show{display:block; animation:fade .3s both}
+
+/* ---------- arena ---------- */
+.featmotion{background:var(--night-2); color:#E7DCC4; border-radius:10px; padding:34px 36px; border:1px solid var(--gold-deep); position:relative; overflow:hidden; box-shadow:var(--sh-2)}
+.featmotion::after{content:""; position:absolute; inset:0; opacity:.5; background:radial-gradient(600px 300px at 85% -20%, rgba(184,137,59,.2), transparent 60%)}
+.featmotion>*{position:relative; z-index:2}
+.featmotion .live{display:inline-flex; align-items:center; gap:8px; font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:#ef9b9b; font-weight:600}
+.featmotion .live .dot{width:8px; height:8px; border-radius:50%; background:#e05656; animation:blink 1.3s infinite}
+@keyframes blink{50%{opacity:.3}}
+.featmotion h2{font-size:clamp(24px,3vw,34px); margin:14px 0 8px; color:#F6EAD0}
+.sides{display:flex; gap:16px; margin:22px 0; flex-wrap:wrap}
+.side{flex:1; min-width:200px; background:rgba(255,255,255,.04); border:1px solid rgba(231,207,148,.2); border-radius:6px; padding:16px 18px}
+.side .lab{font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:#a99a78}
+.side b{font-family:var(--disp); font-size:18px; display:block; margin-top:3px}
+.side .who{font-size:13.5px; color:#C8BCA1; margin-top:6px}
+.timer{font-family:var(--mono); font-size:13px; color:var(--gold-soft)}
+.arena-cols{display:grid; grid-template-columns:1.3fr 1fr; gap:24px; margin-top:28px}
+@media(max-width:900px){.arena-cols{grid-template-columns:1fr}}
+.async{border:1px solid var(--line); border-radius:6px; overflow:hidden; background:var(--card)}
+.async .row{display:flex; align-items:center; gap:14px; padding:16px 20px; border-bottom:1px solid var(--line)}
+.async .row:last-child{border-bottom:0}
+.async .row .mo{flex:1; font-size:15.5px}
+.async .row .mo b{font-family:var(--disp); font-weight:500}
+.status{font-size:12px; padding:.35em .7em; border-radius:30px; font-weight:600; letter-spacing:.03em; white-space:nowrap}
+.status.turn{background:rgba(184,137,59,.18); color:var(--gold-deep)}
+.status.judge{background:rgba(62,107,84,.14); color:var(--verd)}
+.status.open{background:rgba(28,26,20,.07); color:var(--ink-soft)}
+.lboard{width:100%; border-collapse:collapse; font-size:14.5px}
+.lboard th{text-align:left; font-family:var(--serif); font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); padding:0 0 12px; font-weight:600}
+.lboard td{padding:11px 0; border-top:1px solid var(--line)}
+.lboard .rk{font-family:var(--mono); color:var(--muted); width:34px}
+.lboard .el{font-family:var(--mono); text-align:right; font-weight:500}
+.lboard tr.you td{font-weight:700}
+.lboard tr.you .el{color:var(--gold-deep)}
+.lboard tr.you td:first-child::before{content:"▸ "; color:var(--gold)}
+
+/* ---------- certificate ---------- */
+.certstage{display:grid; place-items:center; padding:8px 0 10px}
+.cert{width:100%; max-width:880px; aspect-ratio:1.414/1; background:
+   radial-gradient(120% 120% at 50% 0%, #fbf3df, #f1e7cf); position:relative; border-radius:4px;
+   box-shadow:var(--sh-2); padding:3.2%; color:var(--ink)}
+.cert .frame{position:absolute; inset:1.4%; border:2px solid var(--ink); border-radius:3px}
+.cert .frame::after{content:""; position:absolute; inset:7px; border:1px solid var(--gold); border-radius:2px}
+.cert .corner{position:absolute; width:46px; height:46px; color:var(--gold-deep); opacity:.9}
+.cert .corner.tl{top:2.6%; left:2.6%} .cert .corner.tr{top:2.6%; right:2.6%; transform:scaleX(-1)}
+.cert .corner.bl{bottom:2.6%; left:2.6%; transform:scaleY(-1)} .cert .corner.br{bottom:2.6%; right:2.6%; transform:scale(-1)}
+.cert .inner{position:relative; z-index:3; height:100%; display:flex; flex-direction:column; align-items:center; text-align:center; padding:5% 7% 4%}
+.cert .mast{display:flex; align-items:center; gap:12px; margin-bottom:2%}
+.cert .mast .mono{width:40px; height:40px; border-radius:50%; background:radial-gradient(circle at 35% 30%,#2a2418,#15130d); border:1.5px solid var(--gold); display:grid; place-items:center}
+.cert .mast .mono span{font-family:var(--disp); color:var(--gold-soft); font-weight:700; font-size:21px; transform:translateY(1px)}
+.cert .mast b{font-family:var(--disp); font-size:clamp(15px,2.1vw,21px); letter-spacing:.02em}
+.cert .ek{font-size:clamp(9px,1.3vw,12px); letter-spacing:.32em; text-transform:uppercase; color:var(--gold-deep); font-weight:600}
+.cert .conf{font-style:italic; color:var(--ink-soft); margin:3% 0 1%; font-size:clamp(12px,1.7vw,16px)}
+.cert .name{font-family:var(--disp); font-weight:600; font-size:clamp(28px,5.4vw,54px); line-height:1; letter-spacing:-.01em; margin:1% 0}
+.cert .nameline{width:46%; height:1px; background:var(--gold); margin:1.6% 0 3%}
+.cert .award{font-size:clamp(11px,1.6vw,15px); color:var(--ink-soft); max-width:74%}
+.cert .title{font-family:var(--disp); font-style:italic; color:var(--garnet); font-size:clamp(17px,2.8vw,28px); margin:1.4% 0}
+.cert .comp{font-size:clamp(9.5px,1.3vw,12.5px); color:var(--muted); max-width:78%; line-height:1.5}
+.cert .foot{margin-top:auto; width:100%; display:flex; align-items:flex-end; justify-content:space-between; gap:12px}
+.cert .foot .blk{flex:1; min-width:0}
+.cert .foot .sig{font-family:"Pinyon Script",cursive; font-size:clamp(20px,3.4vw,34px); color:var(--ink); line-height:.9}
+.cert .foot .line{border-top:1px solid var(--ink-soft); margin:5px 0 4px}
+.cert .foot .cap{font-size:clamp(8px,1.1vw,10.5px); letter-spacing:.1em; text-transform:uppercase; color:var(--muted)}
+.cert .seal-sm{width:clamp(58px,9vw,92px); height:clamp(58px,9vw,92px); flex:none}
+.cert .qr{flex:none; text-align:center}
+.cert .qr svg{width:clamp(52px,8vw,78px); height:clamp(52px,8vw,78px)}
+.cert .qr .cid{font-family:var(--mono); font-size:clamp(7px,1vw,9.5px); color:var(--muted); margin-top:4px; letter-spacing:.02em}
+.certbar{display:flex; gap:14px; justify-content:center; margin-top:26px; flex-wrap:wrap}
+.verifybox{display:none; max-width:520px; margin:22px auto 0; background:var(--card); border:1px solid var(--verd); border-radius:8px; padding:20px 24px; align-items:flex-start; gap:16px; box-shadow:var(--sh-1)}
+.verifybox.show{display:flex; animation:fade .35s both}
+.verifybox .vk{flex:none; width:42px; height:42px; border-radius:50%; background:var(--verd); color:#fff; display:grid; place-items:center}
+.verifybox h4{font-size:18px; margin-bottom:4px}
+.verifybox p{margin:0; font-size:14px; color:var(--ink-soft)}
+.verifybox .cid{font-family:var(--mono); font-size:13px; color:var(--gold-deep)}
+
+/* ---------- footer ---------- */
+footer{background:var(--night); color:#C8BCA1; border-top:3px solid var(--gold-deep); padding:54px 0 36px; margin-top:0}
+footer .top{display:flex; justify-content:space-between; gap:30px; flex-wrap:wrap; align-items:flex-start}
+footer .brandf{display:flex; align-items:center; gap:12px}
+footer .brandf .monogram{width:44px; height:44px}
+footer .brandf b{font-family:var(--disp); font-size:21px; color:#F0E6CE}
+footer .vals{display:flex; gap:28px; flex-wrap:wrap; font-size:14px}
+footer .vals div b{color:var(--gold-soft); display:block; margin-bottom:8px; font-family:var(--serif); font-size:12px; letter-spacing:.16em; text-transform:uppercase; font-weight:600}
+footer .vals a{display:block; padding:3px 0; color:#C8BCA1; cursor:pointer}
+footer .vals a:hover{color:#F0E6CE}
+footer .conduct{max-width:340px; font-size:13.5px; line-height:1.6; color:#A99A78}
+footer .base{margin-top:40px; padding-top:22px; border-top:1px solid rgba(231,207,148,.16); display:flex; justify-content:space-between; gap:14px; flex-wrap:wrap; font-size:12.5px; color:#8c8068}
+footer .base b{color:var(--gold-soft)}
+
+/* toast */
+#toast{position:fixed; left:50%; bottom:28px; transform:translateX(-50%) translateY(40px); z-index:9000; opacity:0; pointer-events:none; transition:.35s cubic-bezier(.2,.8,.2,1)}
+#toast.show{opacity:1; transform:translateX(-50%) translateY(0)}
+#toast .t{display:flex; align-items:center; gap:12px; background:var(--ink); color:var(--paper-2); padding:14px 22px; border-radius:40px; box-shadow:var(--sh-2); font-size:15px; font-weight:500}
+#toast .rpup{font-family:var(--mono); color:var(--gold-soft); font-weight:600}
+</style>
+</head>
+<body>
+
+<!-- ====== TOPBAR ====== -->
+<header class="topbar">
+  <div class="wrap row">
+    <div class="brand" onclick="go('home')">
+      <div class="monogram"><span>I</span></div>
+      <div><b>Ilu&rsquo;s School of Thoughts</b><small>Reason &middot; Argue &middot; Illuminate</small></div>
+    </div>
+    <button class="hamb" onclick="document.querySelector('nav.main').classList.toggle('open')" aria-label="Menu"><i></i><i></i><i></i></button>
+    <nav class="main">
+      <a data-nav="home" onclick="go('home')">Home</a>
+      <a data-nav="curriculum" onclick="go('curriculum')">Curriculum</a>
+      <a data-nav="dashboard" onclick="go('dashboard')">Dashboard</a>
+      <a data-nav="arena" onclick="go('arena')">Debate Arena</a>
+      <a data-nav="certificate" onclick="go('certificate')">Certificate</a>
+    </nav>
+    <div class="spacer"></div>
+    <div class="rp-pill" onclick="go('dashboard')" title="Your Reason Points & rank">
+      <span class="star">✦</span><span class="v" id="rpTop">0</span><span class="rk" id="rankTop">Inquirer</span>
+    </div>
+  </div>
+</header>
+
+<main>
+<!-- ============ HOME ============ -->
+<section id="view-home" class="view show">
+  <div class="hero">
+    <div class="wrap">
+      <div class="hcopy">
+        <div class="eyebrow lt" style="animation:fade .6s both">A Learning Management System for Atheism &amp; Freethought</div>
+        <h1 style="animation:fade .7s .05s both">Dare to <span class="it">know.</span><br>Learn to <span class="it">reason.</span></h1>
+        <p class="lead" style="animation:fade .7s .12s both">A debate-first school that doesn&rsquo;t hand you conclusions to memorise &mdash; it trains you to think. Steelman the strongest case against you, find the load-bearing premise, and answer with precision. From first questions to the public stage.</p>
+        <div class="ctas" style="animation:fade .7s .2s both">
+          <button class="btn gold" onclick="go('dashboard')">Enter the School <span class="arrow">→</span></button>
+          <button class="btn lt" onclick="go('curriculum')">Explore the Curriculum</button>
+        </div>
+        <div class="motto" style="animation:fade .7s .3s both"><b>&ldquo;Sapere aude&rdquo;</b> &nbsp;&mdash;&nbsp; dare to know</div>
+      </div>
+      <div class="sealwrap" style="animation:fade .9s .15s both">
+        <div class="glow"></div>
+        <div class="seal" id="heroSeal"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- stats -->
+  <section class="section" style="padding-top:56px; padding-bottom:56px">
+    <div class="wrap">
+      <div class="stats reveal">
+        <div class="stat"><div class="n">3</div><div class="l">Progressive levels</div></div>
+        <div class="stat"><div class="n">48</div><div class="l">Lessons &amp; drills</div></div>
+        <div class="stat"><div class="n">∞</div><div class="l">Live debate arena</div></div>
+        <div class="stat"><div class="n">✓</div><div class="l">Verifiable certificate</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- the idea -->
+  <section class="section tint">
+    <div class="wrap" style="display:grid; grid-template-columns:.8fr 1.2fr; gap:46px; align-items:center">
+      <div class="reveal">
+        <div class="eyebrow">The debate-first idea</div>
+        <h2 style="font-size:clamp(26px,3.4vw,40px); margin-top:14px; font-family:var(--disp)">You don&rsquo;t understand a view until you can argue it well.</h2>
+      </div>
+      <div class="reveal">
+        <p style="font-size:18.5px; color:var(--ink-soft); margin:0 0 16px">Most introductions to atheism give you a list of arguments and rebuttals. Ilu&rsquo;s School inverts that. Content is the raw material; the <b>skill</b> is the product.</p>
+        <p style="font-size:18.5px; color:var(--ink-soft); margin:0">You&rsquo;ll learn to reconstruct an opponent&rsquo;s argument in its most charitable form, locate its true load-bearing premise, and respond with logic rather than slogans &mdash; making you harder to fool, slower to strawman, and more persuasive precisely because you argue fairly.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- levels -->
+  <section class="section">
+    <div class="wrap">
+      <div class="shead ctr reveal">
+        <div class="eyebrow">Three progressive levels</div>
+        <h2>From first light to illumination</h2>
+        <p>Each level pairs a body of knowledge with a debate-and-rhetoric thread, deliberate practice, and a graded task that earns a verifiable credential.</p>
+      </div>
+      <div class="levels">
+        <article class="lvl verd reveal" onclick="go('curriculum','L1')">
+          <div class="band"></div>
+          <div class="pad">
+            <div class="num">Level I &middot; Beginner</div>
+            <div class="nm">First Light</div>
+            <div class="tier">Where reason begins.</div>
+            <div class="tg">Define the terms precisely, reason in valid arguments, spot the common fallacies, and deliver a clear two-minute opening.</div>
+            <dl><dt>Time</dt><dd>~10 hrs &middot; 4 weeks</dd><dt>Earns</dt><dd>Certificate of Foundation</dd></dl>
+            <div class="go">Explore the level <span class="arrow">→</span></div>
+          </div>
+        </article>
+        <article class="lvl gold reveal" onclick="go('curriculum','L2')">
+          <div class="band"></div>
+          <div class="pad">
+            <div class="num">Level II &middot; Intermediate</div>
+            <div class="nm">The Crucible</div>
+            <div class="tier">Where arguments are tested.</div>
+            <div class="tg">Steelman and dismantle the major arguments for God, take on the problem of evil, defend a secular ethics, and master rebuttal.</div>
+            <dl><dt>Time</dt><dd>~18 hrs &middot; 6 weeks</dd><dt>Earns</dt><dd>Certificate of Argumentation</dd></dl>
+            <div class="go">Explore the level <span class="arrow">→</span></div>
+          </div>
+        </article>
+        <article class="lvl garnet reveal" onclick="go('curriculum','L3')">
+          <div class="band"></div>
+          <div class="pad">
+            <div class="num">Level III &middot; Expert</div>
+            <div class="nm">Illumination</div>
+            <div class="tier">Where the room is mastered.</div>
+            <div class="tg">Advanced philosophy of religion, the cognitive science of religion, competitive debate formats, and a judged capstone.</div>
+            <dl><dt>Time</dt><dd>~30 hrs &middot; 10 weeks</dd><dt>Earns</dt><dd>Advanced Cert. + Master Diploma</dd></dl>
+            <div class="go">Explore the level <span class="arrow">→</span></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- how it works -->
+  <section class="section dark">
+    <div class="wrap">
+      <div class="shead reveal">
+        <div class="eyebrow lt">The core loop</div>
+        <h2>Learn &rarr; Drill &rarr; Spar &rarr; Reflect</h2>
+        <p>Every lesson cycles you through four phases. Read the idea, drill the micro-skill in isolation, apply it under pressure against a peer, then review against a rubric.</p>
+      </div>
+      <div class="steps">
+        <div class="step reveal"><div class="k">1</div><h4>Learn</h4><p>Short readings, narrated video, and primary-source excerpts with inline notes.</p></div>
+        <div class="step reveal"><div class="k">2</div><h4>Drill</h4><p>Fallacy spotting, argument mapping, and spaced-repetition recall &mdash; practised in isolation.</p></div>
+        <div class="step reveal"><div class="k">3</div><h4>Spar</h4><p>Structured exchanges against a peer or mentor in the Debate Arena and Socratic Circles.</p></div>
+        <div class="step reveal"><div class="k">4</div><h4>Reflect</h4><p>Rubric-based feedback, a recording to review, and a six-dimension skill radar.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- features -->
+  <section class="section">
+    <div class="wrap">
+      <div class="shead ctr reveal">
+        <div class="eyebrow">The toolkit</div>
+        <h2>Built for argument, not just video</h2>
+      </div>
+      <div class="feat">
+        <div class="fcard reveal"><svg class="ic" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="24" cy="9" r="5"/><circle cx="11" cy="38" r="5"/><circle cx="37" cy="38" r="5"/><path d="M24 14v9M24 23l-9 11M24 23l9 11"/></svg><h4>Argument Lab</h4><p>Build syllogisms and map arguments as premise&ndash;conclusion trees with automated validity checks and mentor notes.</p></div>
+        <div class="fcard reveal"><svg class="ic" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="24" cy="24" r="16"/><circle cx="24" cy="24" r="8"/><path d="M24 4v8M24 36v8M4 24h8M36 24h8"/></svg><h4>Fallacy Trainer</h4><p>Gamified spot-the-fallacy drills from real arguments, scored and spaced so they stick for years.</p></div>
+        <div class="fcard reveal"><svg class="ic" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 12h22a4 4 0 014 4v8a4 4 0 01-4 4H16l-7 6v-6H6a4 4 0 01-4-4v-8a4 4 0 014-4z" transform="translate(2 2)"/><path d="M20 30h22a4 4 0 014 4v0" opacity=".0"/></svg><h4>Debate Arena</h4><p>Structured debates, written or live video, with round timers, a shared flow sheet, and saved recordings.</p></div>
+        <div class="fcard reveal"><svg class="ic" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="10" y="14" width="26" height="20" rx="2" transform="rotate(-8 23 24)"/><rect x="13" y="12" width="26" height="20" rx="2"/></svg><h4>SRS Flashcards</h4><p>Fallacies, arguments, thinkers, and terms move into a spaced-repetition deck, auto-built as you progress.</p></div>
+        <div class="fcard reveal"><svg class="ic" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="24" cy="24" r="18"/><circle cx="16" cy="20" r="3"/><circle cx="32" cy="20" r="3"/><path d="M16 31c2 3 5 4 8 4s6-1 8-4"/></svg><h4>Socratic Circles</h4><p>Moderated small-group rooms organised around a question, with steelman-challenge prompts.</p></div>
+        <div class="fcard reveal"><svg class="ic" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M24 6l15.6 9v18L24 42 8.4 33V15z"/><path d="M24 16l8 4.6v9L24 34l-8-4.4v-9z" opacity=".55"/><circle cx="24" cy="24" r="2.4" fill="currentColor"/></svg><h4>Skill Radar</h4><p>Logic, Evidence, Rebuttal, Charity, Rhetoric &amp; Composure &mdash; visualised so you always know what to sharpen.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- certificate showcase -->
+  <section class="section dark">
+    <div class="wrap certshow">
+      <div class="reveal">
+        <div class="eyebrow lt">Verifiable credentials</div>
+        <h2 style="font-size:clamp(28px,3.6vw,44px); color:#F6EAD0; margin-top:14px">A certificate that actually means something.</h2>
+        <p style="color:#C8BCA1; font-size:18px; margin-top:16px">Because every level is gated by a graded performance task, the credential signals real ability &mdash; not just hours watched. Each level earns a verifiable digital certificate; the full programme culminates in the Master Diploma.</p>
+        <ul class="checklist">
+          <li><span class="ck">✓</span><div>Issued as <b>Open Badges 3.0 / W3C Verifiable Credentials</b>, cryptographically signed by the school.</div></li>
+          <li><span class="ck">✓</span><div>A public <b>verification page</b> and QR code confirm authenticity instantly.</div></li>
+          <li><span class="ck">✓</span><div>One-click add to LinkedIn; download as print-ready PDF and shareable PNG.</div></li>
+        </ul>
+        <button class="btn gold" style="margin-top:26px" onclick="go('certificate')">See a sample certificate <span class="arrow">→</span></button>
+      </div>
+      <div class="reveal" style="cursor:pointer" onclick="go('certificate')">
+        <div class="cert" style="max-width:none; transform:rotate(-1.4deg)" id="certPreview"></div>
+      </div>
+    </div>
+  </section>
+</section>
+
+<!-- ============ CURRICULUM ============ -->
+<section id="view-curriculum" class="view">
+  <div class="pagehd">
+    <div class="wrap">
+      <div class="eyebrow">The Curriculum</div>
+      <h1>Three levels, one discipline of reasoning</h1>
+      <p>The tracks are cumulative: the Intermediate level assumes the logical toolkit built in the Beginner level, and the Expert level assumes fluency in the arguments mastered before it. Click any lesson to open it.</p>
+    </div>
+  </div>
+  <div class="wrap" style="padding-bottom:80px"><div id="curriculumList"></div></div>
+</section>
+
+<!-- ============ LESSON ============ -->
+<section id="view-lesson" class="view">
+  <div class="wrap" style="padding:0; max-width:1180px">
+    <div class="lesson-grid">
+      <aside class="lside">
+        <div class="back" onclick="go('curriculum')">← Back to curriculum</div>
+        <div class="lvlname" id="lsLevel">First Light</div>
+        <div class="prog" id="lsProg">&nbsp;</div>
+        <hr class="rule" style="margin:6px 0 12px">
+        <div id="lsList"></div>
+      </aside>
+      <div class="lmain" id="lessonMain"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DASHBOARD ============ -->
+<section id="view-dashboard" class="view">
+  <div class="pagehd">
+    <div class="wrap">
+      <div class="eyebrow">Your study</div>
+      <h1>Welcome back, Maria</h1>
+      <p>Pick up where you left off, run today&rsquo;s drill, and watch your six competencies grow.</p>
+    </div>
+  </div>
+  <div class="wrap" style="padding-bottom:80px">
+    <div class="dgrid">
+      <!-- left column -->
+      <div style="display:flex; flex-direction:column; gap:24px">
+        <div class="panel">
+          <h3>Rank &amp; Reason Points</h3>
+          <div class="rankrow">
+            <div class="rankbadge"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M16 3l3.6 7.4L28 11.6l-6 5.8 1.4 8.2L16 21.8 8.6 25.6 10 17.4l-6-5.8 8.4-1.2z"/></svg></div>
+            <div style="flex:1">
+              <div class="big" id="dRank">Rhetor</div>
+              <div class="sub"><span id="dRP">0</span> RP &middot; <span id="dToNext">0</span> to <span id="dNext">next rank</span></div>
+              <div class="pbar"><i id="dRPbar" style="width:0%"></i></div>
+              <div class="pmeta"><span id="dRankLo">Rhetor</span><span id="dRankHi">Dialectician</span></div>
+            </div>
+          </div>
+          <div style="display:flex; gap:22px; margin-top:14px; font-size:14.5px; color:var(--ink-soft)">
+            <div>🔥 <b id="dStreak" style="color:var(--ink)">12</b>-day drill streak</div>
+            <div>⚔ <b style="color:var(--ink)">8</b> debates won</div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h3>Continue learning</h3>
+          <div class="continue" onclick="openLesson('L2','2.1')">
+            <div class="thumb gold">II</div>
+            <div class="ct"><div class="tl">The Crucible &middot; Module 2</div><b>2.1 &mdash; Answering the cosmological arguments</b><span>Causation, actual infinities &amp; the composition fallacy</span></div>
+            <span class="arrow" style="color:var(--gold-deep); font-size:22px">→</span>
+          </div>
+          <div class="continue" onclick="openLesson('L1','1.2')">
+            <div class="thumb verd">I</div>
+            <div class="ct"><div class="tl">First Light &middot; Interactive</div><b>1.2 &mdash; Belief vs. Knowledge</b><span>Revisit the foundations &middot; includes a graded check ✦</span></div>
+            <span class="arrow" style="color:var(--gold-deep); font-size:22px">→</span>
+          </div>
+
+          <h3 style="margin-top:24px">Level progress</h3>
+          <div class="lvltrack"><div class="t"><b>Level I &middot; First Light</b><span class="pc" id="pcL1">0%</span></div><div class="pbar"><i id="barL1" style="width:0"></i></div></div>
+          <div class="lvltrack"><div class="t"><b>Level II &middot; The Crucible</b><span class="pc" id="pcL2">0%</span></div><div class="pbar"><i id="barL2" style="width:0"></i></div></div>
+          <div class="lvltrack locked"><div class="t"><b>Level III &middot; Illumination</b><span class="pc">Locked 🔒</span></div><div class="pbar"><i style="width:0"></i></div></div>
+        </div>
+      </div>
+
+      <!-- right column -->
+      <div style="display:flex; flex-direction:column; gap:24px">
+        <div class="panel">
+          <h3>Skill radar</h3>
+          <div class="radarwrap" id="radar"></div>
+          <div class="legend" id="radarLegend"></div>
+        </div>
+
+        <div class="panel drill">
+          <h3>Daily drill &mdash; name the fallacy</h3>
+          <div class="arg" id="drillArg"></div>
+          <div class="dopts" id="drillOpts"></div>
+          <div class="drillfb" id="drillFb"></div>
+          <button class="btn ghost sm" style="margin-top:16px" onclick="newDrill()">New drill →</button>
+        </div>
+
+        <div class="panel">
+          <h3>Badges</h3>
+          <div class="badges" id="badges"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ARENA ============ -->
+<section id="view-arena" class="view">
+  <div class="pagehd">
+    <div class="wrap">
+      <div class="eyebrow">Debate Arena</div>
+      <h1>Where you sharpen against real minds</h1>
+      <p>Take a side, keep a flow sheet, and let the rubric decide. Ranked sparring adjusts your ELO; every match is recorded for review.</p>
+    </div>
+  </div>
+  <div class="wrap" style="padding:34px 28px 80px">
+    <div class="featmotion">
+      <span class="live"><span class="dot"></span>Live now &middot; 1v1 short debate</span>
+      <h2>&ldquo;The problem of evil makes an all-good, all-powerful God improbable.&rdquo;</h2>
+      <div class="sides">
+        <div class="side"><div class="lab">Proposition</div><b>For the motion</b><div class="who">You (Rhetor &middot; 1521)</div></div>
+        <div class="side"><div class="lab">Opposition</div><b>Against the motion</b><div class="who">A. Renford (Dialectician &middot; 1612)</div></div>
+      </div>
+      <div style="display:flex; align-items:center; gap:20px; flex-wrap:wrap">
+        <span class="timer">⏱ Rebuttal &middot; 02:48 remaining</span>
+        <span class="timer" style="color:#C8BCA1">Round 3 of 5</span>
+      </div>
+      <div style="margin-top:22px; display:flex; gap:12px; flex-wrap:wrap">
+        <button class="btn gold" onclick="toast('Entering the arena floor…','')">Enter as challenger <span class="arrow">→</span></button>
+        <button class="btn lt" onclick="toast('Flow sheet opened','')">Open flow sheet</button>
+      </div>
+    </div>
+
+    <div class="arena-cols">
+      <div>
+        <div class="eyebrow" style="margin-bottom:14px; display:block">Your asynchronous debates</div>
+        <div class="async">
+          <div class="row"><div class="mo"><b>Faith is not a reliable path to truth.</b><div style="font-size:13px; color:var(--muted)">Written &middot; Round 2 of 3</div></div><span class="status turn">Your turn</span></div>
+          <div class="row"><div class="mo"><b>Objective morality does not require God.</b><div style="font-size:13px; color:var(--muted)">Written &middot; Round 3 of 3</div></div><span class="status judge">Awaiting judge</span></div>
+          <div class="row"><div class="mo"><b>Fine-tuning is better explained without a designer.</b><div style="font-size:13px; color:var(--muted)">Open challenge &middot; BP format</div></div><span class="status open">Join →</span></div>
+        </div>
+        <div class="notecard" style="margin-top:22px"><b style="color:var(--gold-deep)">Rules of engagement.</b> Attack arguments, never people. Steelman before you strike. Concede what is true. The goal is truth and skill &mdash; never humiliating anyone.</div>
+      </div>
+      <div>
+        <div class="panel" style="padding:24px 26px">
+          <h3>Sparring ladder &middot; ELO</h3>
+          <table class="lboard">
+            <thead><tr><th class="rk">#</th><th>Disputant</th><th class="el">Rating</th></tr></thead>
+            <tbody>
+              <tr><td class="rk">1</td><td>A. Renford</td><td class="el">1612</td></tr>
+              <tr><td class="rk">2</td><td>M. Okonkwo</td><td class="el">1588</td></tr>
+              <tr><td class="rk">3</td><td>S. Vance</td><td class="el">1547</td></tr>
+              <tr class="you"><td class="rk">4</td><td>You &middot; Rhetor</td><td class="el">1521</td></tr>
+              <tr><td class="rk">5</td><td>J. Pareja</td><td class="el">1498</td></tr>
+              <tr><td class="rk">6</td><td>K. Adeyemi</td><td class="el">1463</td></tr>
+            </tbody>
+          </table>
+          <button class="btn ghost sm" style="margin-top:18px; width:100%; justify-content:center" onclick="toast('Searching for a ranked match…','')">Find a ranked match</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CERTIFICATE ============ -->
+<section id="view-certificate" class="view">
+  <div class="pagehd">
+    <div class="wrap">
+      <div class="eyebrow">Credential</div>
+      <h1>Certificate of Foundation</h1>
+      <p>Awarded for completing Level I &mdash; First Light. Below is the live, verifiable credential as it appears to anyone you share it with.</p>
+    </div>
+  </div>
+  <div class="wrap" style="padding:34px 28px 80px">
+    <div class="certstage"><div class="cert" id="certFull"></div></div>
+    <div class="certbar">
+      <button class="btn gold" onclick="verifyCert()">Verify this credential <span class="arrow">→</span></button>
+      <button class="btn ghost" onclick="toast('Preparing print-ready PDF…','')">Download PDF</button>
+      <button class="btn ghost" onclick="toast('Added to your LinkedIn profile','')">Add to LinkedIn</button>
+    </div>
+    <div class="verifybox" id="verifyBox">
+      <div class="vk"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 13l4 4L19 7"/></svg></div>
+      <div>
+        <h4>Credential verified</h4>
+        <p>Issued by <b>Ilu&rsquo;s School of Thoughts</b> on 14 May 2026. Signature valid. This credential has not been revoked.</p>
+        <p style="margin-top:6px">ID <span class="cid">ISOT-L1-2026-7F3A9C</span> &middot; verify.iluschool.example/7F3A9C</p>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ====== FOOTER ====== -->
+<footer>
+  <div class="wrap">
+    <div class="top">
+      <div>
+        <div class="brandf"><div class="monogram"><span>I</span></div><b>Ilu&rsquo;s School of Thoughts</b></div>
+        <p class="conduct">A debate school about belief can curdle into point-scoring unless its culture is set. Here, discourse ethics is part of the curriculum: curiosity, charity, rigor, civility, and the courage to change your mind.</p>
+      </div>
+      <div class="vals">
+        <div><b>Learn</b><a onclick="go('curriculum')">Curriculum</a><a onclick="go('dashboard')">Dashboard</a><a onclick="go('arena')">Debate Arena</a></div>
+        <div><b>Credentials</b><a onclick="go('certificate')">Certificates</a><a onclick="go('certificate')">Verify a credential</a><a onclick="go('home')">The Master Diploma</a></div>
+        <div><b>Values</b><a>Code of Conduct</a><a>Accessibility</a><a>Pseudonymous access</a></div>
+      </div>
+    </div>
+    <div class="base"><span>&copy; 2026 Ilu&rsquo;s School of Thoughts &middot; <b>&ldquo;Sapere aude&rdquo;</b></span><span>A working prototype &middot; Beginner → Intermediate → Expert</span></div>
+  </div>
+</footer>
+
+<div id="toast"><div class="t"><span>✦</span><span id="toastMsg">Saved</span><span class="rpup" id="toastRP"></span></div></div>
+
+<script>
+/* ============================================================
+   STATE
+   ============================================================ */
+const RANKS=[["Inquirer",0],["Disputant",500],["Rhetor",1500],["Dialectician",3500],["Adept",7000]];
+const state={ rp:1840, done:new Set(), awarded:new Set() };
+
+function rankFor(rp){ let r=RANKS[0]; for(const x of RANKS){ if(rp>=x[1]) r=x; } return r; }
+function nextRank(rp){ for(const x of RANKS){ if(x[1]>rp) return x; } return null; }
+
+/* ============================================================
+   CURRICULUM DATA
+   ============================================================ */
+const CURRICULUM=[
+ {id:'L1',numeral:'I',name:'First Light',tier:'Beginner',accent:'verd',duration:'~10 hrs · 4 wks',credential:'Certificate of Foundation',
+  modules:[
+   {title:"What Atheism Is (and Isn't)",lessons:[
+     ['1.1','Mapping the territory','atheism, agnosticism, antitheism, apatheism, igtheism & secular humanism'],
+     ['1.2','Belief vs. knowledge','the two-axis model and why most atheists are agnostic atheists'],
+     ['1.3','The Dawkins Spectrum','the 1–7 scale of theistic probability — and locating yourself honestly'],
+     ['1.4','Misconceptions, dismantled','“atheism is a religion,” “atheists have no morals,” “atheism claims certainty”'] ]},
+   {title:"The Tools of Reason",lessons:[
+     ['2.1','Anatomy of an argument','premises and conclusions; validity versus soundness'],
+     ['2.2','Three kinds of inference','deductive, inductive & abductive reasoning — and when each applies'],
+     ['2.3','Who must prove what','burden of proof, Hitchens’s Razor, Russell’s Teapot & Sagan’s standard'],
+     ['2.4','Falsifiability','why a claim that excludes no observation is inert in debate'] ]},
+   {title:"Fallacy Field Guide",lessons:[
+     ['3.1','Formal fallacies','affirming the consequent, denying the antecedent & other invalid forms'],
+     ['3.2','Fallacies of relevance','ad hominem, appeals to authority/emotion/ignorance & the genetic fallacy'],
+     ['3.3','Presumption & ambiguity','false dilemma, begging the question, equivocation, special pleading, God-of-the-gaps'],
+     ['3.4','The biased brain','confirmation bias, agency detection & motivated reasoning'] ]},
+   {title:"A Short History of Doubt",lessons:[
+     ['4.1','Ancient skeptics','Cārvāka, Epicurus & Lucretius'],
+     ['4.2','The Enlightenment','Spinoza, Hume, the philosophes — and the meaning of “Sapere aude”'],
+     ['4.3','Modern secularism','the rise of organised freethought and the “Four Horsemen”'],
+     ['4.4','Living the question','freethought worldwide and navigating nonbelief in a religious society'] ]} ]},
+
+ {id:'L2',numeral:'II',name:'The Crucible',tier:'Intermediate',accent:'gold',duration:'~18 hrs · 6 wks',credential:'Certificate of Argumentation',
+  modules:[
+   {title:"The Case for God, Steelmanned",lessons:[
+     ['1.1','The cosmological family','the Kalām, Leibnizian contingency & the Thomistic arguments at their best'],
+     ['1.2','Design & fine-tuning','the teleological argument and the apparent fine-tuning of constants'],
+     ['1.3','The ontological argument','Anselm’s original and Plantinga’s modal reformulation'],
+     ['1.4','Morality, mind & reason','the moral argument and arguments from consciousness'] ]},
+   {title:"The Rebuttals",lessons:[
+     ['2.1','Answering the cosmological arguments','causation, actual infinities, “who caused God,” the composition fallacy'],
+     ['2.2','Answering design & fine-tuning','the multiverse, the anthropic principle, sub-optimal “design”'],
+     ['2.3','Answering the ontological argument','Gaunilo’s island, Kant on existence as a predicate, parody objections'],
+     ['2.4','The Euthyphro dilemma','dismantling the moral argument and grounding ethics without command'] ]},
+   {title:"The Problem of Evil",lessons:[
+     ['3.1','The logical problem','Epicurus and Mackie versus Plantinga’s free-will defence'],
+     ['3.2','The evidential problem','Rowe’s argument from gratuitous suffering'],
+     ['3.3','Theodicies & their discontents','soul-making, greater-good & skeptical theism — and how to respond'] ]},
+   {title:"Science, Cosmos & Naturalism",lessons:[
+     ['4.1','The illusion of design','natural selection and common creationist claims answered'],
+     ['4.2','Cosmology','the Big Bang, “something from nothing,” and fine-tuning with the physics'],
+     ['4.3','What naturalism means','methodological versus philosophical naturalism'] ]},
+   {title:"Goodness Without God",lessons:[
+     ['5.1','Where morality comes from','evolutionary roots, contractarianism & moral realism without theism'],
+     ['5.2','Three ethical frameworks','consequentialism, deontology & virtue ethics, introduced'],
+     ['5.3','Meaning, previewed','purpose and value without religion — a bridge to Level III'] ]} ]},
+
+ {id:'L3',numeral:'III',name:'Illumination',tier:'Expert',accent:'garnet',duration:'~30 hrs · 10 wks',credential:'Advanced Certificate + Master Diploma',
+  modules:[
+   {title:"Advanced Philosophy of Religion",lessons:[
+     ['1.1','Bayesian approaches','priors, likelihoods & the probabilistic case for and against theism'],
+     ['1.2','Fine-tuning, rigorously','probability, normalizability, the “this universe” objection & the multiverse'],
+     ['1.3','Reformed epistemology','Plantinga on “properly basic” belief and the Great Pumpkin objection'],
+     ['1.4','Divine hiddenness','Schellenberg’s argument — atheism’s other flagship'],
+     ['1.5','Miracles & testimony','religious experience and Hume on the evidence for the miraculous'] ]},
+   {title:"The Cognitive Science of Religion",lessons:[
+     ['2.1','Why minds make gods','hyperactive agency detection, theory of mind & by-product theories'],
+     ['2.2','Religion as technology','terror-management theory, social cohesion & the adaptationist debate'],
+     ['2.3','How minds change','deconversion, belief revision & Street Epistemology'] ]},
+   {title:"Meaning, Mortality & the Examined Life",lessons:[
+     ['3.1','Nietzsche','the death of God, the danger of nihilism, and its overcoming'],
+     ['3.2','Absurdism & freedom','Camus on the absurd and Sartre on radical freedom'],
+     ['3.3','Building meaning','humanism and secular Stoic & Buddhist practice'] ]},
+   {title:"Secular Ethics, Deeply",lessons:[
+     ['4.1','Metaethics','realism, anti-realism, error theory & quasi-realism'],
+     ['4.2','Normative depth','consequentialism, deontology & virtue ethics on hard cases'],
+     ['4.3','Ethics in public','bioethics and policy — arguing morality without scripture'] ]},
+   {title:"The Art of Public Reason",lessons:[
+     ['5.1','Competitive formats','British Parliamentary, Lincoln–Douglas, Oregon-style CX & “flowing”'],
+     ['5.2','Advanced rebuttal','weighing, framing, clash, collapsing/extending & the “voters”'],
+     ['5.3','Steelmanning as discipline','charitable interpretation; avoiding strawmen and the Gish gallop'],
+     ['5.4','Speaking at scale','public speaking, hostile audiences & Street Epistemology in practice'],
+     ['5.5','The ethics of discourse','pluralism, tolerance & living well alongside the faithful'] ]},
+   {title:"Capstone",lessons:[
+     ['6.1','Route A — The Debate','a moderated, full-length debate on a substantial motion, judged by a panel'],
+     ['6.2','Route B — The Thesis','a 3,000–5,000-word argued essay with a steelmanned opposition, plus oral defence'] ]} ]}
+];
+
+/* full content for the showcase interactive lesson */
+const LESSON_CONTENT={
+ 'L1:1.2':{
+   read:[
+     "People argue past one another about atheism because they collapse two different questions into one. The first is a question of belief: do you accept the claim that a god exists? The second is a question of knowledge: do you claim to know whether a god exists? Because these questions are independent, the honest answer to one does not settle the other.",
+     "Lay the two questions on two axes and four positions appear. A gnostic theist believes a god exists and claims to know it. An agnostic theist believes, but does not claim certainty. An agnostic atheist does not believe, but does not claim certainty that no god exists — this is where most self-described atheists actually sit. A gnostic atheist makes the stronger claim to know that no god exists.",
+     "This matters for every debate that follows. Atheism, properly understood, is the absence of belief — not necessarily the assertion of a universal negative. Recognising this defuses the most common opening attack — “you can’t prove no god exists” — because the agnostic atheist never claimed to. It also clarifies who carries the burden of proof: the person asserting that a god exists is making the positive claim, and the burden rests with them."
+   ],
+   terms:[
+     ["Belief axis","whether you accept the claim (theist / atheist)."],
+     ["Knowledge axis","whether you claim to know (gnostic / agnostic)."],
+     ["Agnostic atheist","lacks belief in any god without claiming certainty — the most common position."]
+   ],
+   quiz:[
+     {q:"Atheism is the claim that no gods exist and necessarily involves certainty.",
+      opts:["True","False"],ans:1,
+      ex:"Atheism is a <b>lack of belief</b>. Most atheists are agnostic atheists and claim no certainty — so the statement is false."},
+     {q:"“I don’t believe in any god, but I don’t claim to know for sure.” This person is best described as a(n):",
+      opts:["Gnostic theist","Agnostic atheist","Gnostic atheist","Apatheist"],ans:1,
+      ex:"No belief + no claim to certainty = <b>agnostic atheist</b>."},
+     {q:"In a debate, who carries the burden of proof for the claim “a god exists”?",
+      opts:["The atheist, who must disprove it","Both sides equally","The person asserting a god exists","Neither — it’s unprovable"],ans:2,
+      ex:"The <b>burden falls on the one making the positive claim</b>. Demanding the skeptic disprove it shifts the burden."}
+   ]
+ }
+};
+
+/* ============================================================
+   SEAL + ORNAMENTS (SVG)
+   ============================================================ */
+function sealSVG(){
+  return `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <path id="topArc" d="M28,100 A72,72 0 0 1 172,100"/>
+      <path id="botArc" d="M30,100 A70,70 0 0 0 170,100"/>
+      <radialGradient id="sealBg" cx="40%" cy="32%"><stop offset="0%" stop-color="#2c2517"/><stop offset="100%" stop-color="#14110a"/></radialGradient>
+    </defs>
+    <circle cx="100" cy="100" r="96" fill="url(#sealBg)"/>
+    <circle cx="100" cy="100" r="95" fill="none" stroke="#B8893B" stroke-width="2.5"/>
+    <circle cx="100" cy="100" r="80" fill="none" stroke="#8A6A2B" stroke-width="1"/>
+    <g fill="#E7CF94">${beads()}</g>
+    <g fill="#E7CF94" font-family="Fraunces, serif" font-weight="600" letter-spacing="3.4" font-size="12.5">
+      <text text-anchor="middle"><textPath href="#topArc" startOffset="50%">ILU&#8217;S SCHOOL OF THOUGHTS</textPath></text>
+    </g>
+    <g fill="#C9A24A" font-family="Fraunces, serif" font-weight="500" letter-spacing="5" font-size="11">
+      <text text-anchor="middle"><textPath href="#botArc" startOffset="50%">&#8226; SAPERE AUDE &#8226;</textPath></text>
+    </g>
+    <!-- lamp of reason: open book + flame -->
+    <g transform="translate(100,104)" stroke="#E7CF94" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M-30,16 Q-15,9 0,14 Q15,9 30,16" />
+      <path d="M-30,16 L-30,2 Q-15,-5 0,0 Q15,-5 30,2 L30,16" />
+      <path d="M0,0 L0,14" />
+      <path d="M0,-6 C-7,-13 -6,-22 0,-30 C6,-22 7,-13 0,-6 Z" fill="#C9A24A" stroke="#E7CF94" stroke-width="1.4"/>
+      <path d="M0,-10 C-3,-15 -2,-20 0,-24 C2,-20 3,-15 0,-10 Z" fill="#14110a" stroke="none"/>
+    </g>
+  </svg>`;
+}
+function beads(){ let s=''; for(let i=0;i<60;i++){ const a=i/60*Math.PI*2; const r=87.5; const x=100+Math.cos(a)*r; const y=100+Math.sin(a)*r; s+=`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="0.9"/>`; } return s; }
+function cornerSVG(){ return `<svg class="corner tl" viewBox="0 0 46 46" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M2 22 Q2 2 22 2"/><path d="M8 22 Q8 8 22 8"/><circle cx="22" cy="22" r="1.6" fill="currentColor" stroke="none"/></svg>`; }
+
+/* QR-ish deterministic pattern */
+function qrSVG(seed){
+  let h=0; for(let i=0;i<seed.length;i++){ h=(h*31+seed.charCodeAt(i))>>>0; }
+  const n=21, cell=100/n; let rects='';
+  const finder=(x,y)=>{ let r=`<rect x="${x*cell}" y="${y*cell}" width="${cell*7}" height="${cell*7}" fill="#1C1A14"/><rect x="${(x+1)*cell}" y="${(y+1)*cell}" width="${cell*5}" height="${cell*5}" fill="#fbf3df"/><rect x="${(x+2)*cell}" y="${(y+2)*cell}" width="${cell*3}" height="${cell*3}" fill="#1C1A14"/>`; return r; };
+  for(let y=0;y<n;y++)for(let x=0;x<n;x++){
+    const inF=(x<7&&y<7)||(x>n-8&&y<7)||(x<7&&y>n-8);
+    if(inF) continue;
+    h=(h*1103515245+12345)>>>0;
+    if((h>>16&1)){ rects+=`<rect x="${(x*cell).toFixed(2)}" y="${(y*cell).toFixed(2)}" width="${cell.toFixed(2)}" height="${cell.toFixed(2)}" fill="#1C1A14"/>`; }
+  }
+  return `<svg viewBox="0 0 100 100"><rect width="100" height="100" fill="#fbf3df"/>${rects}${finder(0,0)}${finder(n-7,0)}${finder(0,n-7)}</svg>`;
+}
+
+/* ============================================================
+   CERTIFICATE
+   ============================================================ */
+function certHTML(opts){
+  const o=Object.assign({name:"Maria S. Delgado",title:"Certificate of Foundation",
+    award:"has demonstrated mastery of Level I — First Light, and is awarded the",
+    comp:"Attests the holder can define the terms precisely, reason in valid arguments, identify common fallacies, and deliver a clear opening statement.",
+    date:"14 May 2026",cid:"ISOT-L1-2026-7F3A9C"},opts||{});
+  return `<div class="frame"></div>
+    ${cornerSVG()}${cornerSVG().replace('tl','tr')}${cornerSVG().replace('tl','bl')}${cornerSVG().replace('tl','br')}
+    <div class="inner">
+      <div class="mast"><div class="mono"><span>I</span></div><b>Ilu&rsquo;s School of Thoughts</b></div>
+      <div class="ek">Certifies that</div>
+      <div class="name">${o.name}</div>
+      <div class="nameline"></div>
+      <div class="award">${o.award}</div>
+      <div class="title">${o.title}</div>
+      <div class="comp">${o.comp}</div>
+      <div class="foot">
+        <div class="seal-sm">${sealSVG()}</div>
+        <div class="blk" style="text-align:center">
+          <div class="cap">Issued ${o.date}</div>
+          <div class="sig">Ilu</div>
+          <div class="line"></div>
+          <div class="cap">Ilu &middot; Rector</div>
+        </div>
+        <div class="qr">${qrSVG(o.cid)}<div class="cid">${o.cid}</div></div>
+      </div>
+    </div>`;
+}
+
+/* ============================================================
+   ROUTER
+   ============================================================ */
+function go(view,arg){
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('show'));
+  const el=document.getElementById('view-'+view); if(el) el.classList.add('show');
+  document.querySelectorAll('nav.main a').forEach(a=>a.classList.toggle('active',a.dataset.nav===view));
+  document.querySelector('nav.main').classList.remove('open');
+  window.scrollTo({top:0,behavior:'instant'in window?'instant':'auto'});
+  if(view==='curriculum'&&arg) setTimeout(()=>openModuleFor(arg),60);
+  revealScan();
+}
+
+/* ============================================================
+   CURRICULUM RENDER
+   ============================================================ */
+function renderCurriculum(){
+  const wrap=document.getElementById('curriculumList'); let h='';
+  CURRICULUM.forEach(L=>{
+    h+=`<div class="lvlblock" id="block-${L.id}">
+      <div class="lvlhd ${L.accent}"><span class="dot"></span><div><div class="tag">Level ${L.numeral} &middot; ${L.tier}</div><h2>${L.name}</h2></div>
+      <div class="meta"><b>${L.duration}</b><br>Earns: ${L.credential}</div></div>`;
+    L.modules.forEach((M,mi)=>{
+      const total=M.lessons.length;
+      h+=`<div class="module" data-lvl="${L.id}">
+        <div class="mhd" onclick="this.parentNode.classList.toggle('open')">
+          <span class="mi">M${mi+1}</span><h3>${M.title}</h3><span class="cnt">${total} lessons</span>
+          <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>
+        </div><div class="lessons">`;
+      M.lessons.forEach(les=>{
+        const key=L.id+':'+les[0]; const done=state.done.has(key);
+        const inter=LESSON_CONTENT[key]?' ✦':'';
+        h+=`<div class="lrow ${done?'done':''}" data-key="${key}" onclick="openLesson('${L.id}','${les[0]}')">
+          <span class="lc">${les[0]}</span>
+          <div class="lt"><b>${les[1]}${inter}</b> <span>— ${les[2]}</span></div>
+          <svg class="play" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          <span class="st">${done?'<svg width=12 height=12 viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg>':''}</span>
+        </div>`;
+      });
+      h+=`</div></div>`;
+    });
+    h+=`</div>`;
+  });
+  wrap.innerHTML=h;
+}
+function openModuleFor(lvlId){
+  const block=document.getElementById('block-'+lvlId);
+  if(block){ block.scrollIntoView({behavior:'smooth',block:'start'}); const m=block.querySelector('.module'); if(m) m.classList.add('open'); }
+}
+
+/* ============================================================
+   LESSON PLAYER
+   ============================================================ */
+let curLevel='L1';
+function lvlObj(id){ return CURRICULUM.find(l=>l.id===id); }
+function flatLessons(L){ const a=[]; L.modules.forEach((m,mi)=>m.lessons.forEach(les=>a.push({code:les[0],title:les[1],desc:les[2],mi}))); return a; }
+function lvlProgress(id){ const L=lvlObj(id); const all=flatLessons(L); const d=all.filter(x=>state.done.has(id+':'+x.code)).length; return {d,t:all.length,pc:Math.round(d/all.length*100)}; }
+
+function openLesson(lvlId,code){
+  curLevel=lvlId; const L=lvlObj(lvlId); const all=flatLessons(L);
+  const meta=all.find(x=>x.code===code); const key=lvlId+':'+code;
+  document.getElementById('lsLevel').textContent='Level '+L.numeral+' · '+L.name;
+  const pr=lvlProgress(lvlId); document.getElementById('lsProg').textContent=pr.d+' of '+pr.t+' lessons complete · '+pr.pc+'%';
+  // sidebar
+  document.getElementById('lsList').innerHTML=all.map(x=>{
+    const k=lvlId+':'+x.code; const dn=state.done.has(k);
+    return `<div class="sl ${x.code===code?'active':''} ${dn?'done':''}" onclick="openLesson('${lvlId}','${x.code}')">
+      <span class="sc">${x.code}</span><span class="dt">${dn?'<svg width=10 height=10 viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3.5"><path d="M5 13l4 4L19 7"/></svg>':''}</span>
+      <span style="flex:1">${x.title}</span></div>`;
+  }).join('');
+  // main
+  const content=LESSON_CONTENT[key];
+  let h=`<div class="crumb">Level ${L.numeral} · ${L.name} &nbsp;›&nbsp; <b>Module ${meta.mi+1}</b> &nbsp;›&nbsp; Lesson ${code}</div>
+    <h1>${meta.title}</h1>
+    <div class="lmeta"><span>📖 Reading</span><span>⏱ ~8 min</span><span>✦ ${content?'40':'30'} RP on completion</span></div>`;
+  if(content){
+    h+=`<div class="lblk"><span class="eyebrow">Read</span>`+content.read.map(p=>`<p>${p}</p>`).join('')+`</div>`;
+    h+=`<div class="lblk"><span class="eyebrow">Key terms</span><dl class="termcard">`+content.terms.map(t=>`<dt>${t[0]}</dt><dd>${t[1]}</dd>`).join('')+`</dl></div>`;
+    h+=`<div class="lblk"><span class="eyebrow">Knowledge check</span><div class="quiz" id="quiz"></div></div>`;
+  } else {
+    h+=`<div class="lblk"><span class="eyebrow">Overview</span>
+      <p style="font-size:18px">This lesson covers <b>${meta.desc}.</b></p>
+      <div class="notecard">In the full build this screen carries the reading, narrated video, primary-source excerpts, and a knowledge check. Lesson <b>1.2 — Belief vs. Knowledge</b> (Level I) is wired up as a fully interactive example with a graded quiz.</div>
+      <button class="btn gold" onclick="markComplete('${key}')">Mark lesson complete <span class="arrow">→</span></button>
+    </div>`;
+  }
+  document.getElementById('lessonMain').innerHTML=h;
+  if(content) renderQuiz(key,content);
+  go('lesson');
+}
+
+function markComplete(key){
+  if(!state.done.has(key)){ state.done.add(key); award(key,30,'Lesson complete'); refreshProgress(); }
+  else toast('Already completed','');
+  // refresh sidebar checkmark
+  const [lvl,code]=key.split(':'); openLesson(lvl,code);
+}
+
+/* ---- quiz ---- */
+function renderQuiz(key,content){
+  const box=document.getElementById('quiz'); const sel=new Array(content.quiz.length).fill(-1);
+  box.innerHTML=content.quiz.map((q,qi)=>`
+    <div class="q" data-qi="${qi}">
+      <div class="qn"><i>${qi+1}.</i><span>${q.q}</span></div>
+      ${q.opts.map((o,oi)=>`<div class="opt" data-oi="${oi}" onclick="pick(${qi},${oi})"><span class="bx"></span><span>${o}</span></div>`).join('')}
+      <div class="explain" id="ex${qi}"><b>Why:</b> ${q.ex}</div>
+    </div>`).join('')
+    +`<div class="quizbar"><button class="btn gold" id="checkBtn" onclick="checkQuiz('${key}')">Check answers</button>
+      <button class="btn ghost sm" onclick="openLesson('${key.split(':')[0]}','${key.split(':')[1]}')">Reset</button>
+      <span class="scorepill" id="scorePill"></span></div>`;
+  box._sel=sel; box._content=content;
+}
+function pick(qi,oi){
+  const box=document.getElementById('quiz'); if(box._locked) return;
+  box._sel[qi]=oi;
+  const q=box.querySelector(`.q[data-qi="${qi}"]`);
+  q.querySelectorAll('.opt').forEach(o=>o.classList.toggle('sel',+o.dataset.oi===oi));
+}
+function checkQuiz(key){
+  const box=document.getElementById('quiz'); const c=box._content; const sel=box._sel;
+  if(sel.includes(-1)){ toast('Answer every question first',''); return; }
+  let correct=0;
+  c.quiz.forEach((q,qi)=>{
+    const qEl=box.querySelector(`.q[data-qi="${qi}"]`);
+    qEl.querySelectorAll('.opt').forEach(o=>{
+      const oi=+o.dataset.oi; o.classList.add('lock'); o.classList.remove('sel');
+      if(oi===q.ans) o.classList.add('correct');
+      else if(oi===sel[qi]) o.classList.add('wrong');
+    });
+    document.getElementById('ex'+qi).classList.add('show');
+    if(sel[qi]===q.ans) correct++;
+  });
+  box._locked=true;
+  const pill=document.getElementById('scorePill'); pill.textContent=`Score: ${correct}/${c.quiz.length}`; pill.classList.add('show');
+  document.getElementById('checkBtn').style.display='none';
+  if(!state.done.has(key)){ state.done.add(key); refreshProgress(); }
+  award(key,40,correct===c.quiz.length?'Perfect — lesson complete!':'Lesson complete');
+}
+
+/* ============================================================
+   RP / AWARDS / TOAST
+   ============================================================ */
+function award(id,amt,msg){
+  if(state.awarded.has(id)){ toast(msg||'Done',''); return; }
+  state.awarded.add(id); state.rp+=amt; syncRP(); toast(msg||'Nice work','+'+amt+' RP');
+}
+function syncRP(){
+  const r=rankFor(state.rp), nx=nextRank(state.rp);
+  document.getElementById('rpTop').textContent=state.rp.toLocaleString();
+  document.getElementById('rankTop').textContent=r[0];
+  // dashboard
+  document.getElementById('dRP').textContent=state.rp.toLocaleString();
+  document.getElementById('dRank').textContent=r[0];
+  if(nx){
+    const lo=r[1], hi=nx[1]; const pc=Math.round((state.rp-lo)/(hi-lo)*100);
+    document.getElementById('dRPbar').style.width=pc+'%';
+    document.getElementById('dToNext').textContent=(hi-state.rp).toLocaleString();
+    document.getElementById('dNext').textContent=nx[0];
+    document.getElementById('dRankLo').textContent=r[0];
+    document.getElementById('dRankHi').textContent=nx[0];
+  } else { document.getElementById('dRPbar').style.width='100%'; document.getElementById('dToNext').textContent='0'; document.getElementById('dNext').textContent='max rank'; }
+}
+let toastT;
+function toast(msg,rp){
+  document.getElementById('toastMsg').textContent=msg;
+  document.getElementById('toastRP').textContent=rp||'';
+  const t=document.getElementById('toast'); t.classList.add('show');
+  clearTimeout(toastT); toastT=setTimeout(()=>t.classList.remove('show'),2600);
+}
+
+/* ============================================================
+   PROGRESS BARS
+   ============================================================ */
+function refreshProgress(){
+  ['L1','L2'].forEach(id=>{
+    const pr=lvlProgress(id);
+    const bar=document.getElementById('bar'+id), pc=document.getElementById('pc'+id);
+    if(bar) bar.style.width=pr.pc+'%'; if(pc) pc.textContent=pr.pc+'%';
+  });
+  // refresh curriculum checkmarks if present
+  renderCurriculum();
+}
+
+/* ============================================================
+   SKILL RADAR
+   ============================================================ */
+const SKILLS=[["Logic",82],["Evidence",68],["Rebuttal",74],["Charity",88],["Rhetoric",63],["Composure",71]];
+function renderRadar(){
+  const cx=170,cy=160,R=120,N=SKILLS.length; let g='';
+  // rings
+  [.25,.5,.75,1].forEach(f=>{ let pts=''; for(let i=0;i<N;i++){ const a=-Math.PI/2+i/N*Math.PI*2; pts+=`${(cx+Math.cos(a)*R*f).toFixed(1)},${(cy+Math.sin(a)*R*f).toFixed(1)} `; } g+=`<polygon points="${pts}" fill="none" stroke="#DCD2BB" stroke-width="1"/>`; });
+  // spokes + labels
+  for(let i=0;i<N;i++){ const a=-Math.PI/2+i/N*Math.PI*2; const x=cx+Math.cos(a)*R, y=cy+Math.sin(a)*R;
+    g+=`<line x1="${cx}" y1="${cy}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}" stroke="#DCD2BB" stroke-width="1"/>`;
+    const lx=cx+Math.cos(a)*(R+22), ly=cy+Math.sin(a)*(R+22);
+    const anchor=Math.abs(Math.cos(a))<0.3?'middle':(Math.cos(a)>0?'start':'end');
+    g+=`<text x="${lx.toFixed(1)}" y="${(ly+4).toFixed(1)}" text-anchor="${anchor}" font-family="Spectral, serif" font-size="13" fill="#4A4536">${SKILLS[i][0]}</text>`;
+  }
+  // value polygon
+  let vp=''; for(let i=0;i<N;i++){ const a=-Math.PI/2+i/N*Math.PI*2; const f=SKILLS[i][1]/100; vp+=`${(cx+Math.cos(a)*R*f).toFixed(1)},${(cy+Math.sin(a)*R*f).toFixed(1)} `; }
+  g+=`<polygon points="${vp}" fill="rgba(184,137,59,.22)" stroke="#B8893B" stroke-width="2"/>`;
+  for(let i=0;i<N;i++){ const a=-Math.PI/2+i/N*Math.PI*2; const f=SKILLS[i][1]/100; g+=`<circle cx="${(cx+Math.cos(a)*R*f).toFixed(1)}" cy="${(cy+Math.sin(a)*R*f).toFixed(1)}" r="3.4" fill="#8A6A2B"/>`; }
+  document.getElementById('radar').innerHTML=`<svg viewBox="0 0 340 320">${g}</svg>`;
+  document.getElementById('radarLegend').innerHTML=SKILLS.map(s=>`<span>${s[0]} <b>${s[1]}</b></span>`).join('');
+}
+
+/* ============================================================
+   DAILY DRILL
+   ============================================================ */
+const DRILLS=[
+ {arg:"“You can’t prove God doesn’t exist, so atheism is just as much a faith as belief.”",
+  opts:["Ad hominem","Shifting the burden of proof","False dilemma","Slippery slope"],ans:1,
+  ex:"The positive claim (a god exists) carries the burden. Demanding the skeptic <i>disprove</i> it shifts that burden onto the wrong side."},
+ {arg:"“Either you believe in God, or your life has no meaning at all.”",
+  opts:["False dilemma","Straw man","Appeal to authority","Circular reasoning"],ans:0,
+  ex:"Only two options are offered when many secular sources of meaning exist between them."},
+ {arg:"“Of course the universe was designed — look how perfectly everything fits together.”",
+  opts:["Begging the question","Equivocation","Hasty generalization","Genetic fallacy"],ans:0,
+  ex:"“Fits together → designed” assumes the conclusion in the premise; the claim is smuggled in rather than argued."},
+ {arg:"“My pastor has a doctorate, so his argument that the soul exists must be correct.”",
+  opts:["Appeal to inappropriate authority","Tu quoque","Composition","No true Scotsman"],ans:0,
+  ex:"A credential outside the relevant field doesn’t establish the claim — the argument must still stand on its merits."}
+];
+let drillIdx=-1, drillLocked=false;
+function newDrill(){
+  drillIdx=(drillIdx+1)%DRILLS.length; drillLocked=false;
+  const d=DRILLS[drillIdx];
+  document.getElementById('drillArg').textContent=d.arg;
+  document.getElementById('drillOpts').innerHTML=d.opts.map((o,i)=>`<div class="dopt" data-i="${i}" onclick="answerDrill(${i})">${o}</div>`).join('');
+  document.getElementById('drillFb').classList.remove('show');
+}
+function answerDrill(i){
+  if(drillLocked) return; drillLocked=true; const d=DRILLS[drillIdx];
+  document.querySelectorAll('#drillOpts .dopt').forEach(o=>{ const oi=+o.dataset.i; o.classList.add('lock');
+    if(oi===d.ans) o.classList.add('correct'); else if(oi===i) o.classList.add('wrong'); });
+  const fb=document.getElementById('drillFb'); const right=i===d.ans;
+  fb.innerHTML=(right?'<b style="color:var(--verd)">Correct.</b> ':'<b style="color:var(--garnet)">Not quite.</b> ')+d.ex;
+  fb.classList.add('show');
+  award('drill-'+drillIdx,15,right?'Good eye!':'Drill logged');
+}
+
+/* ============================================================
+   BADGES
+   ============================================================ */
+const BADGES=[
+ ["Fallacy Hunter","Identify 100 fallacies",1,'<path d="M12 2l2.5 6.5L21 9l-5 4 2 7-6-4-6 4 2-7-5-4 6.5-.5z"/>'],
+ ["Steelman","Score 90%+ on a charitable reconstruction",1,'<path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/>'],
+ ["First Blood","Win your first judged debate",1,'<path d="M12 3l3 7 7 .5-5.5 4.5 2 7-6.5-4-6.5 4 2-7L2 10.5 9 10z"/>'],
+ ["Devil’s Advocate","Win a debate on the side you reject",0,'<path d="M5 4l4 6-4 4 7-1 0 7 0-7 7 1-4-4 4-6-7 3z"/>'],
+ ["Cross-Examiner","Finish the CX module with distinction",0,'<circle cx="11" cy="11" r="7"/><path d="M16 16l5 5"/>'],
+ ["Charitable Mind","Peer-nominated for civility",0,'<path d="M12 21C6 17 3 13 3 8.5 3 6 5 4 7.5 4 9.4 4 11 5 12 6.5 13 5 14.6 4 16.5 4 19 4 21 6 21 8.5 21 13 18 17 12 21z"/>'],
+ ["Socratic","Lead five Socratic Circles",0,'<circle cx="12" cy="12" r="9"/><circle cx="9" cy="10" r="1.4" fill="currentColor"/><circle cx="15" cy="10" r="1.4" fill="currentColor"/><path d="M8 15c1.5 2 6.5 2 8 0"/>'],
+ ["Sapere Aude","Earn the Master Diploma",0,'<path d="M12 2l2.2 5.6L20 8l-4.5 3.7L17 18l-5-3-5 3 1.5-6.3L4 8l5.8-.4z"/>']
+];
+function renderBadges(){
+  document.getElementById('badges').innerHTML=BADGES.map(b=>`
+    <div class="badge ${b[2]?'':'locked'}" title="${b[1]}">
+      <div class="med"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">${b[3]}</svg></div>
+      <div class="bn">${b[0]}</div></div>`).join('');
+}
+
+/* ============================================================
+   CERT VERIFY
+   ============================================================ */
+function verifyCert(){ const b=document.getElementById('verifyBox'); b.classList.add('show'); b.scrollIntoView({behavior:'smooth',block:'center'}); toast('Checking the issuer registry…',''); }
+
+/* ============================================================
+   SCROLL REVEAL
+   ============================================================ */
+let io;
+function revealScan(){
+  if(!io){ io=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} }),{threshold:.12}); }
+  document.querySelectorAll('.reveal:not(.in)').forEach(el=>io.observe(el));
+}
+const revStyle=document.createElement('style');
+revStyle.textContent='.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}.reveal.in{opacity:1;transform:none}';
+document.head.appendChild(revStyle);
+
+/* ============================================================
+   INIT
+   ============================================================ */
+(function init(){
+  // pre-populate demo progress: all of Level I + Module 1 of Level II
+  lvlObj('L1').modules.forEach(m=>m.lessons.forEach(l=>state.done.add('L1:'+l[0])));
+  lvlObj('L2').modules[0].lessons.forEach(l=>state.done.add('L2:'+l[0]));
+  document.getElementById('heroSeal').innerHTML=sealSVG();
+  document.getElementById('certPreview').innerHTML=certHTML();
+  document.getElementById('certFull').innerHTML=certHTML();
+  renderCurriculum(); renderRadar(); renderBadges(); newDrill();
+  syncRP(); refreshProgress(); revealScan();
+})();
+</script>
+</body>
+</html>

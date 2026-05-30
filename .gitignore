@@ -1,0 +1,4 @@
+index.previous.html
+*.log
+node_modules/
+.env
