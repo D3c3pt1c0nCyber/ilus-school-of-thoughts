@@ -1495,6 +1495,10 @@ const db   = getFirestore(app);
 const provider = new GoogleAuthProvider();
 
 /* ---- Expose helpers to global scope so inline JS can call them ---- */
+window.signOutUser = async function(){
+  await signOut(auth);
+};
+
 window.handleAuth = async function(){
   if(currentUser){
     // Show a mini sign-out confirmation instead of immediately signing out
@@ -1514,7 +1518,7 @@ window.handleAuth = async function(){
         <button onclick="document.getElementById('authDropdown').remove();go('dashboard')" style="width:100%;text-align:left;padding:9px 12px;background:none;border:none;cursor:pointer;font-family:inherit;font-size:14px;color:var(--ink);border-radius:2px" onmouseover="this.style.background='var(--paper)'" onmouseout="this.style.background='none'">📊 My Dashboard</button>
         <button onclick="document.getElementById('authDropdown').remove();go('certificate')" style="width:100%;text-align:left;padding:9px 12px;background:none;border:none;cursor:pointer;font-family:inherit;font-size:14px;color:var(--ink);border-radius:2px" onmouseover="this.style.background='var(--paper)'" onmouseout="this.style.background='none'">🎓 My Certificate</button>
         <div style="height:1px;background:var(--line);margin:6px 0"></div>
-        <button onclick="document.getElementById('authDropdown').remove();signOut(auth)" style="width:100%;text-align:left;padding:9px 12px;background:none;border:none;cursor:pointer;font-family:inherit;font-size:14px;color:var(--garnet);border-radius:2px" onmouseover="this.style.background='var(--paper)'" onmouseout="this.style.background='none'">← Sign out</button>
+        <button onclick="document.getElementById('authDropdown').remove();window.signOutUser()" style="width:100%;text-align:left;padding:9px 12px;background:none;border:none;cursor:pointer;font-family:inherit;font-size:14px;color:var(--garnet);border-radius:2px" onmouseover="this.style.background='var(--paper)'" onmouseout="this.style.background='none'">← Sign out</button>
       </div>`;
     btn.style.position = 'relative';
     btn.appendChild(drop);

@@ -4,7 +4,7 @@
 
 A self-contained, single-file Learning Management System for philosophy and atheism education — built in dark academia style, deployable anywhere.
 
-**Live site →** [illuschoolofthoughts.netlify.app](https://illuschoolofthoughts.netlify.app)
+**Live site →** [ilus-school-of-thoughts.onrender.com](https://ilus-school-of-thoughts.onrender.com)
 
 ---
 
