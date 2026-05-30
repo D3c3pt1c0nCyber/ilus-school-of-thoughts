@@ -300,8 +300,8 @@ nav.main a.active::after{content:""; position:absolute; left:.82em; right:.82em;
 .lvltrack .t b{font-weight:600} .lvltrack .t .pc{font-family:var(--mono); font-size:13px; color:var(--muted)}
 .lvltrack.locked{opacity:.5}
 /* radar */
-.radarwrap{display:grid; place-items:center}
-.radarwrap svg{width:100%; max-width:340px; height:auto}
+.radarwrap{display:grid; place-items:center; overflow:visible}
+.radarwrap svg{width:100%; max-width:440px; height:auto; overflow:visible}
 .legend{display:grid; grid-template-columns:1fr 1fr; gap:6px 14px; margin-top:6px; font-size:13.5px}
 .legend span{display:flex; justify-content:space-between; color:var(--ink-soft)}
 .legend b{font-family:var(--mono); font-weight:500; color:var(--ink)}
@@ -1244,22 +1244,145 @@ function refreshProgress(){
    ============================================================ */
 const SKILLS=[["Logic",82],["Evidence",68],["Rebuttal",74],["Charity",88],["Rhetoric",63],["Composure",71]];
 function renderRadar(){
-  const cx=170,cy=160,R=120,N=SKILLS.length; let g='';
-  // rings
-  [.25,.5,.75,1].forEach(f=>{ let pts=''; for(let i=0;i<N;i++){ const a=-Math.PI/2+i/N*Math.PI*2; pts+=`${(cx+Math.cos(a)*R*f).toFixed(1)},${(cy+Math.sin(a)*R*f).toFixed(1)} `; } g+=`<polygon points="${pts}" fill="none" stroke="#DCD2BB" stroke-width="1"/>`; });
-  // spokes + labels
-  for(let i=0;i<N;i++){ const a=-Math.PI/2+i/N*Math.PI*2; const x=cx+Math.cos(a)*R, y=cy+Math.sin(a)*R;
-    g+=`<line x1="${cx}" y1="${cy}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}" stroke="#DCD2BB" stroke-width="1"/>`;
-    const lx=cx+Math.cos(a)*(R+22), ly=cy+Math.sin(a)*(R+22);
-    const anchor=Math.abs(Math.cos(a))<0.3?'middle':(Math.cos(a)>0?'start':'end');
-    g+=`<text x="${lx.toFixed(1)}" y="${(ly+4).toFixed(1)}" text-anchor="${anchor}" font-family="Spectral, serif" font-size="13" fill="#4A4536">${SKILLS[i][0]}</text>`;
+  /* ── Geometry ── */
+  const W=440, H=400, cx=W/2, cy=H/2-10, R=130, LR=R+52, N=SKILLS.length;
+  const RINGS=[.25,.5,.75,1];
+  const RING_LABELS=['25','50','75',''];
+
+  /* ── SVG open + defs ── */
+  let g=`<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" style="width:100%;overflow:visible">
+  <defs>
+    <radialGradient id="rg" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#E7CF94" stop-opacity=".45"/>
+      <stop offset="100%" stop-color="#8A6A2B" stop-opacity=".12"/>
+    </radialGradient>
+    <radialGradient id="bgRing" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#F4ECD8" stop-opacity=".0"/>
+      <stop offset="100%" stop-color="#D4C4A4" stop-opacity=".25"/>
+    </radialGradient>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="3" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="dotglow" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="2.5" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>`;
+
+  /* ── Rings — alternating shaded bands ── */
+  RINGS.forEach((f,ri)=>{
+    let pts='';
+    for(let i=0;i<N;i++){const a=-Math.PI/2+i/N*Math.PI*2; pts+=`${(cx+Math.cos(a)*R*f).toFixed(1)},${(cy+Math.sin(a)*R*f).toFixed(1)} `;}
+    const even=ri%2===0;
+    g+=`<polygon points="${pts}" fill="${even?'rgba(180,162,126,0.10)':'rgba(244,236,216,0.04)'}" stroke="#C9BD9F" stroke-width="${ri===RINGS.length-1?1.4:.7}" stroke-dasharray="${ri===RINGS.length-1?'':''}"/>`;
+    // ring percentage label at top-right of each ring
+    if(RING_LABELS[ri]){
+      const la=-Math.PI/2+0.18;
+      g+=`<text x="${(cx+Math.cos(la)*R*f+2).toFixed(1)}" y="${(cy+Math.sin(la)*R*f+3).toFixed(1)}" font-family="'Spline Sans Mono',monospace" font-size="9" fill="#B8893B" opacity=".55">${RING_LABELS[ri]}</text>`;
+    }
+  });
+
+  /* ── Spokes ── */
+  for(let i=0;i<N;i++){
+    const a=-Math.PI/2+i/N*Math.PI*2;
+    g+=`<line x1="${cx}" y1="${cy}" x2="${(cx+Math.cos(a)*R).toFixed(1)}" y2="${(cy+Math.sin(a)*R).toFixed(1)}" stroke="#C9BD9F" stroke-width=".9" opacity=".7"/>`;
   }
-  // value polygon
-  let vp=''; for(let i=0;i<N;i++){ const a=-Math.PI/2+i/N*Math.PI*2; const f=SKILLS[i][1]/100; vp+=`${(cx+Math.cos(a)*R*f).toFixed(1)},${(cy+Math.sin(a)*R*f).toFixed(1)} `; }
-  g+=`<polygon points="${vp}" fill="rgba(184,137,59,.22)" stroke="#B8893B" stroke-width="2"/>`;
-  for(let i=0;i<N;i++){ const a=-Math.PI/2+i/N*Math.PI*2; const f=SKILLS[i][1]/100; g+=`<circle cx="${(cx+Math.cos(a)*R*f).toFixed(1)}" cy="${(cy+Math.sin(a)*R*f).toFixed(1)}" r="3.4" fill="#8A6A2B"/>`; }
-  document.getElementById('radar').innerHTML=`<svg viewBox="0 0 340 320">${g}</svg>`;
-  document.getElementById('radarLegend').innerHTML=SKILLS.map(s=>`<span>${s[0]} <b>${s[1]}</b></span>`).join('');
+
+  /* ── Value polygon with draw animation ── */
+  let vp='';
+  for(let i=0;i<N;i++){const a=-Math.PI/2+i/N*Math.PI*2; const f=SKILLS[i][1]/100; vp+=`${(cx+Math.cos(a)*R*f).toFixed(1)},${(cy+Math.sin(a)*R*f).toFixed(1)} `;}
+  // glow shadow pass
+  g+=`<polygon points="${vp}" fill="none" stroke="#E7CF94" stroke-width="5" opacity=".18" filter="url(#glow)"/>`;
+  // main polygon
+  g+=`<polygon id="radarPoly" points="${vp}" fill="url(#rg)" stroke="#B8893B" stroke-width="1.8" opacity="0">
+    <animate attributeName="opacity" from="0" to="1" dur=".7s" begin=".1s" fill="freeze" calcMode="spline" keySplines="0.2 0.8 0.2 1"/>
+  </polygon>`;
+
+  /* ── Dots + labels ── */
+  for(let i=0;i<N;i++){
+    const a=-Math.PI/2+i/N*Math.PI*2;
+    const f=SKILLS[i][1]/100;
+    const dx=(cx+Math.cos(a)*R*f), dy=(cy+Math.sin(a)*R*f);
+    const lx=(cx+Math.cos(a)*LR), ly=(cy+Math.sin(a)*LR);
+    const cosA=Math.cos(a), sinA=Math.sin(a);
+    const anchor=Math.abs(cosA)<0.25?'middle':cosA>0?'start':'end';
+    const name=SKILLS[i][0], val=SKILLS[i][1];
+    const col=val>=80?'#3E6B54':val>=70?'#B8893B':'#7B2C2C';
+    const delay=0.1+i*0.08;
+
+    // dot outer ring (parchment)
+    g+=`<circle cx="${dx.toFixed(1)}" cy="${dy.toFixed(1)}" r="7" fill="#F4ECD8" stroke="#B8893B" stroke-width="1.5" opacity="0" filter="url(#dotglow)">
+      <animate attributeName="opacity" from="0" to="1" dur=".4s" begin="${delay}s" fill="freeze"/>
+    </circle>`;
+    // dot inner fill
+    g+=`<circle cx="${dx.toFixed(1)}" cy="${dy.toFixed(1)}" r="4" fill="${col}" opacity="0">
+      <animate attributeName="opacity" from="0" to="1" dur=".4s" begin="${delay}s" fill="freeze"/>
+    </circle>`;
+
+    // invisible hit area for tooltip
+    g+=`<circle cx="${dx.toFixed(1)}" cy="${dy.toFixed(1)}" r="14" fill="transparent" style="cursor:pointer"
+      onmouseenter="showRadarTip(evt,'${name}: ${val}/100')"
+      onmouseleave="hideRadarTip()"/>`;
+
+    // skill label — two lines: name + score
+    const lyOff = sinA > 0.7 ? 4 : sinA < -0.7 ? -8 : 0;
+    g+=`<text x="${lx.toFixed(1)}" y="${(ly+lyOff+3).toFixed(1)}" text-anchor="${anchor}"
+      font-family="'Fraunces',Georgia,serif" font-style="italic" font-size="13.5" fill="#1C1A14" opacity="0">
+      ${name}
+      <animate attributeName="opacity" from="0" to="1" dur=".5s" begin="${delay+.1}s" fill="freeze"/>
+    </text>`;
+    g+=`<text x="${lx.toFixed(1)}" y="${(ly+lyOff+17).toFixed(1)}" text-anchor="${anchor}"
+      font-family="'Spline Sans Mono',monospace" font-size="10" fill="#B8893B" opacity="0">
+      ${val}
+      <animate attributeName="opacity" from="0" to="1" dur=".5s" begin="${delay+.1}s" fill="freeze"/>
+    </text>`;
+  }
+
+  /* ── Tooltip element ── */
+  g+=`<g id="radarTip" opacity="0" pointer-events="none">
+    <rect id="radarTipBg" rx="3" ry="3" fill="#1C1A14" height="24"/>
+    <text id="radarTipTxt" font-family="'Spline Sans Mono',monospace" font-size="11" fill="#E7CF94" dominant-baseline="middle"/>
+  </g>`;
+
+  g+='</svg>';
+  document.getElementById('radar').innerHTML=g;
+
+  /* ── Legend ── */
+  document.getElementById('radarLegend').innerHTML=`<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px 24px;margin-top:12px;padding-top:12px;border-top:1px solid #DCD2BB">`+
+    SKILLS.map(([name,val])=>{
+      const col=val>=80?'#3E6B54':val>=70?'#B8893B':'#7B2C2C';
+      return `<div style="display:flex;align-items:center;gap:8px;padding:5px 0">
+        <span style="width:8px;height:8px;border-radius:50%;background:${col};flex-shrink:0"></span>
+        <span style="font-family:'Spectral',Georgia,serif;font-size:13px;color:#4A4536;flex:1">${name}</span>
+        <div style="width:52px;height:3px;background:#DCD2BB;border-radius:2px;overflow:hidden">
+          <div style="width:${val}%;height:100%;background:${col};border-radius:2px"></div>
+        </div>
+        <b style="font-family:'Spline Sans Mono',monospace;font-size:12px;color:#1C1A14;min-width:24px;text-align:right">${val}</b>
+      </div>`;
+    }).join('')+'</div>';
+}
+
+function showRadarTip(evt,msg){
+  const tip=document.getElementById('radarTip');
+  const txt=document.getElementById('radarTipTxt');
+  const bg=document.getElementById('radarTipBg');
+  const svg=tip.closest('svg');
+  const pt=svg.createSVGPoint();
+  pt.x=evt.clientX; pt.y=evt.clientY;
+  const sp=pt.matrixTransform(svg.getScreenCTM().inverse());
+  txt.textContent=msg;
+  txt.setAttribute('x', sp.x+12);
+  txt.setAttribute('y', sp.y-12);
+  const w=msg.length*7+16;
+  bg.setAttribute('x', sp.x+6);
+  bg.setAttribute('y', sp.y-24);
+  bg.setAttribute('width', w);
+  tip.setAttribute('opacity','1');
+}
+function hideRadarTip(){
+  const tip=document.getElementById('radarTip');
+  if(tip) tip.setAttribute('opacity','0');
 }
 
 /* ============================================================
