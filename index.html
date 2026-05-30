@@ -724,20 +724,63 @@ footer .base b{color:var(--gold-soft)}
     </div>
   </div>
   <div class="wrap" style="padding:34px 28px 80px">
-    <div class="featmotion">
-      <span class="live"><span class="dot"></span>Live now &middot; 1v1 short debate</span>
-      <h2>&ldquo;The problem of evil makes an all-good, all-powerful God improbable.&rdquo;</h2>
+    <!-- BOT DEBATE ARENA -->
+    <div class="featmotion" id="botArena">
+      <span class="live" style="background:rgba(62,107,84,.18);color:#7ecfa4;border-color:rgba(62,107,84,.35)">
+        <span class="dot" style="background:#7ecfa4"></span>Bot challenger &middot; Practice debate
+      </span>
+      <h2 id="arenaMotion">&ldquo;The problem of evil makes an all-good, all-powerful God improbable.&rdquo;</h2>
       <div class="sides">
-        <div class="side"><div class="lab">Proposition</div><b>For the motion</b><div class="who">You (Rhetor &middot; 1521)</div></div>
-        <div class="side"><div class="lab">Opposition</div><b>Against the motion</b><div class="who">A. Renford (Dialectician &middot; 1612)</div></div>
+        <div class="side" id="arenaPropSide">
+          <div class="lab">Proposition</div>
+          <b>For the motion</b>
+          <div class="who" id="arenaYouName">You</div>
+        </div>
+        <div class="side">
+          <div class="lab">Opposition &middot; Bot</div>
+          <b>Against the motion</b>
+          <div class="who" id="arenaBotName">Socrates-9 (Dialectician)</div>
+        </div>
       </div>
-      <div style="display:flex; align-items:center; gap:20px; flex-wrap:wrap">
-        <span class="timer">⏱ Rebuttal &middot; 02:48 remaining</span>
-        <span class="timer" style="color:#C8BCA1">Round 3 of 5</span>
+
+      <!-- Score board -->
+      <div id="arenaScoreboard" style="display:none;margin:18px 0 0">
+        <div style="font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-soft);margin-bottom:10px">Score</div>
+        <div style="display:flex;gap:0;border:1px solid rgba(231,207,148,.25);overflow:hidden;border-radius:3px;max-width:480px">
+          <div style="flex:1;padding:14px 20px;background:rgba(62,107,84,.18)">
+            <div style="font-size:12px;color:#a0a090;margin-bottom:4px">You</div>
+            <div id="scoreYou" style="font-family:var(--disp);font-size:36px;font-weight:700;color:#7ecfa4">0</div>
+          </div>
+          <div style="width:1px;background:rgba(231,207,148,.2)"></div>
+          <div style="flex:1;padding:14px 20px;background:rgba(123,44,44,.18)">
+            <div style="font-size:12px;color:#a0a090;margin-bottom:4px">Bot</div>
+            <div id="scoreBot" style="font-family:var(--disp);font-size:36px;font-weight:700;color:#e07070">0</div>
+          </div>
+        </div>
+        <div id="arenaRoundLabel" style="margin-top:10px;font-size:13px;color:#C8BCA1">Round <span id="arenaRound">1</span> of 5</div>
       </div>
-      <div style="margin-top:22px; display:flex; gap:12px; flex-wrap:wrap">
-        <button class="btn gold" onclick="toast('Entering the arena floor…','')">Enter as challenger <span class="arrow">→</span></button>
-        <button class="btn lt" onclick="toast('Flow sheet opened','')">Open flow sheet</button>
+
+      <!-- Debate exchange -->
+      <div id="arenaExchange" style="display:none;margin-top:20px;background:rgba(0,0,0,.25);border:1px solid rgba(231,207,148,.18);border-radius:4px;padding:20px">
+        <div id="botArgBox" style="font-size:15px;line-height:1.6;color:#E8DDCA;margin-bottom:18px;padding-bottom:18px;border-bottom:1px solid rgba(231,207,148,.15)">
+          <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-soft);display:block;margin-bottom:8px">Bot argues:</span>
+          <span id="botArgText"></span>
+        </div>
+        <div>
+          <div style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-soft);margin-bottom:10px">Your response:</div>
+          <textarea id="arenaInput" rows="4" style="width:100%;background:rgba(0,0,0,.3);border:1px solid rgba(231,207,148,.25);border-radius:3px;color:#E8DDCA;font-family:var(--serif);font-size:15px;line-height:1.6;padding:12px;resize:vertical;outline:none" placeholder="Write your argument here — aim to directly address the bot's claim…"></textarea>
+          <div style="margin-top:12px;display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+            <button class="btn gold" onclick="submitDebateRound()">Submit argument <span class="arrow">→</span></button>
+            <span id="arenaFeedback" style="font-size:13px;color:#a0a090"></span>
+          </div>
+        </div>
+      </div>
+
+      <div id="arenaResult" style="display:none;margin-top:20px;padding:20px;border-radius:4px;text-align:center"></div>
+
+      <div style="margin-top:22px; display:flex; gap:12px; flex-wrap:wrap" id="arenaStartRow">
+        <button class="btn gold" onclick="startBotDebate()">Challenge the bot <span class="arrow">→</span></button>
+        <button class="btn lt" onclick="pickNewMotion()">Different motion →</button>
       </div>
     </div>
 
@@ -802,20 +845,10 @@ footer .base b{color:var(--gold-soft)}
 </main>
 
 <!-- ====== FOOTER ====== -->
-<footer>
-  <div class="wrap">
-    <div class="top">
-      <div>
-        <div class="brandf"><div class="monogram"><span>I</span></div><b>Ilu&rsquo;s School of Thoughts</b></div>
-        <p class="conduct">A debate school about belief can curdle into point-scoring unless its culture is set. Here, discourse ethics is part of the curriculum: curiosity, charity, rigor, civility, and the courage to change your mind.</p>
-      </div>
-      <div class="vals">
-        <div><b>Learn</b><a onclick="go('curriculum')">Curriculum</a><a onclick="go('dashboard')">Dashboard</a><a onclick="go('arena')">Debate Arena</a></div>
-        <div><b>Credentials</b><a onclick="go('certificate')">Certificates</a><a onclick="go('certificate')">Verify a credential</a><a onclick="go('home')">The Master Diploma</a></div>
-        <div><b>Values</b><a>Code of Conduct</a><a>Accessibility</a><a>Pseudonymous access</a></div>
-      </div>
-    </div>
-    <div class="base"><span>&copy; 2026 Ilu&rsquo;s School of Thoughts &middot; <b>&ldquo;Sapere aude&rdquo;</b></span><span>A working prototype &middot; Beginner → Intermediate → Expert</span></div>
+<footer style="background:var(--night);border-top:3px solid var(--gold-deep);padding:20px 0">
+  <div class="wrap" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
+    <span style="font-size:13px;color:#8c8068">&copy; 2026 Ilu&rsquo;s School of Thoughts &middot; <b style="color:var(--gold-soft)">&ldquo;Sapere aude&rdquo;</b></span>
+    <span style="font-size:13px;color:#8c8068">Beginner &rarr; Intermediate &rarr; Expert</span>
   </div>
 </footer>
 
@@ -1340,7 +1373,35 @@ const provider = new GoogleAuthProvider();
 
 /* ---- Expose helpers to global scope so inline JS can call them ---- */
 window.handleAuth = async function(){
-  if(currentUser){ await signOut(auth); } else { await signInWithPopup(auth, provider); }
+  if(currentUser){
+    // Show a mini sign-out confirmation instead of immediately signing out
+    if(document.getElementById('authDropdown')) {
+      document.getElementById('authDropdown').remove(); return;
+    }
+    const btn = document.getElementById('authBtn');
+    const drop = document.createElement('div');
+    drop.id = 'authDropdown';
+    drop.style.cssText = 'position:absolute;top:calc(100% + 8px);right:0;background:var(--paper-2);border:1px solid var(--line-2);border-radius:3px;box-shadow:0 8px 24px rgba(28,26,20,.18);min-width:200px;z-index:500;overflow:hidden';
+    drop.innerHTML = `
+      <div style="padding:14px 16px;border-bottom:1px solid var(--line);font-size:13px;color:var(--ink-soft)">
+        <div style="font-weight:600;color:var(--ink);margin-bottom:2px">${currentUser.displayName||'Account'}</div>
+        <div style="font-size:12px">${currentUser.email||''}</div>
+      </div>
+      <div style="padding:8px">
+        <button onclick="document.getElementById('authDropdown').remove();go('dashboard')" style="width:100%;text-align:left;padding:9px 12px;background:none;border:none;cursor:pointer;font-family:inherit;font-size:14px;color:var(--ink);border-radius:2px" onmouseover="this.style.background='var(--paper)'" onmouseout="this.style.background='none'">📊 My Dashboard</button>
+        <button onclick="document.getElementById('authDropdown').remove();go('certificate')" style="width:100%;text-align:left;padding:9px 12px;background:none;border:none;cursor:pointer;font-family:inherit;font-size:14px;color:var(--ink);border-radius:2px" onmouseover="this.style.background='var(--paper)'" onmouseout="this.style.background='none'">🎓 My Certificate</button>
+        <div style="height:1px;background:var(--line);margin:6px 0"></div>
+        <button onclick="document.getElementById('authDropdown').remove();signOut(auth)" style="width:100%;text-align:left;padding:9px 12px;background:none;border:none;cursor:pointer;font-family:inherit;font-size:14px;color:var(--garnet);border-radius:2px" onmouseover="this.style.background='var(--paper)'" onmouseout="this.style.background='none'">← Sign out</button>
+      </div>`;
+    btn.style.position = 'relative';
+    btn.appendChild(drop);
+    // Close on outside click
+    setTimeout(()=>document.addEventListener('click', function h(e){
+      if(!drop.contains(e.target)&&e.target!==btn){ drop.remove(); document.removeEventListener('click',h); }
+    }), 50);
+  } else {
+    await signInWithPopup(auth, provider);
+  }
 };
 
 window.saveProgress = async function(){
@@ -1468,5 +1529,148 @@ window.generateCertificate = async function(){
   toast('Certificate generated for ' + name + '!', '');
 };
 </script>
+
+<script>
+/* ============================================================
+   BOT DEBATE ARENA
+   ============================================================ */
+const MOTIONS = [
+  '"The problem of evil makes an all-good, all-powerful God improbable."',
+  '"Science and religion are fundamentally incompatible."',
+  '"Atheism is the more rational default position."',
+  '"Objective morality can exist without God."',
+  '"The cosmological argument fails to establish a personal God."',
+  '"Religious faith is incompatible with good epistemology."',
+  '"Secular humanism provides a sufficient basis for ethics."',
+];
+
+const BOT_NAMES = ['Socrates-9','Plato-7','Kant-3','Hume-5','Aquinas-4','Russell-8','Aristotle-6'];
+
+const BOT_ARGS = {
+  0: [
+    'The free will defence shows that God could have morally sufficient reasons to permit suffering that we cannot perceive. Our epistemic position is too limited to conclude gratuitous evil exists.',
+    'Soul-making theodicy, developed by John Hick, argues that suffering is necessary for moral and spiritual development. A world without any evil would produce no courage, compassion, or genuine virtue.',
+    'The very existence of the moral intuition that evil is wrong presupposes an objective moral standard — which itself points toward a moral lawgiver rather than away from one.',
+    'Evidential arguments from evil rely on the assumption that we can judge what an omniscient being should permit. This assumption is precisely what skeptical theism calls into question.',
+    'Many theists have survived and even deepened their faith through profound suffering. The empirical evidence on whether evil undermines theism is far from settled.',
+  ],
+  1: [
+    'Science and religion operate in entirely separate domains — science answers how, religion answers why. They address different questions and need not conflict.',
+    'Many of history\'s greatest scientists, including Newton, Faraday, and Mendel, held sincere religious convictions. The alleged incompatibility is historically uninformed.',
+    'Science itself rests on metaphysical assumptions — the uniformity of nature, the reliability of reason — that it cannot prove from within. Religion addresses those foundations.',
+    'The conflict is not between science and religion but between particular scientific findings and particular religious claims. Most religious traditions have adapted to scientific discovery.',
+    'Methodological naturalism, which science requires, does not entail metaphysical naturalism. A scientist can employ naturalistic methods while holding religious beliefs about ultimate reality.',
+  ],
+  2: [
+    'The burden of proof is symmetrical. "I don\'t believe in God" is not a neutral default — it is a claim about the probability of theism that itself requires justification.',
+    'Rationality is about proportioning belief to evidence. The vast majority of humans across history have found the evidence for theism compelling. That convergence itself is data.',
+    'Atheism, like theism, is a metaphysical position. There is no evidence-free default in metaphysics — every position carries commitments that must be argued for.',
+    'The history of science shows that apparently absent explanations have often been discovered. The absence of a detected God does not warrant confident atheism, only agnosticism.',
+    'Religious experience — reported by billions across cultures — constitutes genuine evidence, even if it is not conclusive. Rationality requires engaging with it, not dismissing it.',
+  ],
+  3: [
+    'The Euthyphro dilemma can be answered: God\'s nature is the standard of goodness, not an arbitrary will above it. Divine command theory is not the only theistic metaethics.',
+    'Evolutionary debunking arguments cut both ways. If our moral beliefs evolved for fitness rather than truth, the secular naturalist has the same problem explaining why those beliefs track moral reality.',
+    'Secular moral realism — the view that moral facts exist independently — has never successfully explained what moral facts are made of, where they come from, or why they should bind us.',
+    'Most secular ethical systems — Kantian, utilitarian, contractarian — smuggle in premises about human dignity that have theological roots and are difficult to justify without them.',
+    'The very act of arguing for secular ethics presupposes that reason should be followed, that truth matters, that persons deserve consideration — commitments that secular naturalism struggles to ground.',
+  ],
+};
+
+let arenaState = { round:0, maxRounds:5, scoreYou:0, scoreBot:0, motionIdx:0, active:false };
+
+window.startBotDebate = function(){
+  if(!currentUser){ toast('Sign in to debate the bot',''); return; }
+  arenaState = { round:1, maxRounds:5, scoreYou:0, scoreBot:0, motionIdx:arenaState.motionIdx, active:true };
+  document.getElementById('arenaStartRow').style.display = 'none';
+  document.getElementById('arenaScoreboard').style.display = 'block';
+  document.getElementById('arenaExchange').style.display = 'block';
+  document.getElementById('arenaResult').style.display = 'none';
+  document.getElementById('scoreYou').textContent = '0';
+  document.getElementById('scoreBot').textContent = '0';
+  document.getElementById('arenaRound').textContent = '1';
+  const youName = currentUser.displayName ? currentUser.displayName.split(' ')[0] : 'You';
+  document.getElementById('arenaYouName').textContent = youName;
+  showBotArg();
+};
+
+window.pickNewMotion = function(){
+  arenaState.motionIdx = (arenaState.motionIdx + 1) % MOTIONS.length;
+  const bot = BOT_NAMES[arenaState.motionIdx % BOT_NAMES.length];
+  document.getElementById('arenaMotion').textContent = MOTIONS[arenaState.motionIdx];
+  document.getElementById('arenaBotName').textContent = bot + ' (Dialectician)';
+  document.getElementById('arenaResult').style.display = 'none';
+  document.getElementById('arenaExchange').style.display = 'none';
+  document.getElementById('arenaScoreboard').style.display = 'none';
+  document.getElementById('arenaStartRow').style.display = 'flex';
+};
+
+function showBotArg(){
+  const pool = BOT_ARGS[arenaState.motionIdx] || BOT_ARGS[0];
+  const idx = (arenaState.round - 1) % pool.length;
+  document.getElementById('botArgText').textContent = pool[idx];
+  document.getElementById('arenaInput').value = '';
+  document.getElementById('arenaFeedback').textContent = '';
+  document.getElementById('arenaRound').textContent = arenaState.round;
+}
+
+window.submitDebateRound = function(){
+  const input = document.getElementById('arenaInput');
+  const text = input.value.trim();
+  if(text.length < 30){ document.getElementById('arenaFeedback').textContent = 'Write at least a sentence — put some thought into it.'; return; }
+  // Score heuristics: longer, richer arguments score higher
+  const words = text.split(/\s+/).length;
+  const hasEvidence = /because|therefore|since|given|evidence|argument|Rowe|Plantinga|Hume|Russell|Aquinas|study|shows|research|however|although|contrary/i.test(text);
+  const hasConcession = /admittedly|granted|true that|fair point|concede|however|nevertheless/i.test(text);
+  let youScore = Math.min(3, Math.floor(words / 25));
+  if(hasEvidence) youScore = Math.min(3, youScore + 1);
+  if(hasConcession) youScore = Math.min(3, youScore + 1);
+  const botScore = Math.floor(Math.random() * 2) + 1;
+  arenaState.scoreYou += youScore;
+  arenaState.scoreBot += botScore;
+  document.getElementById('scoreYou').textContent = arenaState.scoreYou;
+  document.getElementById('scoreBot').textContent = arenaState.scoreBot;
+  const fb = document.getElementById('arenaFeedback');
+  if(youScore >= 3) fb.textContent = '✦ Strong round — good use of evidence.';
+  else if(youScore === 2) fb.textContent = 'Solid. Try citing a specific thinker next round.';
+  else fb.textContent = 'Develop your argument more — one sentence isn\'t enough.';
+  fb.style.color = youScore >= 3 ? '#7ecfa4' : youScore === 2 ? 'var(--gold-soft)' : '#e07070';
+  arenaState.round++;
+  if(arenaState.round > arenaState.maxRounds){
+    endDebate(); return;
+  }
+  setTimeout(()=>{ showBotArg(); }, 1200);
+};
+
+function endDebate(){
+  document.getElementById('arenaExchange').style.display = 'none';
+  const you = arenaState.scoreYou, bot = arenaState.scoreBot;
+  const won = you > bot;
+  const tied = you === bot;
+  const rp = won ? 80 : tied ? 40 : 20;
+  const res = document.getElementById('arenaResult');
+  res.style.display = 'block';
+  res.style.background = won ? 'rgba(62,107,84,.18)' : tied ? 'rgba(184,137,59,.15)' : 'rgba(123,44,44,.18)';
+  res.style.border = '1px solid ' + (won ? 'rgba(62,107,84,.4)' : tied ? 'rgba(184,137,59,.3)' : 'rgba(123,44,44,.4)');
+  res.innerHTML = `
+    <div style="font-size:28px;margin-bottom:10px">${won ? '🏆' : tied ? '🤝' : '📚'}</div>
+    <div style="font-family:var(--disp);font-size:24px;font-weight:700;color:${won?'#7ecfa4':tied?'var(--gold-soft)':'#e07070'};margin-bottom:8px">
+      ${won ? 'You won!' : tied ? 'Draw' : 'Bot wins this round'}
+    </div>
+    <div style="font-size:14px;color:#C8BCA1;margin-bottom:16px">
+      Final score: <b style="color:#7ecfa4">${you}</b> – <b style="color:#e07070">${bot}</b>
+    </div>
+    <div style="font-size:13px;color:var(--gold-soft);margin-bottom:20px">+${rp} RP awarded</div>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+      <button class="btn gold" onclick="startBotDebate()">Rematch →</button>
+      <button class="btn lt" onclick="pickNewMotion()">New motion</button>
+    </div>`;
+  if(typeof award === 'function') award('debate-'+Date.now(), rp, won ? 'Debate won!' : 'Debate complete');
+  arenaState.active = false;
+  document.getElementById('arenaStartRow').style.display = 'flex';
+}
+</script>
+</body>
+</html>
 </body>
 </html>
