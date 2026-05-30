@@ -108,6 +108,11 @@ select.adm-input{cursor:pointer}
 .arena-phase.active .pn{background:var(--gold);color:#241a07}
 .arena-phase.done{color:#7ecfa4;border-color:rgba(62,107,84,.4)}
 .arena-phase.done .pn{background:var(--verd);color:#fff}
+.side-btn{font-family:var(--serif);font-size:14.5px;color:#C8BCA1;background:rgba(0,0,0,.18);border:1px solid rgba(231,207,148,.28);border-radius:4px;padding:11px 18px;cursor:pointer;transition:.18s}
+.side-btn b{color:#F0E6CE}
+.side-btn:hover{border-color:var(--gold-soft);background:rgba(231,207,148,.08)}
+.side-btn.active{background:linear-gradient(180deg,#caa14f,var(--gold));border-color:var(--gold-deep);color:#241a07}
+.side-btn.active b{color:#241a07}
 /* ---------- level lock overlay ---------- */
 .lvl{position:relative;overflow:hidden}
 .lock-overlay{position:absolute;inset:0;background:rgba(28,26,20,.72);backdrop-filter:blur(3px);display:flex;align-items:center;justify-content:center;border-radius:inherit;cursor:not-allowed}
@@ -899,14 +904,14 @@ footer .base b{color:var(--gold-soft)}
       </span>
       <h2 id="arenaMotion">&ldquo;The problem of evil makes an all-good, all-powerful God improbable.&rdquo;</h2>
       <div class="sides">
-        <div class="side" id="arenaPropSide">
-          <div class="lab">Proposition</div>
-          <b>For the motion</b>
+        <div class="side">
+          <div class="lab" id="sideYouLab">Proposition &middot; You</div>
+          <b id="sideYouStance">For the motion</b>
           <div class="who" id="arenaYouName">You</div>
         </div>
         <div class="side">
-          <div class="lab">Opposition &middot; Bot</div>
-          <b>Against the motion</b>
+          <div class="lab" id="sideBotLab">Opposition &middot; Bot</div>
+          <b id="sideBotStance">Against the motion</b>
           <div class="who" id="arenaBotName">Socrates-9 (Dialectician)</div>
         </div>
       </div>
@@ -916,12 +921,12 @@ footer .base b{color:var(--gold-soft)}
         <div class="arena-phases" id="arenaPhases"></div>
         <div style="display:flex;gap:0;border:1px solid rgba(231,207,148,.25);overflow:hidden;border-radius:3px;max-width:480px;margin-top:14px">
           <div style="flex:1;padding:12px 18px;background:rgba(62,107,84,.18)">
-            <div style="font-size:12px;color:#a0a090;margin-bottom:2px">You · for the motion</div>
+            <div id="scoreYouLab" style="font-size:12px;color:#a0a090;margin-bottom:2px">You · for the motion</div>
             <div id="scoreYou" style="font-family:var(--disp);font-size:32px;font-weight:700;color:#7ecfa4">0</div>
           </div>
           <div style="width:1px;background:rgba(231,207,148,.2)"></div>
           <div style="flex:1;padding:12px 18px;background:rgba(123,44,44,.18)">
-            <div style="font-size:12px;color:#a0a090;margin-bottom:2px">Bot · against</div>
+            <div id="scoreBotLab" style="font-size:12px;color:#a0a090;margin-bottom:2px">Bot · against</div>
             <div id="scoreBot" style="font-family:var(--disp);font-size:32px;font-weight:700;color:#e07070">0</div>
           </div>
         </div>
@@ -931,7 +936,10 @@ footer .base b{color:var(--gold-soft)}
       <div id="arenaStage" style="display:none;margin-top:20px;background:rgba(0,0,0,.25);border:1px solid rgba(231,207,148,.18);border-radius:4px;padding:20px">
         <div style="display:flex;justify-content:space-between;align-items:center;gap:14px;margin-bottom:16px;flex-wrap:wrap">
           <div id="stagePhase" style="font-family:var(--disp);font-size:19px;font-weight:600;color:#F0E6CE">Opening Statement</div>
-          <div id="stageTimer" class="arena-timer">10:00</div>
+          <div style="display:flex;align-items:center;gap:12px">
+            <button class="btn lt sm" onclick="resetDebate()" title="Restart this debate from the side selection">↻ Reset</button>
+            <div id="stageTimer" class="arena-timer">10:00</div>
+          </div>
         </div>
         <!-- Bot statement for this phase -->
         <div id="botStatementBox" style="font-size:15px;line-height:1.62;color:#E8DDCA;margin-bottom:18px;padding:14px 16px;background:rgba(123,44,44,.12);border-left:3px solid var(--garnet);border-radius:0 3px 3px 0">
@@ -952,11 +960,18 @@ footer .base b{color:var(--gold-soft)}
 
       <div id="arenaResult" style="display:none;margin-top:20px;padding:22px;border-radius:4px;text-align:center"></div>
 
-      <div style="margin-top:22px; display:flex; gap:12px; flex-wrap:wrap" id="arenaStartRow">
-        <button class="btn gold" onclick="startBotDebate()">Start the debate <span class="arrow">→</span></button>
-        <button class="btn lt" onclick="randomTopic()">🎲 Random topic</button>
+      <div id="arenaStartRow" style="margin-top:22px">
+        <div style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-soft);margin-bottom:10px">Choose your side</div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px">
+          <button id="sideAff" class="side-btn active" onclick="setDebateSide('aff')">Affirmative — <b>for</b> the motion</button>
+          <button id="sideNeg" class="side-btn" onclick="setDebateSide('neg')">Negative — <b>against</b> the motion</button>
+        </div>
+        <div style="display:flex; gap:12px; flex-wrap:wrap">
+          <button class="btn gold" onclick="startBotDebate()">Start the debate <span class="arrow">→</span></button>
+          <button class="btn lt" onclick="randomTopic()">🎲 Random topic</button>
+        </div>
+        <div style="margin-top:12px;font-size:13px;color:#9a917c">Format: timed <b style="color:var(--gold-soft)">opening (10 min)</b> → <b style="color:var(--gold-soft)">cross-examination (5 min)</b> → <b style="color:var(--gold-soft)">closing (10 min)</b>. The bot takes the opposite side and argues it in earnest.</div>
       </div>
-      <div style="margin-top:12px;font-size:13px;color:#9a917c">Format: timed <b style="color:var(--gold-soft)">opening</b> → <b style="color:var(--gold-soft)">cross-examination</b> → <b style="color:var(--gold-soft)">closing</b>, both sides. You argue <b>for</b> the motion; the bot argues against.</div>
     </div>
 
     <div class="arena-cols">
@@ -2717,6 +2732,59 @@ const DEBATE_TOPICS = [
     closing:'My opponent shows the non-religious can act well. They have not shown that their worldview, on its own resources, can sustain that goodness across generations.' }},
 ];
 
+/* Bot arguing FOR the motion (used when the user chooses the Negative side).
+   Index-aligned with DEBATE_TOPICS; the .bot lines above are the AGAINST case. */
+const PRO_BOT = [
+  { opening:'I argue the motion stands. In every hour, creatures suffer agonies that serve no discernible purpose — the fawn burning alone in a forest no one sees. A being able and willing to prevent gratuitous suffering, and good, is hard to square with what we observe.',
+    cross:'You will appeal to reasons we cannot see — but if every horror is excused by an invisible greater good, your theism becomes unfalsifiable. Doesn’t that drain it of content?',
+    closing:'I claim not certainty but probability. The scale of apparently pointless suffering tilts the scales. On the evidence, an all-good, all-powerful God is the less likely hypothesis.' },
+  { opening:'I argue morality can stand without God. Moral facts can be grounded in the well-being of conscious creatures — suffering is bad for the sufferer whether or not a god exists. Reason, not revelation, shows us how to reduce harm.',
+    cross:'You say without God morality is mere preference — but the Euthyphro dilemma shows grounding it in a divine will is itself arbitrary. Why is your foundation firmer than mine?',
+    closing:'Mathematics is objective without a divine mathematician; ethics can be objective without a divine commander. Morality rests on reasons open to all. The motion stands.' },
+  { opening:'I argue faith — belief held without or against evidence — has no mechanism of self-correction. Across history it has affirmed contradictory claims with equal conviction. A method yielding opposite truths to different believers cannot be reliable.',
+    cross:'You will redefine faith as reasonable trust — but then it collapses into evidence-based belief and does no distinctive work. Which faith are you actually defending?',
+    closing:'Where faith agrees with evidence, evidence did the work; where they diverge, faith misleads. As a path to truth it adds nothing reliable. The motion stands.' },
+  { opening:'I argue the burden falls on whoever asserts an entity exists — that is simply how rational discourse works. "A god exists" is the positive existential claim and, like any such claim, requires support.',
+    cross:'You say denial is also a claim — but withholding assent for want of evidence is the default for every unproven entity, from Russell’s teapot to undiscovered particles. Why treat gods differently?',
+    closing:'We don’t demand proof that dragons don’t exist; we await evidence that they do. Consistency requires the same here. The burden lies with the claimant. The motion stands.' },
+  { opening:'I argue their methods are incompatible. Science proportions belief to evidence and holds every claim revisable; revealed religion fixes certain claims by authority beyond evidence. Those epistemologies pull opposite ways.',
+    cross:'You cite devout scientists — but people hold incompatible ideas in separate compartments. Compartmentalisation in a person isn’t coherence between the methods. How do you answer that?',
+    closing:'Where their claims overlapped — the age of the earth, the origin of species — the methods collided and evidence won every time. The incompatibility is methodological. The motion stands.' },
+  { opening:'I argue meaning comes from within this life — love, work, beauty, the good we do others. That a thing ends does not make it meaningless: a symphony is not pointless because it stops, nor a friendship because we are mortal.',
+    cross:'You say without permanence nothing finally matters — but why should infinite duration confer meaning that finite duration cannot? An endless task could be just as empty. Why is length the measure?',
+    closing:'Billions live deeply meaningful lives without certainty of an afterlife. Meaning lies in how we live, not how long. The motion stands.' },
+  { opening:'I argue naturalistic explanations are stronger. The constants may be necessary, or shaped by deeper physics; and a vast multiverse — motivated by inflationary cosmology — would make a life-permitting universe unsurprising.',
+    cross:'You call the multiverse unobservable — but a single undetectable, unexplained designer is hardly more parsimonious. Why is one unobservable mind simpler than universes physics already suggests?',
+    closing:'A designer only relocates the puzzle — who fine-tuned the fine-tuner? Naturalism keeps the explanation within physics. The motion stands.' },
+  { opening:'I argue law in a plural society must rest on reasons all citizens can weigh, whatever their faith. Grounding statute in one tradition’s scripture imposes its theology on those who don’t share it, and privileges one revelation over all others.',
+    cross:'You say secular reasoning is just another tradition — but it appeals to evidence and shared human interests a Muslim, Christian, Hindu, or atheist can all assess. Scripture cannot claim that reach.',
+    closing:'No citizen should be bound by a holy book they have no reason to accept. Public law needs public reasons. The motion stands.' },
+  { opening:'I argue doubt is the engine of inquiry. Every advance — Copernican, Darwinian, medical — began with someone doubting a received certainty. The willingness to say "I might be wrong" is what makes knowledge self-correcting.',
+    cross:'You warn doubt becomes paralysis — but I defend proportioned doubt, not universal scepticism. Holding beliefs provisionally is not refusing to act. Why conflate the two?',
+    closing:'Certainty closes the mind; doubt keeps it open to correction. Far from a failing, it is the central intellectual virtue. The motion stands.' },
+  { opening:'I argue infinite punishment for finite wrongs is the very definition of disproportion. No human act, committed across mere decades, could warrant unending torment. A perfectly just being would not impose it.',
+    cross:'You reframe hell as freely chosen separation — but who, fully grasping the stakes, would choose eternal agony? If they cannot, the choice isn’t free; if they can, the system is built to ensure their ruin.',
+    closing:'Whether imposed or "chosen", endless suffering for temporal failings cannot be reconciled with justice or love. The concept is indefensible. The motion stands.' },
+  { opening:'I argue with Hume: a miracle violates the most well-established regularities, against the entire weight of human experience — while testimony is frequently mistaken or embellished. The error in the report is always the more probable hypothesis.',
+    cross:'You say ruling out miracles assumes the conclusion — but I rule nothing out; I weigh probabilities. Given how often testimony fails, why believe the one explanation that contradicts all else we know?',
+    closing:'It is not that miracles are impossible — only that honest error or natural cause is always more probable than a suspension of nature. The motion stands.' },
+  { opening:'I argue we’d never call a child a "Marxist child" or a "libertarian child" — we treat those as conclusions one reaches. Religious identity is likewise a contested set of claims; labelling a child with it pre-empts a judgement they haven’t yet made.',
+    cross:'You say all upbringing is formative — true — but there’s a difference between teaching a child ABOUT a tradition and declaring them a member before they can assess it. Why not raise them informed and let them choose?',
+    closing:'Respecting a child’s future autonomy means not stamping them with metaphysics in infancy. Teach and expose, but do not assign. The motion stands.' },
+  { opening:'I argue the evidence ties mind to brain at every turn. Anaesthesia suspends consciousness; a stroke can erase language, memory, even personality; specific lesions remove specific faculties. Mind tracks matter so tightly that a separate soul becomes idle.',
+    cross:'You invoke the hard problem — but a gap in our current explanation is not evidence for a soul. "We can’t yet explain it physically" does not entail "therefore immaterial substance." Isn’t that god-of-the-gaps?',
+    closing:'Every advance in neuroscience makes the mind more dependent on the brain, not less. The soul adds nothing we need. The motion stands.' },
+  { opening:'I argue human rights rest on capacities we can identify without theology — the ability to suffer, to have interests, to flourish or be harmed. Equal moral status follows from our shared vulnerability and rationality, not from divine decree.',
+    cross:'You say rights need a divine image — but scriptures have justified slavery and conquest too. If the same texts ground both rights and atrocities, how is divine grounding more secure than reasoned, secular grounding?',
+    closing:'The Universal Declaration was signed by believers and non-believers alike, justified by shared human reason. Rights stand on what we are and what we can suffer. The motion stands.' },
+  { opening:'I argue the cognitive science of religion explains belief economically: hyperactive agency detection, theory of mind, and a bias toward purpose reliably produce god-concepts across unrelated cultures. We can account for the belief without its object.',
+    cross:'You cry genetic fallacy — but I don’t claim the explanation disproves God; I claim it’s the BEST explanation of the belief, removing any need to posit a deity to explain why people believe. Why add an entity the data doesn’t require?',
+    closing:'When a natural mechanism fully accounts for why belief is so widespread, the divine hypothesis becomes explanatorily redundant. The motion stands.' },
+  { opening:'I argue ethics is about how we treat one another — honesty, compassion, fairness, courage — none of which require a creed. Secular humanists and millions of unaffiliated people demonstrably live lives of integrity and service.',
+    cross:'You say the non-religious borrow moral capital — but moral intuitions predate every scripture and appear across all cultures. Why assume goodness is on loan from religion rather than a shared human inheritance?',
+    closing:'Societies with low religiosity rank among the most peaceful and altruistic on earth. A fully ethical life plainly needs no religion. The motion stands.' },
+];
+
 const BOT_TIERS = [
   { name:'Socrates-9',  level:'Beginner',     rating:1050, topics:[2,3,5] },
   { name:'Hume-5',      level:'Intermediate', rating:1320, topics:[0,4,10] },
@@ -2725,12 +2793,12 @@ const BOT_TIERS = [
 ];
 
 const PHASES = [
-  { key:'opening', label:'Opening Statement', secs:600, prompt:'Open your case FOR the motion — state your two or three strongest reasons clearly.' },
+  { key:'opening', label:'Opening Statement', secs:600, prompt:'Open your case {STANCE} the motion — state your two or three strongest reasons clearly.' },
   { key:'cross',   label:'Cross-Examination', secs:300, prompt:'Answer the bot’s challenge directly, then press the weakest link in its case.' },
   { key:'closing', label:'Closing Statement', secs:600, prompt:'Summarise why your case outweighs the opposition. Don’t introduce brand-new arguments.' },
 ];
 
-let arenaState = { topicIdx:0, phaseIdx:0, scoreYou:0, scoreBot:0, botName:'Socrates-9', botRating:1050, active:false, timer:null, timeLeft:0 };
+let arenaState = { topicIdx:0, phaseIdx:0, scoreYou:0, scoreBot:0, botName:'Socrates-9', botRating:1050, side:'aff', active:false, timer:null, timeLeft:0 };
 
 function botFor(topicIdx){
   const t = BOT_TIERS.find(b=>b.topics.includes(topicIdx));
@@ -2738,12 +2806,45 @@ function botFor(topicIdx){
 }
 function fmtClock(s){ const m=Math.floor(s/60), ss=String(s%60).padStart(2,'0'); return m+':'+ss; }
 
+/* Reflect the chosen side across all the arena labels */
+function updateSidesUI(){
+  const aff = arenaState.side==='aff';
+  const set=(id,t)=>{ const e=document.getElementById(id); if(e) e.textContent=t; };
+  set('sideYouLab', (aff?'Proposition':'Opposition')+' · You');
+  set('sideYouStance', aff?'For the motion':'Against the motion');
+  set('sideBotLab', (aff?'Opposition':'Proposition')+' · Bot');
+  set('sideBotStance', aff?'Against the motion':'For the motion');
+  set('scoreYouLab', 'You · '+(aff?'for':'against')+' the motion');
+  set('scoreBotLab', 'Bot · '+(aff?'against':'for'));
+}
+
+window.setDebateSide = function(side){
+  if(arenaState.active) return;           // can't switch mid-debate (use Reset)
+  arenaState.side = side;
+  const a=document.getElementById('sideAff'), n=document.getElementById('sideNeg');
+  if(a) a.classList.toggle('active', side==='aff');
+  if(n) n.classList.toggle('active', side==='neg');
+  updateSidesUI();
+};
+
+window.resetDebate = function(){
+  stopArenaTimer();
+  arenaState.active=false; arenaState.phaseIdx=0; arenaState.scoreYou=0; arenaState.scoreBot=0;
+  document.getElementById('arenaStage').style.display='none';
+  document.getElementById('arenaScoreboard').style.display='none';
+  document.getElementById('arenaResult').style.display='none';
+  document.getElementById('arenaStartRow').style.display='block';
+  updateSidesUI();
+  toast('Debate reset — choose a side and start again','');
+};
+
 function setArenaTopic(idx){
   arenaState.topicIdx = idx;
   const t = DEBATE_TOPICS[idx]; const b = botFor(idx);
   arenaState.botName = b.name; arenaState.botRating = b.rating;
   document.getElementById('arenaMotion').textContent = '“'+t.motion+'”';
   document.getElementById('arenaBotName').textContent = b.name+' ('+b.level+')';
+  updateSidesUI();
 }
 
 window.stopArenaTimer = function(){ if(arenaState.timer){ clearInterval(arenaState.timer); arenaState.timer=null; } };
@@ -2774,13 +2875,16 @@ window.startBotDebate = function(){
 
 function runPhase(){
   const ph = PHASES[arenaState.phaseIdx];
-  const t  = DEBATE_TOPICS[arenaState.topicIdx];
+  const aff = arenaState.side==='aff';
+  // bot takes the opposite side: user affirmative → bot is opposition (.bot lines); user negative → bot is proposition (PRO_BOT)
+  const botLines = aff ? DEBATE_TOPICS[arenaState.topicIdx].bot : PRO_BOT[arenaState.topicIdx];
+  const botRole  = aff ? 'opposition' : 'proposition';
   renderPhaseTracker();
   document.getElementById('stagePhase').textContent = ph.label;
-  document.getElementById('botPhaseLabel').textContent = arenaState.botName+' — opposition '+ph.key;
-  document.getElementById('botStatementText').textContent = t.bot[ph.key];
+  document.getElementById('botPhaseLabel').textContent = arenaState.botName+' — '+botRole+' '+ph.key;
+  document.getElementById('botStatementText').textContent = botLines[ph.key];
   document.getElementById('yourPhaseLabel').textContent = ph.label.toLowerCase();
-  document.getElementById('yourPrompt').textContent = ph.prompt;
+  document.getElementById('yourPrompt').textContent = ph.prompt.replace('{STANCE}', aff?'FOR':'AGAINST');
   const inp=document.getElementById('arenaInput'); inp.value=''; inp.disabled=false; inp.focus();
   const fb=document.getElementById('arenaFeedback'); fb.textContent='';
   const btn=document.getElementById('submitPhaseBtn'); btn.disabled=false;
@@ -2843,11 +2947,11 @@ window.randomTopic = function(){
   document.getElementById('arenaResult').style.display='none';
   document.getElementById('arenaStage').style.display='none';
   document.getElementById('arenaScoreboard').style.display='none';
-  document.getElementById('arenaStartRow').style.display='flex';
+  document.getElementById('arenaStartRow').style.display='block';
 };
 
-// initialise the arena header with a starting topic
-try { setArenaTopic(0); } catch(e){}
+// initialise the arena header with a starting topic + side
+try { setArenaTopic(0); setDebateSide('aff'); } catch(e){}
 
 /* ── Debate history stored in memory (saved to Firestore via saveProgress) ── */
 if(!state.debateHistory) state.debateHistory = [];
@@ -2913,6 +3017,7 @@ function endDebate(){
   state.debateHistory.push({
     result, you, bot_score: bot,
     motion: DEBATE_TOPICS[arenaState.topicIdx].motion,
+    side: arenaState.side==='aff'?'for':'against',
     bot: arenaState.botName,
     date: new Date().toLocaleDateString(),
   });
@@ -2928,7 +3033,7 @@ function endDebate(){
     <div style="font-family:var(--disp);font-size:25px;font-weight:700;color:${won?'#7ecfa4':tied?'var(--gold-soft)':'#e07070'};margin-bottom:8px">
       ${won?'You won the debate!':tied?'A draw — well matched':'The bot edged this one'}
     </div>
-    <div style="font-size:14px;color:#C8BCA1;margin-bottom:6px">vs ${arenaState.botName} on “${DEBATE_TOPICS[arenaState.topicIdx].motion}”</div>
+    <div style="font-size:14px;color:#C8BCA1;margin-bottom:6px">You argued <b style="color:#F0E6CE">${arenaState.side==='aff'?'for':'against'}</b> · vs ${arenaState.botName} on “${DEBATE_TOPICS[arenaState.topicIdx].motion}”</div>
     <div style="font-size:15px;color:#C8BCA1;margin-bottom:16px">
       Final score &nbsp; You <b style="color:#7ecfa4;font-size:20px">${you}</b> &nbsp;–&nbsp; <b style="color:#e07070;font-size:20px">${bot}</b> Bot
     </div>
@@ -2936,6 +3041,7 @@ function endDebate(){
     <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
       <button class="btn gold" onclick="startBotDebate()">Rematch →</button>
       <button class="btn lt" onclick="randomTopic()">🎲 New topic</button>
+      <button class="btn lt" onclick="resetDebate()">↻ Change side</button>
     </div>`;
   if(typeof award==='function') award('debate-'+Date.now(), rp, won?'Debate won!':'Debate complete');
   document.getElementById('arenaStartRow').style.display = 'none';
