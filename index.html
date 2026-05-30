@@ -557,22 +557,18 @@ footer .base b{color:var(--gold-soft)}
   <!-- OR divider -->
   <div class="gate-or" style="animation:sealFade 1s .45s ease both">or with email</div>
 
-  <!-- Email / password -->
+  <!-- Email / password — SIGN IN only (accounts are created by an administrator) -->
   <div id="emailAuthBox" style="display:flex;flex-direction:column;align-items:center;animation:sealFade 1s .5s ease both">
-    <input id="gateName" class="gate-field" type="text" placeholder="Your name (for new accounts)" style="display:none">
     <input id="gateEmail" class="gate-field" type="email" placeholder="Email" autocomplete="email">
     <input id="gatePass" class="gate-field" type="password" placeholder="Password" autocomplete="current-password">
     <div id="gateError" style="display:none;color:#e89090;font-size:13px;margin-bottom:8px;max-width:280px;text-align:center"></div>
-    <div style="display:flex;gap:10px;width:280px;max-width:80vw">
-      <button id="gateSignIn" class="btn gold" style="flex:1;justify-content:center" onclick="emailSignIn()">Sign in</button>
-      <button id="gateCreate" class="btn lt" style="flex:1;justify-content:center" onclick="toggleCreateMode()">Create account</button>
-    </div>
+    <button id="gateSignIn" class="btn gold" style="width:280px;max-width:80vw;justify-content:center" onclick="emailSignIn()">Sign in</button>
     <button class="gate-link" style="margin-top:14px" onclick="emailReset()">Forgot password?</button>
   </div>
 
   <!-- Sub-note -->
-  <div style="margin-top:18px;font-size:13px;color:rgba(200,188,161,.45)">
-    Your progress saves automatically to your account.
+  <div style="margin-top:18px;font-size:13px;color:rgba(200,188,161,.45);max-width:300px;line-height:1.5">
+    No account yet? Accounts are created by the school — ask your administrator to set one up for you.
   </div>
 
   <!-- Loading state (shown while Firebase checks auth) -->
@@ -1044,6 +1040,17 @@ footer .base b{color:var(--gold-soft)}
           <label class="adm-label">Short description</label>
           <input id="addDesc" class="adm-input" placeholder="one line shown under the title">
           <button class="btn gold" style="width:100%;justify-content:center;margin-top:8px" onclick="adminAddLesson()">Add lesson &amp; open editor →</button>
+        </div>
+        <!-- Create a local account -->
+        <div class="panel" style="padding:24px 26px;margin-top:24px">
+          <h3 style="margin-bottom:6px">Create a user account</h3>
+          <p style="font-size:13.5px;color:var(--muted);margin-bottom:16px">Creates a local (email/password) account. A temporary password is generated and a setup email is sent to the user so they can confirm and set their own password.</p>
+          <label class="adm-label">Full name</label>
+          <input id="newUserName" class="adm-input" placeholder="Student's name">
+          <label class="adm-label">Email</label>
+          <input id="newUserEmail" class="adm-input" type="email" placeholder="student@email.com">
+          <button class="btn gold" id="createUserBtn" style="width:100%;justify-content:center;margin-top:8px" onclick="adminCreateUser()">Create account</button>
+          <div id="createUserResult" style="display:none;margin-top:14px"></div>
         </div>
       </div>
       <!-- Right: all lessons list -->
@@ -2118,9 +2125,9 @@ document.head.appendChild(revStyle);
      FIREBASE — Auth + Firestore progress saving
      ============================================================ -->
 <script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-app.js";
+import { initializeApp, deleteApp } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-app.js";
 import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged,
-  createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail, updateProfile }
+  createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail, updateProfile, updatePassword }
   from "https://www.gstatic.com/firebasejs/12.14.0/firebase-auth.js";
 import { getFirestore, doc, getDoc, setDoc, updateDoc, serverTimestamp }
   from "https://www.gstatic.com/firebasejs/12.14.0/firebase-firestore.js";
@@ -2179,7 +2186,6 @@ window.loginWithGoogle = async function(){
 };
 
 /* ── Email / password (local accounts) ── */
-let gateCreateMode = false;
 function gateErr(msg){
   const el = document.getElementById('gateError');
   if(!el) return;
@@ -2199,25 +2205,6 @@ function friendlyAuthError(code){
   return map[code] || 'Something went wrong. Please try again.';
 }
 
-window.toggleCreateMode = function(){
-  gateCreateMode = !gateCreateMode;
-  const nameField = document.getElementById('gateName');
-  const signInBtn = document.getElementById('gateSignIn');
-  const createBtn = document.getElementById('gateCreate');
-  gateErr('');
-  if(gateCreateMode){
-    nameField.style.display = 'block';
-    signInBtn.textContent = 'Create account';
-    signInBtn.setAttribute('onclick','emailCreate()');
-    createBtn.textContent = 'Have an account?';
-  } else {
-    nameField.style.display = 'none';
-    signInBtn.textContent = 'Sign in';
-    signInBtn.setAttribute('onclick','emailSignIn()');
-    createBtn.textContent = 'Create account';
-  }
-};
-
 window.emailSignIn = async function(){
   const email = document.getElementById('gateEmail').value.trim();
   const pass  = document.getElementById('gatePass').value;
@@ -2227,27 +2214,82 @@ window.emailSignIn = async function(){
   catch(e){ gateErr(friendlyAuthError(e.code)); btn.disabled=false; btn.textContent='Sign in'; }
 };
 
-window.emailCreate = async function(){
-  const name  = document.getElementById('gateName').value.trim();
-  const email = document.getElementById('gateEmail').value.trim();
-  const pass  = document.getElementById('gatePass').value;
-  if(!name){ gateErr('Please enter your name.'); return; }
-  if(!email || !pass){ gateErr('Enter an email and a password (6+ characters).'); return; }
-  const btn = document.getElementById('gateSignIn'); btn.disabled=true; btn.textContent='Creating…';
-  try {
-    const cred = await createUserWithEmailAndPassword(auth, email, pass);
-    await updateProfile(cred.user, { displayName: name });
-    // create a profile doc so the account is recorded with its role
-    try { await setDoc(doc(db,'users',cred.user.uid,'profile','info'),{ name, email, role:'student', createdAt: serverTimestamp() }); } catch(_){}
-  }
-  catch(e){ gateErr(friendlyAuthError(e.code)); btn.disabled=false; btn.textContent='Create account'; }
-};
-
 window.emailReset = async function(){
   const email = document.getElementById('gateEmail').value.trim();
   if(!email){ gateErr('Enter your email first, then tap “Forgot password”.'); return; }
   try { await sendPasswordResetEmail(auth, email); gateErr(''); toast('Password reset email sent to '+email,''); }
   catch(e){ gateErr(friendlyAuthError(e.code)); }
+};
+
+/* ============================================================
+   ADMIN — create local accounts (secondary app keeps admin signed in)
+   ============================================================ */
+function genTempPassword(){
+  // readable temp password: Word + 4 digits + symbol
+  const words=['Reason','Socratic','Logos','Aletheia','Sapere','Eudaimonia','Dialectic','Lyceum','Athenian','Stoa'];
+  const w=words[Math.floor(Math.random()*words.length)];
+  const n=Math.floor(1000+Math.random()*9000);
+  return w+'-'+n+'!';
+}
+
+window.adminCreateUser = async function(){
+  if(!isAdmin){ toast('Admins only',''); return; }
+  const nameEl=document.getElementById('newUserName'), emailEl=document.getElementById('newUserEmail');
+  const name=(nameEl.value||'').trim(), email=(emailEl.value||'').trim().toLowerCase();
+  const out=document.getElementById('createUserResult');
+  if(!name){ toast('Enter the person’s name',''); return; }
+  if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){ toast('Enter a valid email',''); return; }
+  const tempPass = genTempPassword();
+  const btn=document.getElementById('createUserBtn'); btn.disabled=true; btn.textContent='Creating…';
+  // Use a SECONDARY Firebase app so creating the user doesn't sign the admin out
+  let sec;
+  try {
+    sec = initializeApp(firebaseConfig, 'admin-create-'+Date.now());
+    const secAuth = getAuth(sec);
+    const cred = await createUserWithEmailAndPassword(secAuth, email, tempPass);
+    await updateProfile(cred.user, { displayName: name });
+    try { await setDoc(doc(db,'users',cred.user.uid,'profile','info'),{ name, email, role:'student', createdBy: currentUser.email, createdAt: serverTimestamp() }); } catch(_){}
+    // email the new user a link to set their own password (confirmation)
+    try { await sendPasswordResetEmail(secAuth, email); } catch(_){}
+    await signOut(secAuth);
+    out.style.display='block';
+    out.innerHTML = `<div style="padding:14px 16px;background:rgba(62,107,84,.12);border:1px solid rgba(62,107,84,.35);border-radius:4px">
+      <b style="color:var(--verd)">✓ Account created for ${name}</b>
+      <div style="font-size:13.5px;color:var(--ink-soft);margin-top:8px;line-height:1.6">
+        Email: <b>${email}</b><br>
+        Temporary password: <code style="font-family:var(--mono);background:var(--paper);padding:2px 6px;border-radius:2px">${tempPass}</code><br>
+        A password-setup email was sent to them for confirmation. They can sign in with the temporary password and then change it, or use the email link to set their own.
+      </div></div>`;
+    nameEl.value=''; emailEl.value='';
+    toast('Account created — setup email sent','✦');
+  } catch(e){
+    out.style.display='block';
+    out.innerHTML = `<div style="padding:12px 14px;background:rgba(123,44,44,.12);border:1px solid rgba(123,44,44,.35);border-radius:4px;color:var(--garnet);font-size:14px">${friendlyAuthError(e.code)||'Could not create the account.'}</div>`;
+  } finally {
+    if(sec){ try{ await deleteApp(sec); }catch(_){} }
+    btn.disabled=false; btn.textContent='Create account';
+  }
+};
+
+/* ============================================================
+   Change password (signed-in email/password users)
+   ============================================================ */
+window.changePassword = async function(){
+  if(!currentUser){ return; }
+  const isPwUser = (currentUser.providerData||[]).some(p=>p.providerId==='password');
+  if(!isPwUser){ toast('Your account is managed by Google — change your password there',''); return; }
+  const np = prompt('Enter a new password (at least 6 characters):');
+  if(np===null) return;
+  if(np.length<6){ toast('Password must be at least 6 characters',''); return; }
+  try {
+    await updatePassword(currentUser, np);
+    toast('Password updated ✦','');
+  } catch(e){
+    if(e.code==='auth/requires-recent-login'){
+      try { await sendPasswordResetEmail(auth, currentUser.email); toast('For security, we emailed you a reset link instead',''); }
+      catch(_){ toast('Please sign out and back in, then try again',''); }
+    } else { toast(friendlyAuthError(e.code),''); }
+  }
 };
 
 /* ============================================================
@@ -2492,6 +2534,7 @@ window.handleAuth = async function(){
       <div style="padding:8px">
         <button onclick="document.getElementById('authDropdown').remove();go('dashboard')" style="width:100%;text-align:left;padding:9px 12px;background:none;border:none;cursor:pointer;font-family:inherit;font-size:14px;color:var(--ink);border-radius:2px" onmouseover="this.style.background='var(--paper)'" onmouseout="this.style.background='none'">📊 My Dashboard</button>
         <button onclick="document.getElementById('authDropdown').remove();go('certificate')" style="width:100%;text-align:left;padding:9px 12px;background:none;border:none;cursor:pointer;font-family:inherit;font-size:14px;color:var(--ink);border-radius:2px" onmouseover="this.style.background='var(--paper)'" onmouseout="this.style.background='none'">🎓 My Certificate</button>
+        ${(currentUser.providerData||[]).some(p=>p.providerId==='password') ? `<button onclick="document.getElementById('authDropdown').remove();changePassword()" style="width:100%;text-align:left;padding:9px 12px;background:none;border:none;cursor:pointer;font-family:inherit;font-size:14px;color:var(--ink);border-radius:2px" onmouseover="this.style.background='var(--paper)'" onmouseout="this.style.background='none'">🔑 Change password</button>` : ''}
         <div style="height:1px;background:var(--line);margin:6px 0"></div>
         <button onclick="document.getElementById('authDropdown').remove();window.signOutUser()" style="width:100%;text-align:left;padding:9px 12px;background:none;border:none;cursor:pointer;font-family:inherit;font-size:14px;color:var(--garnet);border-radius:2px" onmouseover="this.style.background='var(--paper)'" onmouseout="this.style.background='none'">← Sign out</button>
       </div>`;
