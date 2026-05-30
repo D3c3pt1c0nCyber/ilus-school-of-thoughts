@@ -644,7 +644,7 @@ footer .base b{color:var(--gold-soft)}
   <div class="pagehd">
     <div class="wrap">
       <div class="eyebrow">Your study</div>
-      <h1>Welcome back, Maria</h1>
+      <h1>Welcome back, <span id="dashUserName">scholar</span></h1>
       <p>Pick up where you left off, run today&rsquo;s drill, and watch your six competencies grow.</p>
     </div>
   </div>
@@ -1602,7 +1602,10 @@ onAuthStateChanged(auth, async user => {
     btn.title = 'Signed in as ' + (user.displayName||user.email) + ' — click to sign out';
     // Load saved progress from Firestore
     await loadProgress(user.uid);
-    toast('Welcome back, ' + (user.displayName ? user.displayName.split(' ')[0] : 'scholar') + '!', '');
+    const firstName = user.displayName ? user.displayName.split(' ')[0] : 'scholar';
+    const dashName = document.getElementById('dashUserName');
+    if(dashName) dashName.textContent = firstName;
+    toast('Welcome back, ' + firstName + '!', '');
     // Pre-fill certName from Google if not already saved
     if(!certName && user.displayName) certName = user.displayName;
   } else {
@@ -1612,6 +1615,8 @@ onAuthStateChanged(auth, async user => {
     btn.title = 'Sign in with Google';
     // Reset state
     state.rp = 0; state.done = new Set(); state.awarded = new Set(); certName = '';
+    const dashName = document.getElementById('dashUserName');
+    if(dashName) dashName.textContent = 'scholar';
     syncRP(); refreshProgress(); renderCurriculum();
   }
 });
