@@ -97,6 +97,17 @@ select.adm-input{cursor:pointer}
 .gate-link:hover{color:var(--gold-soft)}
 .gate-or{display:flex;align-items:center;gap:12px;width:280px;max-width:80vw;margin:6px 0;color:rgba(200,188,161,.4);font-size:12px;letter-spacing:.1em}
 .gate-or::before,.gate-or::after{content:"";flex:1;height:1px;background:rgba(231,207,148,.2)}
+/* ---------- debate arena timer + phases ---------- */
+.arena-timer{font-family:var(--mono);font-size:26px;font-weight:500;color:var(--gold-soft);letter-spacing:.04em;padding:4px 14px;border:1px solid rgba(231,207,148,.3);border-radius:4px;min-width:92px;text-align:center}
+.arena-timer.low{color:#ff9a8a;border-color:rgba(255,120,100,.5);animation:timerPulse 1s ease-in-out infinite}
+@keyframes timerPulse{0%,100%{opacity:1}50%{opacity:.45}}
+.arena-phases{display:flex;gap:8px;flex-wrap:wrap}
+.arena-phase{display:flex;align-items:center;gap:7px;font-size:12px;letter-spacing:.04em;color:#9a917c;padding:5px 12px;border:1px solid rgba(231,207,148,.18);border-radius:30px}
+.arena-phase .pn{width:18px;height:18px;border-radius:50%;display:grid;place-items:center;font-family:var(--mono);font-size:10px;background:rgba(231,207,148,.12);color:#9a917c}
+.arena-phase.active{color:#F0E6CE;border-color:var(--gold)}
+.arena-phase.active .pn{background:var(--gold);color:#241a07}
+.arena-phase.done{color:#7ecfa4;border-color:rgba(62,107,84,.4)}
+.arena-phase.done .pn{background:var(--verd);color:#fff}
 /* ---------- level lock overlay ---------- */
 .lvl{position:relative;overflow:hidden}
 .lock-overlay{position:absolute;inset:0;background:rgba(28,26,20,.72);backdrop-filter:blur(3px);display:flex;align-items:center;justify-content:center;border-radius:inherit;cursor:not-allowed}
@@ -114,21 +125,28 @@ select.adm-input{cursor:pointer}
 .monogram span{font-family:var(--disp); font-weight:700; color:var(--gold-soft); font-size:20px; line-height:1; transform:translateY(1px)}
 .brand b{font-family:var(--disp); font-weight:600; font-size:18.5px; letter-spacing:-.01em; white-space:nowrap}
 .brand small{display:block; font-size:10.5px; letter-spacing:.24em; text-transform:uppercase; color:var(--gold-deep); margin-top:1px; font-weight:600}
-nav.main{display:flex; gap:4px; margin-left:8px}
-nav.main a{padding:.5em .82em; font-size:14.5px; color:var(--ink-soft); border-radius:2px; position:relative; cursor:pointer; transition:.18s; font-weight:500}
+nav.main{display:flex; gap:3px; margin-left:8px}
+nav.main a{padding:.5em .72em; font-size:14.5px; color:var(--ink-soft); border-radius:2px; position:relative; cursor:pointer; transition:.18s; font-weight:500; white-space:nowrap}
 nav.main a:hover{color:var(--ink); background:rgba(28,26,20,.04)}
 nav.main a.active{color:var(--ink)}
-nav.main a.active::after{content:""; position:absolute; left:.82em; right:.82em; bottom:.18em; height:2px; background:var(--gold)}
-.spacer{flex:1}
-.rp-pill{display:flex; align-items:center; gap:9px; padding:.42em .42em .42em .85em; border:1px solid var(--line-2); border-radius:30px; background:var(--paper-2); cursor:pointer; transition:.2s}
+nav.main a.active::after{content:""; position:absolute; left:.72em; right:.72em; bottom:.18em; height:2px; background:var(--gold)}
+.spacer{flex:1; min-width:8px}
+.rp-pill{display:flex; align-items:center; gap:9px; padding:.42em .42em .42em .85em; border:1px solid var(--line-2); border-radius:30px; background:var(--paper-2); cursor:pointer; transition:.2s; flex-shrink:0}
 .rp-pill:hover{border-color:var(--gold); box-shadow:var(--sh-1)}
 .rp-pill .v{font-family:var(--mono); font-weight:500; font-size:14px}
 .rp-pill .rk{font-size:12px; background:var(--ink); color:var(--paper-2); padding:.32em .7em; border-radius:30px; letter-spacing:.04em}
 .rp-pill .star{color:var(--gold)}
 .hamb{display:none; width:42px; height:42px; border:1px solid var(--line-2); background:var(--paper-2); border-radius:3px; cursor:pointer; flex-direction:column; gap:4px; align-items:center; justify-content:center}
 .hamb i{width:18px; height:2px; background:var(--ink); display:block}
-@media(max-width:940px){
-  nav.main{position:absolute; top:68px; left:0; right:0; background:var(--paper); border-bottom:1px solid var(--line); flex-direction:column; padding:8px 18px 14px; gap:2px; display:none; box-shadow:var(--sh-2)}
+/* Tighten the bar before it would ever wrap: hide the tagline + condense nav */
+@media(max-width:1200px){
+  .brand small{display:none}
+  nav.main{gap:1px; margin-left:4px}
+  nav.main a{padding:.5em .6em; font-size:13.5px}
+  .topbar .row{gap:12px}
+}
+@media(max-width:1040px){
+  nav.main{position:absolute; top:68px; left:0; right:0; background:var(--paper); border-bottom:1px solid var(--line); flex-direction:column; padding:8px 18px 14px; gap:2px; display:none; box-shadow:var(--sh-2); margin-left:0}
   nav.main.open{display:flex}
   nav.main a{padding:.7em .6em; font-size:16px}
   .hamb{display:flex}
@@ -238,7 +256,7 @@ nav.main a.active::after{content:""; position:absolute; left:.82em; right:.82em;
 .lvlhd .tag{font-family:var(--disp); font-size:13px; letter-spacing:.26em; text-transform:uppercase; color:var(--muted); font-weight:600}
 .lvlhd h2{font-size:34px; margin:2px 0 0}
 .lvlhd .dot{width:14px; height:14px; border-radius:50%; margin-bottom:6px}
-.lvlhd.verd .dot{background:var(--verd)} .lvlhd.gold .dot{background:var(--gold)} .lvlhd.garnet .dot{background:var(--garnet)}
+.lvlhd.verd .dot{background:var(--verd)} .lvlhd.gold .dot{background:var(--gold)} .lvlhd.garnet .dot{background:var(--garnet)} .lvlhd.teal .dot{background:#33606e}
 .lvlhd .meta{margin-left:auto; text-align:right; font-size:14px; color:var(--ink-soft)}
 .lvlhd .meta b{color:var(--gold-deep)}
 .module{border:1px solid var(--line); border-radius:6px; margin-top:18px; background:var(--card); overflow:hidden; box-shadow:var(--sh-1)}
@@ -330,7 +348,7 @@ nav.main a.active::after{content:""; position:absolute; left:.82em; right:.82em;
 .continue{display:flex; align-items:center; gap:18px; padding:18px; border:1px solid var(--line); border-radius:6px; background:var(--paper-2); cursor:pointer; transition:.2s; margin-bottom:14px}
 .continue:hover{border-color:var(--gold); box-shadow:var(--sh-1); transform:translateY(-2px)}
 .continue .thumb{width:52px; height:52px; border-radius:6px; flex:none; display:grid; place-items:center; color:#fff; font-family:var(--disp); font-weight:600}
-.continue .thumb.verd{background:var(--verd)} .continue .thumb.gold{background:var(--gold)} .continue .thumb.garnet{background:var(--garnet)}
+.continue .thumb.verd{background:var(--verd)} .continue .thumb.gold{background:var(--gold)} .continue .thumb.garnet{background:var(--garnet)} .continue .thumb.teal{background:#33606e}
 .continue .ct{flex:1}
 .continue .ct .tl{font-size:12px; letter-spacing:.05em; color:var(--gold-deep); text-transform:uppercase; font-weight:600}
 .continue .ct b{display:block; font-size:16px; font-family:var(--disp); margin-top:2px}
@@ -880,45 +898,52 @@ footer .base b{color:var(--gold-soft)}
         </div>
       </div>
 
-      <!-- Score board -->
+      <!-- Phase tracker + scoreboard -->
       <div id="arenaScoreboard" style="display:none;margin:18px 0 0">
-        <div style="font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-soft);margin-bottom:10px">Score</div>
-        <div style="display:flex;gap:0;border:1px solid rgba(231,207,148,.25);overflow:hidden;border-radius:3px;max-width:480px">
-          <div style="flex:1;padding:14px 20px;background:rgba(62,107,84,.18)">
-            <div style="font-size:12px;color:#a0a090;margin-bottom:4px">You</div>
-            <div id="scoreYou" style="font-family:var(--disp);font-size:36px;font-weight:700;color:#7ecfa4">0</div>
+        <div class="arena-phases" id="arenaPhases"></div>
+        <div style="display:flex;gap:0;border:1px solid rgba(231,207,148,.25);overflow:hidden;border-radius:3px;max-width:480px;margin-top:14px">
+          <div style="flex:1;padding:12px 18px;background:rgba(62,107,84,.18)">
+            <div style="font-size:12px;color:#a0a090;margin-bottom:2px">You · for the motion</div>
+            <div id="scoreYou" style="font-family:var(--disp);font-size:32px;font-weight:700;color:#7ecfa4">0</div>
           </div>
           <div style="width:1px;background:rgba(231,207,148,.2)"></div>
-          <div style="flex:1;padding:14px 20px;background:rgba(123,44,44,.18)">
-            <div style="font-size:12px;color:#a0a090;margin-bottom:4px">Bot</div>
-            <div id="scoreBot" style="font-family:var(--disp);font-size:36px;font-weight:700;color:#e07070">0</div>
+          <div style="flex:1;padding:12px 18px;background:rgba(123,44,44,.18)">
+            <div style="font-size:12px;color:#a0a090;margin-bottom:2px">Bot · against</div>
+            <div id="scoreBot" style="font-family:var(--disp);font-size:32px;font-weight:700;color:#e07070">0</div>
           </div>
         </div>
-        <div id="arenaRoundLabel" style="margin-top:10px;font-size:13px;color:#C8BCA1">Round <span id="arenaRound">1</span> of 5</div>
       </div>
 
-      <!-- Debate exchange -->
-      <div id="arenaExchange" style="display:none;margin-top:20px;background:rgba(0,0,0,.25);border:1px solid rgba(231,207,148,.18);border-radius:4px;padding:20px">
-        <div id="botArgBox" style="font-size:15px;line-height:1.6;color:#E8DDCA;margin-bottom:18px;padding-bottom:18px;border-bottom:1px solid rgba(231,207,148,.15)">
-          <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-soft);display:block;margin-bottom:8px">Bot argues:</span>
-          <span id="botArgText"></span>
+      <!-- The debate stage -->
+      <div id="arenaStage" style="display:none;margin-top:20px;background:rgba(0,0,0,.25);border:1px solid rgba(231,207,148,.18);border-radius:4px;padding:20px">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:14px;margin-bottom:16px;flex-wrap:wrap">
+          <div id="stagePhase" style="font-family:var(--disp);font-size:19px;font-weight:600;color:#F0E6CE">Opening Statement</div>
+          <div id="stageTimer" class="arena-timer">03:00</div>
         </div>
+        <!-- Bot statement for this phase -->
+        <div id="botStatementBox" style="font-size:15px;line-height:1.62;color:#E8DDCA;margin-bottom:18px;padding:14px 16px;background:rgba(123,44,44,.12);border-left:3px solid var(--garnet);border-radius:0 3px 3px 0">
+          <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#e0a0a0;display:block;margin-bottom:8px"><span id="botPhaseLabel">Bot — opposition opening</span></span>
+          <span id="botStatementText"></span>
+        </div>
+        <!-- Your turn -->
         <div>
-          <div style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-soft);margin-bottom:10px">Your response:</div>
-          <textarea id="arenaInput" rows="4" style="width:100%;background:rgba(0,0,0,.3);border:1px solid rgba(231,207,148,.25);border-radius:3px;color:#E8DDCA;font-family:var(--serif);font-size:15px;line-height:1.6;padding:12px;resize:vertical;outline:none" placeholder="Write your argument here — aim to directly address the bot's claim…"></textarea>
+          <div style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-soft);margin-bottom:8px">Your <span id="yourPhaseLabel">opening statement</span></div>
+          <div id="yourPrompt" style="font-size:13.5px;color:#a0a090;margin-bottom:10px;font-style:italic"></div>
+          <textarea id="arenaInput" rows="5" style="width:100%;background:rgba(0,0,0,.3);border:1px solid rgba(231,207,148,.25);border-radius:3px;color:#E8DDCA;font-family:var(--serif);font-size:15px;line-height:1.6;padding:12px;resize:vertical;outline:none" placeholder="Type your statement before the timer runs out…"></textarea>
           <div style="margin-top:12px;display:flex;gap:10px;align-items:center;flex-wrap:wrap">
-            <button class="btn gold" onclick="submitDebateRound()">Submit argument <span class="arrow">→</span></button>
+            <button class="btn gold" id="submitPhaseBtn" onclick="submitPhase(false)">Submit &amp; continue <span class="arrow">→</span></button>
             <span id="arenaFeedback" style="font-size:13px;color:#a0a090"></span>
           </div>
         </div>
       </div>
 
-      <div id="arenaResult" style="display:none;margin-top:20px;padding:20px;border-radius:4px;text-align:center"></div>
+      <div id="arenaResult" style="display:none;margin-top:20px;padding:22px;border-radius:4px;text-align:center"></div>
 
       <div style="margin-top:22px; display:flex; gap:12px; flex-wrap:wrap" id="arenaStartRow">
-        <button class="btn gold" onclick="startBotDebate()">Challenge the bot <span class="arrow">→</span></button>
-        <button class="btn lt" onclick="pickNewMotion()">Different motion →</button>
+        <button class="btn gold" onclick="startBotDebate()">Start the debate <span class="arrow">→</span></button>
+        <button class="btn lt" onclick="randomTopic()">🎲 Random topic</button>
       </div>
+      <div style="margin-top:12px;font-size:13px;color:#9a917c">Format: timed <b style="color:var(--gold-soft)">opening</b> → <b style="color:var(--gold-soft)">cross-examination</b> → <b style="color:var(--gold-soft)">closing</b>, both sides. You argue <b>for</b> the motion; the bot argues against.</div>
     </div>
 
     <div class="arena-cols">
@@ -966,6 +991,17 @@ footer .base b{color:var(--gold-soft)}
     <div class="admin-grid">
       <!-- Left: actions -->
       <div>
+        <!-- Add a module -->
+        <div class="panel" style="padding:24px 26px;margin-bottom:24px">
+          <h3 style="margin-bottom:6px">Add a module</h3>
+          <p style="font-size:13.5px;color:var(--muted);margin-bottom:16px">Create a new module in any level. The <b>Essentials</b> track is open to everyone with no prerequisites — a good home for primers and free content.</p>
+          <label class="adm-label">Level</label>
+          <select id="modLvl" class="adm-input"></select>
+          <label class="adm-label">Module title</label>
+          <input id="modTitle" class="adm-input" placeholder="e.g. Common Questions, Answered">
+          <button class="btn gold" style="width:100%;justify-content:center;margin-top:8px" onclick="adminAddModule()">Add module →</button>
+        </div>
+        <!-- Add a lesson -->
         <div class="panel" style="padding:24px 26px">
           <h3 style="margin-bottom:6px">Add a new lesson</h3>
           <p style="font-size:13.5px;color:var(--muted);margin-bottom:16px">Appends a lesson into an existing module.</p>
@@ -1104,7 +1140,7 @@ let siteAdmins = [];     // promoted admin emails, loaded from Firestore content
    - SITE.lessonContent : { 'L1:1.1': {read,terms,quiz,youtubeId}, ... } overrides/extends SEED
    - SITE.extraLessons  : [ {lvl, mod, code, title, desc}, ... ] appended into CURRICULUM modules
    SEED_LESSON_CONTENT is injected by lesson-content-gen (the generated file).            */
-let SITE = { lessonContent:{}, extraLessons:[] };
+let SITE = { lessonContent:{}, extraLessons:[], extraModules:[] };
 const SEED_LESSON_CONTENT = (typeof window!=='undefined' && window.SEED_LESSON_CONTENT) ? window.SEED_LESSON_CONTENT : {};
 
 /* lessonData(key) — the merged view a student sees: admin override > generated seed > showcase */
@@ -1112,9 +1148,18 @@ function lessonData(key){
   return (SITE.lessonContent && SITE.lessonContent[key]) || SEED_LESSON_CONTENT[key] || LESSON_CONTENT[key] || null;
 }
 
-/* Re-inject admin-added lessons into CURRICULUM (called after SITE loads) */
+/* Inject admin-added modules into CURRICULUM (idempotent; run before applyExtraLessons) */
+function applyExtraModules(){
+  CURRICULUM.forEach(L=>{ L.modules = L.modules.filter(m=>!m.__extra); });
+  (SITE.extraModules||[]).forEach(x=>{
+    const L = CURRICULUM.find(l=>l.id===x.lvl); if(!L) return;
+    if(L.modules.some(m=>m.title===x.title)) return; // already present
+    L.modules.push({ title:x.title, lessons:[], __extra:true });
+  });
+}
+
+/* Inject admin-added lessons into CURRICULUM modules (idempotent) */
 function applyExtraLessons(){
-  // strip any previously injected extras, then re-add (idempotent)
   CURRICULUM.forEach(L=> L.modules.forEach(m=>{ if(m.lessons) m.lessons = m.lessons.filter(les=>!les.__extra); }));
   (SITE.extraLessons||[]).forEach(x=>{
     const L = CURRICULUM.find(l=>l.id===x.lvl); if(!L) return;
@@ -1124,6 +1169,9 @@ function applyExtraLessons(){
     m.lessons.push(row);
   });
 }
+
+/* Apply both, in the correct order (modules first so lesson module-indices resolve) */
+function applySiteExtras(){ applyExtraModules(); applyExtraLessons(); }
 
 /* Extract a YouTube video id from a URL or raw id */
 function ytId(v){
@@ -1218,11 +1266,36 @@ const CURRICULUM=[
      ['5.5','The ethics of discourse','pluralism, tolerance & living well alongside the faithful'] ]},
    {title:"Capstone",lessons:[
      ['6.1','Route A — The Debate','a moderated, full-length debate on a substantial motion, judged by a panel'],
-     ['6.2','Route B — The Thesis','a 3,000–5,000-word argued essay with a steelmanned opposition, plus oral defence'] ]} ]}
+     ['6.2','Route B — The Thesis','a 3,000–5,000-word argued essay with a steelmanned opposition, plus oral defence'] ]} ]},
+
+ {id:'ES',numeral:'E',name:'Essentials',tier:'Open access · no prerequisites',accent:'teal',duration:'Self-paced · open to all',credential:'Open primer',
+  modules:[
+   {title:"Start Here",lessons:[
+     ['1.1','Welcome to the School','what this school is for, how lessons and debates fit together'] ]} ]}
 ];
 
-/* full content for the showcase interactive lesson */
+/* full content for the showcase interactive lesson + the Essentials welcome */
 const LESSON_CONTENT={
+ 'ES:1.1':{
+   read:[
+     "Welcome. Ilu&rsquo;s School of Thoughts is a debate-first school of secular thought. Most introductions hand you a list of arguments to memorise; this one trains a skill. Content is the raw material — the product is your ability to reason, to reconstruct an opponent&rsquo;s view at its strongest, and to respond with logic rather than slogans.",
+     "The school is organised into three graded levels — First Light (Beginner), The Crucible (Intermediate), and Illumination (Expert) — each gated by the one before, so the toolkit is cumulative. This <b>Essentials</b> track sits outside that ladder: it is open to everyone, with no prerequisites, as a place for primers, orientation, and whatever the school wishes to make freely available.",
+     "Every lesson follows the same rhythm: a short reading, a few key terms, and a knowledge check. Alongside the lessons you&rsquo;ll find the Debate Arena, where you argue a motion against a bot and earn Reason Points, and a Skill Radar that grows as you progress. When you complete a level, you earn a verifiable certificate. Begin wherever you like — but if you are new, First Light is the natural first step."
+   ],
+   terms:[
+     ["Steelman","to restate an opposing argument in its strongest, most charitable form before responding to it."],
+     ["Reason Points (RP)","the score you earn by completing lessons, quizzes, and debates; it raises your rank."],
+     ["Essentials","this open-access track — no prerequisites, free to all, for primers and orientation."]
+   ],
+   quiz:[
+     {q:"Ilu&rsquo;s School is primarily designed to make you memorise a fixed list of arguments.",
+      opts:["True","False"],ans:1,
+      ex:"The school is <b>debate-first</b> — content is the raw material, but the product is the <b>skill</b> of reasoning and responding well."},
+     {q:"Which track has no prerequisites and is open to everyone?",
+      opts:["The Crucible","Illumination","Essentials","Capstone"],ans:2,
+      ex:"<b>Essentials</b> sits outside the graded ladder — open access, no prerequisites."}
+   ]
+ },
  'L1:1.2':{
    read:[
      "People argue past one another about atheism because they collapse two different questions into one. The first is a question of belief: do you accept the claim that a god exists? The second is a question of knowledge: do you claim to know whether a god exists? Because these questions are independent, the honest answer to one does not settle the other.",
@@ -1337,6 +1410,7 @@ function go(view,arg){
   window.scrollTo({top:0,behavior:'instant'in window?'instant':'auto'});
   if(view==='curriculum'&&arg) setTimeout(()=>openModuleFor(arg),60);
   if(view==='admin'){ if(!isAdmin){ go('home'); return; } if(typeof renderAdmin==='function') renderAdmin(); }
+  if(view!=='arena' && typeof window.stopArenaTimer==='function') window.stopArenaTimer();  // pause debate clock when leaving
   revealScan();
 }
 
@@ -1345,6 +1419,7 @@ function go(view,arg){
    ============================================================ */
 /* ── Level lock helpers ── */
 function isLevelUnlocked(lvlId){
+  if(lvlId==='ES') return true;   // Essentials — open, no prerequisites
   if(lvlId==='L1') return true;
   if(lvlId==='L2') return lvlProgress('L1').pc===100;
   if(lvlId==='L3') return lvlProgress('L2').pc===100;
@@ -1435,7 +1510,7 @@ function openModuleFor(lvlId){
 let curLevel='L1';
 function lvlObj(id){ return CURRICULUM.find(l=>l.id===id); }
 function flatLessons(L){ const a=[]; L.modules.forEach((m,mi)=>m.lessons.forEach(les=>a.push({code:les[0],title:les[1],desc:les[2],mi}))); return a; }
-function lvlProgress(id){ const L=lvlObj(id); const all=flatLessons(L); const d=all.filter(x=>state.done.has(id+':'+x.code)).length; return {d,t:all.length,pc:Math.round(d/all.length*100)}; }
+function lvlProgress(id){ const L=lvlObj(id); const all=flatLessons(L); const d=all.filter(x=>state.done.has(id+':'+x.code)).length; return {d,t:all.length,pc: all.length? Math.round(d/all.length*100):0}; }
 
 function openLesson(lvlId,code){
   if(!isLevelUnlocked(lvlId)){
@@ -1822,11 +1897,63 @@ const DRILLS=[
   ex:"“Fits together → designed” assumes the conclusion in the premise; the claim is smuggled in rather than argued."},
  {arg:"“My pastor has a doctorate, so his argument that the soul exists must be correct.”",
   opts:["Appeal to inappropriate authority","Tu quoque","Composition","No true Scotsman"],ans:0,
-  ex:"A credential outside the relevant field doesn’t establish the claim — the argument must still stand on its merits."}
+  ex:"A credential outside the relevant field doesn’t establish the claim — the argument must still stand on its merits."},
+ {arg:"“Atheism led to Stalin’s atrocities, so atheism is a dangerous worldview.”",
+  opts:["Genetic fallacy","Guilt by association","Hasty generalization","Appeal to consequences"],ans:1,
+  ex:"<b>Guilt by association</b> — tying a position to bad actors who held it, rather than engaging its truth. Stalin’s crimes don’t follow from a mere lack of god-belief."},
+ {arg:"“Don’t listen to her case against the resurrection — she was raised an atheist.”",
+  opts:["Genetic fallacy","Straw man","Red herring","Bandwagon"],ans:0,
+  ex:"The <b>genetic fallacy</b> judges a claim by its origin rather than its merits. How someone was raised says nothing about whether their argument is sound."},
+ {arg:"“Billions of people across history have believed in a god, so there must be one.”",
+  opts:["Appeal to authority","Argumentum ad populum","Composition","Begging the question"],ans:1,
+  ex:"<b>Ad populum</b> — popularity isn’t truth. Most people once believed the sun orbited the Earth."},
+ {arg:"“So you’re saying we should just throw out all morality and do whatever we want?”",
+  opts:["Straw man","False dilemma","Slippery slope","Equivocation"],ans:0,
+  ex:"A <b>straw man</b> — distorting the secular-ethics position into an absurd one nobody defends, then attacking the distortion."},
+ {arg:"“If we allow same-sex marriage, soon people will be marrying their pets.”",
+  opts:["Slippery slope","False dilemma","Hasty generalization","Tu quoque"],ans:0,
+  ex:"A <b>slippery slope</b> asserts a chain of dire consequences with no argument that each step actually follows."},
+ {arg:"“Science can’t explain what caused the Big Bang, so God did it.”",
+  opts:["God of the gaps","Equivocation","Circular reasoning","Composition"],ans:0,
+  ex:"<b>God of the gaps</b> — inserting a deity wherever current science is incomplete. A gap in knowledge isn’t evidence for a specific cause."},
+ {arg:"“The Bible is true because it’s the word of God, and we know it’s God’s word because the Bible says so.”",
+  opts:["Circular reasoning","Appeal to authority","Equivocation","Red herring"],ans:0,
+  ex:"<b>Circular reasoning</b> — the conclusion is smuggled into the premises. The claim is used to prove itself."},
+ {arg:"“Faith has gotten me through hard times, so my religion must be true.”",
+  opts:["Appeal to consequences","Appeal to emotion","Wishful thinking","All of these overlap here"],ans:3,
+  ex:"Comfort is real, but the usefulness of a belief doesn’t bear on its <b>truth</b> — this blends appeal to consequences, emotion, and wishful thinking."},
+ {arg:"“Every part of the watch has a purpose, so the whole universe must have a purpose too.”",
+  opts:["Composition","Division","Hasty generalization","Equivocation"],ans:0,
+  ex:"The <b>composition fallacy</b> — assuming what’s true of the parts must be true of the whole."},
+ {arg:"“You criticise the Church, but you’re not perfect either, so your point is invalid.”",
+  opts:["Tu quoque","Ad hominem","Red herring","Straw man"],ans:0,
+  ex:"<b>Tu quoque</b> (‘you too’) — deflecting a criticism by pointing at the critic instead of answering it."},
+ {arg:"“A real atheist would never celebrate Christmas — so you’re not really one.”",
+  opts:["No true Scotsman","Genetic fallacy","Begging the question","Bandwagon"],ans:0,
+  ex:"<b>No true Scotsman</b> — redefining a category mid-argument to exclude any counterexample."},
+ {arg:"“Where do you get your morals if not from God? Anyway, look at how beautiful cathedrals are.”",
+  opts:["Red herring","Straw man","False dilemma","Equivocation"],ans:0,
+  ex:"A <b>red herring</b> — switching to an irrelevant topic (architecture) to dodge the question of secular ethics."},
+ {arg:"“Faith just means trust — you have faith your chair will hold you, so faith in God is the same.”",
+  opts:["Equivocation","Composition","Circular reasoning","Bandwagon"],ans:0,
+  ex:"<b>Equivocation</b> — sliding between two senses of ‘faith’: evidence-based confidence vs. belief without evidence."},
+ {arg:"“My near-death experience proves heaven is real.”",
+  opts:["Hasty generalization","Anecdotal evidence","Appeal to authority","Composition"],ans:1,
+  ex:"<b>Anecdotal evidence</b> — a single vivid personal experience can’t establish a universal metaphysical claim; it has many natural explanations."},
+ {arg:"“If God didn’t exist, the universe wouldn’t exist — and it clearly does!”",
+  opts:["Begging the question","Affirming the consequent","Composition","Bandwagon"],ans:1,
+  ex:"<b>Affirming the consequent</b> — ‘if A then B; B, therefore A’ is invalid. The universe’s existence doesn’t entail its proposed cause."},
+ {arg:"“Atheists are just angry at God.”",
+  opts:["Straw man","Ad hominem","Psychologising / poisoning the well","Tu quoque"],ans:2,
+  ex:"<b>Poisoning the well</b> — pre-emptively attributing a hidden motive to dismiss the person rather than engage the argument (one can’t be angry at what one doesn’t believe exists)."}
 ];
 let drillIdx=-1, drillLocked=false;
 function newDrill(){
-  drillIdx=(drillIdx+1)%DRILLS.length; drillLocked=false;
+  // pick a random drill different from the current one
+  let n=drillIdx;
+  if(DRILLS.length>1){ while(n===drillIdx) n=Math.floor(Math.random()*DRILLS.length); }
+  else n=0;
+  drillIdx=n; drillLocked=false;
   const d=DRILLS[drillIdx];
   document.getElementById('drillArg').textContent=d.arg;
   document.getElementById('drillOpts').innerHTML=d.opts.map((o,i)=>`<div class="dopt" data-i="${i}" onclick="answerDrill(${i})">${o}</div>`).join('');
@@ -2061,14 +2188,15 @@ async function loadSiteContent(){
       const d = snap.data();
       SITE.lessonContent = d.lessonContent || {};
       SITE.extraLessons  = d.extraLessons  || [];
-    } else { SITE.lessonContent={}; SITE.extraLessons=[]; }
-  } catch(e){ console.warn('loadSiteContent failed',e); SITE.lessonContent={}; SITE.extraLessons=[]; }
+      SITE.extraModules  = d.extraModules  || [];
+    } else { SITE.lessonContent={}; SITE.extraLessons=[]; SITE.extraModules=[]; }
+  } catch(e){ console.warn('loadSiteContent failed',e); SITE.lessonContent={}; SITE.extraLessons=[]; SITE.extraModules=[]; }
   // load the promoted-admin roster
   try {
     const rs = await getDoc(doc(db,'content','roles'));
     siteAdmins = (rs.exists() && Array.isArray(rs.data().admins)) ? rs.data().admins.map(e=>String(e).toLowerCase()) : [];
   } catch(e){ siteAdmins = []; }
-  applyExtraLessons();
+  applySiteExtras();
   if(typeof renderCurriculum==='function') renderCurriculum();
 }
 
@@ -2117,6 +2245,7 @@ async function saveSiteContent(){
     await setDoc(doc(db,'content','site'),{
       lessonContent: SITE.lessonContent || {},
       extraLessons: SITE.extraLessons || [],
+      extraModules: SITE.extraModules || [],
       updatedAt: serverTimestamp(),
       updatedBy: currentUser ? currentUser.email : 'unknown'
     });
@@ -2125,15 +2254,16 @@ async function saveSiteContent(){
 }
 
 /* ---- Admin panel rendering ---- */
+function lvlOptions(){ return CURRICULUM.map(L=>`<option value="${L.id}">${L.id==='ES'?'Essentials (open)':'Level '+L.numeral+' — '+L.name}</option>`).join(''); }
+
 window.renderAdmin = function(){
   if(!isAdmin) return;
-  // level selector
+  // populate both level selectors fresh each time (so new modules show up)
   const lvlSel = document.getElementById('addLvl');
-  if(lvlSel && !lvlSel.dataset.init){
-    lvlSel.innerHTML = CURRICULUM.map(L=>`<option value="${L.id}">Level ${L.numeral} — ${L.name}</option>`).join('');
-    lvlSel.dataset.init='1';
-    refreshAddModules();
-  }
+  if(lvlSel){ const cur=lvlSel.value; lvlSel.innerHTML = lvlOptions(); if(cur) lvlSel.value=cur; }
+  const modLvlSel = document.getElementById('modLvl');
+  if(modLvlSel){ const cur=modLvlSel.value; modLvlSel.innerHTML = lvlOptions(); modLvlSel.value = cur || 'ES'; }
+  refreshAddModules();
   renderAdminLessonList();
   // founder-only roles panel
   const tp = document.getElementById('adminTeamPanel');
@@ -2141,9 +2271,25 @@ window.renderAdmin = function(){
 };
 
 window.refreshAddModules = function(){
-  const lvl = document.getElementById('addLvl').value;
-  const L = lvlObj(lvl); const sel = document.getElementById('addMod');
-  if(L && sel) sel.innerHTML = L.modules.map((m,i)=>`<option value="${i}">M${i+1} — ${m.title}</option>`).join('');
+  const sel = document.getElementById('addMod'); const lvlSel=document.getElementById('addLvl');
+  if(!sel||!lvlSel) return;
+  const L = lvlObj(lvlSel.value);
+  if(L) sel.innerHTML = L.modules.map((m,i)=>`<option value="${i}">M${i+1} — ${m.title}</option>`).join('');
+};
+
+window.adminAddModule = async function(){
+  const lvl = document.getElementById('modLvl').value;
+  const title = document.getElementById('modTitle').value.trim();
+  if(!title){ toast('Enter a module title',''); return; }
+  const L = lvlObj(lvl);
+  if(L && L.modules.some(m=>m.title===title)){ toast('That module already exists in this level',''); return; }
+  SITE.extraModules = SITE.extraModules || [];
+  SITE.extraModules.push({ lvl, title });
+  applySiteExtras();
+  const ok = await saveSiteContent();
+  document.getElementById('modTitle').value='';
+  renderAdmin(); renderCurriculum();
+  if(ok) toast('Module “'+title+'” added','✦');
 };
 
 window.renderAdminLessonList = function(){
@@ -2178,7 +2324,7 @@ window.adminAddLesson = async function(){
   if(flatLessons(L).some(x=>x.code===code)){ toast('Lesson code '+code+' already exists in this level',''); return; }
   SITE.extraLessons = SITE.extraLessons || [];
   SITE.extraLessons.push({ lvl, mod, code, title, desc });
-  applyExtraLessons();
+  applySiteExtras();
   const okSave = await saveSiteContent();
   renderCurriculum(); renderAdminLessonList();
   document.getElementById('addCode').value=''; document.getElementById('addTitle').value=''; document.getElementById('addDesc').value='';
@@ -2444,126 +2590,213 @@ window.generateCertificate = async function(){
 /* ============================================================
    BOT DEBATE ARENA
    ============================================================ */
-const MOTIONS = [
-  '"The problem of evil makes an all-good, all-powerful God improbable."',
-  '"Science and religion are fundamentally incompatible."',
-  '"Atheism is the more rational default position."',
-  '"Objective morality can exist without God."',
-  '"The cosmological argument fails to establish a personal God."',
-  '"Religious faith is incompatible with good epistemology."',
-  '"Secular humanism provides a sufficient basis for ethics."',
+/* You always argue FOR the motion; the bot argues AGAINST it.
+   Each topic gives the bot a line for every phase. */
+const DEBATE_TOPICS = [
+  { motion:'The problem of evil makes an all-good, all-powerful God improbable.', bot:{
+    opening:'The opposition holds that suffering is no evidence against God. The free-will defence shows a perfectly good being could permit evil for goods we cannot see — and soul-making, as John Hick argued, requires a world with real adversity.',
+    cross:'You point to gratuitous suffering — but how could you, with a finite vantage, possibly know a given evil serves no greater purpose? Absence of a visible reason is not evidence of absence.',
+    closing:'My opponent has shown only that evil is troubling, not that it is improbable on theism. Once we admit our limited vantage, the argument from evil loses its force.' }},
+  { motion:'Objective morality can exist without God.', bot:{
+    opening:'I argue it cannot. Without a transcendent ground, moral claims are just preferences or evolved instincts. "Cruelty is wrong" would describe how we feel, not a fact binding on everyone.',
+    cross:'You appeal to human flourishing — but why is flourishing good? Smuggling in "persons matter" is borrowing a conclusion that secular naturalism has not earned.',
+    closing:'My opponent assumes the very objectivity in question. A universe of particles has no oughts. Without a lawgiver, morality is real to us, but not objectively binding.' }},
+  { motion:'Faith is not a reliable path to truth.', bot:{
+    opening:'The opposition overstates the case. Faith, properly understood, is trust proportioned to experience — not belief without reason. We rely on testimony and trust constantly; faith is continuous with that.',
+    cross:'If faith never tracks truth, how do you explain the countless reformed and refined beliefs held faithfully across traditions? You are attacking a caricature of faith.',
+    closing:'My opponent has shown only that BAD faith fails — not faith itself. Reasonable trust, open to revision, remains a legitimate route to many truths.' }},
+  { motion:'The burden of proof lies with the person who claims a god exists.', bot:{
+    opening:'I deny this. "There is no god" is itself a positive claim about reality and carries its own burden. The atheist who asserts it owes us an argument as much as the theist does.',
+    cross:'You hide behind "I merely lack belief" — but if you act and argue as though no god exists, you hold a thesis, and theses must be defended.',
+    closing:'Burden is not a one-way street. My opponent wants the privileges of a claim with none of its costs. Both sides must argue.' }},
+  { motion:'Science and religion are fundamentally incompatible.', bot:{
+    opening:'They are not. Science asks how; religion asks why. Newton, Faraday and Mendel did first-rate science while devout. The domains are distinct, not contradictory.',
+    cross:'You cite specific clashes — but those are conflicts between particular claims and particular findings, not between science and religion as such. Why generalise from a few cases?',
+    closing:'My opponent confuses local disputes with a deep incompatibility. Methodological naturalism is a tool, not a metaphysics. The two enterprises can coexist.' }},
+  { motion:'A meaningful life does not require belief in an afterlife.', bot:{
+    opening:'I argue meaning is thinned without permanence. If all achievements are erased by death and the heat-death of the cosmos, the opposition must explain how anything finally matters.',
+    cross:'You say meaning is "made, not found" — but if you author it yourself, isn\'t it arbitrary? What stops it collapsing into mere preference?',
+    closing:'My opponent offers meaning that is real but fragile. Without some lasting frame, the significance of a finite life remains, on their view, hard to secure.' }},
+  { motion:'The fine-tuning of the universe is better explained without a designer.', bot:{
+    opening:'The constants sit in an extraordinarily narrow life-permitting range. Design is the natural inference; the multiverse is an untested posit invoked precisely to avoid that conclusion.',
+    cross:'You appeal to a multiverse — but we have no independent evidence for it. Isn\'t replacing one unobservable (God) with infinitely many unobservable universes a steep price?',
+    closing:'My opponent trades a single elegant explanation for a sprawling, evidence-free one. On simplicity alone, design remains the stronger inference.' }},
+  { motion:'Religious texts should not be the basis of public law.', bot:{
+    opening:'I argue scripture has rightly shaped law for millennia — prohibitions on murder and theft, the dignity of persons. To bar it entirely is to discard a deep moral inheritance.',
+    cross:'You want "neutral" secular reasons — but whose neutrality? Secular liberalism is itself a contested tradition, not a view from nowhere.',
+    closing:'My opponent wants to exile one tradition while privileging another. A genuinely plural society should let all moral sources, religious included, into public argument.' }},
+  { motion:'Doubt is a virtue, not a failing.', bot:{
+    opening:'I argue unceasing doubt is paralysis, not virtue. At some point one must commit, trust, and act. The person who doubts everything builds nothing and believes nothing.',
+    cross:'You praise doubt — but you do not doubt that doubt is good, nor that reason works. Don\'t your own commitments show that some convictions must be held firmly?',
+    closing:'My opponent celebrates a doubt they do not actually practise. Healthy inquiry needs trust as much as suspicion. Doubt without commitment is not wisdom.' }},
+  { motion:'The concept of eternal hell is morally indefensible.', bot:{
+    opening:'I argue the opposition misreads the tradition. Many theologians frame hell as freely chosen separation, not imposed torture — the soul that finally refuses the good gets what it has chosen.',
+    cross:'You call infinite punishment disproportionate — but if the good rejected is itself infinite, why assume the consequence must be finite?',
+    closing:'My opponent attacks the crudest picture of hell. On a more careful account — self-exclusion, not sadism — the moral objection loses much of its bite.' }},
+  { motion:'Miracle claims are always less probable than a natural explanation.', bot:{
+    opening:'Hume\'s maxim overreaches. If miracles are possible at all, then sufficient testimony could in principle establish one. To rule them out in advance is to assume the conclusion.',
+    cross:'You say "extraordinary claims need extraordinary evidence" — but who sets that bar, and doesn\'t setting it impossibly high simply guarantee your own conclusion?',
+    closing:'My opponent has assumed naturalism, not argued for it. Whether a miracle occurred is a question of evidence in each case, not a verdict to be issued beforehand.' }},
+  { motion:'Children should not be assigned the religion of their parents.', bot:{
+    opening:'I argue this misunderstands how identity works. Children inherit a language, a culture, a cuisine — and a tradition. Raising a child within a faith is not indoctrination; it is transmission.',
+    cross:'You would withhold all religious formation until adulthood — but no upbringing is neutral. Raising a child in secular assumptions is just as formative. Why is that exempt?',
+    closing:'My opponent demands a neutrality that does not exist. Every child is raised inside some worldview. Fairness means teaching it openly and allowing later revision — not erasing it.' }},
+  { motion:'Consciousness does not require an immaterial soul.', bot:{
+    opening:'I argue the "hard problem" remains unsolved. No account of neurons firing explains why there is something it is like to see red. That explanatory gap keeps the soul hypothesis alive.',
+    cross:'You point to brain-damage studies — but correlation of mind with brain is exactly what dualists expect if the brain is the soul\'s instrument. How does that settle it?',
+    closing:'My opponent assumes physicalism can close a gap it has not closed. Until subjective experience is explained in physical terms, the immaterial mind remains a live option.' }},
+  { motion:'Secular ethics can fully ground universal human rights.', bot:{
+    opening:'I argue rights-talk borrows theological capital. "All humans have inherent dignity" is a claim that flourished on the idea of persons made in a divine image. Strip that, and what grounds it?',
+    cross:'On a purely naturalist view we are evolved primates — so where does an inviolable right come from? Why not just the interests of the powerful?',
+    closing:'My opponent affirms human rights but cannot say what they rest on. A secure foundation for universal dignity is precisely what secular naturalism has struggled to supply.' }},
+  { motion:'Religious belief is best explained by cognitive science, not by God.', bot:{
+    opening:'I argue this commits the genetic fallacy. Showing how a belief arises says nothing about whether it is true. Our faculties for detecting mathematics also "evolved" — that does not make maths false.',
+    cross:'If natural explanations of belief debunk religion, don\'t they equally debunk your belief in naturalism, which also arose from the same evolved brain?',
+    closing:'My opponent confuses origin with justification. A cognitive account of why people believe leaves the truth question exactly where it was.' }},
+  { motion:'One can live a fully ethical life without any religion.', bot:{
+    opening:'I argue religion supplies what secular ethics struggles to: motivation, community, and a horizon beyond self-interest. The non-religious can be good, but they lean on borrowed moral capital.',
+    cross:'You point to good atheists — granted — but are they good BECAUSE of their naturalism, or are they coasting on values a religious civilisation bequeathed them?',
+    closing:'My opponent shows the non-religious can act well. They have not shown that their worldview, on its own resources, can sustain that goodness across generations.' }},
 ];
 
-const BOT_NAMES = ['Socrates-9','Plato-7','Kant-3','Hume-5','Aquinas-4','Russell-8','Aristotle-6'];
+const BOT_TIERS = [
+  { name:'Socrates-9',  level:'Beginner',     rating:1050, topics:[2,3,5] },
+  { name:'Hume-5',      level:'Intermediate', rating:1320, topics:[0,4,10] },
+  { name:'Kant-3',      level:'Advanced',     rating:1580, topics:[1,6,13] },
+  { name:'Aristotle-6', level:'Expert',       rating:1820, topics:[8,11,14] },
+];
 
-const BOT_ARGS = {
-  0: [
-    'The free will defence shows that God could have morally sufficient reasons to permit suffering that we cannot perceive. Our epistemic position is too limited to conclude gratuitous evil exists.',
-    'Soul-making theodicy, developed by John Hick, argues that suffering is necessary for moral and spiritual development. A world without any evil would produce no courage, compassion, or genuine virtue.',
-    'The very existence of the moral intuition that evil is wrong presupposes an objective moral standard — which itself points toward a moral lawgiver rather than away from one.',
-    'Evidential arguments from evil rely on the assumption that we can judge what an omniscient being should permit. This assumption is precisely what skeptical theism calls into question.',
-    'Many theists have survived and even deepened their faith through profound suffering. The empirical evidence on whether evil undermines theism is far from settled.',
-  ],
-  1: [
-    'Science and religion operate in entirely separate domains — science answers how, religion answers why. They address different questions and need not conflict.',
-    'Many of history\'s greatest scientists, including Newton, Faraday, and Mendel, held sincere religious convictions. The alleged incompatibility is historically uninformed.',
-    'Science itself rests on metaphysical assumptions — the uniformity of nature, the reliability of reason — that it cannot prove from within. Religion addresses those foundations.',
-    'The conflict is not between science and religion but between particular scientific findings and particular religious claims. Most religious traditions have adapted to scientific discovery.',
-    'Methodological naturalism, which science requires, does not entail metaphysical naturalism. A scientist can employ naturalistic methods while holding religious beliefs about ultimate reality.',
-  ],
-  2: [
-    'The burden of proof is symmetrical. "I don\'t believe in God" is not a neutral default — it is a claim about the probability of theism that itself requires justification.',
-    'Rationality is about proportioning belief to evidence. The vast majority of humans across history have found the evidence for theism compelling. That convergence itself is data.',
-    'Atheism, like theism, is a metaphysical position. There is no evidence-free default in metaphysics — every position carries commitments that must be argued for.',
-    'The history of science shows that apparently absent explanations have often been discovered. The absence of a detected God does not warrant confident atheism, only agnosticism.',
-    'Religious experience — reported by billions across cultures — constitutes genuine evidence, even if it is not conclusive. Rationality requires engaging with it, not dismissing it.',
-  ],
-  3: [
-    'The Euthyphro dilemma can be answered: God\'s nature is the standard of goodness, not an arbitrary will above it. Divine command theory is not the only theistic metaethics.',
-    'Evolutionary debunking arguments cut both ways. If our moral beliefs evolved for fitness rather than truth, the secular naturalist has the same problem explaining why those beliefs track moral reality.',
-    'Secular moral realism — the view that moral facts exist independently — has never successfully explained what moral facts are made of, where they come from, or why they should bind us.',
-    'Most secular ethical systems — Kantian, utilitarian, contractarian — smuggle in premises about human dignity that have theological roots and are difficult to justify without them.',
-    'The very act of arguing for secular ethics presupposes that reason should be followed, that truth matters, that persons deserve consideration — commitments that secular naturalism struggles to ground.',
-  ],
-};
+const PHASES = [
+  { key:'opening', label:'Opening Statement', secs:180, prompt:'Open your case FOR the motion — state your two or three strongest reasons clearly.' },
+  { key:'cross',   label:'Cross-Examination', secs:120, prompt:'Answer the bot’s challenge directly, then press the weakest link in its case.' },
+  { key:'closing', label:'Closing Statement', secs:120, prompt:'Summarise why your case outweighs the opposition. Don’t introduce brand-new arguments.' },
+];
 
-let arenaState = { round:0, maxRounds:5, scoreYou:0, scoreBot:0, motionIdx:0, active:false };
+let arenaState = { topicIdx:0, phaseIdx:0, scoreYou:0, scoreBot:0, botName:'Socrates-9', botRating:1050, active:false, timer:null, timeLeft:0 };
 
-window.startBotDebate = function(){
-  if(!currentUser){ toast('Sign in to debate the bot',''); return; }
-  arenaState = { round:1, maxRounds:5, scoreYou:0, scoreBot:0, motionIdx:arenaState.motionIdx, active:true };
-  document.getElementById('arenaStartRow').style.display = 'none';
-  document.getElementById('arenaScoreboard').style.display = 'block';
-  document.getElementById('arenaExchange').style.display = 'block';
-  document.getElementById('arenaResult').style.display = 'none';
-  document.getElementById('scoreYou').textContent = '0';
-  document.getElementById('scoreBot').textContent = '0';
-  document.getElementById('arenaRound').textContent = '1';
-  const youName = currentUser.displayName ? currentUser.displayName.split(' ')[0] : 'You';
-  document.getElementById('arenaYouName').textContent = youName;
-  showBotArg();
-};
+function botFor(topicIdx){
+  const t = BOT_TIERS.find(b=>b.topics.includes(topicIdx));
+  return t || BOT_TIERS[topicIdx % BOT_TIERS.length];
+}
+function fmtClock(s){ const m=Math.floor(s/60), ss=String(s%60).padStart(2,'0'); return m+':'+ss; }
 
-window.pickNewMotion = function(){
-  arenaState.motionIdx = (arenaState.motionIdx + 1) % MOTIONS.length;
-  const bot = BOT_NAMES[arenaState.motionIdx % BOT_NAMES.length];
-  document.getElementById('arenaMotion').textContent = MOTIONS[arenaState.motionIdx];
-  document.getElementById('arenaBotName').textContent = bot + ' (Dialectician)';
-  document.getElementById('arenaResult').style.display = 'none';
-  document.getElementById('arenaExchange').style.display = 'none';
-  document.getElementById('arenaScoreboard').style.display = 'none';
-  document.getElementById('arenaStartRow').style.display = 'flex';
-};
-
-function showBotArg(){
-  const pool = BOT_ARGS[arenaState.motionIdx] || BOT_ARGS[0];
-  const idx = (arenaState.round - 1) % pool.length;
-  document.getElementById('botArgText').textContent = pool[idx];
-  document.getElementById('arenaInput').value = '';
-  document.getElementById('arenaFeedback').textContent = '';
-  document.getElementById('arenaRound').textContent = arenaState.round;
+function setArenaTopic(idx){
+  arenaState.topicIdx = idx;
+  const t = DEBATE_TOPICS[idx]; const b = botFor(idx);
+  arenaState.botName = b.name; arenaState.botRating = b.rating;
+  document.getElementById('arenaMotion').textContent = '“'+t.motion+'”';
+  document.getElementById('arenaBotName').textContent = b.name+' ('+b.level+')';
 }
 
-window.submitDebateRound = function(){
-  const input = document.getElementById('arenaInput');
-  const text = input.value.trim();
-  if(text.length < 30){ document.getElementById('arenaFeedback').textContent = 'Write at least a sentence — put some thought into it.'; return; }
-  // Score heuristics: longer, richer arguments score higher
-  const words = text.split(/\s+/).length;
-  const hasEvidence = /because|therefore|since|given|evidence|argument|Rowe|Plantinga|Hume|Russell|Aquinas|study|shows|research|however|although|contrary/i.test(text);
-  const hasConcession = /admittedly|granted|true that|fair point|concede|however|nevertheless/i.test(text);
-  let youScore = Math.min(3, Math.floor(words / 25));
-  if(hasEvidence) youScore = Math.min(3, youScore + 1);
-  if(hasConcession) youScore = Math.min(3, youScore + 1);
-  const botScore = Math.floor(Math.random() * 2) + 1;
-  arenaState.scoreYou += youScore;
-  arenaState.scoreBot += botScore;
-  document.getElementById('scoreYou').textContent = arenaState.scoreYou;
-  document.getElementById('scoreBot').textContent = arenaState.scoreBot;
-  const fb = document.getElementById('arenaFeedback');
-  if(youScore >= 3) fb.textContent = '✦ Strong round — good use of evidence.';
-  else if(youScore === 2) fb.textContent = 'Solid. Try citing a specific thinker next round.';
-  else fb.textContent = 'Develop your argument more — one sentence isn\'t enough.';
-  fb.style.color = youScore >= 3 ? '#7ecfa4' : youScore === 2 ? 'var(--gold-soft)' : '#e07070';
-  arenaState.round++;
-  if(arenaState.round > arenaState.maxRounds){
-    endDebate(); return;
-  }
-  setTimeout(()=>{ showBotArg(); }, 1200);
+window.stopArenaTimer = function(){ if(arenaState.timer){ clearInterval(arenaState.timer); arenaState.timer=null; } };
+
+function renderPhaseTracker(){
+  const box=document.getElementById('arenaPhases'); if(!box) return;
+  box.innerHTML = PHASES.map((p,i)=>{
+    const cls = i<arenaState.phaseIdx?'done':i===arenaState.phaseIdx?'active':'';
+    return `<div class="arena-phase ${cls}"><span class="pn">${i<arenaState.phaseIdx?'✓':i+1}</span>${p.label}</div>`;
+  }).join('');
+}
+
+window.startBotDebate = function(){
+  if(!currentUser){ toast('Sign in to enter the arena',''); return; }
+  stopArenaTimer();
+  arenaState.phaseIdx=0; arenaState.scoreYou=0; arenaState.scoreBot=0; arenaState.active=true;
+  setArenaTopic(arenaState.topicIdx);
+  document.getElementById('arenaStartRow').style.display='none';
+  document.getElementById('arenaResult').style.display='none';
+  document.getElementById('arenaScoreboard').style.display='block';
+  document.getElementById('arenaStage').style.display='block';
+  document.getElementById('scoreYou').textContent='0';
+  document.getElementById('scoreBot').textContent='0';
+  const youName = currentUser.displayName ? currentUser.displayName.split(' ')[0] : 'You';
+  document.getElementById('arenaYouName').textContent = youName;
+  runPhase();
 };
+
+function runPhase(){
+  const ph = PHASES[arenaState.phaseIdx];
+  const t  = DEBATE_TOPICS[arenaState.topicIdx];
+  renderPhaseTracker();
+  document.getElementById('stagePhase').textContent = ph.label;
+  document.getElementById('botPhaseLabel').textContent = arenaState.botName+' — opposition '+ph.key;
+  document.getElementById('botStatementText').textContent = t.bot[ph.key];
+  document.getElementById('yourPhaseLabel').textContent = ph.label.toLowerCase();
+  document.getElementById('yourPrompt').textContent = ph.prompt;
+  const inp=document.getElementById('arenaInput'); inp.value=''; inp.disabled=false; inp.focus();
+  const fb=document.getElementById('arenaFeedback'); fb.textContent='';
+  const btn=document.getElementById('submitPhaseBtn'); btn.disabled=false;
+  startPhaseTimer(ph.secs);
+}
+
+function startPhaseTimer(secs){
+  stopArenaTimer();
+  arenaState.timeLeft = secs;
+  const el=document.getElementById('stageTimer');
+  el.textContent=fmtClock(secs); el.classList.remove('low');
+  arenaState.timer = setInterval(()=>{
+    arenaState.timeLeft--;
+    el.textContent = fmtClock(Math.max(0,arenaState.timeLeft));
+    if(arenaState.timeLeft<=15) el.classList.add('low');
+    if(arenaState.timeLeft<=0){ stopArenaTimer(); submitPhase(true); }
+  }, 1000);
+}
+
+function scorePhase(text){
+  const words = text.trim()? text.trim().split(/\s+/).length : 0;
+  const hasEvidence  = /because|therefore|since|given|evidence|argument|study|data|shows|research|for example|consider|Hume|Rowe|Plantinga|Russell|Aquinas|Camus|Mackie|Epicurus/i.test(text);
+  const hasCharity   = /admittedly|granted|i concede|fair|the opposition is right|to be fair|even if|i agree that|steelman/i.test(text);
+  const addressesBot = /you (say|claim|argue|hold|assume)|your (point|case|claim|argument)|the bot|opponent/i.test(text);
+  let s = 0;
+  if(words>=15) s++; if(words>=45) s++; if(words>=90) s++;   // substance
+  if(hasEvidence) s++;                                        // reasons/evidence
+  if(hasCharity || addressesBot) s++;                         // engagement/charity
+  return Math.min(5, s);
+}
+
+window.submitPhase = function(auto){
+  if(!arenaState.active) return;
+  stopArenaTimer();
+  const inp=document.getElementById('arenaInput');
+  const text=inp.value.trim();
+  const fb=document.getElementById('arenaFeedback');
+  if(!auto && text.length<20){ fb.style.color='#e07070'; fb.textContent='Write at least a sentence before submitting.'; startPhaseTimer(arenaState.timeLeft||PHASES[arenaState.phaseIdx].secs); return; }
+  inp.disabled=true; document.getElementById('submitPhaseBtn').disabled=true;
+  const you = scorePhase(text);
+  // bot competence scales with its rating (3..4 expected), with slight variance
+  const base = arenaState.botRating>=1700?4 : arenaState.botRating>=1450?3 : arenaState.botRating>=1250?3 : 2;
+  const bot = Math.max(1, Math.min(5, base + (Math.random()<0.4?1:0) - (Math.random()<0.25?1:0)));
+  arenaState.scoreYou += you; arenaState.scoreBot += bot;
+  document.getElementById('scoreYou').textContent=arenaState.scoreYou;
+  document.getElementById('scoreBot').textContent=arenaState.scoreBot;
+  fb.style.color = you>=4?'#7ecfa4':you>=3?'var(--gold-soft)':'#e0a080';
+  fb.textContent = (auto && !text? 'Time! No statement entered — 0 this phase. ' : '')
+    + (you>=4?'✦ Strong — evidence and engagement both landed.':you>=3?'Solid round. Cite a thinker or address the bot directly to score higher.':'Develop it further — more substance, evidence, and direct rebuttal.');
+  arenaState.phaseIdx++;
+  if(arenaState.phaseIdx < PHASES.length){ setTimeout(runPhase, 1500); }
+  else { setTimeout(endDebate, 1200); }
+};
+
+window.randomTopic = function(){
+  stopArenaTimer();
+  let n=arenaState.topicIdx;
+  if(DEBATE_TOPICS.length>1){ while(n===arenaState.topicIdx) n=Math.floor(Math.random()*DEBATE_TOPICS.length); }
+  setArenaTopic(n);
+  document.getElementById('arenaResult').style.display='none';
+  document.getElementById('arenaStage').style.display='none';
+  document.getElementById('arenaScoreboard').style.display='none';
+  document.getElementById('arenaStartRow').style.display='flex';
+};
+
+// initialise the arena header with a starting topic
+try { setArenaTopic(0); } catch(e){}
 
 /* ── Debate history stored in memory (saved to Firestore via saveProgress) ── */
 if(!state.debateHistory) state.debateHistory = [];
 
 function renderBotQueue(){
   const el = document.getElementById('botChallengeQueue'); if(!el) return;
-  const BOT_LEVELS = [
-    { name:'Socrates-9',  level:'Beginner',     rating:1050, motions:[0,1,2] },
-    { name:'Hume-5',      level:'Intermediate', rating:1320, motions:[0,2,4] },
-    { name:'Kant-3',      level:'Advanced',     rating:1580, motions:[0,3,6] },
-    { name:'Aristotle-6', level:'Expert',       rating:1820, motions:[1,4,5] },
-  ];
-  el.innerHTML = BOT_LEVELS.map((b,i)=>`
+  el.innerHTML = BOT_TIERS.map((b,i)=>`
     <div class="row" style="cursor:pointer" onclick="challengeBot(${i})">
       <div class="mo">
         <b>${b.name}</b>
@@ -2573,20 +2806,14 @@ function renderBotQueue(){
     </div>`).join('');
 }
 
-function challengeBot(idx){
-  const BOT_LEVELS = [
-    { name:'Socrates-9',  level:'Beginner',     rating:1050, motions:[0,1,2] },
-    { name:'Hume-5',      level:'Intermediate', rating:1320, motions:[0,2,4] },
-    { name:'Kant-3',      level:'Advanced',     rating:1580, motions:[0,3,6] },
-    { name:'Aristotle-6', level:'Expert',       rating:1820, motions:[1,4,5] },
-  ];
-  const bot = BOT_LEVELS[idx];
-  arenaState.motionIdx = bot.motions[0];
-  document.getElementById('arenaMotion').textContent = MOTIONS[arenaState.motionIdx];
-  document.getElementById('arenaBotName').textContent = bot.name + ' (' + bot.level + ')';
+window.challengeBot = function(idx){
+  const b = BOT_TIERS[idx];
+  // pick a random topic from this bot's set
+  const tIdx = b.topics[Math.floor(Math.random()*b.topics.length)];
+  setArenaTopic(tIdx);
   document.getElementById('arenaMotion').scrollIntoView({behavior:'smooth', block:'center'});
   startBotDebate();
-}
+};
 
 function renderDebateRecord(){
   const el = document.getElementById('debateRecord');
@@ -2616,18 +2843,19 @@ function renderDebateRecord(){
 }
 
 function endDebate(){
-  document.getElementById('arenaExchange').style.display = 'none';
+  stopArenaTimer();
+  arenaState.active=false;
+  document.getElementById('arenaStage').style.display='none';
   const you = arenaState.scoreYou, bot = arenaState.scoreBot;
   const won = you > bot, tied = you === bot;
   const rp  = won ? 80 : tied ? 40 : 20;
   const result = won ? 'win' : tied ? 'draw' : 'loss';
 
-  // Save to debate history
   if(!state.debateHistory) state.debateHistory = [];
   state.debateHistory.push({
     result, you, bot_score: bot,
-    motion: MOTIONS[arenaState.motionIdx].replace(/["""]/g,''),
-    bot: document.getElementById('arenaBotName').textContent,
+    motion: DEBATE_TOPICS[arenaState.topicIdx].motion,
+    bot: arenaState.botName,
     date: new Date().toLocaleDateString(),
   });
   renderDebateRecord();
@@ -2638,21 +2866,21 @@ function endDebate(){
   res.style.background = won ? 'rgba(62,107,84,.18)' : tied ? 'rgba(184,137,59,.15)' : 'rgba(123,44,44,.18)';
   res.style.border = '1px solid ' + (won ? 'rgba(62,107,84,.4)' : tied ? 'rgba(184,137,59,.3)' : 'rgba(123,44,44,.4)');
   res.innerHTML = `
-    <div style="font-size:28px;margin-bottom:10px">${won?'🏆':tied?'🤝':'📚'}</div>
-    <div style="font-family:var(--disp);font-size:24px;font-weight:700;color:${won?'#7ecfa4':tied?'var(--gold-soft)':'#e07070'};margin-bottom:8px">
-      ${won?'You won!':tied?'Draw':'Bot wins this round'}
+    <div style="font-size:30px;margin-bottom:10px">${won?'🏆':tied?'🤝':'📚'}</div>
+    <div style="font-family:var(--disp);font-size:25px;font-weight:700;color:${won?'#7ecfa4':tied?'var(--gold-soft)':'#e07070'};margin-bottom:8px">
+      ${won?'You won the debate!':tied?'A draw — well matched':'The bot edged this one'}
     </div>
-    <div style="font-size:14px;color:#C8BCA1;margin-bottom:16px">
-      Final score: <b style="color:#7ecfa4">${you}</b> – <b style="color:#e07070">${bot}</b>
+    <div style="font-size:14px;color:#C8BCA1;margin-bottom:6px">vs ${arenaState.botName} on “${DEBATE_TOPICS[arenaState.topicIdx].motion}”</div>
+    <div style="font-size:15px;color:#C8BCA1;margin-bottom:16px">
+      Final score &nbsp; You <b style="color:#7ecfa4;font-size:20px">${you}</b> &nbsp;–&nbsp; <b style="color:#e07070;font-size:20px">${bot}</b> Bot
     </div>
     <div style="font-size:13px;color:var(--gold-soft);margin-bottom:20px">+${rp} RP awarded</div>
     <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
       <button class="btn gold" onclick="startBotDebate()">Rematch →</button>
-      <button class="btn lt" onclick="pickNewMotion()">New motion</button>
+      <button class="btn lt" onclick="randomTopic()">🎲 New topic</button>
     </div>`;
   if(typeof award==='function') award('debate-'+Date.now(), rp, won?'Debate won!':'Debate complete');
-  arenaState.active = false;
-  document.getElementById('arenaStartRow').style.display = 'flex';
+  document.getElementById('arenaStartRow').style.display = 'none';
 }
 
 // Also update saveProgress to include debateHistory
