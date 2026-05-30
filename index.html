@@ -250,11 +250,21 @@ nav.main a.active::after{content:""; position:absolute; left:.72em; right:.72em;
 
 /* feature grid */
 .feat{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:6px; overflow:hidden}
-.fcard{background:var(--paper-2); padding:30px 26px; transition:.2s}
+.fcard{background:var(--paper-2); padding:30px 26px; transition:.2s; cursor:pointer}
 .fcard:hover{background:#fff}
-.fcard .ic{width:42px; height:42px; color:var(--garnet); margin-bottom:16px}
-.fcard h4{font-size:19px; margin-bottom:8px}
+.fcard:hover .ic{transform:scale(1.06)}
+.fcard:hover h4 .arrow{transform:translateX(4px)}
+.fcard .ic{width:42px; height:42px; color:var(--garnet); margin-bottom:16px; transition:.2s}
+.fcard h4{font-size:19px; margin-bottom:8px; display:flex; align-items:center; gap:8px}
+.fcard h4 .arrow{color:var(--gold-deep); font-size:16px; transition:.2s; margin-left:auto}
 .fcard p{font-size:14.5px; color:var(--ink-soft); margin:0}
+/* generic tool modal (flashcards / argument lab / socratic) */
+.tool-card{background:var(--card); border:1px solid var(--line); border-radius:6px; padding:24px; min-height:150px}
+.tool-flip{cursor:pointer; user-select:none; display:flex; align-items:center; justify-content:center; text-align:center; min-height:170px; font-family:var(--disp); transition:.15s}
+.tool-flip .front{font-size:26px; font-weight:600; color:var(--ink)}
+.tool-flip .back{font-size:17px; font-weight:400; line-height:1.5; color:var(--ink-soft); font-family:var(--serif)}
+.tool-meta{font-family:var(--mono); font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted)}
+.vbtn{flex:1; justify-content:center}
 @media(max-width:860px){.feat{grid-template-columns:1fr 1fr}}
 @media(max-width:560px){.feat{grid-template-columns:1fr}}
 
@@ -633,6 +643,18 @@ footer .base b{color:var(--gold-soft)}
 </header>
 
 <!-- Certificate Name Modal -->
+<!-- Generic toolkit modal: Flashcards / Argument Lab / Socratic Questions -->
+<div id="toolModal" class="cert-modal-overlay" style="display:none;align-items:flex-start;overflow-y:auto;padding:40px 20px" onclick="if(event.target===this)closeToolModal()">
+  <div class="cert-modal" style="max-width:620px;width:100%">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+      <h3 id="toolTitle">Tool</h3>
+      <button class="btn ghost sm" onclick="closeToolModal()">Close</button>
+    </div>
+    <p id="toolSub" style="margin-bottom:18px"></p>
+    <div id="toolBody"></div>
+  </div>
+</div>
+
 <div id="certModal" class="cert-modal-overlay" style="display:none" onclick="if(event.target===this)closeCertModal()">
   <div class="cert-modal">
     <h3>Your name on the certificate</h3>
@@ -778,12 +800,12 @@ footer .base b{color:var(--gold-soft)}
         <h2>Built for argument, not just video</h2>
       </div>
       <div class="feat">
-        <div class="fcard reveal"><svg class="ic" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="24" cy="9" r="5"/><circle cx="11" cy="38" r="5"/><circle cx="37" cy="38" r="5"/><path d="M24 14v9M24 23l-9 11M24 23l9 11"/></svg><h4>Argument Lab</h4><p>Build syllogisms and map arguments as premise&ndash;conclusion trees with automated validity checks and mentor notes.</p></div>
-        <div class="fcard reveal"><svg class="ic" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="24" cy="24" r="16"/><circle cx="24" cy="24" r="8"/><path d="M24 4v8M24 36v8M4 24h8M36 24h8"/></svg><h4>Fallacy Trainer</h4><p>Gamified spot-the-fallacy drills from real arguments, scored and spaced so they stick for years.</p></div>
-        <div class="fcard reveal"><svg class="ic" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 12h22a4 4 0 014 4v8a4 4 0 01-4 4H16l-7 6v-6H6a4 4 0 01-4-4v-8a4 4 0 014-4z" transform="translate(2 2)"/><path d="M20 30h22a4 4 0 014 4v0" opacity=".0"/></svg><h4>Debate Arena</h4><p>Structured debates, written or live video, with round timers, a shared flow sheet, and saved recordings.</p></div>
-        <div class="fcard reveal"><svg class="ic" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="10" y="14" width="26" height="20" rx="2" transform="rotate(-8 23 24)"/><rect x="13" y="12" width="26" height="20" rx="2"/></svg><h4>SRS Flashcards</h4><p>Fallacies, arguments, thinkers, and terms move into a spaced-repetition deck, auto-built as you progress.</p></div>
-        <div class="fcard reveal"><svg class="ic" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="24" cy="24" r="18"/><circle cx="16" cy="20" r="3"/><circle cx="32" cy="20" r="3"/><path d="M16 31c2 3 5 4 8 4s6-1 8-4"/></svg><h4>Socratic Circles</h4><p>Moderated small-group rooms organised around a question, with steelman-challenge prompts.</p></div>
-        <div class="fcard reveal"><svg class="ic" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M24 6l15.6 9v18L24 42 8.4 33V15z"/><path d="M24 16l8 4.6v9L24 34l-8-4.4v-9z" opacity=".55"/><circle cx="24" cy="24" r="2.4" fill="currentColor"/></svg><h4>Skill Radar</h4><p>Logic, Evidence, Rebuttal, Charity, Rhetoric &amp; Composure &mdash; visualised so you always know what to sharpen.</p></div>
+        <div class="fcard reveal" onclick="openArgumentLab()"><svg class="ic" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="24" cy="9" r="5"/><circle cx="11" cy="38" r="5"/><circle cx="37" cy="38" r="5"/><path d="M24 14v9M24 23l-9 11M24 23l9 11"/></svg><h4>Argument Lab <span class="arrow">→</span></h4><p>Test whether an argument is valid: read the premises and conclusion, then judge it — with the reasoning revealed.</p></div>
+        <div class="fcard reveal" onclick="gotoDrill()"><svg class="ic" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="24" cy="24" r="16"/><circle cx="24" cy="24" r="8"/><path d="M24 4v8M24 36v8M4 24h8M36 24h8"/></svg><h4>Fallacy Trainer <span class="arrow">→</span></h4><p>Spot-the-fallacy drills from real arguments — 20 scenarios, served at random on your dashboard.</p></div>
+        <div class="fcard reveal" onclick="go('arena')"><svg class="ic" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 12h22a4 4 0 014 4v8a4 4 0 01-4 4H16l-7 6v-6H6a4 4 0 01-4-4v-8a4 4 0 014-4z" transform="translate(2 2)"/></svg><h4>Debate Arena <span class="arrow">→</span></h4><p>Timed debates against the bot — pick a side, argue opening, cross-examination, and closing, then get scored.</p></div>
+        <div class="fcard reveal" onclick="openFlashcards()"><svg class="ic" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="10" y="14" width="26" height="20" rx="2" transform="rotate(-8 23 24)"/><rect x="13" y="12" width="26" height="20" rx="2"/></svg><h4>Flashcards <span class="arrow">→</span></h4><p>Every key term from the curriculum, turned into flip-cards. Shuffle the deck and test your recall.</p></div>
+        <div class="fcard reveal" onclick="openSocratic()"><svg class="ic" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="24" cy="24" r="18"/><circle cx="16" cy="20" r="3"/><circle cx="32" cy="20" r="3"/><path d="M16 31c2 3 5 4 8 4s6-1 8-4"/></svg><h4>Socratic Questions <span class="arrow">→</span></h4><p>Pressure-test your own position: a claim, then a chain of Socratic probes that ask you to defend it honestly.</p></div>
+        <div class="fcard reveal" onclick="gotoRadar()"><svg class="ic" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M24 6l15.6 9v18L24 42 8.4 33V15z"/><path d="M24 16l8 4.6v9L24 34l-8-4.4v-9z" opacity=".55"/><circle cx="24" cy="24" r="2.4" fill="currentColor"/></svg><h4>Skill Radar <span class="arrow">→</span></h4><p>Logic, Evidence, Rebuttal, Charity, Rhetoric &amp; Composure — visualised so you always know what to sharpen.</p></div>
       </div>
     </div>
   </section>
@@ -1784,9 +1806,21 @@ function checkQuiz(key){
 /* ============================================================
    RP / AWARDS / TOAST
    ============================================================ */
+/* RP is DERIVED from real achievements so it always matches the counters:
+   each passed/completed lesson (40 if it has a quiz, else 30) + each debate
+   (win 80 / draw 40 / loss 20). Drills are practice and do not bank RP. */
+function recomputeRP(){
+  let rp=0;
+  state.done.forEach(key=>{ const c=lessonData(key); rp += (c && c.quiz && c.quiz.length) ? 40 : 30; });
+  (state.debateHistory||[]).forEach(d=> rp += d.result==='win'?80 : d.result==='draw'?40 : 20);
+  state.rp = rp;
+}
 function award(id,amt,msg){
-  if(state.awarded.has(id)){ toast(msg||'Done',''); return; }
-  state.awarded.add(id); state.rp+=amt; syncRP(); toast(msg||'Nice work','+'+amt+' RP');
+  // amt is now just the toast figure; the authoritative total is recomputed from sources
+  const isNew = !state.awarded.has(id);
+  if(isNew) state.awarded.add(id);
+  recomputeRP(); syncRP();
+  toast(msg||'Nice work', isNew && amt ? '+'+amt+' RP' : '');
   saveProgress();
 }
 function syncRP(){
@@ -2114,8 +2148,136 @@ function answerDrill(i){
   const fb=document.getElementById('drillFb'); const right=i===d.ans;
   fb.innerHTML=(right?'<b style="color:var(--verd)">Correct.</b> ':'<b style="color:var(--garnet)">Not quite.</b> ')+d.ex;
   fb.classList.add('show');
-  award('drill-'+drillIdx,15,right?'Good eye!':'Drill logged');
+  toast(right?'Good eye! 🎯':'Keep practising','');   // drills are practice — no banked RP
 }
+
+/* ============================================================
+   TOOLKIT — homepage cards (flashcards / argument lab / socratic)
+   ============================================================ */
+function closeToolModal(){ document.getElementById('toolModal').style.display='none'; }
+function openTool(title,sub){
+  document.getElementById('toolTitle').textContent=title;
+  document.getElementById('toolSub').textContent=sub;
+  const m=document.getElementById('toolModal'); m.style.display='flex'; m.scrollTop=0;
+}
+/* route cards that map to existing features */
+function gotoDrill(){ go('dashboard'); setTimeout(()=>{ const e=document.getElementById('drillArg'); if(e) e.scrollIntoView({behavior:'smooth',block:'center'}); },150); }
+function gotoRadar(){ go('dashboard'); setTimeout(()=>{ const e=document.getElementById('radar'); if(e) e.scrollIntoView({behavior:'smooth',block:'center'}); },150); }
+
+/* ---- Flashcards: every key term across the curriculum ---- */
+let fcDeck=[], fcIdx=0, fcFlipped=false;
+function buildDeck(){
+  const seen=new Set(), deck=[];
+  CURRICULUM.forEach(L=>flatLessons(L).forEach(x=>{
+    const c=lessonData(L.id+':'+x.code);
+    if(c && c.terms) c.terms.forEach(t=>{ const term=t[0], def=t[1]; if(term&&def&&!seen.has(term.toLowerCase())){ seen.add(term.toLowerCase()); deck.push({term,def,lesson:x.title}); } });
+  }));
+  return deck;
+}
+function shuffle(a){ for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+function openFlashcards(){
+  fcDeck=shuffle(buildDeck()); fcIdx=0; fcFlipped=false;
+  openTool('Flashcards','Tap the card to flip. '+fcDeck.length+' key terms drawn from across the curriculum.');
+  renderFlashcard();
+}
+function renderFlashcard(){
+  const body=document.getElementById('toolBody');
+  if(!fcDeck.length){ body.innerHTML='<div class="tool-card">No terms available yet — complete or add lessons first.</div>'; return; }
+  const c=fcDeck[fcIdx];
+  body.innerHTML=`
+    <div class="tool-card tool-flip" onclick="fcFlip()">
+      ${fcFlipped
+        ? `<div class="back">${c.def}</div>`
+        : `<div class="front">${c.term}</div>`}
+    </div>
+    <div style="display:flex;align-items:center;gap:10px;margin-top:14px">
+      <span class="tool-meta">${fcIdx+1} / ${fcDeck.length}${fcFlipped?' · '+c.lesson:''}</span>
+      <div style="margin-left:auto;display:flex;gap:8px">
+        <button class="btn ghost sm" onclick="fcFlip()">${fcFlipped?'Show term':'Flip'}</button>
+        <button class="btn gold sm" onclick="fcNext()">Next →</button>
+      </div>
+    </div>
+    <button class="btn ghost sm" style="margin-top:10px" onclick="fcShuffle()">↻ Shuffle deck</button>`;
+}
+function fcFlip(){ fcFlipped=!fcFlipped; renderFlashcard(); }
+function fcNext(){ fcIdx=(fcIdx+1)%fcDeck.length; fcFlipped=false; renderFlashcard(); }
+function fcShuffle(){ fcDeck=shuffle(fcDeck); fcIdx=0; fcFlipped=false; renderFlashcard(); toast('Deck shuffled',''); }
+
+/* ---- Argument Lab: judge an argument valid or invalid ---- */
+const VALIDITY=[
+  {prem:['All humans are mortal.','Socrates is human.'],con:'Socrates is mortal.',valid:true,ex:'A textbook valid syllogism (modus Barbara). The conclusion follows necessarily from the premises.'},
+  {prem:['If it rained, the ground is wet.','The ground is wet.'],con:'Therefore it rained.',valid:false,ex:'<b>Affirming the consequent.</b> The ground could be wet for other reasons; the conclusion does not follow.'},
+  {prem:['If God exists, the universe has a cause.','God does not exist.'],con:'Therefore the universe has no cause.',valid:false,ex:'<b>Denying the antecedent.</b> Even if God doesn’t exist, the universe might have some other cause.'},
+  {prem:['If a being is omniscient, it knows all truths.','God is omniscient.'],con:'God knows all truths.',valid:true,ex:'Valid — <b>modus ponens</b>. If P→Q and P, then Q.'},
+  {prem:['No purely physical process is conscious.','Thinking is a purely physical process.'],con:'Thinking is not conscious.',valid:true,ex:'Valid in form (the conclusion follows). Validity is about structure, not whether the premises are true.'},
+  {prem:['Some atheists are philosophers.','Some philosophers are theists.'],con:'Therefore some atheists are theists.',valid:false,ex:'<b>Invalid.</b> Two "some" premises don’t connect the end terms — a classic undistributed-middle error.'},
+  {prem:['If the argument is sound, its conclusion is true.','The argument is not sound.'],con:'Its conclusion is false.',valid:false,ex:'<b>Denying the antecedent.</b> An unsound argument can still have a true conclusion.'},
+  {prem:['Either the cause is natural or it is supernatural.','The cause is not natural.'],con:'The cause is supernatural.',valid:true,ex:'Valid — <b>disjunctive syllogism</b>. (Whether the first premise is *true* is a separate question of soundness.)'},
+  {prem:['All sound arguments are valid.','This argument is valid.'],con:'This argument is sound.',valid:false,ex:'<b>Invalid.</b> Validity is necessary but not sufficient for soundness — the premises must also be true.'},
+  {prem:['If morality requires God, then atheists cannot be moral.','Many atheists are moral.'],con:'Morality does not require God.',valid:true,ex:'Valid — <b>modus tollens</b>. If P→Q and not-Q, then not-P.'},
+  {prem:['Everything that begins to exist has a cause.','The universe began to exist.'],con:'The universe has a cause.',valid:true,ex:'Valid in form (the Kalām’s logic). Soundness depends on whether both premises are actually true — that’s the real debate.'},
+  {prem:['Most religions cannot all be true.','Christianity is a religion.'],con:'Christianity is not true.',valid:false,ex:'<b>Invalid.</b> "Not all can be true" doesn’t single out any one as false. A hasty leap.'},
+];
+let vlIdx=0, vlLocked=false;
+function openArgumentLab(){ vlIdx=Math.floor(Math.random()*VALIDITY.length); vlLocked=false; openTool('Argument Lab','Is the argument VALID — does the conclusion follow from the premises? (Ignore whether the premises are actually true.)'); renderValidity(); }
+function renderValidity(){
+  const v=VALIDITY[vlIdx]; const body=document.getElementById('toolBody');
+  body.innerHTML=`
+    <div class="tool-card">
+      ${v.prem.map((p,i)=>`<div style="font-size:16px;margin-bottom:8px"><span class="tool-meta">P${i+1}</span> &nbsp;${p}</div>`).join('')}
+      <div style="border-top:1px solid var(--line);margin:12px 0;padding-top:12px;font-size:16px"><span class="tool-meta">∴ Conclusion</span> &nbsp;<b>${v.con}</b></div>
+      <div id="vlEx" style="display:none;margin-top:12px;font-size:14.5px;color:var(--ink-soft);line-height:1.55"></div>
+    </div>
+    <div style="display:flex;gap:10px;margin-top:14px">
+      <button class="btn ghost vbtn" id="vlValid" onclick="answerValidity(true)">Valid</button>
+      <button class="btn ghost vbtn" id="vlInvalid" onclick="answerValidity(false)">Invalid</button>
+      <button class="btn gold vbtn" id="vlNext" style="display:none" onclick="nextValidity()">Next →</button>
+    </div>`;
+}
+function answerValidity(guess){
+  if(vlLocked) return; vlLocked=true;
+  const v=VALIDITY[vlIdx]; const right=guess===v.valid;
+  const ex=document.getElementById('vlEx'); ex.style.display='block';
+  ex.innerHTML=(right?'<b style="color:var(--verd)">Correct — '+(v.valid?'valid':'invalid')+'.</b> ':'<b style="color:var(--garnet)">Not quite — it’s '+(v.valid?'valid':'invalid')+'.</b> ')+v.ex;
+  document.getElementById('vlValid').style.display='none';
+  document.getElementById('vlInvalid').style.display='none';
+  document.getElementById('vlNext').style.display='inline-flex';
+}
+function nextValidity(){ let n=vlIdx; while(n===vlIdx&&VALIDITY.length>1) n=Math.floor(Math.random()*VALIDITY.length); vlIdx=n; vlLocked=false; renderValidity(); }
+
+/* ---- Socratic Questions: pressure-test your own position ---- */
+const SOCRATIC=[
+  {claim:'There is no good evidence that any god exists.',probes:['What would count, for you, as good evidence either way?','Is "absence of evidence" the same as "evidence of absence" here — and does it matter?','Could a sincere believer accept your standard of evidence? If not, why not?','What is the strongest reason on the other side, stated as its holder would?']},
+  {claim:'Morality does not require religion.',probes:['Where, then, do moral obligations get their force?','If two people’s moral intuitions conflict, how do you adjudicate without appeal to authority?','Does your view make morality objective, or a matter of agreement? Are you comfortable with that?','What would a thoughtful theist say you’re leaving out?']},
+  {claim:'Faith and reason are fundamentally opposed.',probes:['What exactly do you mean by "faith" — and does the believer mean the same?','Do you hold any beliefs you cannot fully justify by evidence? How is that different?','Could there be reasonable faith, or is the phrase a contradiction for you?','Steelman the view that faith and reason can cooperate.']},
+  {claim:'The universe needs no creator.',probes:['Does "needs no creator" mean one is impossible, or merely unnecessary?','What explains why there is something rather than nothing, on your view?','Is "it just is" a stopping point you’d accept from an opponent?','What is the best version of the cosmological argument you must answer?']},
+  {claim:'Religious belief is a product of culture, not truth.',probes:['Does explaining how a belief arises tell us whether it’s true?','Could the same "it’s just culture" move be turned on your own beliefs?','What would distinguish a culturally-transmitted truth from a culturally-transmitted error?','How would a believer account for the diversity of religions without abandoning their own?']},
+  {claim:'A meaningful life needs no afterlife.',probes:['What makes a life meaningful, on your account?','If everything ends, does anything you do "finally" matter — and must it, to be meaningful now?','Is meaning something you discover or something you create? Can it be both?','What does the person who disagrees fear losing, and is that fear unreasonable?']},
+  {claim:'We should always proportion belief to evidence.',probes:['Do you hold THAT principle on sufficient evidence, or is it a commitment?','Are there beliefs (in people, in projects) that must precede the evidence?','Where is the line between healthy caution and paralysing doubt?','When has acting before the evidence was in turned out to be wise?']},
+];
+let socIdx=0, socProbe=0;
+function openSocratic(){ socIdx=Math.floor(Math.random()*SOCRATIC.length); socProbe=0; openTool('Socratic Questions','Hold a position, then answer each probe honestly — out loud or in your notes. The goal is to find the weak joint in your own view.'); renderSocratic(); }
+function renderSocratic(){
+  const s=SOCRATIC[socIdx]; const body=document.getElementById('toolBody');
+  const shown=s.probes.slice(0,socProbe+1);
+  body.innerHTML=`
+    <div class="tool-card">
+      <div class="tool-meta" style="margin-bottom:8px">The claim</div>
+      <div style="font-family:var(--disp);font-size:21px;font-weight:600;color:var(--ink);margin-bottom:18px">“${s.claim}”</div>
+      <div class="tool-meta" style="margin-bottom:10px">Socratic probes</div>
+      <ol style="margin:0;padding-left:20px;display:flex;flex-direction:column;gap:10px">
+        ${shown.map(p=>`<li style="font-size:15.5px;line-height:1.5;color:var(--ink-soft)">${p}</li>`).join('')}
+      </ol>
+    </div>
+    <div style="display:flex;gap:10px;margin-top:14px">
+      ${socProbe < s.probes.length-1
+        ? `<button class="btn gold vbtn" onclick="nextProbe()">Next probe →</button>`
+        : `<span class="tool-meta" style="align-self:center">All probes shown — sit with the hardest one.</span>`}
+      <button class="btn ghost sm" style="margin-left:auto" onclick="newSocratic()">New claim ↻</button>
+    </div>`;
+}
+function nextProbe(){ const s=SOCRATIC[socIdx]; if(socProbe<s.probes.length-1) socProbe++; renderSocratic(); }
+function newSocratic(){ let n=socIdx; while(n===socIdx&&SOCRATIC.length>1) n=Math.floor(Math.random()*SOCRATIC.length); socIdx=n; socProbe=0; renderSocratic(); }
 
 /* ============================================================
    BADGES
@@ -2799,7 +2961,9 @@ onAuthStateChanged(auth, async user => {
     btn.title = 'Signed in as ' + (user.displayName||user.email);
     // Load Firestore progress
     await loadProgress(user.uid);
-    if(reconcileDone()){ refreshProgress(); if(typeof saveProgress==='function') saveProgress(); }  // drop stale (un-passed) completions
+    const staleDone = reconcileDone();              // drop un-passed completions
+    const prevRP = state.rp; recomputeRP();         // RP is derived from real achievements
+    if(staleDone || state.rp!==prevRP){ refreshProgress(); if(typeof saveProgress==='function') saveProgress(); }
     const firstName = user.displayName ? user.displayName.split(' ')[0] : 'scholar';
     const dashName = document.getElementById('dashUserName');
     if(dashName) dashName.textContent = firstName;
