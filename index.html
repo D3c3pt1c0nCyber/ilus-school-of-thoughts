@@ -1065,6 +1065,19 @@ footer .base b{color:var(--gold-soft)}
       </div>
     </div>
 
+    <!-- Account access — lock / unlock / reset (any admin) -->
+    <div class="panel" style="padding:24px 26px;margin-top:24px">
+      <h3 style="margin-bottom:4px">Account access</h3>
+      <p style="font-size:13.5px;color:var(--muted);margin-bottom:16px">Accounts lock automatically after 5 failed sign-in attempts. Lock or unlock an account here, and trigger a password reset (the user receives an email to set a new password).</p>
+      <div id="lockList" style="margin-bottom:16px"></div>
+      <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+        <input id="lockEmail" class="adm-input" style="flex:1;min-width:220px;margin:0" type="email" placeholder="user@email.com">
+        <button class="btn lt" onclick="adminLockAccount()">🔒 Lock</button>
+        <button class="btn lt" onclick="adminUnlockAccount()">🔓 Unlock</button>
+        <button class="btn gold" onclick="adminResetUserPassword()">Send password reset</button>
+      </div>
+    </div>
+
     <!-- Manage admins — founder only -->
     <div id="adminTeamPanel" class="panel" style="padding:24px 26px;margin-top:24px;display:none">
       <h3 style="margin-bottom:4px">Roles &amp; access</h3>
@@ -1170,6 +1183,8 @@ const ADMIN_EMAILS = ['joiesayen1223@gmail.com'];   // founder account(s) — ca
 let isAdmin = false;     // can edit content (founder OR promoted)
 let isFounder = false;   // can manage the admin roster (founder only)
 let siteAdmins = [];     // promoted admin emails, loaded from Firestore content/roles
+let lockedEmails = [];   // admin-locked accounts (Firestore content/locks); blocked at sign-in
+const MAX_LOGIN_ATTEMPTS = 5;
 
 /* Admin-authored content, loaded once from Firestore content/site:
    - SITE.lessonContent : { 'L1:1.1': {read,terms,quiz,youtubeId}, ... } overrides/extends SEED
@@ -2205,13 +2220,39 @@ function friendlyAuthError(code){
   return map[code] || 'Something went wrong. Please try again.';
 }
 
+/* per-browser failed-attempt counter */
+function failKey(email){ return 'isot_fails_'+email.toLowerCase(); }
+function getFails(email){ return parseInt(localStorage.getItem(failKey(email))||'0',10); }
+function setFails(email,n){ try{ localStorage.setItem(failKey(email), String(n)); }catch(_){} }
+function clearFails(email){ try{ localStorage.removeItem(failKey(email)); }catch(_){} }
+
 window.emailSignIn = async function(){
   const email = document.getElementById('gateEmail').value.trim();
   const pass  = document.getElementById('gatePass').value;
   if(!email || !pass){ gateErr('Enter your email and password.'); return; }
+  // admin lock check (Firestore list, loaded for the realm)
+  if(lockedEmails.includes(email.toLowerCase())){
+    gateErr('This account is locked. Please contact your administrator to unlock it.'); return;
+  }
+  // 5-attempt soft lock (per browser)
+  if(getFails(email) >= MAX_LOGIN_ATTEMPTS){
+    gateErr('Too many failed attempts — this account is locked. Contact your administrator to unlock it.'); return;
+  }
   const btn = document.getElementById('gateSignIn'); btn.disabled=true; btn.textContent='Signing in…';
-  try { await signInWithEmailAndPassword(auth, email, pass); }
-  catch(e){ gateErr(friendlyAuthError(e.code)); btn.disabled=false; btn.textContent='Sign in'; }
+  try {
+    await signInWithEmailAndPassword(auth, email, pass);
+    clearFails(email);   // success resets the counter
+  }
+  catch(e){
+    const n = getFails(email)+1; setFails(email,n);
+    const left = MAX_LOGIN_ATTEMPTS - n;
+    if(n >= MAX_LOGIN_ATTEMPTS){
+      gateErr('Account locked after '+MAX_LOGIN_ATTEMPTS+' failed attempts. Contact your administrator to unlock it.');
+    } else {
+      gateErr(friendlyAuthError(e.code) + (left<=2 ? ' ('+left+' attempt'+(left===1?'':'s')+' left)' : ''));
+    }
+    btn.disabled=false; btn.textContent='Sign in';
+  }
 };
 
 window.emailReset = async function(){
@@ -2311,6 +2352,11 @@ async function loadSiteContent(){
     const rs = await getDoc(doc(db,'content','roles'));
     siteAdmins = (rs.exists() && Array.isArray(rs.data().admins)) ? rs.data().admins.map(e=>String(e).toLowerCase()) : [];
   } catch(e){ siteAdmins = []; }
+  // load the account lock list
+  try {
+    const ls = await getDoc(doc(db,'content','locks'));
+    lockedEmails = (ls.exists() && Array.isArray(ls.data().locked)) ? ls.data().locked.map(e=>String(e).toLowerCase()) : [];
+  } catch(e){ lockedEmails = []; }
   applySiteExtras();
   if(typeof renderCurriculum==='function') renderCurriculum();
 }
@@ -2355,6 +2401,47 @@ window.renderAdminTeam = function(){
   box.innerHTML = founders + admins;
 };
 
+/* ── Account access: lock / unlock / reset password (admins) ── */
+async function saveLocks(){
+  try { await setDoc(doc(db,'content','locks'),{ locked: lockedEmails, updatedAt: serverTimestamp(), updatedBy: currentUser?currentUser.email:'' }); return true; }
+  catch(e){ console.warn('saveLocks failed',e); toast('Could not save — check Firestore rules',''); return false; }
+}
+
+window.adminLockAccount = async function(){
+  if(!isAdmin){ toast('Admins only',''); return; }
+  const inp=document.getElementById('lockEmail'); const email=(inp.value||'').trim().toLowerCase();
+  if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){ toast('Enter a valid email',''); return; }
+  if(ADMIN_EMAILS.includes(email)){ toast('The founder account cannot be locked',''); return; }
+  if(!lockedEmails.includes(email)) lockedEmails.push(email);
+  const ok=await saveLocks(); renderLockList();
+  if(ok) toast(email+' is now locked','');
+};
+
+window.adminUnlockAccount = async function(email){
+  if(!isAdmin){ toast('Admins only',''); return; }
+  email = email || (document.getElementById('lockEmail').value||'').trim().toLowerCase();
+  lockedEmails = lockedEmails.filter(e=>e!==email);
+  const ok=await saveLocks(); renderLockList();
+  if(ok) toast(email+' unlocked — they may also need to clear failed-attempt count by signing in fresh','✦');
+};
+
+window.adminResetUserPassword = async function(){
+  if(!isAdmin){ toast('Admins only',''); return; }
+  const email=(document.getElementById('lockEmail').value||'').trim().toLowerCase();
+  if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){ toast('Enter a valid email',''); return; }
+  try { await sendPasswordResetEmail(auth, email); toast('Password-reset email sent to '+email,'✦'); }
+  catch(e){ toast(friendlyAuthError(e.code),''); }
+};
+
+window.renderLockList = function(){
+  const box=document.getElementById('lockList'); if(!box) return;
+  box.innerHTML = lockedEmails.length
+    ? lockedEmails.map(e=>`<div class="adm-lrow" style="cursor:default">
+        <span class="lt">${e}<small>Locked</small></span>
+        <button class="btn ghost sm" onclick="adminUnlockAccount('${e}')">Unlock</button></div>`).join('')
+    : '<p style="color:var(--muted);font-size:14px;font-style:italic;padding:8px 0">No locked accounts.</p>';
+};
+
 async function saveSiteContent(){
   try {
     await setDoc(doc(db,'content','site'),{
@@ -2380,6 +2467,7 @@ window.renderAdmin = function(){
   if(modLvlSel){ const cur=modLvlSel.value; modLvlSel.innerHTML = lvlOptions(); modLvlSel.value = cur || 'ES'; }
   refreshAddModules();
   renderAdminLessonList();
+  renderLockList();
   // founder-only roles panel
   const tp = document.getElementById('adminTeamPanel');
   if(tp){ tp.style.display = isFounder ? 'block' : 'none'; if(isFounder) renderAdminTeam(); }
@@ -2622,7 +2710,14 @@ onAuthStateChanged(auth, async user => {
     // ── RBAC: load roster, then resolve roles ──
     const email = (user.email||'').toLowerCase();
     isFounder = ADMIN_EMAILS.includes(email);
-    await loadSiteContent();                       // loads shared content + admin roster
+    await loadSiteContent();                       // loads shared content + roster + lock list
+    // ── Account lock enforcement: a locked, non-founder account is signed straight back out ──
+    if(!isFounder && lockedEmails.includes(email)){
+      await signOut(auth);
+      showGate();
+      gateErr('Your account is locked. Please contact your administrator.');
+      return;
+    }
     isAdmin = isFounder || siteAdmins.includes(email);
     const adminLink = document.getElementById('adminNavLink');
     if(adminLink) adminLink.style.display = isAdmin ? '' : 'none';
