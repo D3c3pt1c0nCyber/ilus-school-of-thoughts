@@ -51,6 +51,19 @@ button{font-family:inherit}
 .arrow{transition:.22s}
 .btn:hover .arrow{transform:translateX(3px)}
 
+/* ---------- auth button ---------- */
+.auth-btn{display:flex;align-items:center;gap:7px;padding:.55em 1.1em;border-radius:2px;border:1px solid var(--line-2);background:var(--paper-2);cursor:pointer;font-size:13.5px;font-weight:600;color:var(--ink);transition:.22s;white-space:nowrap;flex-shrink:0}
+.auth-btn:hover{background:var(--ink);color:var(--paper-2)}
+.auth-btn.signed-in{border-color:var(--gold);background:linear-gradient(180deg,#fdf6e8,var(--paper-2))}
+.auth-avatar{width:22px;height:22px;border-radius:50%;object-fit:cover;border:1.5px solid var(--gold)}
+/* ---------- cert name modal ---------- */
+.cert-modal-overlay{position:fixed;inset:0;z-index:900;background:rgba(28,26,20,.55);display:flex;align-items:center;justify-content:center;padding:20px}
+.cert-modal{background:var(--paper-2);border:1px solid var(--line-2);padding:36px 40px;max-width:480px;width:100%;border-radius:3px;box-shadow:0 8px 40px rgba(28,26,20,.22)}
+.cert-modal h3{font-family:var(--disp);font-size:24px;margin-bottom:10px}
+.cert-modal p{color:var(--ink-soft);font-size:15px;margin-bottom:22px;line-height:1.55}
+.cert-name-input{width:100%;padding:.75em 1em;border:1.5px solid var(--line-2);border-radius:2px;font-family:var(--disp);font-size:20px;font-weight:600;color:var(--ink);background:var(--paper);margin-bottom:24px;outline:none}
+.cert-name-input:focus{border-color:var(--gold)}
+.cert-modal-btns{display:flex;gap:12px;justify-content:flex-end}
 /* ---------- topbar ---------- */
 .topbar{position:sticky; top:0; z-index:200; background:rgba(244,236,216,.82); backdrop-filter:saturate(140%) blur(10px);
   border-bottom:1px solid var(--line)}
@@ -428,8 +441,25 @@ footer .base b{color:var(--gold-soft)}
     <div class="rp-pill" onclick="go('dashboard')" title="Your Reason Points & rank">
       <span class="star">✦</span><span class="v" id="rpTop">0</span><span class="rk" id="rankTop">Inquirer</span>
     </div>
+    <div id="authBtn" class="auth-btn" onclick="handleAuth()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg>
+      <span id="authLabel">Sign in</span>
+    </div>
   </div>
 </header>
+
+<!-- Certificate Name Modal -->
+<div id="certModal" class="cert-modal-overlay" style="display:none" onclick="if(event.target===this)closeCertModal()">
+  <div class="cert-modal">
+    <h3>Your name on the certificate</h3>
+    <p>This is how your name will appear. You can edit it before generating.</p>
+    <input id="certNameInput" type="text" class="cert-name-input" placeholder="Enter your full name" maxlength="60">
+    <div class="cert-modal-btns">
+      <button class="btn ghost sm" onclick="closeCertModal()">Cancel</button>
+      <button class="btn gold" onclick="generateCertificate()">Generate Certificate →</button>
+    </div>
+  </div>
+</div>
 
 <main>
 <!-- ============ HOME ============ -->
@@ -754,7 +784,8 @@ footer .base b{color:var(--gold-soft)}
   <div class="wrap" style="padding:34px 28px 80px">
     <div class="certstage"><div class="cert" id="certFull"></div></div>
     <div class="certbar">
-      <button class="btn gold" onclick="verifyCert()">Verify this credential <span class="arrow">→</span></button>
+      <button class="btn gold" onclick="openCertModal()">Generate my certificate <span class="arrow">→</span></button>
+      <button class="btn ghost" onclick="verifyCert()">Verify credential</button>
       <button class="btn ghost" onclick="toast('Preparing print-ready PDF…','')">Download PDF</button>
       <button class="btn ghost" onclick="toast('Added to your LinkedIn profile','')">Add to LinkedIn</button>
     </div>
@@ -795,7 +826,9 @@ footer .base b{color:var(--gold-soft)}
    STATE
    ============================================================ */
 const RANKS=[["Inquirer",0],["Disputant",500],["Rhetor",1500],["Dialectician",3500],["Adept",7000]];
-const state={ rp:1840, done:new Set(), awarded:new Set() };
+const state={ rp:0, done:new Set(), awarded:new Set() };
+let currentUser=null;
+let certName='';
 
 function rankFor(rp){ let r=RANKS[0]; for(const x of RANKS){ if(rp>=x[1]) r=x; } return r; }
 function nextRank(rp){ for(const x of RANKS){ if(x[1]>rp) return x; } return null; }
@@ -961,7 +994,7 @@ function qrSVG(seed){
    CERTIFICATE
    ============================================================ */
 function certHTML(opts){
-  const o=Object.assign({name:"Maria S. Delgado",title:"Certificate of Foundation",
+  const o=Object.assign({name:certName||"Your Name",title:"Certificate of Foundation",
     award:"has demonstrated mastery of Level I — First Light, and is awarded the",
     comp:"Attests the holder can define the terms precisely, reason in valid arguments, identify common fallacies, and deliver a clear opening statement.",
     date:"14 May 2026",cid:"ISOT-L1-2026-7F3A9C"},opts||{});
@@ -1047,7 +1080,8 @@ function flatLessons(L){ const a=[]; L.modules.forEach((m,mi)=>m.lessons.forEach
 function lvlProgress(id){ const L=lvlObj(id); const all=flatLessons(L); const d=all.filter(x=>state.done.has(id+':'+x.code)).length; return {d,t:all.length,pc:Math.round(d/all.length*100)}; }
 
 function openLesson(lvlId,code){
-  curLevel=lvlId; const L=lvlObj(lvlId); const all=flatLessons(L);
+  curLevel=lvlId; saveLastPosition(lvlId,code);
+  const L=lvlObj(lvlId); const all=flatLessons(L);
   const meta=all.find(x=>x.code===code); const key=lvlId+':'+code;
   document.getElementById('lsLevel').textContent='Level '+L.numeral+' · '+L.name;
   const pr=lvlProgress(lvlId); document.getElementById('lsProg').textContent=pr.d+' of '+pr.t+' lessons complete · '+pr.pc+'%';
@@ -1080,9 +1114,8 @@ function openLesson(lvlId,code){
 }
 
 function markComplete(key){
-  if(!state.done.has(key)){ state.done.add(key); award(key,30,'Lesson complete'); refreshProgress(); }
+  if(!state.done.has(key)){ state.done.add(key); award(key,30,'Lesson complete'); refreshProgress(); saveProgress(); }
   else toast('Already completed','');
-  // refresh sidebar checkmark
   const [lvl,code]=key.split(':'); openLesson(lvl,code);
 }
 
@@ -1125,6 +1158,7 @@ function checkQuiz(key){
   document.getElementById('checkBtn').style.display='none';
   if(!state.done.has(key)){ state.done.add(key); refreshProgress(); }
   award(key,40,correct===c.quiz.length?'Perfect — lesson complete!':'Lesson complete');
+  saveQuizScore(key, correct, c.quiz.length);
 }
 
 /* ============================================================
@@ -1133,6 +1167,7 @@ function checkQuiz(key){
 function award(id,amt,msg){
   if(state.awarded.has(id)){ toast(msg||'Done',''); return; }
   state.awarded.add(id); state.rp+=amt; syncRP(); toast(msg||'Nice work','+'+amt+' RP');
+  saveProgress();
 }
 function syncRP(){
   const r=rankFor(state.rp), nx=nextRank(state.rp);
@@ -1270,15 +1305,168 @@ document.head.appendChild(revStyle);
    INIT
    ============================================================ */
 (function init(){
-  // pre-populate demo progress: all of Level I + Module 1 of Level II
-  lvlObj('L1').modules.forEach(m=>m.lessons.forEach(l=>state.done.add('L1:'+l[0])));
-  lvlObj('L2').modules[0].lessons.forEach(l=>state.done.add('L2:'+l[0]));
   document.getElementById('heroSeal').innerHTML=sealSVG();
   document.getElementById('certPreview').innerHTML=certHTML();
   document.getElementById('certFull').innerHTML=certHTML();
   renderCurriculum(); renderRadar(); renderBadges(); newDrill();
   syncRP(); refreshProgress(); revealScan();
 })();
+</script>
+
+<!-- ============================================================
+     FIREBASE — Auth + Firestore progress saving
+     ============================================================ -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-app.js";
+import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged }
+  from "https://www.gstatic.com/firebasejs/12.14.0/firebase-auth.js";
+import { getFirestore, doc, getDoc, setDoc, updateDoc, serverTimestamp }
+  from "https://www.gstatic.com/firebasejs/12.14.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDPoT2TtLcLuNUiaWBcvcmoRQrnwnRaUcg",
+  authDomain: "iluschoolotthoughts.firebaseapp.com",
+  projectId: "iluschoolotthoughts",
+  storageBucket: "iluschoolotthoughts.firebasestorage.app",
+  messagingSenderId: "505787850293",
+  appId: "1:505787850293:web:cd20804b8cef9bd8a11b7c",
+  measurementId: "G-RD8B7TKL77"
+};
+
+const app  = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db   = getFirestore(app);
+const provider = new GoogleAuthProvider();
+
+/* ---- Expose helpers to global scope so inline JS can call them ---- */
+window.handleAuth = async function(){
+  if(currentUser){ await signOut(auth); } else { await signInWithPopup(auth, provider); }
+};
+
+window.saveProgress = async function(){
+  if(!currentUser) return;
+  try {
+    await setDoc(doc(db,'users',currentUser.uid,'progress','state'),{
+      rp: state.rp,
+      done: [...state.done],
+      awarded: [...state.awarded],
+      certName: certName || currentUser.displayName || '',
+      updatedAt: serverTimestamp()
+    });
+  } catch(e){ console.warn('saveProgress failed',e); }
+};
+
+window.saveQuizScore = async function(key, correct, total){
+  if(!currentUser) return;
+  try {
+    await setDoc(doc(db,'users',currentUser.uid,'quizScores',key.replace(':','-')),{
+      score: correct, total, pct: Math.round(correct/total*100),
+      savedAt: serverTimestamp()
+    });
+  } catch(e){ console.warn('saveQuizScore failed',e); }
+};
+
+window.saveLastPosition = async function(lvlId, code){
+  if(!currentUser) return;
+  try {
+    await setDoc(doc(db,'users',currentUser.uid,'progress','lastPosition'),{
+      level: lvlId, lesson: code, savedAt: serverTimestamp()
+    });
+  } catch(e){ console.warn('saveLastPosition failed',e); }
+};
+
+async function loadProgress(uid){
+  try {
+    const snap = await getDoc(doc(db,'users',uid,'progress','state'));
+    if(snap.exists()){
+      const d = snap.data();
+      state.rp = d.rp || 0;
+      state.done = new Set(d.done || []);
+      state.awarded = new Set(d.awarded || []);
+      certName = d.certName || '';
+      syncRP(); refreshProgress(); renderCurriculum();
+    }
+  } catch(e){ console.warn('loadProgress failed',e); }
+}
+
+async function loadLastPosition(uid){
+  try {
+    const snap = await getDoc(doc(db,'users',uid,'progress','lastPosition'));
+    if(snap.exists()){
+      const d = snap.data();
+      if(d.level && d.lesson) openLesson(d.level, d.lesson);
+    }
+  } catch(e){ console.warn('loadLastPosition failed',e); }
+}
+
+/* ---- Auth state observer ---- */
+onAuthStateChanged(auth, async user => {
+  currentUser = user;
+  const btn   = document.getElementById('authBtn');
+  const label = document.getElementById('authLabel');
+  if(user){
+    // Update topbar button → show avatar + name
+    const img = user.photoURL
+      ? `<img class="auth-avatar" src="${user.photoURL}" alt="">`
+      : `<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg>`;
+    btn.innerHTML = img + `<span id="authLabel">${user.displayName ? user.displayName.split(' ')[0] : 'Account'}</span>`;
+    btn.classList.add('signed-in');
+    btn.title = 'Signed in as ' + (user.displayName||user.email) + ' — click to sign out';
+    // Load saved progress from Firestore
+    await loadProgress(user.uid);
+    toast('Welcome back, ' + (user.displayName ? user.displayName.split(' ')[0] : 'scholar') + '!', '');
+    // Pre-fill certName from Google if not already saved
+    if(!certName && user.displayName) certName = user.displayName;
+  } else {
+    // Signed out — reset UI
+    btn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg><span id="authLabel">Sign in</span>`;
+    btn.classList.remove('signed-in');
+    btn.title = 'Sign in with Google';
+    // Reset state
+    state.rp = 0; state.done = new Set(); state.awarded = new Set(); certName = '';
+    syncRP(); refreshProgress(); renderCurriculum();
+  }
+});
+
+/* ---- Certificate modal ---- */
+window.openCertModal = function(){
+  if(!currentUser){ toast('Sign in to generate your certificate',''); return; }
+  const input = document.getElementById('certNameInput');
+  input.value = certName || currentUser.displayName || '';
+  document.getElementById('certModal').style.display = 'flex';
+  setTimeout(()=>input.focus(), 100);
+};
+
+window.closeCertModal = function(){
+  document.getElementById('certModal').style.display = 'none';
+};
+
+window.generateCertificate = async function(){
+  const input = document.getElementById('certNameInput');
+  const name  = input.value.trim();
+  if(!name){ input.style.borderColor='var(--garnet)'; input.focus(); return; }
+  certName = name;
+  // Save name to Firestore
+  if(currentUser){
+    try {
+      await updateDoc(doc(db,'users',currentUser.uid,'progress','state'),{ certName: name });
+    } catch(e){
+      // doc may not exist yet — use setDoc
+      await setDoc(doc(db,'users',currentUser.uid,'progress','state'),{ certName: name }, { merge: true });
+    }
+  }
+  // Re-render certificate with the confirmed name
+  const now = new Date();
+  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const dateStr = now.getDate() + ' ' + months[now.getMonth()] + ' ' + now.getFullYear();
+  const cid = 'ISOT-L1-' + now.getFullYear() + '-' + Math.random().toString(36).substr(2,6).toUpperCase();
+  const html = certHTML({ name, date: dateStr, cid });
+  document.getElementById('certFull').innerHTML    = html;
+  document.getElementById('certPreview').innerHTML = html;
+  closeCertModal();
+  go('certificate');
+  toast('Certificate generated for ' + name + '!', '');
+};
 </script>
 </body>
 </html>
