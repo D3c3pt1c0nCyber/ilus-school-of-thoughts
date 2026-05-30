@@ -2323,7 +2323,9 @@ async function loadSiteContent(){
     const snap = await getDoc(doc(db,'content','site'));
     if(snap.exists()){
       const d = snap.data();
-      SITE.lessonContent = d.lessonContent || {};
+      // lessonContent is stored as a JSON string (avoids Firestore's nested-array limit)
+      if(d.lessonContentJSON){ try { SITE.lessonContent = JSON.parse(d.lessonContentJSON); } catch(_){ SITE.lessonContent={}; } }
+      else { SITE.lessonContent = d.lessonContent || {}; }   // legacy fallback
       SITE.extraLessons  = d.extraLessons  || [];
       SITE.extraModules  = d.extraModules  || [];
     } else { SITE.lessonContent={}; SITE.extraLessons=[]; SITE.extraModules=[]; }
@@ -2426,14 +2428,22 @@ window.renderLockList = function(){
 async function saveSiteContent(){
   try {
     await setDoc(doc(db,'content','site'),{
-      lessonContent: SITE.lessonContent || {},
+      // store as a JSON string — lesson "terms" are nested arrays, which Firestore can't store natively
+      lessonContentJSON: JSON.stringify(SITE.lessonContent || {}),
       extraLessons: SITE.extraLessons || [],
       extraModules: SITE.extraModules || [],
       updatedAt: serverTimestamp(),
       updatedBy: currentUser ? currentUser.email : 'unknown'
     });
     return true;
-  } catch(e){ console.warn('saveSiteContent failed',e); toast('Could not save — check your connection',''); return false; }
+  } catch(e){
+    console.warn('saveSiteContent failed', e);
+    const msg = (e && e.code==='permission-denied')
+      ? 'Permission denied — publish the Firestore rules (content/site write).'
+      : 'Could not save — '+((e&&e.message)||'unknown error');
+    toast(msg,'');
+    return false;
+  }
 }
 
 /* ---- Admin panel rendering ---- */
