@@ -423,6 +423,80 @@ footer .base b{color:var(--gold-soft)}
 <body>
 
 <!-- ====== TOPBAR ====== -->
+<!-- ============================================================
+     LOGIN GATE — shown until Firebase confirms auth
+     ============================================================ -->
+<div id="loginGate" style="
+  position:fixed;inset:0;z-index:9000;
+  background:var(--night);
+  display:flex;align-items:center;justify-content:center;
+  flex-direction:column;gap:0;
+  font-family:var(--serif);
+">
+  <!-- Animated parchment paper grain overlay -->
+  <div style="position:absolute;inset:0;opacity:.04;pointer-events:none;
+    background-image:url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22200%22%3E%3Cfilter id=%22n%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.85%22 numOctaves=%222%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23n)%22/%3E%3C/svg%3E')">
+  </div>
+
+  <!-- Radial glow behind the seal -->
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+    width:420px;height:420px;border-radius:50%;pointer-events:none;
+    background:radial-gradient(circle,rgba(184,137,59,.08) 0%,transparent 70%)">
+  </div>
+
+  <!-- Seal -->
+  <div id="loginSeal" style="width:110px;height:110px;margin-bottom:28px;animation:sealFade 1s ease both"></div>
+
+  <!-- School name -->
+  <div style="font-family:var(--disp);font-size:clamp(26px,4vw,38px);font-weight:700;
+    color:#F0E6CE;letter-spacing:.01em;margin-bottom:6px;animation:sealFade 1s .15s ease both">
+    Ilu&rsquo;s School of Thoughts
+  </div>
+
+  <!-- Tagline -->
+  <div style="font-family:var(--serif);font-size:13px;letter-spacing:.28em;text-transform:uppercase;
+    color:var(--gold-soft);margin-bottom:48px;animation:sealFade 1s .25s ease both">
+    Reason &middot; Argue &middot; Illuminate
+  </div>
+
+  <!-- Rule -->
+  <div style="width:260px;height:1px;background:linear-gradient(90deg,transparent,rgba(184,137,59,.4),transparent);
+    margin-bottom:48px;animation:sealFade 1s .3s ease both"></div>
+
+  <!-- Google sign-in button -->
+  <button id="loginGoogleBtn" onclick="loginWithGoogle()" style="
+    display:flex;align-items:center;gap:14px;
+    padding:14px 28px;border-radius:3px;border:1px solid rgba(184,137,59,.5);
+    background:rgba(184,137,59,.08);color:#F0E6CE;
+    font-family:var(--serif);font-size:16px;font-weight:600;cursor:pointer;
+    transition:.25s;animation:sealFade 1s .4s ease both;
+    backdrop-filter:blur(6px);
+  " onmouseover="this.style.background='rgba(184,137,59,.18)';this.style.borderColor='var(--gold)'"
+     onmouseout="this.style.background='rgba(184,137,59,.08)';this.style.borderColor='rgba(184,137,59,.5)'">
+    <svg width="20" height="20" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+    Continue with Google
+  </button>
+
+  <!-- Sub-note -->
+  <div style="margin-top:20px;font-size:13px;color:rgba(200,188,161,.45);animation:sealFade 1s .5s ease both">
+    Your progress saves automatically to your account.
+  </div>
+
+  <!-- Loading state (shown while Firebase checks auth) -->
+  <div id="loginChecking" style="margin-top:36px;font-size:13px;color:rgba(200,188,161,.35);letter-spacing:.1em;text-transform:uppercase">
+    Checking session&hellip;
+  </div>
+</div>
+
+<!-- App wrapper — hidden until signed in -->
+<div id="appShell" style="display:none">
+
+<style>
+@keyframes sealFade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+#loginGate{transition:opacity .5s ease}
+#loginGate.fade-out{opacity:0;pointer-events:none}
+</style>
+
 <header class="topbar">
   <div class="wrap row">
     <div class="brand" onclick="go('home')">
@@ -852,6 +926,8 @@ footer .base b{color:var(--gold-soft)}
   </div>
 </footer>
 
+</div><!-- end #appShell -->
+
 <div id="toast"><div class="t"><span>✦</span><span id="toastMsg">Saved</span><span class="rpup" id="toastRP"></span></div></div>
 
 <script>
@@ -859,7 +935,7 @@ footer .base b{color:var(--gold-soft)}
    STATE
    ============================================================ */
 const RANKS=[["Inquirer",0],["Disputant",500],["Rhetor",1500],["Dialectician",3500],["Adept",7000]];
-const state={ rp:0, done:new Set(), awarded:new Set() };
+const state={ rp:0, done:new Set(), awarded:new Set(), quizScores:{} };
 let currentUser=null;
 let certName='';
 
@@ -1191,7 +1267,10 @@ function checkQuiz(key){
   document.getElementById('checkBtn').style.display='none';
   if(!state.done.has(key)){ state.done.add(key); refreshProgress(); }
   award(key,40,correct===c.quiz.length?'Perfect — lesson complete!':'Lesson complete');
+  // store locally for skill calc
+  state.quizScores[key.replace(':','-')]={score:correct,total:c.quiz.length,pct:Math.round(correct/c.quiz.length*100)};
   saveQuizScore(key, correct, c.quiz.length);
+  calcSkills(); renderRadar();
 }
 
 /* ============================================================
@@ -1235,14 +1314,38 @@ function refreshProgress(){
     const bar=document.getElementById('bar'+id), pc=document.getElementById('pc'+id);
     if(bar) bar.style.width=pr.pc+'%'; if(pc) pc.textContent=pr.pc+'%';
   });
-  // refresh curriculum checkmarks if present
   renderCurriculum();
+  calcSkills(); renderRadar();
 }
 
 /* ============================================================
    SKILL RADAR
    ============================================================ */
-const SKILLS=[["Logic",82],["Evidence",68],["Rebuttal",74],["Charity",88],["Rhetoric",63],["Composure",71]];
+/* Skill → lesson mapping: which lessons build which skill */
+const SKILL_MAP=[
+  ['Logic',    ['L1:3.1','L1:3.2','L1:3.3','L1:3.4','L2:1.1','L2:1.2','L2:1.3','L2:1.4','L3:1.1','L3:1.3']],
+  ['Evidence', ['L1:2.1','L1:2.2','L1:2.3','L1:2.4','L2:4.1','L2:4.2','L2:4.3','L3:1.2','L3:1.5']],
+  ['Rebuttal', ['L2:2.1','L2:2.2','L2:2.3','L2:2.4','L3:5.1','L3:5.2','L3:5.3','L2:3.1','L2:3.2']],
+  ['Charity',  ['L1:1.4','L2:1.4','L2:1.1','L3:2.3','L3:5.3','L3:5.5']],
+  ['Rhetoric', ['L3:5.1','L3:5.2','L3:5.4','L3:5.5','L2:5.3','L3:4.3']],
+  ['Composure',['L3:3.1','L3:3.2','L3:3.3','L3:4.1','L3:4.2','L2:5.1','L2:5.2']],
+];
+let SKILLS=SKILL_MAP.map(([name])=>[name,0]);
+
+function calcSkills(){
+  SKILLS=SKILL_MAP.map(([name,lessons])=>{
+    const completed=lessons.filter(id=>state.done.has(id)).length;
+    if(completed===0){ return [name,0]; }
+    let base=Math.round(10+(completed/lessons.length)*85);
+    // quiz score bonus: +up to 5 pts per lesson with a good score
+    lessons.forEach(id=>{
+      const qs=state.quizScores[id.replace(':','-')];
+      if(qs && qs.pct>=80) base=Math.min(99,base+1);
+    });
+    return [name,Math.min(99,base)];
+  });
+}
+
 function renderRadar(){
   /* ── Geometry ── */
   const W=440, H=400, cx=W/2, cy=H/2-10, R=130, LR=R+52, N=SKILLS.length;
@@ -1495,6 +1598,30 @@ const db   = getFirestore(app);
 const provider = new GoogleAuthProvider();
 
 /* ---- Expose helpers to global scope so inline JS can call them ---- */
+/* ---- Login gate helpers ---- */
+function showApp(){
+  const gate = document.getElementById('loginGate');
+  const app  = document.getElementById('appShell');
+  gate.classList.add('fade-out');
+  setTimeout(()=>{ gate.style.display='none'; app.style.display='block'; }, 500);
+}
+
+function showGate(){
+  const gate = document.getElementById('loginGate');
+  const app  = document.getElementById('appShell');
+  app.style.display = 'none';
+  gate.style.display = 'flex';
+  gate.classList.remove('fade-out');
+  document.getElementById('loginChecking').style.display = 'none';
+}
+
+window.loginWithGoogle = async function(){
+  const btn = document.getElementById('loginGoogleBtn');
+  btn.textContent = 'Signing in…'; btn.disabled = true;
+  try { await signInWithPopup(auth, provider); }
+  catch(e){ btn.disabled=false; btn.innerHTML='<svg width="20" height="20" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg> Continue with Google'; }
+};
+
 window.signOutUser = async function(){
   await signOut(auth);
 };
@@ -1572,8 +1699,12 @@ async function loadProgress(uid){
       state.done = new Set(d.done || []);
       state.awarded = new Set(d.awarded || []);
       certName = d.certName || '';
-      syncRP(); refreshProgress(); renderCurriculum();
     }
+    // load quiz scores
+    const { getDocs, collection } = await import('https://www.gstatic.com/firebasejs/12.14.0/firebase-firestore.js');
+    const qsnap = await getDocs(collection(db,'users',uid,'quizScores'));
+    qsnap.forEach(d=>{ state.quizScores[d.id]=d.data(); });
+    syncRP(); calcSkills(); refreshProgress(); renderCurriculum(); renderRadar();
   } catch(e){ console.warn('loadProgress failed',e); }
 }
 
@@ -1588,36 +1719,43 @@ async function loadLastPosition(uid){
 }
 
 /* ---- Auth state observer ---- */
+// Render the seal on the login gate
+const loginSealEl = document.getElementById('loginSeal');
+if(loginSealEl && typeof sealSVG==='function') loginSealEl.innerHTML = sealSVG();
+
 onAuthStateChanged(auth, async user => {
   currentUser = user;
-  const btn   = document.getElementById('authBtn');
-  const label = document.getElementById('authLabel');
+  const btn = document.getElementById('authBtn');
   if(user){
-    // Update topbar button → show avatar + name
+    // ── Show the app, hide the gate ──
+    showApp();
+    // Update topbar avatar
     const img = user.photoURL
       ? `<img class="auth-avatar" src="${user.photoURL}" alt="">`
       : `<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg>`;
     btn.innerHTML = img + `<span id="authLabel">${user.displayName ? user.displayName.split(' ')[0] : 'Account'}</span>`;
     btn.classList.add('signed-in');
-    btn.title = 'Signed in as ' + (user.displayName||user.email) + ' — click to sign out';
-    // Load saved progress from Firestore
+    btn.title = 'Signed in as ' + (user.displayName||user.email);
+    // Load Firestore progress
     await loadProgress(user.uid);
     const firstName = user.displayName ? user.displayName.split(' ')[0] : 'scholar';
     const dashName = document.getElementById('dashUserName');
     if(dashName) dashName.textContent = firstName;
-    toast('Welcome back, ' + firstName + '!', '');
-    // Pre-fill certName from Google if not already saved
     if(!certName && user.displayName) certName = user.displayName;
+    toast('Welcome back, ' + firstName + '!', '');
+    // restore last position
+    await loadLastPosition(user.uid);
   } else {
-    // Signed out — reset UI
-    btn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg><span id="authLabel">Sign in</span>`;
-    btn.classList.remove('signed-in');
-    btn.title = 'Sign in with Google';
-    // Reset state
-    state.rp = 0; state.done = new Set(); state.awarded = new Set(); certName = '';
+    // ── Show the gate, hide the app ──
+    showGate();
+    if(btn){
+      btn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg><span id="authLabel">Sign in</span>`;
+      btn.classList.remove('signed-in');
+    }
+    state.rp=0; state.done=new Set(); state.awarded=new Set(); state.quizScores={}; certName='';
     const dashName = document.getElementById('dashUserName');
     if(dashName) dashName.textContent = 'scholar';
-    syncRP(); refreshProgress(); renderCurriculum();
+    calcSkills(); syncRP(); refreshProgress();
   }
 });
 
