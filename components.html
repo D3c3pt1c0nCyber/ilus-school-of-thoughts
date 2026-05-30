@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ilu's School of Thoughts — Animated Component Library</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Spectral:wght@300;400;500;600&family=Spline+Sans+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* =====================================================================
+   ILU · ANIMATED COMPONENT LIBRARY  (html-it Level 3 — Two-Way Interactive)
+   Gallery chrome only. Each component carries its OWN self-contained
+   CSS+JS inside its copy snippet, so pasting one card into the LMS works
+   with zero dependencies.
+   ===================================================================== */
+:root{
+  --ink:#15130D; --ink-2:#1F1B12; --paper:#F4ECD8; --parch:#F0E6CE;
+  --gold:#B8893B; --gold-s:#E7CF94; --gold-d:#8A6A2B;
+  --garnet:#7B2C2C; --verd:#3E6B54; --teal:#33606e;
+  --muted:rgba(200,188,161,.62); --line:rgba(231,207,148,.16);
+  --ff-d:"Fraunces",Georgia,serif; --ff-b:"Spectral",Georgia,serif; --ff-m:"Spline Sans Mono",monospace;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{margin:0; font-family:var(--ff-b); color:var(--parch); -webkit-font-smoothing:antialiased;
+  background:radial-gradient(1200px 700px at 80% -10%, #221d12 0%, rgba(34,29,18,0) 55%), linear-gradient(180deg,#16130c,#0c0b07); min-height:100vh;}
+
+/* ---- hero ---- */
+.hero{max-width:1180px; margin:0 auto; padding:clamp(2.5rem,7vw,5rem) clamp(1.2rem,4vw,2.5rem) clamp(1.5rem,4vw,2.5rem); display:flex; gap:clamp(1rem,3vw,2rem); align-items:center;}
+.hero .mark{flex:none; width:clamp(54px,9vw,80px); height:clamp(54px,9vw,80px); animation:spin 26s linear infinite;}
+.hero .eyebrow{font-family:var(--ff-m); font-size:.72rem; letter-spacing:.3em; text-transform:uppercase; color:var(--gold);}
+.hero h1{font-family:var(--ff-d); font-weight:600; letter-spacing:-.015em; line-height:1.02; margin:.35rem 0 .5rem; font-size:clamp(1.7rem,5vw,3.1rem);}
+.hero h1 em{font-style:italic; color:var(--gold-s);}
+.hero p{color:var(--muted); max-width:60ch; margin:0; font-size:clamp(.85rem,1.4vw,1.02rem); line-height:1.6;}
+@keyframes spin{to{transform:rotate(360deg);}}
+
+/* ---- how-to strip ---- */
+.howto{max-width:1180px; margin:0 auto clamp(1.5rem,4vw,2.5rem); padding:0 clamp(1.2rem,4vw,2.5rem);}
+.howto-inner{border:1px solid var(--line); border-radius:10px; background:rgba(255,255,255,.02); padding:clamp(.9rem,2vw,1.3rem) clamp(1.1rem,2.5vw,1.6rem); display:flex; flex-wrap:wrap; gap:clamp(.8rem,2vw,1.8rem); align-items:center;}
+.howto-inner .step{display:flex; gap:.6rem; align-items:center; font-size:.86rem; color:var(--muted);}
+.howto-inner .n{font-family:var(--ff-m); font-size:.7rem; width:1.5rem; height:1.5rem; flex:none; display:grid; place-items:center; border-radius:50%; border:1px solid var(--gold); color:var(--gold-s);}
+.howto-inner b{color:var(--parch); font-weight:600;}
+.howto-inner .level{margin-left:auto; font-family:var(--ff-m); font-size:.66rem; letter-spacing:.16em; text-transform:uppercase; color:var(--gold); border:1px solid var(--line); padding:.4rem .7rem; border-radius:30px;}
+
+/* ---- grid ---- */
+.grid{max-width:1180px; margin:0 auto; padding:0 clamp(1.2rem,4vw,2.5rem) 5rem; display:grid; gap:clamp(1rem,2.5vw,1.6rem); grid-template-columns:repeat(auto-fill,minmax(min(100%,360px),1fr));}
+.card{border:1px solid var(--line); border-radius:14px; background:linear-gradient(180deg,rgba(255,255,255,.028),rgba(255,255,255,.01)); overflow:hidden; display:flex; flex-direction:column;}
+.card__head{padding:clamp(1rem,2.2vw,1.4rem) clamp(1.1rem,2.4vw,1.5rem) .6rem;}
+.card__head .tag{font-family:var(--ff-m); font-size:.64rem; letter-spacing:.2em; text-transform:uppercase; color:var(--gold);}
+.card__head h3{font-family:var(--ff-d); font-weight:600; font-size:clamp(1.1rem,2vw,1.35rem); margin:.3rem 0 .25rem;}
+.card__head p{margin:0; color:var(--muted); font-size:.82rem; line-height:1.5;}
+
+/* preview surface — dark, mirrors the LMS */
+.preview{margin:clamp(.6rem,1.5vw,1rem) clamp(1.1rem,2.4vw,1.5rem); border:1px solid var(--line); border-radius:10px; min-height:190px; display:grid; place-items:center; padding:1.4rem; position:relative; overflow:hidden;
+  background:radial-gradient(600px 300px at 70% -20%, rgba(184,137,59,.08), transparent 60%), linear-gradient(180deg,#13110b,#0d0c08);}
+.preview::after{content:""; position:absolute; inset:0; pointer-events:none; opacity:.04; mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+
+/* controls */
+.controls{padding:.2rem clamp(1.1rem,2.4vw,1.5rem) 0; display:flex; flex-wrap:wrap; gap:.7rem .9rem;}
+.ctrl{display:flex; flex-direction:column; gap:.25rem; flex:1 1 130px;}
+.ctrl label{font-family:var(--ff-m); font-size:.6rem; letter-spacing:.12em; text-transform:uppercase; color:var(--muted);}
+.ctrl input[type=text], .ctrl input[type=number]{background:rgba(0,0,0,.25); border:1px solid var(--line); color:var(--parch); border-radius:7px; padding:.45rem .6rem; font-family:var(--ff-b); font-size:.85rem; width:100%;}
+.ctrl input[type=range]{width:100%; accent-color:var(--gold);}
+.ctrl input[type=color]{width:100%; height:34px; background:transparent; border:1px solid var(--line); border-radius:7px; padding:2px; cursor:pointer;}
+.ctrl .val{font-family:var(--ff-m); font-size:.62rem; color:var(--gold-s);}
+
+/* actions */
+.actions{display:flex; gap:.6rem; padding:clamp(.8rem,2vw,1.1rem) clamp(1.1rem,2.4vw,1.5rem) clamp(1rem,2.4vw,1.4rem); margin-top:auto;}
+.btn{font-family:var(--ff-m); font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; border-radius:8px; padding:.6rem .9rem; cursor:pointer; border:1px solid var(--line); background:transparent; color:var(--parch); transition:transform .15s ease, background .15s ease, border-color .15s ease;}
+.btn:hover{transform:translateY(-1px); border-color:var(--gold);}
+.btn:active{transform:translateY(0);}
+.btn.primary{flex:1; background:linear-gradient(180deg,rgba(184,137,59,.9),rgba(138,106,43,.9)); border-color:var(--gold); color:#1a1509; font-weight:500;}
+.btn.copied{background:linear-gradient(180deg,var(--verd),#2f5340); border-color:var(--verd); color:#eaf3ec;}
+
+/* toast */
+.toast{position:fixed; left:50%; bottom:26px; transform:translateX(-50%) translateY(20px); background:var(--ink-2); border:1px solid var(--gold); color:var(--gold-s); font-family:var(--ff-m); font-size:.78rem; padding:.7rem 1.1rem; border-radius:30px; opacity:0; pointer-events:none; transition:.3s; z-index:99;}
+.toast.show{opacity:1; transform:translateX(-50%) translateY(0);}
+
+footer{max-width:1180px; margin:0 auto; padding:0 clamp(1.2rem,4vw,2.5rem) 4rem; color:var(--muted); font-family:var(--ff-m); font-size:.68rem; letter-spacing:.05em;}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <svg class="mark" viewBox="0 0 100 100" aria-hidden="true">
+    <defs><radialGradient id="hg" cx="50%" cy="38%" r="65%"><stop offset="0" stop-color="#E7CF94"/><stop offset="1" stop-color="#8A6A2B"/></radialGradient></defs>
+    <circle cx="50" cy="50" r="30" fill="none" stroke="url(#hg)" stroke-width="2"/>
+    <circle cx="50" cy="50" r="6" fill="url(#hg)"/>
+    <g stroke="url(#hg)" stroke-width="2" stroke-linecap="round">
+      <line x1="50" y1="6" x2="50" y2="20"/><line x1="50" y1="80" x2="50" y2="94"/>
+      <line x1="6" y1="50" x2="20" y2="50"/><line x1="80" y1="50" x2="94" y2="50"/>
+      <line x1="21" y1="21" x2="31" y2="31"/><line x1="69" y1="69" x2="79" y2="79"/>
+      <line x1="79" y1="21" x2="69" y2="31"/><line x1="31" y1="69" x2="21" y2="79"/>
+    </g>
+  </svg>
+  <div>
+    <div class="eyebrow">Ilu's School of Thoughts · Component Library</div>
+    <h1>Animated parts you can <em>drop in</em> &amp; tune.</h1>
+    <p>Eight brand-matched components for the LMS. Each one previews live, takes a few knobs, and copies as a single self-contained block of HTML + CSS + JS — no libraries, no build step. Tune it here, paste it there.</p>
+  </div>
+</header>
+
+<section class="howto">
+  <div class="howto-inner">
+    <div class="step"><span class="n">1</span><span>Adjust the <b>controls</b> on any card</span></div>
+    <div class="step"><span class="n">2</span><span>Watch the <b>live preview</b> update</span></div>
+    <div class="step"><span class="n">3</span><span>Hit <b>Copy</b> &amp; paste into your page</span></div>
+    <div class="level">html-it · Level 3</div>
+  </div>
+</section>
+
+<main class="grid" id="grid"></main>
+
+<footer>components.html · Ilu's School of Thoughts · self-contained, zero-dependency · paste any snippet into index.html</footer>
+<div class="toast" id="toast">✓ Copied to clipboard</div>
+
+<script>
+/* =====================================================================
+   COMPONENT DEFINITIONS
+   Each component = { id, tag, name, desc, controls[], snippet(p) }.
+   snippet(p) returns a COMPLETE, paste-ready block (markup+style+script).
+   The live preview runs that exact block, so what you see is what you copy.
+   Inner closing-script tags are written <\/script> so they don't close
+   THIS script during parsing; at runtime the string value is correct.
+   Each snippet's script self-initialises any ".ilu-*:not([data-init])"
+   instance, so it works whether parsed inline or injected dynamically.
+   ===================================================================== */
+const COMPONENTS = [
+
+/* 1 ─ ANIMATED STAT COUNTER ─────────────────────────────────────────── */
+{
+  id:'counter', tag:'Stat · count-up', name:'Reason-Point Counter',
+  desc:'A number that eases up from zero on reveal. Use for RP, lessons completed, debates won.',
+  controls:[
+    {key:'target', type:'number', label:'Target value', value:1500},
+    {key:'label',  type:'text',   label:'Caption', value:'Reason Points'},
+    {key:'dur',    type:'range',  label:'Duration (ms)', value:1500, min:400, max:3000, step:100},
+    {key:'acc',    type:'color',  label:'Accent', value:'#E7CF94'},
+  ],
+  snippet:p=>`<div class="ilu-counter" data-target="${p.target}" data-dur="${p.dur}" style="--acc:${p.acc}">
+  <div class="ilu-counter__num">0</div>
+  <div class="ilu-counter__label">${p.label}</div>
+</div>
+<style>
+.ilu-counter{font-family:"Spline Sans Mono",monospace;text-align:center;color:#F0E6CE}
+.ilu-counter__num{font-family:"Fraunces",Georgia,serif;font-weight:600;font-size:clamp(2.4rem,9vw,4rem);line-height:1;color:var(--acc);text-shadow:0 2px 22px rgba(231,207,148,.25)}
+.ilu-counter__label{font-size:.7rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(200,188,161,.7);margin-top:.6rem}
+</style>
+<script>(function(){document.querySelectorAll('.ilu-counter:not([data-init])').forEach(function(r){r.setAttribute('data-init','1');var n=r.querySelector('.ilu-counter__num'),t=+r.getAttribute('data-target'),d=+r.getAttribute('data-dur'),s=null;function step(ts){if(!s)s=ts;var k=Math.min(1,(ts-s)/d),e=1-Math.pow(1-k,3);n.textContent=Math.round(e*t).toLocaleString();if(k<1)requestAnimationFrame(step);}requestAnimationFrame(step);});})();<\/script>`
+},
+
+/* 2 ─ PROGRESS RING ─────────────────────────────────────────────────── */
+{
+  id:'ring', tag:'Progress · SVG', name:'Completion Ring',
+  desc:'Circular progress with an animated sweep and counting percentage. Use for level or module completion.',
+  controls:[
+    {key:'pct',   type:'range', label:'Percent', value:72, min:0, max:100, step:1},
+    {key:'cap',   type:'text',  label:'Label', value:'Level I'},
+    {key:'acc',   type:'color', label:'Accent', value:'#B8893B'},
+  ],
+  snippet:p=>`<div class="ilu-ring" data-pct="${p.pct}" style="--acc:${p.acc}">
+  <svg viewBox="0 0 120 120">
+    <circle class="ilu-ring__bg" cx="60" cy="60" r="52"/>
+    <circle class="ilu-ring__fg" cx="60" cy="60" r="52"/>
+  </svg>
+  <div class="ilu-ring__txt"><span class="ilu-ring__pct">0%</span><span class="ilu-ring__cap">${p.cap}</span></div>
+</div>
+<style>
+.ilu-ring{position:relative;width:150px;height:150px;font-family:"Spline Sans Mono",monospace}
+.ilu-ring svg{width:100%;height:100%;transform:rotate(-90deg)}
+.ilu-ring__bg{fill:none;stroke:rgba(231,207,148,.12);stroke-width:9}
+.ilu-ring__fg{fill:none;stroke:var(--acc);stroke-width:9;stroke-linecap:round;transition:stroke-dashoffset 1.1s cubic-bezier(.2,.8,.2,1);filter:drop-shadow(0 0 6px rgba(184,137,59,.5))}
+.ilu-ring__txt{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#F0E6CE}
+.ilu-ring__pct{font-family:"Fraunces",Georgia,serif;font-size:1.9rem;font-weight:600;color:var(--acc)}
+.ilu-ring__cap{font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(200,188,161,.7);margin-top:.2rem}
+</style>
+<script>(function(){document.querySelectorAll('.ilu-ring:not([data-init])').forEach(function(r){r.setAttribute('data-init','1');var fg=r.querySelector('.ilu-ring__fg'),tx=r.querySelector('.ilu-ring__pct'),pct=+r.getAttribute('data-pct'),C=2*Math.PI*52;fg.style.strokeDasharray=C;fg.style.strokeDashoffset=C;requestAnimationFrame(function(){requestAnimationFrame(function(){fg.style.strokeDashoffset=C*(1-pct/100);});});var s=null,d=1100;function step(ts){if(!s)s=ts;var k=Math.min(1,(ts-s)/d),e=1-Math.pow(1-k,3);tx.textContent=Math.round(e*pct)+'%';if(k<1)requestAnimationFrame(step);}requestAnimationFrame(step);});})();<\/script>`
+},
+
+/* 3 ─ SKILL RADAR ───────────────────────────────────────────────────── */
+{
+  id:'radar', tag:'Data-viz · SVG', name:'Six-Axis Skill Radar',
+  desc:'The debate competencies as an animated radar. Edit the six values (0–100), comma-separated.',
+  controls:[
+    {key:'vals', type:'text',  label:'Values (Logic,Evidence,Rebuttal,Charity,Rhetoric,Composure)', value:'78,64,71,82,55,69'},
+    {key:'acc',  type:'color', label:'Accent', value:'#B8893B'},
+  ],
+  snippet:p=>`<div class="ilu-radar" data-vals="${p.vals}" style="--acc:${p.acc}"></div>
+<style>
+.ilu-radar{width:230px;height:230px;font-family:"Spline Sans Mono",monospace}
+.ilu-radar svg{width:100%;height:100%;overflow:visible}
+.ilu-radar .grid{fill:none;stroke:rgba(231,207,148,.13);stroke-width:1}
+.ilu-radar .axis{stroke:rgba(231,207,148,.18);stroke-width:1}
+.ilu-radar .lbl{fill:rgba(200,188,161,.78);font-size:8.5px;letter-spacing:.04em}
+.ilu-radar .data{fill:color-mix(in srgb,var(--acc) 28%,transparent);stroke:var(--acc);stroke-width:2;stroke-linejoin:round;transform-origin:115px 115px;transform:scale(0);opacity:0;transition:transform .9s cubic-bezier(.2,.85,.25,1),opacity .9s}
+.ilu-radar .data.in{transform:scale(1);opacity:1}
+.ilu-radar .dot{fill:var(--acc)}
+</style>
+<script>(function(){var L=['Logic','Evidence','Rebuttal','Charity','Rhetoric','Composure'];document.querySelectorAll('.ilu-radar:not([data-init])').forEach(function(r){r.setAttribute('data-init','1');var v=r.getAttribute('data-vals').split(',').map(function(x){return Math.max(0,Math.min(100,+x||0));});var cx=115,cy=115,R=80,N=6;function pt(i,rad){var a=-Math.PI/2+i*2*Math.PI/N;return[cx+rad*Math.cos(a),cy+rad*Math.sin(a)];}var ns='http://www.w3.org/2000/svg',svg=document.createElementNS(ns,'svg');svg.setAttribute('viewBox','0 0 230 230');function poly(rad,cls){var p=document.createElementNS(ns,'polygon'),pts=[];for(var i=0;i<N;i++){var q=pt(i,rad);pts.push(q[0].toFixed(1)+','+q[1].toFixed(1));}p.setAttribute('points',pts.join(' '));p.setAttribute('class',cls);return p;}[0.25,0.5,0.75,1].forEach(function(f){svg.appendChild(poly(R*f,'grid'));});for(var i=0;i<N;i++){var e=pt(i,R),ln=document.createElementNS(ns,'line');ln.setAttribute('x1',cx);ln.setAttribute('y1',cy);ln.setAttribute('x2',e[0]);ln.setAttribute('y2',e[1]);ln.setAttribute('class','axis');svg.appendChild(ln);var lp=pt(i,R+15),t=document.createElementNS(ns,'text');t.setAttribute('x',lp[0]);t.setAttribute('y',lp[1]);t.setAttribute('class','lbl');t.setAttribute('text-anchor',Math.abs(lp[0]-cx)<5?'middle':(lp[0]<cx?'end':'start'));t.setAttribute('dy',lp[1]<cy?'-1':'8');t.textContent=L[i];svg.appendChild(t);}var dpts=[];for(var j=0;j<N;j++){var d=pt(j,R*v[j]/100);dpts.push(d);}var dp=document.createElementNS(ns,'polygon');dp.setAttribute('points',dpts.map(function(q){return q[0].toFixed(1)+','+q[1].toFixed(1);}).join(' '));dp.setAttribute('class','data');svg.appendChild(dp);dpts.forEach(function(q){var c=document.createElementNS(ns,'circle');c.setAttribute('cx',q[0]);c.setAttribute('cy',q[1]);c.setAttribute('r','2.5');c.setAttribute('class','dot');svg.appendChild(c);});r.appendChild(svg);requestAnimationFrame(function(){requestAnimationFrame(function(){dp.classList.add('in');});});});})();<\/script>`
+},
+
+/* 4 ─ BAR CHART ─────────────────────────────────────────────────────── */
+{
+  id:'bars', tag:'Data-viz · CSS', name:'Animated Bar Chart',
+  desc:'Bars that grow up with a stagger. Drop in weekly activity, scores per module, etc.',
+  controls:[
+    {key:'vals', type:'text',  label:'Values (comma-separated)', value:'40,72,55,88,63,95,48'},
+    {key:'acc',  type:'color', label:'Accent', value:'#3E6B54'},
+  ],
+  snippet:p=>`<div class="ilu-bars" data-vals="${p.vals}" style="--acc:${p.acc}"></div>
+<style>
+.ilu-bars{display:flex;align-items:flex-end;gap:8px;height:150px;width:100%;max-width:280px}
+.ilu-bars .bar{flex:1;background:linear-gradient(180deg,var(--acc),color-mix(in srgb,var(--acc) 55%,#000));border-radius:5px 5px 2px 2px;height:0;transition:height .8s cubic-bezier(.2,.85,.25,1);box-shadow:0 0 12px color-mix(in srgb,var(--acc) 40%,transparent)}
+</style>
+<script>(function(){document.querySelectorAll('.ilu-bars:not([data-init])').forEach(function(r){r.setAttribute('data-init','1');var v=r.getAttribute('data-vals').split(',').map(function(x){return Math.max(0,Math.min(100,+x||0));}),mx=Math.max.apply(null,v)||100;v.forEach(function(val,i){var b=document.createElement('div');b.className='bar';b.style.transitionDelay=(i*70)+'ms';r.appendChild(b);requestAnimationFrame(function(){requestAnimationFrame(function(){b.style.height=(val/mx*100)+'%';});});});});})();<\/script>`
+},
+
+/* 5 ─ LESSON CARD ───────────────────────────────────────────────────── */
+{
+  id:'lcard', tag:'UI · hover', name:'Lesson Card',
+  desc:'A course-tile with a gold shimmer sweep on hover and an animated progress bar. The clickable unit of the LMS.',
+  controls:[
+    {key:'mod',   type:'text',  label:'Module eyebrow', value:'The Tools of Reason'},
+    {key:'title', type:'text',  label:'Lesson title', value:'Anatomy of an argument'},
+    {key:'pct',   type:'range', label:'Progress %', value:60, min:0, max:100, step:1},
+  ],
+  snippet:p=>`<div class="ilu-lcard" data-pct="${p.pct}" tabindex="0">
+  <div class="ilu-lcard__sheen"></div>
+  <div class="ilu-lcard__mod">${p.mod}</div>
+  <div class="ilu-lcard__title">${p.title}</div>
+  <div class="ilu-lcard__bar"><i></i></div>
+  <div class="ilu-lcard__foot"><span class="ilu-lcard__pct">${p.pct}% complete</span><span class="ilu-lcard__go">Continue ›</span></div>
+</div>
+<style>
+.ilu-lcard{position:relative;width:280px;max-width:100%;border:1px solid rgba(231,207,148,.18);border-radius:12px;padding:20px;background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.008));color:#F0E6CE;font-family:"Spectral",Georgia,serif;overflow:hidden;cursor:pointer;transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease}
+.ilu-lcard:hover,.ilu-lcard:focus{transform:translateY(-4px);border-color:rgba(184,137,59,.6);box-shadow:0 16px 40px rgba(0,0,0,.45);outline:none}
+.ilu-lcard__sheen{position:absolute;top:0;left:-60%;width:50%;height:100%;background:linear-gradient(100deg,transparent,rgba(231,207,148,.16),transparent);transform:skewX(-18deg);transition:left .6s ease}
+.ilu-lcard:hover .ilu-lcard__sheen,.ilu-lcard:focus .ilu-lcard__sheen{left:130%}
+.ilu-lcard__mod{font-family:"Spline Sans Mono",monospace;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:#B8893B}
+.ilu-lcard__title{font-family:"Fraunces",Georgia,serif;font-weight:600;font-size:1.25rem;line-height:1.15;margin:.4rem 0 1rem}
+.ilu-lcard__bar{height:5px;border-radius:4px;background:rgba(231,207,148,.12);overflow:hidden}
+.ilu-lcard__bar i{display:block;height:100%;width:0;border-radius:4px;background:linear-gradient(90deg,#8A6A2B,#E7CF94);transition:width 1s cubic-bezier(.2,.8,.2,1)}
+.ilu-lcard__foot{display:flex;justify-content:space-between;align-items:center;margin-top:.7rem;font-family:"Spline Sans Mono",monospace;font-size:.66rem;color:rgba(200,188,161,.7)}
+.ilu-lcard__go{color:#E7CF94}
+</style>
+<script>(function(){document.querySelectorAll('.ilu-lcard:not([data-init])').forEach(function(r){r.setAttribute('data-init','1');var bar=r.querySelector('.ilu-lcard__bar i'),pct=+r.getAttribute('data-pct');requestAnimationFrame(function(){requestAnimationFrame(function(){bar.style.width=pct+'%';});});});})();<\/script>`
+},
+
+/* 6 ─ DEBATE TIMER ──────────────────────────────────────────────────── */
+{
+  id:'timer', tag:'Arena · countdown', name:'Debate Phase Timer',
+  desc:'A live countdown ring with phase label — the heartbeat of the Debate Arena. Counts real mm:ss.',
+  controls:[
+    {key:'min',   type:'number', label:'Minutes', value:10},
+    {key:'phase', type:'text',   label:'Phase label', value:'Opening Statement'},
+    {key:'acc',   type:'color',  label:'Accent', value:'#7B2C2C'},
+  ],
+  snippet:p=>`<div class="ilu-timer" data-min="${p.min}" style="--acc:${p.acc}">
+  <svg viewBox="0 0 120 120"><circle class="bg" cx="60" cy="60" r="52"/><circle class="fg" cx="60" cy="60" r="52"/></svg>
+  <div class="ilu-timer__txt"><span class="ilu-timer__clock">--:--</span><span class="ilu-timer__phase">${p.phase}</span></div>
+</div>
+<style>
+.ilu-timer{position:relative;width:160px;height:160px;font-family:"Spline Sans Mono",monospace}
+.ilu-timer svg{width:100%;height:100%;transform:rotate(-90deg)}
+.ilu-timer .bg{fill:none;stroke:rgba(231,207,148,.12);stroke-width:8}
+.ilu-timer .fg{fill:none;stroke:var(--acc);stroke-width:8;stroke-linecap:round;transition:stroke-dashoffset 1s linear;filter:drop-shadow(0 0 6px color-mix(in srgb,var(--acc) 70%,transparent))}
+.ilu-timer__txt{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#F0E6CE}
+.ilu-timer__clock{font-family:"Fraunces",Georgia,serif;font-size:2rem;font-weight:600;letter-spacing:.02em}
+.ilu-timer__phase{font-size:.56rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(200,188,161,.7);margin-top:.25rem;text-align:center;max-width:120px}
+</style>
+<script>(function(){document.querySelectorAll('.ilu-timer:not([data-init])').forEach(function(r){r.setAttribute('data-init','1');var fg=r.querySelector('.fg'),cl=r.querySelector('.ilu-timer__clock'),total=Math.max(1,+r.getAttribute('data-min'))*60,left=total,C=2*Math.PI*52;fg.style.strokeDasharray=C;function paint(){var m=Math.floor(left/60),s=left%60;cl.textContent=(m<10?'0':'')+m+':'+(s<10?'0':'')+s;fg.style.strokeDashoffset=C*(1-left/total);}paint();var id=setInterval(function(){if(!document.body.contains(r)){clearInterval(id);return;}if(left<=0){clearInterval(id);cl.textContent='TIME';return;}left--;paint();},1000);});})();<\/script>`
+},
+
+/* 7 ─ RANK TRACK ────────────────────────────────────────────────────── */
+{
+  id:'rank', tag:'Progress · journey', name:'Rank Progression Track',
+  desc:'The five debater ranks with a glowing current node and an animated fill. Feed it the learner’s RP.',
+  controls:[
+    {key:'rp',  type:'range', label:'Reason Points', value:1850, min:0, max:7000, step:50},
+    {key:'acc', type:'color', label:'Accent', value:'#B8893B'},
+  ],
+  snippet:p=>`<div class="ilu-rank" data-rp="${p.rp}" style="--acc:${p.acc}"></div>
+<style>
+.ilu-rank{width:100%;max-width:300px;font-family:"Spline Sans Mono",monospace}
+.ilu-rank__track{position:relative;height:4px;background:rgba(231,207,148,.14);border-radius:4px;margin:34px 8px 8px}
+.ilu-rank__fill{position:absolute;left:0;top:0;height:100%;width:0;border-radius:4px;background:linear-gradient(90deg,#8A6A2B,var(--acc));transition:width 1.1s cubic-bezier(.2,.8,.2,1)}
+.ilu-rank__node{position:absolute;top:50%;width:13px;height:13px;border-radius:50%;background:#16130c;border:2px solid rgba(231,207,148,.3);transform:translate(-50%,-50%);transition:.4s}
+.ilu-rank__node.reached{border-color:var(--acc);background:var(--acc)}
+.ilu-rank__node.current{box-shadow:0 0 0 4px color-mix(in srgb,var(--acc) 35%,transparent),0 0 14px var(--acc);animation:iluPulse 1.8s ease-in-out infinite}
+.ilu-rank__cap{position:absolute;top:-26px;left:50%;transform:translateX(-50%);font-size:.54rem;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;color:rgba(200,188,161,.6)}
+.ilu-rank__node.reached .ilu-rank__cap{color:#E7CF94}
+.ilu-rank__now{text-align:center;margin-top:14px;color:#F0E6CE}
+.ilu-rank__now b{font-family:"Fraunces",Georgia,serif;font-size:1.1rem;color:var(--acc)}
+.ilu-rank__now span{display:block;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(200,188,161,.7);margin-top:.2rem}
+@keyframes iluPulse{0%,100%{box-shadow:0 0 0 3px color-mix(in srgb,var(--acc) 30%,transparent),0 0 10px var(--acc)}50%{box-shadow:0 0 0 6px color-mix(in srgb,var(--acc) 18%,transparent),0 0 18px var(--acc)}}
+</style>
+<script>(function(){var TH=[0,500,1500,3500,7000],NM=['Inquirer','Disputant','Rhetor','Dialectician','Adept'];document.querySelectorAll('.ilu-rank:not([data-init])').forEach(function(r){r.setAttribute('data-init','1');var rp=+r.getAttribute('data-rp'),N=TH.length,track=document.createElement('div');track.className='ilu-rank__track';var fill=document.createElement('div');fill.className='ilu-rank__fill';track.appendChild(fill);var seg=-1;for(var i=0;i<N;i++){if(rp>=TH[i])seg=i;}var pos;if(seg>=N-1){pos=100;}else{var frac=(rp-TH[seg])/(TH[seg+1]-TH[seg]);pos=((seg+frac)/(N-1))*100;}for(var j=0;j<N;j++){var nd=document.createElement('div');nd.className='ilu-rank__node'+(rp>=TH[j]?' reached':'')+(j===seg?' current':'');nd.style.left=(j/(N-1)*100)+'%';var cap=document.createElement('span');cap.className='ilu-rank__cap';cap.textContent=NM[j];nd.appendChild(cap);track.appendChild(nd);}r.appendChild(track);var now=document.createElement('div');now.className='ilu-rank__now';now.innerHTML='<b>'+NM[Math.max(0,seg)]+'</b><span>'+rp.toLocaleString()+' RP</span>';r.appendChild(now);requestAnimationFrame(function(){requestAnimationFrame(function(){fill.style.width=pos+'%';});});});})();<\/script>`
+},
+
+/* 8 ─ CERTIFICATE / SEAL REVEAL ─────────────────────────────────────── */
+{
+  id:'seal', tag:'Reward · reveal', name:'Achievement Seal',
+  desc:'A wax-style seal that stamps in with a shine sweep — for completing a level or earning a certificate.',
+  controls:[
+    {key:'word', type:'text',  label:'Seal word', value:'ILU'},
+    {key:'cap',  type:'text',  label:'Caption', value:'Level I · Conferred'},
+    {key:'acc',  type:'color', label:'Seal color', value:'#7B2C2C'},
+  ],
+  snippet:p=>`<div class="ilu-seal" style="--acc:${p.acc}">
+  <div class="ilu-seal__disc"><span class="ilu-seal__word">${p.word}</span><svg class="ilu-seal__ring" viewBox="0 0 100 100"><circle cx="50" cy="50" r="44" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="1.5" stroke-dasharray="3 4"/></svg><div class="ilu-seal__shine"></div></div>
+  <div class="ilu-seal__cap">${p.cap}</div>
+</div>
+<style>
+.ilu-seal{text-align:center;font-family:"Spline Sans Mono",monospace}
+.ilu-seal__disc{position:relative;width:120px;height:120px;margin:0 auto;border-radius:50%;display:grid;place-items:center;overflow:hidden;background:radial-gradient(circle at 38% 32%,color-mix(in srgb,var(--acc) 70%,#fff 10%),var(--acc) 55%,color-mix(in srgb,var(--acc) 60%,#000) 100%);box-shadow:inset 0 2px 10px rgba(255,255,255,.25),inset 0 -6px 14px rgba(0,0,0,.45),0 10px 26px rgba(0,0,0,.5);transform:scale(0) rotate(-30deg);opacity:0;animation:iluStamp .7s cubic-bezier(.2,1.3,.4,1) forwards}
+.ilu-seal__word{font-family:"Fraunces",Georgia,serif;font-weight:700;font-size:2.1rem;color:#F4ECD8;letter-spacing:.04em;text-shadow:0 1px 2px rgba(0,0,0,.5);z-index:2}
+.ilu-seal__ring{position:absolute;inset:0;width:100%;height:100%;animation:iluRot 20s linear infinite}
+.ilu-seal__shine{position:absolute;top:0;left:-70%;width:55%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.5),transparent);transform:skewX(-18deg);animation:iluSweep 1.1s ease .6s 1}
+.ilu-seal__cap{margin-top:1rem;font-size:.64rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(200,188,161,.8);opacity:0;animation:iluFade .5s ease .7s forwards}
+@keyframes iluStamp{to{transform:scale(1) rotate(0);opacity:1}}
+@keyframes iluSweep{to{left:130%}}
+@keyframes iluRot{to{transform:rotate(360deg)}}
+@keyframes iluFade{to{opacity:1}}
+</style>`
+},
+
+];
+
+/* =====================================================================
+   RUNTIME — build cards, wire controls, run live previews, copy snippets
+   ===================================================================== */
+const grid = document.getElementById('grid');
+const toast = document.getElementById('toast');
+const state = {};
+
+/* execute an HTML string inside a container (innerHTML won't run <script>,
+   so we recreate each script node so the browser executes it) */
+function runHTML(container, html){
+  container.innerHTML = html;
+  container.querySelectorAll('script').forEach(old=>{
+    const s = document.createElement('script');
+    for(const a of old.attributes) s.setAttribute(a.name, a.value);
+    s.textContent = old.textContent;
+    old.replaceWith(s);
+  });
+}
+
+function showToast(msg){
+  toast.textContent = msg;
+  toast.classList.add('show');
+  clearTimeout(showToast._t);
+  showToast._t = setTimeout(()=>toast.classList.remove('show'), 1700);
+}
+
+COMPONENTS.forEach(comp=>{
+  // seed state
+  state[comp.id] = {};
+  comp.controls.forEach(c=> state[comp.id][c.key] = c.value);
+
+  const card = document.createElement('article');
+  card.className = 'card';
+
+  // controls markup
+  const ctrlHTML = comp.controls.map(c=>{
+    const id = comp.id+'_'+c.key;
+    if(c.type==='range')
+      return `<div class="ctrl"><label for="${id}">${c.label} <span class="val" data-for="${id}">${c.value}</span></label><input type="range" id="${id}" data-key="${c.key}" value="${c.value}" min="${c.min}" max="${c.max}" step="${c.step}"></div>`;
+    if(c.type==='color')
+      return `<div class="ctrl"><label for="${id}">${c.label}</label><input type="color" id="${id}" data-key="${c.key}" value="${c.value}"></div>`;
+    if(c.type==='number')
+      return `<div class="ctrl"><label for="${id}">${c.label}</label><input type="number" id="${id}" data-key="${c.key}" value="${c.value}"></div>`;
+    return `<div class="ctrl"><label for="${id}">${c.label}</label><input type="text" id="${id}" data-key="${c.key}" value="${String(c.value).replace(/"/g,'&quot;')}"></div>`;
+  }).join('');
+
+  card.innerHTML = `
+    <div class="card__head">
+      <div class="tag">${comp.tag}</div>
+      <h3>${comp.name}</h3>
+      <p>${comp.desc}</p>
+    </div>
+    <div class="preview" data-preview></div>
+    <div class="controls">${ctrlHTML}</div>
+    <div class="actions">
+      <button class="btn primary" data-copy>Copy snippet</button>
+      <button class="btn" data-replay title="Replay animation">↻ Replay</button>
+    </div>`;
+  grid.appendChild(card);
+
+  const previewEl = card.querySelector('[data-preview]');
+  const render = ()=> runHTML(previewEl, comp.snippet(state[comp.id]));
+  render();
+
+  // wire controls
+  card.querySelectorAll('input[data-key]').forEach(inp=>{
+    const evt = (inp.type==='text' || inp.type==='number') ? 'input' : 'input';
+    inp.addEventListener(evt, ()=>{
+      let v = inp.value;
+      if(inp.type==='number' || inp.type==='range') v = (v===''?0:Number(v));
+      state[comp.id][inp.dataset.key] = v;
+      const valEl = card.querySelector(`.val[data-for="${inp.id}"]`);
+      if(valEl) valEl.textContent = v;
+      render();
+    });
+  });
+
+  card.querySelector('[data-replay]').addEventListener('click', render);
+  card.querySelector('[data-copy]').addEventListener('click', (e)=>{
+    const btn = e.currentTarget;
+    const code = comp.snippet(state[comp.id]);
+    navigator.clipboard.writeText(code).then(()=>{
+      btn.textContent = '✓ Copied';
+      btn.classList.add('copied');
+      showToast('✓ '+comp.name+' copied — paste into your page');
+      setTimeout(()=>{ btn.textContent='Copy snippet'; btn.classList.remove('copied'); }, 1800);
+    }).catch(()=>{
+      // clipboard blocked (e.g. file://) → fall back to a selectable prompt
+      window.prompt('Copy the snippet:', code);
+    });
+  });
+});
+</script>
+</body>
+</html>

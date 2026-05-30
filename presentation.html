@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ilu's School of Thoughts — Presentation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,300;1,9..144,400;1,9..144,500&family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Spline+Sans+Mono:wght@400;500&family=Pinyon+Script&display=swap" rel="stylesheet">
+<style>
+/* ===========================================
+   VIEWPORT FITTING: MANDATORY BASE STYLES
+   =========================================== */
+html, body { height:100%; overflow-x:hidden; }
+html { scroll-snap-type:y mandatory; scroll-behavior:smooth; }
+.slide { width:100vw; height:100vh; height:100dvh; overflow:hidden; scroll-snap-align:start; display:flex; flex-direction:column; position:relative; }
+.slide-content { flex:1; display:flex; flex-direction:column; justify-content:center; max-height:100%; overflow:hidden; padding:var(--slide-padding); }
+:root{
+  --title-size:clamp(1.5rem,5vw,4rem); --h2-size:clamp(1.25rem,3.5vw,2.5rem); --h3-size:clamp(1rem,2.5vw,1.75rem);
+  --body-size:clamp(0.78rem,1.5vw,1.15rem); --small-size:clamp(0.65rem,1vw,0.875rem);
+  --slide-padding:clamp(1.4rem,5vw,5rem); --content-gap:clamp(0.5rem,2vw,2rem); --element-gap:clamp(0.25rem,1vw,1rem);
+}
+.grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr)); gap:clamp(0.5rem,1.5vw,1rem);}
+@media (max-height:700px){:root{--slide-padding:clamp(0.9rem,3vw,2.5rem);--content-gap:clamp(0.4rem,1.5vw,1rem);--title-size:clamp(1.25rem,4.5vw,2.6rem);--h2-size:clamp(1rem,3vw,1.8rem);}}
+@media (max-height:600px){:root{--slide-padding:clamp(0.6rem,2.5vw,1.5rem);--content-gap:clamp(0.3rem,1vw,0.75rem);--title-size:clamp(1.1rem,4vw,2rem);--body-size:clamp(0.7rem,1.2vw,0.95rem);} .nav-dots,.hint,.decorative{display:none;}}
+@media (max-height:500px){:root{--slide-padding:clamp(0.4rem,2vw,1rem);--title-size:clamp(1rem,3.5vw,1.5rem);--h2-size:clamp(0.9rem,2.5vw,1.25rem);--body-size:clamp(0.65rem,1vw,0.85rem);}}
+@media (max-width:600px){:root{--title-size:clamp(1.25rem,7vw,2.5rem);} .grid{grid-template-columns:1fr;}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.2s!important;} html{scroll-behavior:auto;}}
+
+/* ===========================================
+   BRAND — Night gallery (dark academia)
+   =========================================== */
+:root{
+  --paper:#F4ECD8; --parch:#F0E6CE; --ink:#15130D;
+  --gold:#B8893B; --gold-d:#8A6A2B; --gold-s:#E7CF94;
+  --garnet:#7B2C2C; --verd:#3E6B54; --teal:#33606e;
+  --muted:rgba(200,188,161,.62); --line:rgba(231,207,148,.18);
+  --ff-d:"Fraunces",Georgia,serif; --ff-b:"Spectral",Georgia,serif; --ff-m:"Spline Sans Mono",monospace; --ff-s:"Pinyon Script",cursive;
+}
+*{box-sizing:border-box;}
+body{margin:0; background:#100e09; color:var(--parch); font-family:var(--ff-b); -webkit-font-smoothing:antialiased;}
+.slide{background:radial-gradient(1100px 600px at 78% -8%, #221d12 0%, rgba(34,29,18,0) 60%), linear-gradient(180deg,#16130c,#0c0b07);}
+.slide.light{background:radial-gradient(1100px 600px at 80% -10%, #fbf4e2 0%, rgba(251,244,226,0) 60%), var(--paper); color:var(--ink);}
+/* paper grain */
+.slide::after{content:""; position:absolute; inset:0; pointer-events:none; opacity:.05; mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+
+/* shared type */
+.eyebrow{font-family:var(--ff-m); font-size:var(--small-size); letter-spacing:.3em; text-transform:uppercase; color:var(--gold); margin-bottom:clamp(.6rem,1.5vh,1.2rem);}
+.slide.light .eyebrow{color:var(--gold-d);}
+h1,h2,h3{font-family:var(--ff-d); font-weight:600; line-height:1.04; letter-spacing:-.015em; margin:0;}
+h1{font-size:var(--title-size);} h2{font-size:var(--h2-size);} h3{font-size:var(--h3-size);}
+.it{font-style:italic; font-weight:400; color:var(--gold-s);}
+.slide.light .it{color:var(--garnet);}
+p.lead{font-size:var(--body-size); line-height:1.6; color:var(--muted); max-width:60ch; margin:clamp(.8rem,2vh,1.6rem) 0 0;}
+.slide.light p.lead{color:var(--ink-soft,#4A4536);}
+.rule{height:1px; width:clamp(120px,18vw,260px); background:linear-gradient(90deg,var(--gold),transparent); margin:clamp(.8rem,2vh,1.4rem) 0;}
+
+/* staggered reveal */
+.reveal{opacity:0; transform:translateY(20px); transition:opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1);}
+.slide.active .reveal{opacity:1; transform:none;}
+.slide.active .reveal:nth-child(2){transition-delay:.08s} .slide.active .reveal:nth-child(3){transition-delay:.16s}
+.slide.active .reveal:nth-child(4){transition-delay:.24s} .slide.active .reveal:nth-child(5){transition-delay:.32s}
+.d1{transition-delay:.1s} .d2{transition-delay:.2s} .d3{transition-delay:.3s} .d4{transition-delay:.4s} .d5{transition-delay:.5s}
+
+/* emblem */
+.emblem{width:clamp(120px,18vh,210px); aspect-ratio:1; animation:float 7s ease-in-out infinite; filter:drop-shadow(0 18px 40px rgba(0,0,0,.55)) drop-shadow(0 0 22px rgba(210,215,221,.18));}
+.emblem svg{width:100%;height:100%;display:block;}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+
+/* title slide */
+.title-wrap{align-items:center; text-align:center;}
+.title-name{font-family:var(--ff-d); font-weight:700; font-size:clamp(2rem,6.5vw,5rem); color:var(--parch); margin-top:clamp(1rem,3vh,2rem); line-height:1;}
+.title-tag{font-family:var(--ff-m); font-size:var(--small-size); letter-spacing:.34em; text-transform:uppercase; color:var(--gold-s); margin-top:clamp(.7rem,1.5vh,1.1rem);}
+.title-sub{font-family:var(--ff-d); font-style:italic; font-size:var(--h3-size); color:var(--muted); margin-top:clamp(1rem,2.5vh,1.8rem);}
+
+/* method steps */
+.steps{display:grid; grid-template-columns:repeat(4,1fr); gap:clamp(.5rem,1.5vw,1.1rem); margin-top:clamp(1rem,3vh,2rem);}
+.step{border:1px solid var(--line); border-radius:6px; padding:clamp(.9rem,2.2vh,1.6rem); background:rgba(255,255,255,.02);}
+.step .n{font-family:var(--ff-d); font-style:italic; font-size:clamp(1.2rem,3vw,2rem); color:var(--gold-s);}
+.step h3{font-size:clamp(.95rem,2vw,1.4rem); margin:.4rem 0 .35rem;}
+.step p{font-size:var(--small-size); color:var(--muted); line-height:1.45; margin:0;}
+@media(max-width:720px){.steps{grid-template-columns:1fr 1fr;}}
+
+/* level cards */
+.levels{display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(.6rem,1.5vw,1.2rem); margin-top:clamp(1rem,3vh,2rem);}
+.lvl{border:1px solid var(--line); border-radius:8px; overflow:hidden; background:rgba(255,255,255,.02);}
+.lvl .band{height:4px;}
+.lvl .in{padding:clamp(1rem,2.5vh,1.8rem);}
+.lvl .rn{font-family:var(--ff-m); font-size:var(--small-size); letter-spacing:.2em; text-transform:uppercase; color:var(--muted);}
+.lvl h3{font-size:clamp(1.1rem,2.4vw,1.7rem); margin:.3rem 0 .5rem;}
+.lvl p{font-size:var(--small-size); color:var(--muted); line-height:1.5; margin:0 0 .8rem;}
+.lvl .cred{font-family:var(--ff-m); font-size:clamp(.6rem,.9vw,.72rem); color:var(--gold); border-top:1px solid var(--line); padding-top:.7rem;}
+@media(max-width:720px){.levels{grid-template-columns:1fr;}}
+
+/* single-level hero */
+.lvl-hero{display:grid; grid-template-columns:auto 1fr; gap:clamp(1rem,3vw,2.5rem); align-items:center;}
+.lvl-num{font-family:var(--ff-d); font-style:italic; font-weight:300; font-size:clamp(4rem,16vw,12rem); line-height:.8;}
+.lvl-list{list-style:none; padding:0; margin:clamp(.8rem,2vh,1.4rem) 0 0; display:flex; flex-direction:column; gap:clamp(.4rem,1vh,.7rem);}
+.lvl-list li{font-size:var(--body-size); color:var(--muted); padding-left:1.4em; position:relative;}
+.lvl-list li::before{content:"›"; position:absolute; left:0; color:var(--gold);}
+
+/* debate phases */
+.phases{display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(.6rem,1.5vw,1.2rem); margin-top:clamp(1rem,3vh,2rem);}
+.phase{border:1px solid var(--line); border-radius:8px; padding:clamp(1rem,2.5vh,1.8rem); text-align:center; background:rgba(255,255,255,.02);}
+.phase .t{font-family:var(--ff-m); font-size:clamp(1.4rem,4vw,2.6rem); color:var(--gold-s);}
+.phase h3{font-size:clamp(1rem,2.2vw,1.5rem); margin:.5rem 0 .3rem;}
+.phase p{font-size:var(--small-size); color:var(--muted); margin:0;}
+
+/* stats / ranks */
+.ranks{display:flex; flex-wrap:wrap; gap:clamp(.5rem,1.5vw,1rem); margin-top:clamp(1rem,3vh,2rem);}
+.rank{flex:1; min-width:120px; border:1px solid var(--line); border-radius:30px; padding:clamp(.5rem,1.2vh,.9rem) clamp(.8rem,2vw,1.3rem); text-align:center;}
+.rank b{font-family:var(--ff-d); display:block; font-size:clamp(.95rem,2vw,1.3rem); color:var(--parch);}
+.rank span{font-family:var(--ff-m); font-size:clamp(.6rem,.9vw,.72rem); color:var(--muted);}
+.rank.cur{background:linear-gradient(180deg,rgba(184,137,59,.25),rgba(184,137,59,.08)); border-color:var(--gold);}
+
+/* two-col */
+.two{display:grid; grid-template-columns:1.1fr .9fr; gap:clamp(1rem,3vw,2.5rem); align-items:center;}
+@media(max-width:760px){.two{grid-template-columns:1fr;}}
+.checklist{list-style:none; padding:0; margin:clamp(.8rem,2vh,1.4rem) 0 0; display:flex; flex-direction:column; gap:clamp(.5rem,1.2vh,.9rem);}
+.checklist li{display:flex; gap:.7rem; font-size:var(--body-size); color:var(--muted); align-items:flex-start;}
+.checklist .ck{color:var(--verd); flex:none; font-weight:700;}
+.slide.light .checklist li{color:#4A4536;}
+
+/* closing */
+.close-wrap{align-items:center; text-align:center;}
+.sapere{font-family:var(--ff-d); font-style:italic; font-size:clamp(2.2rem,7vw,5.5rem); color:var(--parch); line-height:1;}
+.sapere-sub{font-family:var(--ff-m); font-size:var(--small-size); letter-spacing:.3em; text-transform:uppercase; color:var(--gold-s); margin-top:clamp(.8rem,2vh,1.4rem);}
+
+/* nav dots + hint */
+.nav-dots{position:fixed; right:clamp(14px,2vw,28px); top:50%; transform:translateY(-50%); display:flex; flex-direction:column; gap:11px; z-index:50;}
+.nav-dots button{width:9px; height:9px; border-radius:50%; border:1px solid var(--gold); background:transparent; padding:0; cursor:pointer; transition:.2s;}
+.nav-dots button.on{background:var(--gold); transform:scale(1.35);}
+.hint{position:fixed; bottom:clamp(10px,2vh,22px); left:50%; transform:translateX(-50%); font-family:var(--ff-m); font-size:.62rem; letter-spacing:.18em; text-transform:uppercase; color:var(--muted); z-index:50;}
+.pagenum{position:fixed; bottom:clamp(10px,2vh,22px); right:clamp(16px,2.5vw,30px); font-family:var(--ff-m); font-size:.66rem; color:var(--muted); z-index:50;}
+.slide.light ~ .nav-dots button{border-color:var(--gold-d);}
+</style>
+</head>
+<body>
+
+<!-- 1 · TITLE -->
+<section class="slide active title-wrap" data-bg="dark">
+  <div class="slide-content title-wrap">
+    <div class="emblem reveal" data-emblem></div>
+    <div class="title-name reveal">Ilu's School of Thoughts</div>
+    <div class="title-tag reveal">Reason · Argue · Illuminate</div>
+    <div class="title-sub reveal">“Sapere aude” — dare to know.</div>
+  </div>
+</section>
+
+<!-- 2 · WHAT IT IS -->
+<section class="slide">
+  <div class="slide-content">
+    <div class="eyebrow reveal">The debate-first idea</div>
+    <h1 class="reveal">You don't understand a view<br>until you can <span class="it">argue it well.</span></h1>
+    <div class="rule reveal"></div>
+    <p class="lead reveal">Most introductions to atheism hand you a list of arguments to memorise. Ilu's School inverts that: content is the raw material — the <strong style="color:var(--parch)">skill</strong> is the product. You learn to reconstruct an opponent's case at its strongest, find its load-bearing premise, and answer with logic rather than slogans.</p>
+  </div>
+</section>
+
+<!-- 3 · METHOD -->
+<section class="slide">
+  <div class="slide-content">
+    <div class="eyebrow reveal">The method</div>
+    <h2 class="reveal">Learn → Drill → Spar → Reflect</h2>
+    <div class="steps">
+      <div class="step reveal d1"><div class="n">i.</div><h3>Learn</h3><p>Short readings &amp; video on each idea, with key terms and a graded knowledge check.</p></div>
+      <div class="step reveal d2"><div class="n">ii.</div><h3>Drill</h3><p>Spot-the-fallacy practice from real arguments — served at random, scored for recall.</p></div>
+      <div class="step reveal d3"><div class="n">iii.</div><h3>Spar</h3><p>Timed debates against the bot — opening, cross-examination, closing, then judged.</p></div>
+      <div class="step reveal d4"><div class="n">iv.</div><h3>Reflect</h3><p>A skill radar and Socratic prompts show what to sharpen next.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 4 · THREE LEVELS -->
+<section class="slide">
+  <div class="slide-content">
+    <div class="eyebrow reveal">A cumulative curriculum</div>
+    <h2 class="reveal">From first light to illumination</h2>
+    <div class="levels">
+      <div class="lvl reveal d1"><div class="band" style="background:var(--verd)"></div><div class="in"><div class="rn">Level I · Beginner</div><h3>First Light</h3><p>Where reason begins — terms, the tools of reason, fallacies, a short history of doubt.</p><div class="cred">Certificate of Foundation</div></div></div>
+      <div class="lvl reveal d2"><div class="band" style="background:var(--gold)"></div><div class="in"><div class="rn">Level II · Intermediate</div><h3>The Crucible</h3><p>Where arguments are tested — the case for God steelmanned, the rebuttals, the problem of evil.</p><div class="cred">Certificate of Argumentation</div></div></div>
+      <div class="lvl reveal d3"><div class="band" style="background:var(--garnet)"></div><div class="in"><div class="rn">Level III · Expert</div><h3>Illumination</h3><p>Where the room is mastered — advanced philosophy of religion, meaning &amp; mortality, public reason.</p><div class="cred">Advanced Cert. + Master Diploma</div></div></div>
+    </div>
+    <p class="lead reveal d4" style="margin-top:clamp(.8rem,2vh,1.4rem)"><span style="color:var(--teal);font-weight:600">Essentials</span> sits outside the ladder — an open-access primer track, no prerequisites.</p>
+  </div>
+</section>
+
+<!-- 5 · LEVEL I -->
+<section class="slide">
+  <div class="slide-content">
+    <div class="lvl-hero">
+      <div class="lvl-num reveal" style="color:var(--verd)">I</div>
+      <div>
+        <div class="eyebrow reveal">Level I · Beginner</div>
+        <h2 class="reveal">First Light</h2>
+        <ul class="lvl-list">
+          <li class="reveal d1">What atheism is — and isn't: the two-axis model, the Dawkins spectrum</li>
+          <li class="reveal d2">The tools of reason: validity, soundness, burden of proof, falsifiability</li>
+          <li class="reveal d3">A fallacy field guide — formal, relevance, presumption &amp; the biased brain</li>
+          <li class="reveal d4">A short history of doubt: Cārvāka and Epicurus to the New Atheists</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6 · LEVEL II -->
+<section class="slide">
+  <div class="slide-content">
+    <div class="lvl-hero">
+      <div class="lvl-num reveal" style="color:var(--gold)">II</div>
+      <div>
+        <div class="eyebrow reveal">Level II · Intermediate</div>
+        <h2 class="reveal">The Crucible</h2>
+        <ul class="lvl-list">
+          <li class="reveal d1">The case for God, steelmanned: cosmological, design, ontological, moral</li>
+          <li class="reveal d2">The rebuttals — and the Euthyphro dilemma</li>
+          <li class="reveal d3">The problem of evil: logical, evidential, and the theodicies</li>
+          <li class="reveal d4">Science, cosmos &amp; naturalism · goodness without God</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7 · LEVEL III -->
+<section class="slide">
+  <div class="slide-content">
+    <div class="lvl-hero">
+      <div class="lvl-num reveal" style="color:var(--garnet)">III</div>
+      <div>
+        <div class="eyebrow reveal">Level III · Expert</div>
+        <h2 class="reveal">Illumination</h2>
+        <ul class="lvl-list">
+          <li class="reveal d1">Advanced philosophy of religion: Bayes, fine-tuning, hiddenness, miracles</li>
+          <li class="reveal d2">The cognitive science of religion — why minds make gods</li>
+          <li class="reveal d3">Meaning, mortality &amp; the examined life · secular ethics, deeply</li>
+          <li class="reveal d4">The art of public reason → a judged capstone debate or thesis</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 8 · DEBATE ARENA -->
+<section class="slide">
+  <div class="slide-content">
+    <div class="eyebrow reveal">The Debate Arena</div>
+    <h2 class="reveal">Argue it for real — <span class="it">against a worthy bot</span></h2>
+    <p class="lead reveal">Choose a side. The bot takes the other and argues it in earnest. Three timed phases, then a score.</p>
+    <div class="phases">
+      <div class="phase reveal d1"><div class="t">10:00</div><h3>Opening</h3><p>State your strongest case for the motion.</p></div>
+      <div class="phase reveal d2"><div class="t">5:00</div><h3>Cross-examination</h3><p>Answer the challenge; press the weak joint.</p></div>
+      <div class="phase reveal d3"><div class="t">10:00</div><h3>Closing</h3><p>Show why your case outweighs theirs.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 9 · PROGRESS / RANKS -->
+<section class="slide">
+  <div class="slide-content">
+    <div class="eyebrow reveal">Progress you can feel</div>
+    <h2 class="reveal">Reason Points &amp; the <span class="it">six competencies</span></h2>
+    <p class="lead reveal">Every passed lesson and won debate earns Reason Points and raises your rank. A six-axis skill radar — Logic, Evidence, Rebuttal, Charity, Rhetoric, Composure — shows exactly what to sharpen.</p>
+    <div class="ranks">
+      <div class="rank reveal d1"><b>Inquirer</b><span>0 RP</span></div>
+      <div class="rank reveal d1"><b>Disputant</b><span>500 RP</span></div>
+      <div class="rank cur reveal d2"><b>Rhetor</b><span>1,500 RP</span></div>
+      <div class="rank reveal d3"><b>Dialectician</b><span>3,500 RP</span></div>
+      <div class="rank reveal d4"><b>Adept</b><span>7,000 RP</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 10 · CERTIFICATE (light) -->
+<section class="slide light">
+  <div class="slide-content">
+    <div class="two">
+      <div>
+        <div class="eyebrow reveal">Verifiable credential</div>
+        <h2 class="reveal" style="color:var(--ink)">A certificate that<br>actually <span class="it">means something.</span></h2>
+        <ul class="checklist">
+          <li class="reveal d1"><span class="ck">✓</span><div>Earned only by completing all three graded levels.</div></li>
+          <li class="reveal d2"><span class="ck">✓</span><div>Generated with your name the moment you finish.</div></li>
+          <li class="reveal d3"><span class="ck">✓</span><div>Download as a print-ready PDF — yours to keep and share.</div></li>
+        </ul>
+      </div>
+      <div class="reveal d2" style="display:grid;place-items:center">
+        <div style="width:min(80%,320px);aspect-ratio:1.414/1;background:var(--paper-2,#FBF7EC);border:1px solid var(--ink);border-radius:4px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:8% 6%;box-shadow:0 20px 50px rgba(28,26,20,.18)">
+          <div style="font-family:var(--ff-d);font-weight:700;font-size:clamp(.8rem,1.6vw,1.05rem)">Ilu's School of Thoughts</div>
+          <div style="font-family:var(--ff-m);font-size:.55rem;letter-spacing:.2em;color:var(--gold-d);margin:.5em 0">Certifies that</div>
+          <div style="font-family:var(--ff-d);font-size:clamp(1rem,2.4vw,1.6rem);color:var(--ink)">Your Name</div>
+          <div style="width:50%;height:1px;background:var(--gold);margin:.5em 0"></div>
+          <div style="font-family:var(--ff-d);font-style:italic;color:var(--garnet);font-size:clamp(.75rem,1.5vw,1rem)">Certificate of Completion</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 11 · WHO IT'S FOR -->
+<section class="slide">
+  <div class="slide-content">
+    <div class="eyebrow reveal">Who it's for</div>
+    <h2 class="reveal">For the curious, the doubting,<br>and the <span class="it">wholly persuaded</span> alike.</h2>
+    <p class="lead reveal">A school that refuses to be either evangelistic or contemptuous. It reads the believer at full strength, teaches charity as a discipline, and asks only that you reason without fear of the conclusion.</p>
+    <div class="rule reveal"></div>
+    <p class="lead reveal d2" style="font-family:var(--ff-d);font-style:italic;color:var(--gold-s)">“Where reason is held in highest regard — and the honest question is held higher still.”</p>
+  </div>
+</section>
+
+<!-- 12 · CLOSE -->
+<section class="slide close-wrap">
+  <div class="slide-content close-wrap">
+    <div class="emblem reveal" data-emblem style="width:clamp(110px,15vh,170px)"></div>
+    <div class="sapere reveal">Sapere aude.</div>
+    <div class="sapere-sub reveal">Ilu's School of Thoughts · Reason · Argue · Illuminate</div>
+  </div>
+</section>
+
+<div class="nav-dots" id="dots"></div>
+<div class="hint decorative">↑ ↓ / space to navigate</div>
+<div class="pagenum" id="pagenum">01</div>
+
+<script>
+const EMBLEM = `<svg viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="bg" cx="50%" cy="40%" r="74%"><stop offset="0%" stop-color="#23252b"/><stop offset="100%" stop-color="#0b0c0f"/></radialGradient><linearGradient id="wTop" x1="0" y1="0" x2="0.18" y2="1"><stop offset="0%" stop-color="#eceef1"/><stop offset="100%" stop-color="#b0b6be"/></linearGradient><linearGradient id="wMid" x1="0" y1="0" x2="0.18" y2="1"><stop offset="0%" stop-color="#ccd1d7"/><stop offset="100%" stop-color="#9aa0a8"/></linearGradient><linearGradient id="face" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#3c3f46"/><stop offset="55%" stop-color="#202329"/><stop offset="100%" stop-color="#0c0d10"/></linearGradient><radialGradient id="halo" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#fff" stop-opacity="0.16"/><stop offset="60%" stop-color="#fff" stop-opacity="0.04"/><stop offset="100%" stop-color="#fff" stop-opacity="0"/></radialGradient><linearGradient id="gold" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#d2d7dd"/><stop offset="50%" stop-color="#9aa0a8"/><stop offset="100%" stop-color="#d2d7dd"/></linearGradient><clipPath id="disc"><circle cx="300" cy="300" r="284"/></clipPath></defs>
+<g clip-path="url(#disc)">
+<circle cx="300" cy="300" r="284" fill="url(#bg)"/>
+<circle cx="300" cy="250" r="120" fill="url(#halo)"/>
+<g transform="translate(600,0) scale(-1,1)"><g><path d="M300 366 C306 292 326 206 392 162 C430 138 466 156 474 206 C482 256 470 330 440 374 C414 414 356 414 322 396 C310 388 300 380 300 366 Z" fill="url(#wMid)" opacity="0.92"/><g transform="translate(321.2,373.7) rotate(40.00)"><path d="M0 0 C27.6 -34.4 80.0 -44.8 118.7 -34.8 Q142.1 -24.8 118.7 -14.9 C80.0 17.5 27.6 34.4 0 0 Z" fill="url(#wMid)" stroke="#7c838c" stroke-width="1.0" stroke-linejoin="round" stroke-opacity="0.55"/></g><g transform="translate(322.6,371.6) rotate(28.00)"><path d="M0 0 C30.1 -37.6 87.3 -48.9 129.4 -37.9 Q155.0 -27.1 129.4 -16.3 C87.3 19.1 30.1 37.6 0 0 Z" fill="url(#wMid)" stroke="#7c838c" stroke-width="1.0" stroke-linejoin="round" stroke-opacity="0.55"/></g><g transform="translate(323.5,369.3) rotate(16.00)"><path d="M0 0 C32.6 -40.7 94.5 -52.9 140.2 -41.1 Q167.9 -29.3 140.2 -17.6 C94.5 20.6 32.6 40.7 0 0 Z" fill="url(#wMid)" stroke="#7c838c" stroke-width="1.0" stroke-linejoin="round" stroke-opacity="0.55"/></g><g transform="translate(324.0,366.8) rotate(4.00)"><path d="M0 0 C35.1 -43.8 101.8 -57.0 150.9 -44.2 Q180.8 -31.6 150.9 -19.0 C101.8 22.2 35.1 43.8 0 0 Z" fill="url(#wMid)" stroke="#7c838c" stroke-width="1.0" stroke-linejoin="round" stroke-opacity="0.55"/></g><g transform="translate(323.9,364.3) rotate(-8.00)"><path d="M0 0 C37.6 -46.9 109.0 -61.0 161.7 -47.4 Q193.6 -33.8 161.7 -20.3 C109.0 23.8 37.6 46.9 0 0 Z" fill="url(#wMid)" stroke="#7c838c" stroke-width="1.0" stroke-linejoin="round" stroke-opacity="0.55"/></g><g transform="translate(323.3,361.9) rotate(-20.00)"><path d="M0 0 C40.1 -50.0 116.3 -65.1 172.4 -50.5 Q206.5 -36.1 172.4 -21.7 C116.3 25.4 40.1 50.0 0 0 Z" fill="url(#wMid)" stroke="#7c838c" stroke-width="1.0" stroke-linejoin="round" stroke-opacity="0.55"/></g><g transform="translate(322.2,359.6) rotate(-32.00)"><path d="M0 0 C42.6 -53.2 123.5 -69.1 183.2 -53.7 Q219.4 -38.3 183.2 -23.0 C123.5 27.0 42.6 53.2 0 0 Z" fill="url(#wMid)" stroke="#7c838c" stroke-width="1.0" stroke-linejoin="round" stroke-opacity="0.55"/></g><g transform="translate(320.6,357.7) rotate(-44.00)"><path d="M0 0 C45.1 -56.3 130.8 -73.2 193.9 -56.8 Q232.3 -40.6 193.9 -24.4 C130.8 28.5 45.1 56.3 0 0 Z" fill="url(#wMid)" stroke="#7c838c" stroke-width="1.0" stroke-linejoin="round" stroke-opacity="0.55"/></g><g transform="translate(318.7,356.1) rotate(-56.00)"><path d="M0 0 C47.6 -59.4 138.0 -77.3 204.7 -60.0 Q245.1 -42.8 204.7 -25.7 C138.0 30.1 47.6 59.4 0 0 Z" fill="url(#wMid)" stroke="#7c838c" stroke-width="1.0" stroke-linejoin="round" stroke-opacity="0.55"/></g><g transform="translate(330.7,384.1) rotate(44.00)"><path d="M0 0 C24.8 -32.2 71.9 -44.1 106.6 -36.6 Q127.7 -27.3 106.6 -18.0 C71.9 14.1 24.8 32.2 0 0 Z" fill="url(#wTop)" stroke="#969da6" stroke-width="1.0" stroke-linejoin="round" stroke-opacity="0.55"/><path d="M12.4 0 Q64.5 -13.6 101.7 -25.9" stroke="#6f777f" stroke-width="1.49" opacity="0.28" fill="none" stroke-linecap="round"/></g><g transform="translate(333.5,380.7) rotate(34.40)"><path d="M0 0 C27.7 -36.0 80.3 -49.3 119.0 -40.8 Q142.6 -30.4 119.0 -20.1 C80.3 15.8 27.7 36.0 0 0 Z" fill="url(#wTop)" stroke="#969da6" stroke-width="1.0" stroke-linejoin="round" stroke-opacity="0.55"/><path d="M13.8 0 Q72.0 -15.2 113.5 -28.9" stroke="#6f777f" stroke-width="1.66" opacity="0.28" fill="none" stroke-linecap="round"/></g><g transform="translate(335.6,376.9) rotate(24.80)"><path d="M0 0 C30.6 -39.7 88.6 -54.4 131.4 -45.1 Q157.4 -33.6 131.4 -22.2 C88.6 17.4 30.6 39.7 0 0 Z" fill="url(#wTop)" stroke="#969da6" stroke-width="1.0" stroke-linejoin="round" stroke-opacity="0.55"/><path d="M15.3 0 Q79.5 -16.8 125.3 -31.9" stroke="#6f777f" stroke-width="1.83" opacity="0.28" fill="none" stroke-linecap="round"/></g><g transform="translate(337.1,372.8) rotate(15.20)"><path d="M0 0 C33.4 -43.5 97.0 -59.5 143.8 -49.3 Q172.2 -36.8 143.8 -24.2 C97.0 19.1 33.4 43.5 0 0 Z" fill="url(#wTop)" stroke="#969da6" stroke-width="1.0" stroke-linejoin="round" stroke-opacity="0.55"/><path d="M16.7 0 Q86.9 -18.4 137.1 -34.9" stroke="#6f777f" stroke-width="2.01" opacity="0.28" fill="none" stroke-linecap="round"/></g><g transform="translate(337.9,368.5) rotate(5.60)"><path d="M0 0 C36.3 -47.2 105.3 -64.6 156.2 -53.6 Q187.0 -40.0 156.2 -26.3 C105.3 20.7 36.3 47.2 0 0 Z" fill="url(#wTop)" stroke="#969da6" stroke-width="1.0" stroke-linejoin="round" stroke-opacity="0.55"/><path d="M18.2 0 Q94.4 -20.0 148.9 -38.0" stroke="#6f777f" stroke-width="2.18" opacity="0.28" fill="none" stroke-linecap="round"/></g><g transform="translate(337.9,364.2) rotate(-4.00)"><path d="M0 0 C39.2 -51.0 113.7 -69.8 168.6 -57.8 Q201.9 -43.1 168.6 -28.4 C113.7 22.3 39.2 51.0 0 0 Z" fill="url(#wTop)" stroke="#969da6" stroke-width="1.0" stroke-linejoin="round" stroke-opacity="0.55"/><path d="M19.6 0 Q101.9 -21.6 160.7 -41.0" stroke="#6f777f" stroke-width="2.35" opacity="0.28" fill="none" stroke-linecap="round"/></g><g transform="translate(337.3,359.9) rotate(-13.60)"><path d="M0 0 C42.1 -54.7 122.0 -74.9 180.9 -62.1 Q216.7 -46.3 180.9 -30.5 C122.0 24.0 42.1 54.7 0 0 Z" fill="url(#wTop)" stroke="#969da6" stroke-width="1.0" stroke-linejoin="round" stroke-opacity="0.55"/><path d="M21.0 0 Q109.4 -23.1 172.5 -44.0" stroke="#6f777f" stroke-width="2.52" opacity="0.28" fill="none" stroke-linecap="round"/></g><g transform="translate(335.9,355.8) rotate(-23.20)"><path d="M0 0 C45.0 -58.4 130.4 -80.0 193.3 -66.3 Q231.5 -49.5 193.3 -32.6 C130.4 25.6 45.0 58.4 0 0 Z" fill="url(#wTop)" stroke="#969da6" stroke-width="1.0" stroke-linejoin="round" stroke-opacity="0.55"/><path d="M22.5 0 Q116.9 -24.7 184.3 -47.0" stroke="#6f777f" stroke-width="2.70" opacity="0.28" fill="none" stroke-linecap="round"/></g><g transform="translate(333.9,351.9) rotate(-32.80)"><path d="M0 0 C47.8 -62.2 138.7 -85.2 205.7 -70.6 Q246.4 -52.6 205.7 -34.7 C138.7 27.3 47.8 62.2 0 0 Z" fill="url(#wTop)" stroke="#969da6" stroke-width="1.0" stroke-linejoin="round" stroke-opacity="0.55"/><path d="M23.9 0 Q124.4 -26.3 196.1 -50.0" stroke="#6f777f" stroke-width="2.87" opacity="0.28" fill="none" stroke-linecap="round"/></g><g transform="translate(331.2,348.5) rotate(-42.40)"><path d="M0 0 C50.7 -65.9 147.1 -90.3 218.1 -74.8 Q261.2 -55.8 218.1 -36.8 C147.1 28.9 50.7 65.9 0 0 Z" fill="url(#wTop)" stroke="#969da6" stroke-width="1.0" stroke-linejoin="round" stroke-opacity="0.55"/><path d="M25.4 0 Q131.9 -27.9 208.0 -53.0" stroke="#6f777f" stroke-width="3.04" opacity="0.28" fill="none" stroke-linecap="round"/></g><g transform="translate(328.0,345.5) rotate(-52.00)"><path d="M0 0 C53.6 -69.7 155.4 -95.4 230.5 -79.1 Q276.0 -59.0 230.5 -38.9 C155.4 30.6 53.6 69.7 0 0 Z" fill="url(#wTop)" stroke="#969da6" stroke-width="1.0" stroke-linejoin="round" stroke-opacity="0.55"/><path d="M26.8 0 Q139.4 -29.5 219.8 -56.0" stroke="#6f777f" stroke-width="3.22" opacity="0.28" fill="none" stroke-linecap="round"/></g><ellipse cx="314" cy="364" rx="18" ry="24" fill="url(#wMid)"/><g transform="translate(315.9,366.8) rotate(12.00)"><path d="M0 0 C12.0 -19.3 34.8 -21.4 51.6 -12.8 Q61.8 -7.2 51.6 -1.6 C34.8 13.5 12.0 19.3 0 0 Z" fill="url(#wTop)" stroke="#9aa1aa" stroke-width="0.9" stroke-linejoin="round" stroke-opacity="0.55"/></g><g transform="translate(316.0,365.9) rotate(-2.00)"><path d="M0 0 C13.4 -21.6 38.9 -23.9 57.6 -14.3 Q69.0 -8.0 57.6 -1.8 C38.9 15.1 13.4 21.6 0 0 Z" fill="url(#wTop)" stroke="#9aa1aa" stroke-width="0.9" stroke-linejoin="round" stroke-opacity="0.55"/></g><g transform="translate(315.8,364.9) rotate(-16.00)"><path d="M0 0 C14.8 -23.9 42.9 -26.4 63.6 -15.8 Q76.2 -8.9 63.6 -2.0 C42.9 16.7 14.8 23.9 0 0 Z" fill="url(#wTop)" stroke="#9aa1aa" stroke-width="0.9" stroke-linejoin="round" stroke-opacity="0.55"/></g><g transform="translate(315.5,364.0) rotate(-30.00)"><path d="M0 0 C16.2 -26.1 47.0 -28.9 69.7 -17.3 Q83.4 -9.7 69.7 -2.2 C47.0 18.3 16.2 26.1 0 0 Z" fill="url(#wTop)" stroke="#9aa1aa" stroke-width="0.9" stroke-linejoin="round" stroke-opacity="0.55"/></g><g transform="translate(314.9,363.2) rotate(-44.00)"><path d="M0 0 C17.6 -28.4 51.0 -31.5 75.7 -18.7 Q90.6 -10.6 75.7 -2.4 C51.0 19.8 17.6 28.4 0 0 Z" fill="url(#wTop)" stroke="#9aa1aa" stroke-width="0.9" stroke-linejoin="round" stroke-opacity="0.55"/></g></g></g>
+<g><path d="M300 366 C306 292 326 206 392 162 C430 138 466 156 474 206 C482 256 470 330 440 374 C414 414 356 414 322 396 C310 388 300 380 300 366 Z" fill="url(#wMid)" opacity="0.92"/><g transform="translate(321.2,373.7) rotate(40.00)"><path d="M0 0 C27.6 -34.4 80.0 -44.8 118.7 -34.8 Q142.1 -24.8 118.7 -14.9 C80.0 17.5 27.6 34.4 0 0 Z" fill="url(#wMid)" stroke="#7c838c" stroke-width="1.0" stroke-linejoin="round" stroke-opacity="0.55"/></g><g transform="translate(322.6,371.6) rotate(28.00)"><path d="M0 0 C30.1 -37.6 87.3 -48.9 129.4 -37.9 Q155.0 -27.1 129.4 -16.3 C87.3 19.1 30.1 37.6 0 0 Z" fill="url(#wMid)" stroke="#7c838c" stroke-width="1.0" stroke-linejoin="round" stroke-opacity="0.55"/></g><g transform="translate(323.5,369.3) rotate(16.00)"><path d="M0 0 C32.6 -40.7 94.5 -52.9 140.2 -41.1 Q167.9 -29.3 140.2 -17.6 C94.5 20.6 32.6 40.7 0 0 Z" fill="url(#wMid)" stroke="#7c838c" stroke-width="1.0" stroke-linejoin="round" stroke-opacity="0.55"/></g><g transform="translate(324.0,366.8) rotate(4.00)"><path d="M0 0 C35.1 -43.8 101.8 -57.0 150.9 -44.2 Q180.8 -31.6 150.9 -19.0 C101.8 22.2 35.1 43.8 0 0 Z" fill="url(#wMid)" stroke="#7c838c" stroke-width="1.0" stroke-linejoin="round" stroke-opacity="0.55"/></g><g transform="translate(323.9,364.3) rotate(-8.00)"><path d="M0 0 C37.6 -46.9 109.0 -61.0 161.7 -47.4 Q193.6 -33.8 161.7 -20.3 C109.0 23.8 37.6 46.9 0 0 Z" fill="url(#wMid)" stroke="#7c838c" stroke-width="1.0" stroke-linejoin="round" stroke-opacity="0.55"/></g><g transform="translate(323.3,361.9) rotate(-20.00)"><path d="M0 0 C40.1 -50.0 116.3 -65.1 172.4 -50.5 Q206.5 -36.1 172.4 -21.7 C116.3 25.4 40.1 50.0 0 0 Z" fill="url(#wMid)" stroke="#7c838c" stroke-width="1.0" stroke-linejoin="round" stroke-opacity="0.55"/></g><g transform="translate(322.2,359.6) rotate(-32.00)"><path d="M0 0 C42.6 -53.2 123.5 -69.1 183.2 -53.7 Q219.4 -38.3 183.2 -23.0 C123.5 27.0 42.6 53.2 0 0 Z" fill="url(#wMid)" stroke="#7c838c" stroke-width="1.0" stroke-linejoin="round" stroke-opacity="0.55"/></g><g transform="translate(320.6,357.7) rotate(-44.00)"><path d="M0 0 C45.1 -56.3 130.8 -73.2 193.9 -56.8 Q232.3 -40.6 193.9 -24.4 C130.8 28.5 45.1 56.3 0 0 Z" fill="url(#wMid)" stroke="#7c838c" stroke-width="1.0" stroke-linejoin="round" stroke-opacity="0.55"/></g><g transform="translate(318.7,356.1) rotate(-56.00)"><path d="M0 0 C47.6 -59.4 138.0 -77.3 204.7 -60.0 Q245.1 -42.8 204.7 -25.7 C138.0 30.1 47.6 59.4 0 0 Z" fill="url(#wMid)" stroke="#7c838c" stroke-width="1.0" stroke-linejoin="round" stroke-opacity="0.55"/></g><g transform="translate(330.7,384.1) rotate(44.00)"><path d="M0 0 C24.8 -32.2 71.9 -44.1 106.6 -36.6 Q127.7 -27.3 106.6 -18.0 C71.9 14.1 24.8 32.2 0 0 Z" fill="url(#wTop)" stroke="#969da6" stroke-width="1.0" stroke-linejoin="round" stroke-opacity="0.55"/><path d="M12.4 0 Q64.5 -13.6 101.7 -25.9" stroke="#6f777f" stroke-width="1.49" opacity="0.28" fill="none" stroke-linecap="round"/></g><g transform="translate(333.5,380.7) rotate(34.40)"><path d="M0 0 C27.7 -36.0 80.3 -49.3 119.0 -40.8 Q142.6 -30.4 119.0 -20.1 C80.3 15.8 27.7 36.0 0 0 Z" fill="url(#wTop)" stroke="#969da6" stroke-width="1.0" stroke-linejoin="round" stroke-opacity="0.55"/><path d="M13.8 0 Q72.0 -15.2 113.5 -28.9" stroke="#6f777f" stroke-width="1.66" opacity="0.28" fill="none" stroke-linecap="round"/></g><g transform="translate(335.6,376.9) rotate(24.80)"><path d="M0 0 C30.6 -39.7 88.6 -54.4 131.4 -45.1 Q157.4 -33.6 131.4 -22.2 C88.6 17.4 30.6 39.7 0 0 Z" fill="url(#wTop)" stroke="#969da6" stroke-width="1.0" stroke-linejoin="round" stroke-opacity="0.55"/><path d="M15.3 0 Q79.5 -16.8 125.3 -31.9" stroke="#6f777f" stroke-width="1.83" opacity="0.28" fill="none" stroke-linecap="round"/></g><g transform="translate(337.1,372.8) rotate(15.20)"><path d="M0 0 C33.4 -43.5 97.0 -59.5 143.8 -49.3 Q172.2 -36.8 143.8 -24.2 C97.0 19.1 33.4 43.5 0 0 Z" fill="url(#wTop)" stroke="#969da6" stroke-width="1.0" stroke-linejoin="round" stroke-opacity="0.55"/><path d="M16.7 0 Q86.9 -18.4 137.1 -34.9" stroke="#6f777f" stroke-width="2.01" opacity="0.28" fill="none" stroke-linecap="round"/></g><g transform="translate(337.9,368.5) rotate(5.60)"><path d="M0 0 C36.3 -47.2 105.3 -64.6 156.2 -53.6 Q187.0 -40.0 156.2 -26.3 C105.3 20.7 36.3 47.2 0 0 Z" fill="url(#wTop)" stroke="#969da6" stroke-width="1.0" stroke-linejoin="round" stroke-opacity="0.55"/><path d="M18.2 0 Q94.4 -20.0 148.9 -38.0" stroke="#6f777f" stroke-width="2.18" opacity="0.28" fill="none" stroke-linecap="round"/></g><g transform="translate(337.9,364.2) rotate(-4.00)"><path d="M0 0 C39.2 -51.0 113.7 -69.8 168.6 -57.8 Q201.9 -43.1 168.6 -28.4 C113.7 22.3 39.2 51.0 0 0 Z" fill="url(#wTop)" stroke="#969da6" stroke-width="1.0" stroke-linejoin="round" stroke-opacity="0.55"/><path d="M19.6 0 Q101.9 -21.6 160.7 -41.0" stroke="#6f777f" stroke-width="2.35" opacity="0.28" fill="none" stroke-linecap="round"/></g><g transform="translate(337.3,359.9) rotate(-13.60)"><path d="M0 0 C42.1 -54.7 122.0 -74.9 180.9 -62.1 Q216.7 -46.3 180.9 -30.5 C122.0 24.0 42.1 54.7 0 0 Z" fill="url(#wTop)" stroke="#969da6" stroke-width="1.0" stroke-linejoin="round" stroke-opacity="0.55"/><path d="M21.0 0 Q109.4 -23.1 172.5 -44.0" stroke="#6f777f" stroke-width="2.52" opacity="0.28" fill="none" stroke-linecap="round"/></g><g transform="translate(335.9,355.8) rotate(-23.20)"><path d="M0 0 C45.0 -58.4 130.4 -80.0 193.3 -66.3 Q231.5 -49.5 193.3 -32.6 C130.4 25.6 45.0 58.4 0 0 Z" fill="url(#wTop)" stroke="#969da6" stroke-width="1.0" stroke-linejoin="round" stroke-opacity="0.55"/><path d="M22.5 0 Q116.9 -24.7 184.3 -47.0" stroke="#6f777f" stroke-width="2.70" opacity="0.28" fill="none" stroke-linecap="round"/></g><g transform="translate(333.9,351.9) rotate(-32.80)"><path d="M0 0 C47.8 -62.2 138.7 -85.2 205.7 -70.6 Q246.4 -52.6 205.7 -34.7 C138.7 27.3 47.8 62.2 0 0 Z" fill="url(#wTop)" stroke="#969da6" stroke-width="1.0" stroke-linejoin="round" stroke-opacity="0.55"/><path d="M23.9 0 Q124.4 -26.3 196.1 -50.0" stroke="#6f777f" stroke-width="2.87" opacity="0.28" fill="none" stroke-linecap="round"/></g><g transform="translate(331.2,348.5) rotate(-42.40)"><path d="M0 0 C50.7 -65.9 147.1 -90.3 218.1 -74.8 Q261.2 -55.8 218.1 -36.8 C147.1 28.9 50.7 65.9 0 0 Z" fill="url(#wTop)" stroke="#969da6" stroke-width="1.0" stroke-linejoin="round" stroke-opacity="0.55"/><path d="M25.4 0 Q131.9 -27.9 208.0 -53.0" stroke="#6f777f" stroke-width="3.04" opacity="0.28" fill="none" stroke-linecap="round"/></g><g transform="translate(328.0,345.5) rotate(-52.00)"><path d="M0 0 C53.6 -69.7 155.4 -95.4 230.5 -79.1 Q276.0 -59.0 230.5 -38.9 C155.4 30.6 53.6 69.7 0 0 Z" fill="url(#wTop)" stroke="#969da6" stroke-width="1.0" stroke-linejoin="round" stroke-opacity="0.55"/><path d="M26.8 0 Q139.4 -29.5 219.8 -56.0" stroke="#6f777f" stroke-width="3.22" opacity="0.28" fill="none" stroke-linecap="round"/></g><ellipse cx="314" cy="364" rx="18" ry="24" fill="url(#wMid)"/><g transform="translate(315.9,366.8) rotate(12.00)"><path d="M0 0 C12.0 -19.3 34.8 -21.4 51.6 -12.8 Q61.8 -7.2 51.6 -1.6 C34.8 13.5 12.0 19.3 0 0 Z" fill="url(#wTop)" stroke="#9aa1aa" stroke-width="0.9" stroke-linejoin="round" stroke-opacity="0.55"/></g><g transform="translate(316.0,365.9) rotate(-2.00)"><path d="M0 0 C13.4 -21.6 38.9 -23.9 57.6 -14.3 Q69.0 -8.0 57.6 -1.8 C38.9 15.1 13.4 21.6 0 0 Z" fill="url(#wTop)" stroke="#9aa1aa" stroke-width="0.9" stroke-linejoin="round" stroke-opacity="0.55"/></g><g transform="translate(315.8,364.9) rotate(-16.00)"><path d="M0 0 C14.8 -23.9 42.9 -26.4 63.6 -15.8 Q76.2 -8.9 63.6 -2.0 C42.9 16.7 14.8 23.9 0 0 Z" fill="url(#wTop)" stroke="#9aa1aa" stroke-width="0.9" stroke-linejoin="round" stroke-opacity="0.55"/></g><g transform="translate(315.5,364.0) rotate(-30.00)"><path d="M0 0 C16.2 -26.1 47.0 -28.9 69.7 -17.3 Q83.4 -9.7 69.7 -2.2 C47.0 18.3 16.2 26.1 0 0 Z" fill="url(#wTop)" stroke="#9aa1aa" stroke-width="0.9" stroke-linejoin="round" stroke-opacity="0.55"/></g><g transform="translate(314.9,363.2) rotate(-44.00)"><path d="M0 0 C17.6 -28.4 51.0 -31.5 75.7 -18.7 Q90.6 -10.6 75.7 -2.4 C51.0 19.8 17.6 28.4 0 0 Z" fill="url(#wTop)" stroke="#9aa1aa" stroke-width="0.9" stroke-linejoin="round" stroke-opacity="0.55"/></g></g>
+<g><path d="M182 612 C184 522 206 456 242 426 C257 412 282 408 300 408 C318 408 343 412 358 426 C394 456 416 522 418 612 Z" fill="#111319" stroke="#cdd2d9" stroke-width="1.4" stroke-opacity="0.20"/><path d="M236 470 C266 452 334 452 364 470" stroke="#cdd2d9" stroke-width="1.4" stroke-opacity="0.12" fill="none"/><path d="M250 360 C231 320 233 250 270 216 C286 199 314 199 330 216 C367 250 369 320 350 360 C334 373 266 373 250 360 Z" fill="#15171d" stroke="#d6dbe1" stroke-width="1.6" stroke-opacity="0.30"/><ellipse cx="300" cy="292" rx="29" ry="39" fill="url(#face)"/><path d="M258 252 C270 216 330 216 342 252" stroke="#dfe3e8" stroke-width="2" stroke-opacity="0.32" fill="none" stroke-linecap="round"/><path d="M276 266 C266 288 268 320 283 338" stroke="#cfd4da" stroke-width="3" stroke-opacity="0.30" fill="none" stroke-linecap="round"/><path d="M280 330 C290 340 310 340 320 330" stroke="#000" stroke-width="3" stroke-opacity="0.22" fill="none" stroke-linecap="round"/></g>
+</g>
+<circle cx="300" cy="300" r="284" fill="none" stroke="url(#gold)" stroke-width="6"/>
+<circle cx="300" cy="300" r="266" fill="none" stroke="#9aa0a8" stroke-width="1.3" stroke-opacity="0.55"/>
+<g fill="#e2e6ea"><path d="M300 52 L303.4 70 L300 86 L296.6 70 Z"/><path d="M284 70 L300 73.4 L316 70 L300 66.6 Z" opacity="0.85"/></g></svg>`;
+document.querySelectorAll('[data-emblem]').forEach(el=>{ el.innerHTML = EMBLEM; });
+
+const slides = Array.from(document.querySelectorAll('.slide'));
+const dotsWrap = document.getElementById('dots');
+const pagenum = document.getElementById('pagenum');
+slides.forEach((s,i)=>{ const b=document.createElement('button'); b.onclick=()=>slides[i].scrollIntoView({behavior:'smooth'}); dotsWrap.appendChild(b); });
+const dots = Array.from(dotsWrap.children);
+
+const io = new IntersectionObserver(es=>{
+  es.forEach(e=>{
+    if(e.isIntersecting){
+      const i = slides.indexOf(e.target);
+      slides.forEach(s=>s.classList.remove('active'));
+      e.target.classList.add('active');
+      dots.forEach((d,di)=>d.classList.toggle('on', di===i));
+      pagenum.textContent = String(i+1).padStart(2,'0');
+    }
+  });
+},{threshold:0.55});
+slides.forEach(s=>io.observe(s));
+
+let idx=0;
+function goTo(n){ idx=Math.max(0,Math.min(slides.length-1,n)); slides[idx].scrollIntoView({behavior:'smooth'}); }
+window.addEventListener('keydown',e=>{
+  if(['ArrowDown','ArrowRight',' ','PageDown'].includes(e.key)){ e.preventDefault(); goTo(idx+1); }
+  else if(['ArrowUp','ArrowLeft','PageUp'].includes(e.key)){ e.preventDefault(); goTo(idx-1); }
+  else if(e.key==='Home'){ e.preventDefault(); goTo(0); }
+  else if(e.key==='End'){ e.preventDefault(); goTo(slides.length-1); }
+});
+// keep idx synced when scrolled/swiped
+const io2 = new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting) idx=slides.indexOf(e.target); }),{threshold:0.55});
+slides.forEach(s=>io2.observe(s));
+</script>
+</body>
+</html>

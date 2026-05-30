@@ -619,6 +619,82 @@ footer .base b{color:var(--gold-soft)}
 #loginGate.fade-out{opacity:0;pointer-events:none}
 </style>
 
+<!-- ============================================================
+     ILU ANIMATION LAYER — motion from the component library,
+     wired to the live app. Additive & scoped; removes itself
+     under prefers-reduced-motion.
+     ============================================================ -->
+<style id="iluAnimLayer">
+/* ── Card shimmer sweep (level cards, feature cards, continue card) ── */
+.fcard, .continue{ position:relative; overflow:hidden; }
+.lvl::after, .fcard::after, .continue::after{
+  content:""; position:absolute; top:0; left:-75%; width:55%; height:100%;
+  background:linear-gradient(100deg,transparent,rgba(231,207,148,.20),transparent);
+  transform:skewX(-18deg); pointer-events:none; transition:left .6s ease; z-index:3;
+}
+.lvl:hover::after, .fcard:hover::after, .continue:hover::after{ left:135%; }
+/* lesson rows — gold accent slides in on hover */
+.lrow{ position:relative; }
+.lrow::before{ content:""; position:absolute; left:0; top:0; height:100%; width:0;
+  background:var(--gold); transition:width .2s ease; }
+.lrow:hover::before{ width:3px; }
+
+/* ── Rank progression track (dashboard) ── */
+.ranktrack{ margin:6px 2px 2px; }
+.rt-track{ position:relative; height:6px; border-radius:30px; background:var(--paper);
+  border:1px solid var(--line); margin:34px 9px 8px; }
+.rt-fill{ position:absolute; left:0; top:0; height:100%; width:0; border-radius:30px;
+  background:linear-gradient(90deg,var(--gold-deep),var(--gold),#e6c878);
+  transition:width 1.1s cubic-bezier(.2,.8,.2,1); }
+.rt-node{ position:absolute; top:50%; width:13px; height:13px; border-radius:50%;
+  transform:translate(-50%,-50%); background:var(--paper);
+  border:2px solid var(--line-2,#cdbf9d); transition:.4s; z-index:2; }
+.rt-node.reached{ border-color:var(--gold); background:var(--gold); }
+.rt-node.current{ box-shadow:0 0 0 4px rgba(184,137,59,.22),0 0 12px rgba(184,137,59,.7);
+  animation:rtPulse 1.9s ease-in-out infinite; }
+.rt-cap{ position:absolute; bottom:15px; left:50%; transform:translateX(-50%); white-space:nowrap;
+  font-family:var(--mono); font-size:9.5px; letter-spacing:.04em; text-transform:uppercase; color:var(--muted); }
+.rt-node.reached .rt-cap{ color:var(--gold-deep); font-weight:600; }
+@keyframes rtPulse{ 0%,100%{box-shadow:0 0 0 3px rgba(184,137,59,.20),0 0 8px rgba(184,137,59,.6)}
+  50%{box-shadow:0 0 0 6px rgba(184,137,59,.10),0 0 16px rgba(184,137,59,.85)} }
+
+/* ── Overall completion ring (Level-progress panel header) ── */
+.cring{ position:relative; width:60px; height:60px; flex:none; }
+.cring svg{ width:100%; height:100%; transform:rotate(-90deg); }
+.cring-bg{ fill:none; stroke:rgba(28,26,20,.10); stroke-width:6; }
+.cring-fg{ fill:none; stroke:var(--gold); stroke-width:6; stroke-linecap:round;
+  transition:stroke-dashoffset 1.1s cubic-bezier(.2,.8,.2,1); }
+.cring-t{ position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+  font-family:var(--mono); font-size:13px; font-weight:600; color:var(--gold-deep); }
+
+/* ── Debate phase timer → depleting ring (arena, dark stage) ── */
+.arena-timer-ring{ position:relative; width:64px; height:64px; flex:none; }
+.arena-timer-ring svg{ width:100%; height:100%; transform:rotate(-90deg); }
+.arena-timer-ring .atr-bg{ fill:none; stroke:rgba(231,207,148,.16); stroke-width:5; }
+.arena-timer-ring .atr-fg{ fill:none; stroke:var(--gold-soft); stroke-width:5; stroke-linecap:round;
+  transition:stroke-dashoffset 1s linear; filter:drop-shadow(0 0 4px rgba(231,207,148,.5)); }
+.arena-timer-ring .atr-t{ position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+  font-family:var(--mono); font-size:15px; font-weight:500; color:var(--gold-soft); letter-spacing:.02em; }
+.arena-timer-ring.low .atr-fg{ stroke:#ff9a8a; filter:drop-shadow(0 0 5px rgba(255,120,100,.6)); }
+.arena-timer-ring.low .atr-t{ color:#ff9a8a; }
+.arena-timer-ring.low{ animation:timerPulse 1s ease-in-out infinite; }
+
+/* ── Seal stamp-in (hero + certificate reward moment) ── */
+@keyframes iluStamp{ 0%{transform:scale(.4) rotate(-22deg); opacity:0}
+  55%{opacity:1} 100%{transform:scale(1) rotate(0); opacity:1} }
+.stampin{ animation:iluStamp .8s cubic-bezier(.2,1.3,.4,1) both; }
+
+/* ── Number pop / score bump ── */
+@keyframes iluBump{ 0%{transform:scale(1)} 30%{transform:scale(1.18)} 100%{transform:scale(1)} }
+.ilu-bump{ animation:iluBump .45s ease; display:inline-block; }
+
+@media (prefers-reduced-motion:reduce){
+  .lvl::after,.fcard::after,.continue::after,.lrow::before{ transition:none; }
+  .rt-fill,.cring-fg,.atr-fg{ transition:none; }
+  .rt-node.current,.arena-timer-ring.low,.stampin,.ilu-bump{ animation:none; }
+}
+</style>
+
 <header class="topbar">
   <div class="wrap row">
     <div class="brand" onclick="go('home')">
@@ -696,8 +772,8 @@ footer .base b{color:var(--gold-soft)}
   <section class="section" style="padding-top:56px; padding-bottom:56px">
     <div class="wrap">
       <div class="stats reveal">
-        <div class="stat"><div class="n">3</div><div class="l">Progressive levels</div></div>
-        <div class="stat"><div class="n">48</div><div class="l">Lessons &amp; drills</div></div>
+        <div class="stat"><div class="n" data-countup>3</div><div class="l">Progressive levels</div></div>
+        <div class="stat"><div class="n" data-countup>48</div><div class="l">Lessons &amp; drills</div></div>
         <div class="stat"><div class="n">∞</div><div class="l">Live debate arena</div></div>
         <div class="stat"><div class="n">✓</div><div class="l">Verifiable certificate</div></div>
       </div>
@@ -867,6 +943,7 @@ footer .base b{color:var(--gold-soft)}
               <div class="pmeta"><span id="dRankLo">Rhetor</span><span id="dRankHi">Dialectician</span></div>
             </div>
           </div>
+          <div class="ranktrack" id="rankTrack"></div>
           <div style="display:flex; gap:22px; margin-top:14px; font-size:14.5px; color:var(--ink-soft)">
             <div>📚 <b id="dLessons" style="color:var(--ink)">0</b> lessons complete</div>
             <div>⚔ <b id="dWins" style="color:var(--ink)">0</b> debates won</div>
@@ -877,7 +954,10 @@ footer .base b{color:var(--gold-soft)}
           <h3>Continue learning</h3>
           <div id="continueCards"></div>
 
-          <h3 style="margin-top:24px">Level progress</h3>
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-top:24px">
+            <h3 style="margin:0">Level progress</h3>
+            <div class="cring" id="overallRing" title="Overall course completion"></div>
+          </div>
           <div class="lvltrack" id="trackL1"><div class="t"><b>Level I &middot; First Light</b><span class="pc" id="pcL1">0%</span></div><div class="pbar"><i id="barL1" style="width:0"></i></div></div>
           <div class="lvltrack" id="trackL2"><div class="t"><b>Level II &middot; The Crucible</b><span class="pc" id="pcL2">0%</span></div><div class="pbar"><i id="barL2" style="width:0"></i></div></div>
           <div class="lvltrack" id="trackL3"><div class="t"><b>Level III &middot; Illumination</b><span class="pc" id="pcL3">Locked 🔒</span></div><div class="pbar"><i id="barL3" style="width:0"></i></div></div>
@@ -960,7 +1040,7 @@ footer .base b{color:var(--gold-soft)}
           <div id="stagePhase" style="font-family:var(--disp);font-size:19px;font-weight:600;color:#F0E6CE">Opening Statement</div>
           <div style="display:flex;align-items:center;gap:12px">
             <button class="btn lt sm" onclick="resetDebate()" title="Restart this debate from the side selection">↻ Reset</button>
-            <div id="stageTimer" class="arena-timer">10:00</div>
+            <div id="stageTimer" class="arena-timer-ring"><svg viewBox="0 0 64 64"><circle class="atr-bg" cx="32" cy="32" r="26"/><circle class="atr-fg" cx="32" cy="32" r="26"/></svg><span class="atr-t">10:00</span></div>
           </div>
         </div>
         <!-- Bot statement for this phase -->
@@ -1824,6 +1904,7 @@ function award(id,amt,msg){
   const isNew = !state.awarded.has(id);
   if(isNew) state.awarded.add(id);
   recomputeRP(); syncRP();
+  bumpEl(document.getElementById('rpTop'));
   toast(msg||'Nice work', isNew && amt ? '+'+amt+' RP' : '');
   saveProgress();
 }
@@ -1872,6 +1953,7 @@ function refreshProgress(){
   renderContinue();
   renderBadges();
   updateCertGate();
+  if(typeof renderRankTrack==='function'){ renderRankTrack(); renderCompletionRing(); }
 }
 
 /* Continue learning — points at the student's actual next lesson */
@@ -2039,11 +2121,12 @@ function renderRadar(){
         <span style="width:8px;height:8px;border-radius:50%;background:${col};flex-shrink:0"></span>
         <span style="font-family:'Spectral',Georgia,serif;font-size:13px;color:#4A4536;flex:1">${name}</span>
         <div style="width:52px;height:3px;background:#DCD2BB;border-radius:2px;overflow:hidden">
-          <div style="width:${val}%;height:100%;background:${col};border-radius:2px"></div>
+          <div class="clbar" data-w="${val}" style="width:0;height:100%;background:${col};border-radius:2px;transition:width .9s cubic-bezier(.2,.8,.2,1)"></div>
         </div>
         <b style="font-family:'Spline Sans Mono',monospace;font-size:12px;color:#1C1A14;min-width:24px;text-align:right">${val}</b>
       </div>`;
     }).join('')+'</div>';
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{ document.querySelectorAll('#radarLegend .clbar').forEach(b=>{ b.style.width=(b.dataset.w||0)+'%'; }); }));
 }
 
 function showRadarTip(evt,msg){
@@ -2308,7 +2391,52 @@ function animateDashboard(){
   countUp(document.getElementById('dWins'));
   ['dRPbar','barL1','barL2','barL3'].forEach(replayBar);
   if(typeof renderRadar==='function') renderRadar();   // re-trigger the radar draw-in
+  renderRankTrack(); renderCompletionRing();           // rank journey + overall ring, re-animated
 }
+
+/* ── Rank progression track — all five ranks, current node glowing ── */
+function renderRankTrack(){
+  const box=document.getElementById('rankTrack'); if(!box) return;
+  const TH=RANKS, rp=state.rp||0, N=TH.length;
+  let seg=0; for(let i=0;i<N;i++){ if(rp>=TH[i][1]) seg=i; }
+  let pos; if(seg>=N-1){ pos=100; }
+  else { const f=(rp-TH[seg][1])/(TH[seg+1][1]-TH[seg][1]); pos=((seg+f)/(N-1))*100; }
+  let nodes='';
+  for(let j=0;j<N;j++){
+    const reached=rp>=TH[j][1], cur=j===seg;
+    nodes+=`<div class="rt-node ${reached?'reached':''} ${cur?'current':''}" style="left:${(j/(N-1)*100).toFixed(2)}%"><span class="rt-cap">${TH[j][0]}</span></div>`;
+  }
+  box.innerHTML=`<div class="rt-track"><div class="rt-fill"></div>${nodes}</div>`;
+  const fill=box.querySelector('.rt-fill');
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{ if(fill) fill.style.width=pos.toFixed(1)+'%'; }));
+}
+
+/* ── Overall completion ring — total lessons done across the three graded levels ── */
+function renderCompletionRing(){
+  const box=document.getElementById('overallRing'); if(!box) return;
+  let d=0,t=0; ['L1','L2','L3'].forEach(id=>{ const p=lvlProgress(id); d+=p.d; t+=p.t; });
+  const pct=t?Math.round(d/t*100):0, C=2*Math.PI*26;
+  box.innerHTML=`<svg viewBox="0 0 64 64"><circle class="cring-bg" cx="32" cy="32" r="26"/><circle class="cring-fg" cx="32" cy="32" r="26" stroke-dasharray="${C.toFixed(1)}" stroke-dashoffset="${C.toFixed(1)}"/></svg><span class="cring-t">0%</span>`;
+  const fg=box.querySelector('.cring-fg'), tx=box.querySelector('.cring-t');
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{ if(fg) fg.style.strokeDashoffset=(C*(1-pct/100)).toFixed(1); }));
+  let s=null; (function step(ts){ if(s===null)s=ts; const p=Math.min(1,(ts-s)/1000);
+    if(tx) tx.textContent=Math.round((1-Math.pow(1-p,3))*pct)+'%'; if(p<1) requestAnimationFrame(step); })();
+}
+
+/* ── Count-up any [data-countup] number when it scrolls into view (homepage stats) ── */
+function initCountUps(){
+  if(!('IntersectionObserver'in window)){ document.querySelectorAll('[data-countup]').forEach(countUp); return; }
+  const obs=new IntersectionObserver((es)=>es.forEach(e=>{ if(e.isIntersecting){ countUp(e.target); obs.unobserve(e.target); } }),{threshold:.6});
+  document.querySelectorAll('[data-countup]').forEach(el=>obs.observe(el));
+}
+
+/* ── Small reusable "pop" for a number that just changed ── */
+function bumpEl(el){ if(!el) return; el.classList.remove('ilu-bump'); void el.offsetWidth; el.classList.add('ilu-bump'); }
+window.bumpEl=bumpEl;
+
+/* ── Stamp a seal in (and release it so :hover transforms still work) ── */
+function stampSeal(el){ if(!el) return; el.classList.add('stampin'); setTimeout(()=>el.classList.remove('stampin'),900); }
+window.stampSeal=stampSeal;
 
 /* ============================================================
    BADGES
@@ -2374,11 +2502,12 @@ document.head.appendChild(revStyle);
    ============================================================ */
 (function init(){
   document.getElementById('heroSeal').innerHTML=sealSVG();
+  stampSeal(document.getElementById('heroSeal'));
   const cp=document.getElementById('certPreview'); if(cp) cp.innerHTML=certHTML();
   document.getElementById('certFull').innerHTML=certHTML();
   renderCurriculum(); renderRadar(); renderBadges(); newDrill();
   renderBotQueue(); renderDebateRecord();
-  syncRP(); refreshProgress(); revealScan();
+  syncRP(); refreshProgress(); revealScan(); initCountUps();
 })();
 </script>
 
@@ -3055,6 +3184,7 @@ window.generateCertificate = async function(){
   const cp=document.getElementById('certPreview'); if(cp) cp.innerHTML = html;
   closeCertModal();
   go('certificate');
+  if(window.stampSeal) setTimeout(()=>window.stampSeal(document.querySelector('#certFull .seal-sm')),80);
   toast('Certificate generated for ' + name + '!', '');
 };
 </script>
@@ -3291,15 +3421,23 @@ function runPhase(){
   startPhaseTimer(ph.secs);
 }
 
+/* Paint the ring timer: text in the centre, ring depletes with time left. */
+function setArenaClock(el, left, total){
+  if(!el) return;
+  const t=el.querySelector('.atr-t'), fg=el.querySelector('.atr-fg');
+  if(t) t.textContent=fmtClock(left); else el.textContent=fmtClock(left);
+  if(fg){ const C=2*Math.PI*26; fg.style.strokeDasharray=C.toFixed(1);
+    fg.style.strokeDashoffset=(C*(1-(total? Math.max(0,left)/total : 0))).toFixed(1); }
+}
 function startPhaseTimer(secs){
   stopArenaTimer();
   arenaState.timeLeft = secs;
   const el=document.getElementById('stageTimer');
-  el.textContent=fmtClock(secs); el.classList.remove('low');
+  setArenaClock(el, secs, secs); if(el) el.classList.remove('low');
   arenaState.timer = setInterval(()=>{
     arenaState.timeLeft--;
-    el.textContent = fmtClock(Math.max(0,arenaState.timeLeft));
-    if(arenaState.timeLeft<=15) el.classList.add('low');
+    setArenaClock(el, Math.max(0,arenaState.timeLeft), secs);
+    if(arenaState.timeLeft<=15 && el) el.classList.add('low');
     if(arenaState.timeLeft<=0){ stopArenaTimer(); submitPhase(true); }
   }, 1000);
 }
@@ -3331,6 +3469,7 @@ window.submitPhase = function(auto){
   arenaState.scoreYou += you; arenaState.scoreBot += bot;
   document.getElementById('scoreYou').textContent=arenaState.scoreYou;
   document.getElementById('scoreBot').textContent=arenaState.scoreBot;
+  if(typeof bumpEl==='function'){ bumpEl(document.getElementById('scoreYou')); bumpEl(document.getElementById('scoreBot')); }
   fb.style.color = you>=4?'#7ecfa4':you>=3?'var(--gold-soft)':'#e0a080';
   fb.textContent = (auto && !text? 'Time! No statement entered — 0 this phase. ' : '')
     + (you>=4?'✦ Strong — evidence and engagement both landed.':you>=3?'Solid round. Cite a thinker or address the bot directly to score higher.':'Develop it further — more substance, evidence, and direct rebuttal.');
