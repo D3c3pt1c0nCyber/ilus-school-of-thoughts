@@ -1615,10 +1615,23 @@ function advanceLesson(key){
   if(next){
     openLesson(lvl,next.code);
   } else {
+    // reached the end of a level's lesson list
     refreshProgress();
-    if(lvl==='L1' && isLevelUnlocked('L2')) toast('Level II unlocked! 🎉','');
-    else if(lvl==='L2' && isLevelUnlocked('L3')) toast('Level III unlocked! 🎉','');
-    else toast('Level complete! 🏆','');
+    if(allLevelsComplete()){
+      // All three levels done — award the completion certificate
+      award('all-levels-complete', 200, 'Programme complete! 🎓');
+      toast('🎓 All three levels complete — preparing your certificate…','');
+      setTimeout(()=>{
+        if(!certName && currentUser && currentUser.displayName) certName = currentUser.displayName;
+        go('certificate');
+        updateCertGate();
+        if(typeof window.openCertModal==='function') window.openCertModal();  // prompt name → generate
+      }, 1000);
+    }
+    else if(lvl==='L1' && isLevelUnlocked('L2')) toast('Level I complete — Level II unlocked! 🎉','');
+    else if(lvl==='L2' && isLevelUnlocked('L3')) toast('Level II complete — Level III unlocked! 🎉','');
+    else if(lvl==='L3') toast('Level III complete! 🏆','');
+    else toast('Section complete! 🏆','');
   }
 }
 
@@ -1642,6 +1655,7 @@ function renderQuiz(key,content){
     </div>`).join('')
     +`<div class="quizbar"><button class="btn gold" id="checkBtn" onclick="checkQuiz('${key}')">Check answers</button>
       <button class="btn ghost sm" onclick="openLesson('${key.split(':')[0]}','${key.split(':')[1]}')">Reset</button>
+      <button class="btn gold" id="continueBtn" style="display:none" onclick="advanceLesson('${key}')">Continue <span class="arrow">→</span></button>
       <span class="scorepill" id="scorePill"></span></div>`;
   box._sel=sel; box._content=content;
 }
@@ -1668,6 +1682,7 @@ function checkQuiz(key){
   box._locked=true;
   const pill=document.getElementById('scorePill'); pill.textContent=`Score: ${correct}/${c.quiz.length}`; pill.classList.add('show');
   document.getElementById('checkBtn').style.display='none';
+  const contBtn=document.getElementById('continueBtn'); if(contBtn) contBtn.style.display='inline-flex';
   if(!state.done.has(key)){ state.done.add(key); refreshProgress(); }
   award(key,40,correct===c.quiz.length?'Perfect — lesson complete!':'Lesson complete');
   // store locally for skill calc
