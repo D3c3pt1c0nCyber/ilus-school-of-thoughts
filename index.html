@@ -1853,8 +1853,7 @@ onAuthStateChanged(auth, async user => {
     if(dashName) dashName.textContent = firstName;
     if(!certName && user.displayName) certName = user.displayName;
     toast('Welcome back, ' + firstName + '!', '');
-    // restore last position
-    await loadLastPosition(user.uid);
+    go('home'); // always land on Home after login
   } else {
     // ── Show the gate, hide the app ──
     showGate();
