@@ -1102,6 +1102,9 @@ footer .base b{color:var(--gold-soft)}
     </div>
     <p style="margin-bottom:18px">Everything here is optional except the reading. Leave the video blank for a reading-only lesson.</p>
 
+    <label class="adm-label">Estimated time to finish <span style="color:var(--muted)">— minutes (shown on the lesson)</span></label>
+    <input id="edMins" class="adm-input" type="number" min="1" max="600" placeholder="e.g. 8">
+
     <label class="adm-label">YouTube URL or video ID <span style="color:var(--muted)">— optional</span></label>
     <input id="edYoutube" class="adm-input" placeholder="https://youtube.com/watch?v=… or the 11-char ID">
 
@@ -1618,7 +1621,7 @@ function openLesson(lvlId,code){
 
   let h=`<div class="crumb" style="display:flex;align-items:center;gap:10px">Level ${L.numeral} · ${L.name} &nbsp;›&nbsp; <b>Module ${meta.mi+1}</b> &nbsp;›&nbsp; Lesson ${code}${adminBtn}</div>
     <h1>${meta.title}</h1>
-    <div class="lmeta"><span>${vid?'▶ Video + reading':'📖 Reading'}</span><span>⏱ ~8 min</span><span>✦ ${hasQuiz?'40':'30'} RP on completion</span></div>`;
+    <div class="lmeta"><span>${vid?'▶ Video + reading':'📖 Reading'}</span><span>⏱ ~${(content&&content.mins)||8} min</span><span>✦ ${hasQuiz?'40':'30'} RP on completion</span></div>`;
 
   // ── Tabs: Reading | Quiz ──
   h+=`<div class="ltabs">
@@ -2605,6 +2608,7 @@ window.openLessonEditor = function(key){
   document.getElementById('edKey').textContent = key;
   const [lvl,code]=key.split(':'); const L=lvlObj(lvl); const meta=flatLessons(L).find(x=>x.code===code);
   document.getElementById('edTitle').textContent = 'Edit · '+(meta?meta.title:key);
+  document.getElementById('edMins').value = c.mins || '';
   document.getElementById('edYoutube').value = c.youtubeId || '';
   document.getElementById('edRead').value = (c.read||[]).join('\n\n');
   document.getElementById('edTerms').value = (c.terms||[]).map(t=>t[0]+' :: '+t[1]).join('\n');
@@ -2648,10 +2652,12 @@ window.saveLessonEditor = async function(){
     const t=line.slice(0,i).trim(), d=line.slice(i+2).trim(); return (t&&d)?[t,d]:null;
   }).filter(Boolean);
   const yt = document.getElementById('edYoutube').value.trim();
+  const mins = parseInt(document.getElementById('edMins').value,10);
   const quiz = window.editorQuiz.filter(q=>q.q && q.q.trim() && (q.opts||[]).filter(o=>o&&o.trim()).length>=2);
   if(!read.length && !yt){ toast('Add a reading or a video first',''); return; }
   const content = { read, terms, quiz };
   if(yt) content.youtubeId = yt;
+  if(mins>0) content.mins = mins;
   SITE.lessonContent = SITE.lessonContent || {};
   SITE.lessonContent[editorKey] = content;
   const okSave = await saveSiteContent();
