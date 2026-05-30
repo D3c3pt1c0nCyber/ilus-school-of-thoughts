@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Ilu's School of Thoughts — Brand Book</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400&family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Spline+Sans+Mono:wght@400;500&family=Pinyon+Script&display=swap" rel="stylesheet">
+<style>
+@page { size: A4; margin: 0; }
+* { -webkit-print-color-adjust: exact; print-color-adjust: exact; box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --paper:   #F4ECD8;
+  --paper-2: #FBF7EC;
+  --ink:     #1C1A14;
+  --ink-soft:#4A4536;
+  --muted:   #7A7361;
+  --gold:    #B8893B;
+  --gold-d:  #8A6A2B;
+  --gold-s:  #E7CF94;
+  --garnet:  #7B2C2C;
+  --verd:    #3E6B54;
+  --line:    #DCD2BB;
+  --night:   #15130D;
+  --ff-d: "Fraunces", Georgia, serif;
+  --ff-b: "Spectral", Georgia, serif;
+  --ff-m: "Spline Sans Mono", monospace;
+  --ff-s: "Pinyon Script", cursive;
+}
+
+html, body { width: 210mm; height: 297mm; background: var(--paper); }
+
+.page {
+  width: 210mm;
+  height: 297mm;
+  background: var(--paper);
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+}
+
+/* ── Paper grain ── */
+.page::before {
+  content: "";
+  position: absolute; inset: 0; pointer-events: none;
+  opacity: .04; mix-blend-mode: multiply; z-index: 100;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ── HEADER BAND ── */
+.hd {
+  background: var(--night);
+  padding: 12mm 14mm 10mm;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-shrink: 0;
+}
+.hd-brand { display: flex; align-items: center; gap: 10px; }
+.hd-seal { width: 42px; height: 42px; flex-shrink: 0; }
+.hd-name { font-family: var(--ff-d); font-size: 17pt; font-weight: 700; color: #F0E6CE; letter-spacing: .01em; line-height: 1.1; }
+.hd-tagline { font-family: var(--ff-m); font-size: 6.5pt; letter-spacing: .28em; text-transform: uppercase; color: var(--gold-s); margin-top: 4px; }
+.hd-meta { text-align: right; font-family: var(--ff-m); font-size: 7pt; color: rgba(200,188,161,.45); line-height: 1.9; }
+.hd-meta strong { color: rgba(200,188,161,.7); font-weight: 500; }
+
+/* ── BODY ── */
+.body { flex: 1; padding: 7mm 14mm 0; display: flex; flex-direction: column; gap: 5mm; overflow: hidden; }
+
+/* Section label */
+.sec-label {
+  font-family: var(--ff-m); font-size: 6pt; letter-spacing: .3em;
+  text-transform: uppercase; color: var(--gold-d); margin-bottom: 3mm;
+}
+
+/* Color swatches */
+.color-row { display: flex; gap: 5px; }
+.cswatch {
+  flex: 1; height: 18mm; border-radius: 2px;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 5px 6px;
+  position: relative;
+}
+.cswatch-label { font-family: var(--ff-m); font-size: 6pt; color: rgba(255,255,255,.75); line-height: 1.3; }
+.cswatch-label.dark { color: rgba(28,26,20,.6); }
+.cswatch-hex { font-family: var(--ff-m); font-size: 6pt; color: rgba(255,255,255,.45); }
+.cswatch-hex.dark { color: rgba(28,26,20,.4); }
+.cswatch-name { font-family: var(--ff-m); font-size: 5.5pt; letter-spacing: .06em; }
+
+/* Two-col middle */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; }
+.block {
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  padding: 5mm;
+}
+.block-title { font-family: var(--ff-d); font-size: 8pt; font-weight: 600; margin-bottom: 3mm; color: var(--ink); }
+
+/* Typography card */
+.type-row { margin-bottom: 2.5mm; }
+.type-face { font-family: var(--ff-d); font-size: 13pt; font-weight: 600; letter-spacing: -.01em; color: var(--ink); line-height: 1.1; }
+.type-body-sample { font-family: var(--ff-b); font-size: 8.5pt; line-height: 1.5; color: var(--ink-soft); }
+.type-mono-sample { font-family: var(--ff-m); font-size: 7pt; color: var(--muted); }
+.type-meta { font-family: var(--ff-m); font-size: 6pt; color: var(--line); border-top: 1px solid var(--line); padding-top: 1.5mm; margin-top: 1.5mm; }
+.type-meta span { color: var(--muted); }
+
+/* Principles card */
+.prin-list { list-style: none; }
+.prin-item { display: flex; gap: 5px; margin-bottom: 2mm; align-items: flex-start; }
+.prin-num { font-family: var(--ff-d); font-style: italic; font-size: 8pt; color: var(--gold); flex-shrink: 0; width: 10px; margin-top: -1px; }
+.prin-text { font-size: 7.5pt; line-height: 1.45; color: var(--ink-soft); font-family: var(--ff-b); }
+.prin-text strong { color: var(--ink); font-weight: 600; display: block; font-size: 7.5pt; }
+
+/* Level row */
+.level-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 5px; }
+.level-tile {
+  border-radius: 2px; overflow: hidden;
+  border: 1px solid var(--line);
+  background: var(--paper-2);
+}
+.level-band { height: 3px; }
+.level-body { padding: 3.5mm 4mm; }
+.level-num { font-family: var(--ff-m); font-size: 6pt; letter-spacing: .2em; color: var(--muted); margin-bottom: 1.5mm; }
+.level-name { font-family: var(--ff-d); font-size: 9pt; font-weight: 700; color: var(--ink); margin-bottom: 1mm; }
+.level-desc { font-size: 6.5pt; color: var(--ink-soft); font-family: var(--ff-b); line-height: 1.4; margin-bottom: 2mm; }
+.level-cred { font-family: var(--ff-m); font-size: 5.5pt; color: var(--muted); border-top: 1px solid var(--line); padding-top: 1.5mm; }
+
+/* Wordmarks row */
+.wm-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 5px; }
+.wm-tile {
+  border-radius: 2px; border: 1px solid var(--line);
+  background: var(--paper-2);
+  padding: 6mm 4mm;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3mm;
+}
+.wm-tile.dark { background: var(--night); border-color: rgba(255,255,255,.08); }
+.wm-tile-label { font-family: var(--ff-m); font-size: 5.5pt; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); }
+.wm-tile-label.lt { color: rgba(200,188,161,.4); }
+
+/* Footer */
+.pg-footer {
+  background: var(--night);
+  padding: 4mm 14mm;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-shrink: 0;
+  margin-top: auto;
+}
+.pg-footer-left { font-family: var(--ff-m); font-size: 6pt; color: rgba(200,188,161,.4); line-height: 1.8; }
+.pg-footer-left strong { color: rgba(200,188,161,.6); }
+.pg-footer-right { font-family: var(--ff-s); font-size: 18pt; color: var(--gold-s); }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ── HEADER ── -->
+  <div class="hd">
+    <div class="hd-brand">
+      <div class="hd-seal">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <path id="a" d="M28,100 A72,72 0 0 1 172,100"/>
+            <path id="b" d="M30,100 A70,70 0 0 0 170,100"/>
+            <radialGradient id="g" cx="40%" cy="32%"><stop offset="0%" stop-color="#2c2517"/><stop offset="100%" stop-color="#14110a"/></radialGradient>
+          </defs>
+          <circle cx="100" cy="100" r="96" fill="url(#g)"/>
+          <circle cx="100" cy="100" r="95" fill="none" stroke="#B8893B" stroke-width="2.5"/>
+          <circle cx="100" cy="100" r="80" fill="none" stroke="#8A6A2B" stroke-width="1"/>
+          <g fill="#E7CF94" font-family="Fraunces,serif" font-weight="600" letter-spacing="3.4" font-size="12.5">
+            <text text-anchor="middle"><textPath href="#a" startOffset="50%">ILU&#8217;S SCHOOL OF THOUGHTS</textPath></text>
+          </g>
+          <g fill="#C9A24A" font-family="Fraunces,serif" font-weight="500" letter-spacing="5" font-size="11">
+            <text text-anchor="middle"><textPath href="#b" startOffset="50%">&#8226; SAPERE AUDE &#8226;</textPath></text>
+          </g>
+          <g transform="translate(100,104)" stroke="#E7CF94" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M-22,12 Q-11,7 0,10 Q11,7 22,12"/>
+            <path d="M-22,12 L-22,2 Q-11,-4 0,0 Q11,-4 22,2 L22,12"/>
+            <path d="M0,0 L0,10"/>
+            <path d="M0,-4 C-5,-10 -4,-17 0,-22 C4,-17 5,-10 0,-4 Z" fill="#C9A24A" stroke="#E7CF94" stroke-width="1.2"/>
+          </g>
+        </svg>
+      </div>
+      <div>
+        <div class="hd-name">Ilu's School of Thoughts</div>
+        <div class="hd-tagline">Reason · Argue · Illuminate</div>
+      </div>
+    </div>
+    <div class="hd-meta">
+      <strong>Brand Book</strong><br>
+      Version 1.0 · 2026<br>
+      Sapere aude — Dare to know.
+    </div>
+  </div>
+
+  <div class="body">
+
+    <!-- ── COLORS ── -->
+    <div>
+      <div class="sec-label">01 — Color Hierarchy</div>
+      <div class="color-row">
+        <div class="cswatch" style="background:#1C1A14">
+          <div class="cswatch-label">Ink</div>
+          <div class="cswatch-hex">#1C1A14</div>
+        </div>
+        <div class="cswatch" style="background:#B8893B">
+          <div class="cswatch-label">Gold</div>
+          <div class="cswatch-hex">#B8893B</div>
+        </div>
+        <div class="cswatch" style="background:#F4ECD8;border:1px solid #DCD2BB">
+          <div class="cswatch-label dark">Paper</div>
+          <div class="cswatch-hex dark">#F4ECD8</div>
+        </div>
+        <div class="cswatch" style="background:#15130D">
+          <div class="cswatch-label">Night</div>
+          <div class="cswatch-hex">#15130D</div>
+        </div>
+        <div class="cswatch" style="background:#3E6B54">
+          <div class="cswatch-label">Verd — L1</div>
+          <div class="cswatch-hex">#3E6B54</div>
+        </div>
+        <div class="cswatch" style="background:#E7CF94">
+          <div class="cswatch-label dark">Gold Soft</div>
+          <div class="cswatch-hex dark">#E7CF94</div>
+        </div>
+        <div class="cswatch" style="background:#7B2C2C">
+          <div class="cswatch-label">Garnet — L3</div>
+          <div class="cswatch-hex">#7B2C2C</div>
+        </div>
+        <div class="cswatch" style="background:#7A7361">
+          <div class="cswatch-label">Muted</div>
+          <div class="cswatch-hex">#7A7361</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── TYPOGRAPHY + PRINCIPLES ── -->
+    <div class="two-col">
+      <div class="block">
+        <div class="block-title">02 — Typography</div>
+        <div class="type-row">
+          <div class="type-face">Dare to know.</div>
+          <div class="type-meta"><span>Fraunces · Variable · Display, headings, wordmark</span></div>
+        </div>
+        <div class="type-row">
+          <div class="type-body-sample">Steelman before you strike. The goal is truth and skill — never humiliating anyone.</div>
+          <div class="type-meta"><span>Spectral · 400–600 · Body copy, lesson text, UI</span></div>
+        </div>
+        <div class="type-row">
+          <div class="type-mono-sample">Level II · +80 RP · #B8893B · 18 hrs · 6 wks</div>
+          <div class="type-meta"><span>Spline Sans Mono · Metadata, tokens, codes</span></div>
+        </div>
+        <div class="type-row">
+          <div style="font-family:'Pinyon Script',cursive;font-size:18pt;color:var(--ink);line-height:1">Ilu · Rector</div>
+          <div class="type-meta"><span>Pinyon Script · Certificate signatures only</span></div>
+        </div>
+      </div>
+
+      <div class="block">
+        <div class="block-title">03 — Design Principles</div>
+        <ul class="prin-list">
+          <li class="prin-item">
+            <span class="prin-num">I.</span>
+            <span class="prin-text"><strong>Scholarship before spectacle</strong>Typography and legibility first. Decoration earns its place only if it communicates.</span>
+          </li>
+          <li class="prin-item">
+            <span class="prin-num">II.</span>
+            <span class="prin-text"><strong>Warmth, not coldness</strong>Parchment over white. Spectral over sans. The school is a library, not a dashboard.</span>
+          </li>
+          <li class="prin-item">
+            <span class="prin-num">III.</span>
+            <span class="prin-text"><strong>Level signals are always explicit</strong>Verd / Gold / Garnet — consistent on every surface. Never swap.</span>
+          </li>
+          <li class="prin-item">
+            <span class="prin-num">IV.</span>
+            <span class="prin-text"><strong>Charitable to the student</strong>Progress is never hidden. Locks are explained. Feedback is always kind.</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ── LEVELS ── -->
+    <div>
+      <div class="sec-label">04 — Level System</div>
+      <div class="level-row">
+        <div class="level-tile">
+          <div class="level-band" style="background:#3E6B54"></div>
+          <div class="level-body">
+            <div class="level-num">Level I · Beginner</div>
+            <div class="level-name">First Light</div>
+            <div class="level-desc">Where reason begins. Define the terms, reason in valid arguments, spot common fallacies.</div>
+            <div class="level-cred">Certificate of Foundation · ~10 hrs</div>
+          </div>
+        </div>
+        <div class="level-tile">
+          <div class="level-band" style="background:#B8893B"></div>
+          <div class="level-body">
+            <div class="level-num">Level II · Intermediate</div>
+            <div class="level-name">The Crucible</div>
+            <div class="level-desc">Where arguments are tested. Steelman the opposition, dismantle it, defend secular ethics.</div>
+            <div class="level-cred">Certificate of Argumentation · ~18 hrs</div>
+          </div>
+        </div>
+        <div class="level-tile">
+          <div class="level-band" style="background:#7B2C2C"></div>
+          <div class="level-body">
+            <div class="level-num">Level III · Expert</div>
+            <div class="level-name">Illumination</div>
+            <div class="level-desc">Where the room is mastered. Advanced philosophy, cognitive science, judged capstone.</div>
+            <div class="level-cred">Advanced Cert. + Master Diploma · ~30 hrs</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── RANK SYSTEM ── -->
+    <div>
+      <div class="sec-label">05 — RP Rank System</div>
+      <div style="display:flex;gap:5px">
+        <div style="flex:1;background:var(--paper-2);border:1px solid var(--line);border-radius:2px;padding:4mm 5mm;text-align:center">
+          <div style="font-family:var(--ff-d);font-size:11pt;font-weight:700;color:var(--muted);margin-bottom:1.5mm">Inquirer</div>
+          <div style="font-family:var(--ff-m);font-size:7pt;color:var(--line);background:var(--paper);border-radius:1px;padding:2px 6px;display:inline-block">0 RP</div>
+        </div>
+        <div style="flex:1;background:var(--paper-2);border:1px solid var(--line);border-radius:2px;padding:4mm 5mm;text-align:center">
+          <div style="font-family:var(--ff-d);font-size:11pt;font-weight:700;color:var(--ink-soft);margin-bottom:1.5mm">Disputant</div>
+          <div style="font-family:var(--ff-m);font-size:7pt;color:var(--muted);background:var(--paper);border-radius:1px;padding:2px 6px;display:inline-block">500 RP</div>
+        </div>
+        <div style="flex:1;background:linear-gradient(180deg,#fdf6e8,var(--paper-2));border:1.5px solid var(--gold);border-radius:2px;padding:4mm 5mm;text-align:center">
+          <div style="font-family:var(--ff-d);font-size:11pt;font-weight:700;color:var(--gold-d);margin-bottom:1.5mm">Rhetor</div>
+          <div style="font-family:var(--ff-m);font-size:7pt;color:var(--gold-d);background:rgba(184,137,59,.1);border-radius:1px;padding:2px 6px;display:inline-block">1,500 RP</div>
+        </div>
+        <div style="flex:1;background:var(--paper-2);border:1px solid var(--line);border-radius:2px;padding:4mm 5mm;text-align:center">
+          <div style="font-family:var(--ff-d);font-size:11pt;font-weight:700;color:var(--ink);margin-bottom:1.5mm">Dialectician</div>
+          <div style="font-family:var(--ff-m);font-size:7pt;color:var(--muted);background:var(--paper);border-radius:1px;padding:2px 6px;display:inline-block">3,500 RP</div>
+        </div>
+        <div style="flex:1;background:var(--night);border:1px solid rgba(231,207,148,.3);border-radius:2px;padding:4mm 5mm;text-align:center">
+          <div style="font-family:var(--ff-d);font-size:11pt;font-weight:700;color:var(--gold-s);margin-bottom:1.5mm">Adept</div>
+          <div style="font-family:var(--ff-m);font-size:7pt;color:rgba(231,207,148,.5);background:rgba(231,207,148,.08);border-radius:1px;padding:2px 6px;display:inline-block">7,000 RP</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── WORDMARKS ── -->
+    <div>
+      <div class="sec-label">06 — Wordmarks &amp; Lockups</div>
+      <div class="wm-row">
+        <!-- Mark + wordmark on light -->
+        <div class="wm-tile">
+          <div class="wm-tile-label">Mark + wordmark · Light</div>
+          <div style="display:flex;align-items:center;gap:8px">
+            <svg width="30" height="30" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="100" cy="100" r="96" fill="#15130D"/>
+              <circle cx="100" cy="100" r="95" fill="none" stroke="#B8893B" stroke-width="3"/>
+              <g transform="translate(100,104)" stroke="#E7CF94" stroke-width="2.5" fill="none" stroke-linecap="round">
+                <path d="M-20,11 Q-10,6 0,9 Q10,6 20,11"/>
+                <path d="M-20,11 L-20,2 Q-10,-4 0,0 Q10,-4 20,2 L20,11"/>
+                <path d="M0,0 L0,9"/>
+                <path d="M0,-4 C-5,-9 -4,-16 0,-20 C4,-16 5,-9 0,-4 Z" fill="#C9A24A" stroke="#E7CF94" stroke-width="1.4"/>
+              </g>
+            </svg>
+            <div>
+              <div style="font-family:var(--ff-d);font-size:10pt;font-weight:700;color:var(--ink);line-height:1.15">Ilu's School<br>of Thoughts</div>
+              <div style="font-family:var(--ff-m);font-size:5pt;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-d);margin-top:2px">Sapere Aude</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- On dark -->
+        <div class="wm-tile dark">
+          <div class="wm-tile-label lt">Full wordmark · On dark</div>
+          <div style="font-family:var(--ff-d);font-size:13pt;font-weight:700;color:#F0E6CE;text-align:center;letter-spacing:.01em;line-height:1.2">
+            Ilu's<br><span style="color:var(--gold-s)">School of Thoughts</span>
+          </div>
+          <div style="font-family:var(--ff-m);font-size:5.5pt;letter-spacing:.28em;text-transform:uppercase;color:rgba(231,207,148,.45)">Reason · Argue · Illuminate</div>
+        </div>
+
+        <!-- Split weight -->
+        <div class="wm-tile">
+          <div class="wm-tile-label">Split-weight</div>
+          <div style="text-align:center">
+            <div style="font-family:var(--ff-d);font-size:16pt;font-weight:700;letter-spacing:-.02em;color:var(--ink);line-height:1">ILU'S</div>
+            <div style="font-family:var(--ff-d);font-size:9pt;font-weight:300;color:var(--muted);letter-spacing:.02em;line-height:1.2">School of Thoughts</div>
+            <div style="font-family:var(--ff-m);font-size:5pt;letter-spacing:.28em;text-transform:uppercase;color:var(--line);margin-top:3px">Sapere Aude</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /body -->
+
+  <!-- ── FOOTER ── -->
+  <div class="pg-footer">
+    <div class="pg-footer-left">
+      <strong>design/brand-book-a4.html</strong> · Version 1.0 · 2026<br>
+      Cross-ref: design/design-system.html · ilus-school-of-thoughts.onrender.com
+    </div>
+    <div class="pg-footer-right">Sapere aude.</div>
+  </div>
+
+</div><!-- /page -->
+</body>
+</html>

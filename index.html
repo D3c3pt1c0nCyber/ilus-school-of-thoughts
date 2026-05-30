@@ -64,6 +64,39 @@ button{font-family:inherit}
 .cert-name-input{width:100%;padding:.75em 1em;border:1.5px solid var(--line-2);border-radius:2px;font-family:var(--disp);font-size:20px;font-weight:600;color:var(--ink);background:var(--paper);margin-bottom:24px;outline:none}
 .cert-name-input:focus{border-color:var(--gold)}
 .cert-modal-btns{display:flex;gap:12px;justify-content:flex-end}
+/* ---------- admin studio ---------- */
+.admin-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:24px}
+@media(max-width:880px){.admin-grid{grid-template-columns:1fr}}
+.adm-label{display:block;font-family:var(--serif);font-size:12px;font-weight:600;letter-spacing:.04em;color:var(--ink-soft);margin:14px 0 5px;text-transform:none}
+.adm-input{width:100%;padding:.6em .8em;border:1.5px solid var(--line-2);border-radius:2px;font-family:var(--serif);font-size:14.5px;color:var(--ink);background:var(--paper);outline:none;line-height:1.5}
+.adm-input:focus{border-color:var(--gold)}
+textarea.adm-input{resize:vertical;font-size:14px}
+select.adm-input{cursor:pointer}
+.adm-lrow{display:flex;align-items:center;gap:12px;padding:11px 12px;border:1px solid var(--line);border-radius:3px;margin-bottom:7px;cursor:pointer;transition:.15s;background:var(--card)}
+.adm-lrow:hover{border-color:var(--gold);background:var(--paper-2)}
+.adm-lrow .lc{font-family:var(--mono);font-size:11px;color:var(--muted);width:34px;flex-shrink:0}
+.adm-lrow .lt{flex:1;font-size:14px;font-weight:500}
+.adm-lrow .lt small{display:block;font-weight:400;color:var(--muted);font-size:12px;margin-top:1px}
+.adm-lrow .lstatus{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;border-radius:2px;white-space:nowrap}
+.adm-lrow .lstatus.full{background:rgba(62,107,84,.14);color:var(--verd)}
+.adm-lrow .lstatus.vid{background:rgba(123,44,44,.12);color:var(--garnet)}
+.adm-lrow .lstatus.empty{background:rgba(122,115,97,.12);color:var(--muted)}
+.adm-lvlhd{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-deep);margin:18px 0 8px;padding-bottom:4px;border-bottom:1px solid var(--line)}
+.adm-lvlhd:first-child{margin-top:0}
+.edq{border:1px solid var(--line);border-radius:3px;padding:14px;margin-bottom:10px;background:var(--card)}
+.edq-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.edq-head b{font-family:var(--mono);font-size:11px;color:var(--gold-deep)}
+.edq-del{background:none;border:none;color:var(--garnet);cursor:pointer;font-size:12px}
+.edq-opt{display:flex;align-items:center;gap:8px;margin-bottom:5px}
+.edq-opt input[type=radio]{accent-color:var(--gold);flex-shrink:0}
+/* ---------- email auth on gate ---------- */
+.gate-field{width:280px;max-width:80vw;padding:12px 14px;border-radius:3px;border:1px solid rgba(184,137,59,.4);background:rgba(0,0,0,.2);color:#F0E6CE;font-family:var(--serif);font-size:15px;outline:none;margin-bottom:10px}
+.gate-field::placeholder{color:rgba(200,188,161,.4)}
+.gate-field:focus{border-color:var(--gold)}
+.gate-link{background:none;border:none;color:rgba(231,207,148,.7);font-family:var(--serif);font-size:13px;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.gate-link:hover{color:var(--gold-soft)}
+.gate-or{display:flex;align-items:center;gap:12px;width:280px;max-width:80vw;margin:6px 0;color:rgba(200,188,161,.4);font-size:12px;letter-spacing:.1em}
+.gate-or::before,.gate-or::after{content:"";flex:1;height:1px;background:rgba(231,207,148,.2)}
 /* ---------- level lock overlay ---------- */
 .lvl{position:relative;overflow:hidden}
 .lock-overlay{position:absolute;inset:0;background:rgba(28,26,20,.72);backdrop-filter:blur(3px);display:flex;align-items:center;justify-content:center;border-radius:inherit;cursor:not-allowed}
@@ -485,13 +518,29 @@ footer .base b{color:var(--gold-soft)}
     Continue with Google
   </button>
 
+  <!-- OR divider -->
+  <div class="gate-or" style="animation:sealFade 1s .45s ease both">or with email</div>
+
+  <!-- Email / password -->
+  <div id="emailAuthBox" style="display:flex;flex-direction:column;align-items:center;animation:sealFade 1s .5s ease both">
+    <input id="gateName" class="gate-field" type="text" placeholder="Your name (for new accounts)" style="display:none">
+    <input id="gateEmail" class="gate-field" type="email" placeholder="Email" autocomplete="email">
+    <input id="gatePass" class="gate-field" type="password" placeholder="Password" autocomplete="current-password">
+    <div id="gateError" style="display:none;color:#e89090;font-size:13px;margin-bottom:8px;max-width:280px;text-align:center"></div>
+    <div style="display:flex;gap:10px;width:280px;max-width:80vw">
+      <button id="gateSignIn" class="btn gold" style="flex:1;justify-content:center" onclick="emailSignIn()">Sign in</button>
+      <button id="gateCreate" class="btn lt" style="flex:1;justify-content:center" onclick="toggleCreateMode()">Create account</button>
+    </div>
+    <button class="gate-link" style="margin-top:14px" onclick="emailReset()">Forgot password?</button>
+  </div>
+
   <!-- Sub-note -->
-  <div style="margin-top:20px;font-size:13px;color:rgba(200,188,161,.45);animation:sealFade 1s .5s ease both">
+  <div style="margin-top:18px;font-size:13px;color:rgba(200,188,161,.45)">
     Your progress saves automatically to your account.
   </div>
 
   <!-- Loading state (shown while Firebase checks auth) -->
-  <div id="loginChecking" style="margin-top:36px;font-size:13px;color:rgba(200,188,161,.35);letter-spacing:.1em;text-transform:uppercase">
+  <div id="loginChecking" style="margin-top:24px;font-size:13px;color:rgba(200,188,161,.35);letter-spacing:.1em;text-transform:uppercase">
     Checking session&hellip;
   </div>
 </div>
@@ -518,6 +567,7 @@ footer .base b{color:var(--gold-soft)}
       <a data-nav="dashboard" onclick="go('dashboard')">Dashboard</a>
       <a data-nav="arena" onclick="go('arena')">Debate Arena</a>
       <a data-nav="certificate" onclick="go('certificate')">Certificate</a>
+      <a data-nav="admin" id="adminNavLink" onclick="go('admin')" style="display:none;color:var(--gold-deep)">✎ Admin</a>
     </nav>
     <div class="spacer"></div>
     <div class="rp-pill" onclick="go('dashboard')" title="Your Reason Points & rank">
@@ -912,6 +962,80 @@ footer .base b{color:var(--gold-soft)}
   </div>
 </section>
 
+<!-- ============ ADMIN ============ -->
+<section id="view-admin" class="view">
+  <div class="pagehd">
+    <div class="wrap">
+      <div class="eyebrow">Admin · Curriculum Studio</div>
+      <h1>Manage lessons &amp; content</h1>
+      <p>Edit any lesson's reading, attach a YouTube video, and build its quiz. Add new lessons to any module. Changes save to the cloud and appear for every student instantly.</p>
+    </div>
+  </div>
+  <div class="wrap" style="padding:30px 28px 90px">
+    <div class="admin-grid">
+      <!-- Left: actions -->
+      <div>
+        <div class="panel" style="padding:24px 26px">
+          <h3 style="margin-bottom:6px">Add a new lesson</h3>
+          <p style="font-size:13.5px;color:var(--muted);margin-bottom:16px">Appends a lesson into an existing module.</p>
+          <label class="adm-label">Level</label>
+          <select id="addLvl" class="adm-input" onchange="refreshAddModules()"></select>
+          <label class="adm-label">Module</label>
+          <select id="addMod" class="adm-input"></select>
+          <label class="adm-label">Lesson code <span style="color:var(--muted)">(e.g. 1.5)</span></label>
+          <input id="addCode" class="adm-input" placeholder="1.5">
+          <label class="adm-label">Title</label>
+          <input id="addTitle" class="adm-input" placeholder="Lesson title">
+          <label class="adm-label">Short description</label>
+          <input id="addDesc" class="adm-input" placeholder="one line shown under the title">
+          <button class="btn gold" style="width:100%;justify-content:center;margin-top:8px" onclick="adminAddLesson()">Add lesson &amp; open editor →</button>
+        </div>
+      </div>
+      <!-- Right: all lessons list -->
+      <div>
+        <div class="panel" style="padding:24px 26px">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+            <h3>All lessons</h3>
+            <span style="font-family:var(--mono);font-size:11px;color:var(--muted)" id="admLessonCount"></span>
+          </div>
+          <div id="adminLessonList" style="max-height:560px;overflow-y:auto;margin:-6px -8px;padding:6px 8px"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Admin lesson editor modal -->
+<div id="lessonEditor" class="cert-modal-overlay" style="display:none;align-items:flex-start;overflow-y:auto;padding:40px 20px" onclick="if(event.target===this)closeLessonEditor()">
+  <div class="cert-modal" style="max-width:760px;width:100%">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px">
+      <h3 id="edTitle">Edit lesson</h3>
+      <span id="edKey" style="font-family:var(--mono);font-size:12px;color:var(--gold-deep)"></span>
+    </div>
+    <p style="margin-bottom:18px">Everything here is optional except the reading. Leave the video blank for a reading-only lesson.</p>
+
+    <label class="adm-label">YouTube URL or video ID <span style="color:var(--muted)">— optional</span></label>
+    <input id="edYoutube" class="adm-input" placeholder="https://youtube.com/watch?v=… or the 11-char ID">
+
+    <label class="adm-label">Reading <span style="color:var(--muted)">— one paragraph per line (blank line = new paragraph)</span></label>
+    <textarea id="edRead" class="adm-input" rows="8" placeholder="First paragraph…&#10;&#10;Second paragraph…&#10;&#10;Third paragraph…"></textarea>
+
+    <label class="adm-label">Key terms <span style="color:var(--muted)">— one per line, as "Term :: definition"</span></label>
+    <textarea id="edTerms" class="adm-input" rows="4" placeholder="Burden of proof :: the obligation to support a claim rests on whoever asserts it."></textarea>
+
+    <div style="display:flex;align-items:center;justify-content:space-between;margin:14px 0 8px">
+      <label class="adm-label" style="margin:0">Quiz</label>
+      <button class="btn ghost sm" onclick="addQuizQ()">+ Add question</button>
+    </div>
+    <div id="edQuiz"></div>
+
+    <div class="cert-modal-btns" style="margin-top:22px">
+      <button class="btn ghost sm" onclick="closeLessonEditor()">Cancel</button>
+      <button class="btn gold" onclick="saveLessonEditor()">Save lesson →</button>
+    </div>
+  </div>
+</div>
+
 <!-- ============ CERTIFICATE ============ -->
 <section id="view-certificate" class="view">
   <div class="pagehd">
@@ -953,6 +1077,9 @@ footer .base b{color:var(--gold-soft)}
 
 <div id="toast"><div class="t"><span>✦</span><span id="toastMsg">Saved</span><span class="rpup" id="toastRP"></span></div></div>
 
+<!-- Generated lesson content (Level I, II, III) — sets window.SEED_LESSON_CONTENT before the app script runs -->
+<script src="lesson-content-gen-all.js"></script>
+
 <script>
 /* ============================================================
    STATE
@@ -961,6 +1088,47 @@ const RANKS=[["Inquirer",0],["Disputant",500],["Rhetor",1500],["Dialectician",35
 const state={ rp:0, done:new Set(), awarded:new Set(), quizScores:{} };
 let currentUser=null;
 let certName='';
+
+/* ============================================================
+   RBAC + ADMIN CONTENT LAYER
+   ============================================================ */
+const ADMIN_EMAILS = ['joiesayen1223@gmail.com'];   // accounts that get admin role
+let isAdmin = false;
+
+/* Admin-authored content, loaded once from Firestore content/site:
+   - SITE.lessonContent : { 'L1:1.1': {read,terms,quiz,youtubeId}, ... } overrides/extends SEED
+   - SITE.extraLessons  : [ {lvl, mod, code, title, desc}, ... ] appended into CURRICULUM modules
+   SEED_LESSON_CONTENT is injected by lesson-content-gen (the generated file).            */
+let SITE = { lessonContent:{}, extraLessons:[] };
+const SEED_LESSON_CONTENT = (typeof window!=='undefined' && window.SEED_LESSON_CONTENT) ? window.SEED_LESSON_CONTENT : {};
+
+/* lessonData(key) — the merged view a student sees: admin override > generated seed > showcase */
+function lessonData(key){
+  return (SITE.lessonContent && SITE.lessonContent[key]) || SEED_LESSON_CONTENT[key] || LESSON_CONTENT[key] || null;
+}
+
+/* Re-inject admin-added lessons into CURRICULUM (called after SITE loads) */
+function applyExtraLessons(){
+  // strip any previously injected extras, then re-add (idempotent)
+  CURRICULUM.forEach(L=> L.modules.forEach(m=>{ if(m.lessons) m.lessons = m.lessons.filter(les=>!les.__extra); }));
+  (SITE.extraLessons||[]).forEach(x=>{
+    const L = CURRICULUM.find(l=>l.id===x.lvl); if(!L) return;
+    const m = L.modules[x.mod]; if(!m) return;
+    if(m.lessons.some(les=>les[0]===x.code)) return; // already present
+    const row = [x.code, x.title, x.desc]; row.__extra = true;
+    m.lessons.push(row);
+  });
+}
+
+/* Extract a YouTube video id from a URL or raw id */
+function ytId(v){
+  if(!v) return '';
+  v=v.trim();
+  const m = v.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|v\/|shorts\/))([\w-]{11})/);
+  if(m) return m[1];
+  if(/^[\w-]{11}$/.test(v)) return v;
+  return '';
+}
 
 function rankFor(rp){ let r=RANKS[0]; for(const x of RANKS){ if(rp>=x[1]) r=x; } return r; }
 function nextRank(rp){ for(const x of RANKS){ if(x[1]>rp) return x; } return null; }
@@ -1163,6 +1331,7 @@ function go(view,arg){
   document.querySelector('nav.main').classList.remove('open');
   window.scrollTo({top:0,behavior:'instant'in window?'instant':'auto'});
   if(view==='curriculum'&&arg) setTimeout(()=>openModuleFor(arg),60);
+  if(view==='admin'){ if(!isAdmin){ go('home'); return; } if(typeof renderAdmin==='function') renderAdmin(); }
   revealScan();
 }
 
@@ -1280,19 +1449,30 @@ function openLesson(lvlId,code){
       <span class="sc">${x.code}</span><span class="dt">${dn?'<svg width=10 height=10 viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3.5"><path d="M5 13l4 4L19 7"/></svg>':''}</span>
       <span style="flex:1">${x.title}</span></div>`;
   }).join('');
-  // main
-  const content=LESSON_CONTENT[key];
-  let h=`<div class="crumb">Level ${L.numeral} · ${L.name} &nbsp;›&nbsp; <b>Module ${meta.mi+1}</b> &nbsp;›&nbsp; Lesson ${code}</div>
+  // main — pull merged content (admin override > generated seed > showcase)
+  const content=lessonData(key);
+  const vid = content && content.youtubeId ? ytId(content.youtubeId) : '';
+  const adminBtn = isAdmin ? `<button class="btn ghost sm" style="margin-left:auto" onclick="openLessonEditor('${key}')">✎ Edit lesson</button>` : '';
+  let h=`<div class="crumb" style="display:flex;align-items:center;gap:10px">Level ${L.numeral} · ${L.name} &nbsp;›&nbsp; <b>Module ${meta.mi+1}</b> &nbsp;›&nbsp; Lesson ${code}${adminBtn}</div>
     <h1>${meta.title}</h1>
-    <div class="lmeta"><span>📖 Reading</span><span>⏱ ~8 min</span><span>✦ ${content?'40':'30'} RP on completion</span></div>`;
+    <div class="lmeta"><span>${vid?'▶ Video + reading':'📖 Reading'}</span><span>⏱ ~8 min</span><span>✦ ${content?'40':'30'} RP on completion</span></div>`;
+  if(vid){
+    h+=`<div class="lblk"><div style="position:relative;width:100%;aspect-ratio:16/9;border-radius:6px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--sh-1)">
+      <iframe src="https://www.youtube-nocookie.com/embed/${vid}" title="Lesson video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute;inset:0;width:100%;height:100%"></iframe>
+    </div></div>`;
+  }
   if(content){
     h+=`<div class="lblk"><span class="eyebrow">Read</span>`+content.read.map(p=>`<p>${p}</p>`).join('')+`</div>`;
-    h+=`<div class="lblk"><span class="eyebrow">Key terms</span><dl class="termcard">`+content.terms.map(t=>`<dt>${t[0]}</dt><dd>${t[1]}</dd>`).join('')+`</dl></div>`;
-    h+=`<div class="lblk"><span class="eyebrow">Knowledge check</span><div class="quiz" id="quiz"></div></div>`;
+    if(content.terms && content.terms.length)
+      h+=`<div class="lblk"><span class="eyebrow">Key terms</span><dl class="termcard">`+content.terms.map(t=>`<dt>${t[0]}</dt><dd>${t[1]}</dd>`).join('')+`</dl></div>`;
+    if(content.quiz && content.quiz.length)
+      h+=`<div class="lblk"><span class="eyebrow">Knowledge check</span><div class="quiz" id="quiz"></div></div>`;
+    else
+      h+=`<div class="lblk">${state.done.has(key)?`<button class="btn gold" onclick="advanceLesson('${key}')">Next lesson <span class="arrow">→</span></button>`:`<button class="btn gold" onclick="markComplete('${key}')">Mark lesson complete <span class="arrow">→</span></button>`}</div>`;
   } else {
     h+=`<div class="lblk"><span class="eyebrow">Overview</span>
       <p style="font-size:18px">This lesson covers <b>${meta.desc}.</b></p>
-      <div class="notecard">In the full build this screen carries the reading, narrated video, primary-source excerpts, and a knowledge check. Lesson <b>1.2 — Belief vs. Knowledge</b> (Level I) is wired up as a fully interactive example with a graded quiz.</div>
+      <div class="notecard">${isAdmin?'This lesson has no content yet. Click <b>✎ Edit lesson</b> above to add a reading, a video, and a quiz.':'The reading for this lesson is being prepared. Mark it complete to continue, or check back soon.'}</div>
       ${state.done.has(key)
         ? `<button class="btn gold" onclick="advanceLesson('${key}')">Next lesson <span class="arrow">→</span></button>`
         : `<button class="btn gold" onclick="markComplete('${key}')">Mark lesson complete <span class="arrow">→</span></button>`
@@ -1300,7 +1480,7 @@ function openLesson(lvlId,code){
     </div>`;
   }
   document.getElementById('lessonMain').innerHTML=h;
-  if(content) renderQuiz(key,content);
+  if(content && content.quiz && content.quiz.length) renderQuiz(key,content);
   go('lesson');
 }
 
@@ -1680,7 +1860,8 @@ document.head.appendChild(revStyle);
      ============================================================ -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-app.js";
-import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged }
+import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged,
+  createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail, updateProfile }
   from "https://www.gstatic.com/firebasejs/12.14.0/firebase-auth.js";
 import { getFirestore, doc, getDoc, setDoc, updateDoc, serverTimestamp }
   from "https://www.gstatic.com/firebasejs/12.14.0/firebase-firestore.js";
@@ -1736,6 +1917,231 @@ window.loginWithGoogle = async function(){
   btn.innerHTML = 'Signing in&hellip;'; btn.disabled = true;
   try { await signInWithPopup(auth, provider); }
   catch(e){ resetLoginBtn(); } // reset cleanly on any error/cancel
+};
+
+/* ── Email / password (local accounts) ── */
+let gateCreateMode = false;
+function gateErr(msg){
+  const el = document.getElementById('gateError');
+  if(!el) return;
+  if(msg){ el.textContent = msg; el.style.display='block'; } else { el.style.display='none'; }
+}
+function friendlyAuthError(code){
+  const map = {
+    'auth/invalid-email':'That doesn\'t look like a valid email.',
+    'auth/missing-password':'Please enter a password.',
+    'auth/weak-password':'Password should be at least 6 characters.',
+    'auth/email-already-in-use':'An account with that email already exists — try signing in.',
+    'auth/invalid-credential':'Email or password is incorrect.',
+    'auth/wrong-password':'Email or password is incorrect.',
+    'auth/user-not-found':'No account with that email — try creating one.',
+    'auth/too-many-requests':'Too many attempts. Wait a moment and try again.',
+  };
+  return map[code] || 'Something went wrong. Please try again.';
+}
+
+window.toggleCreateMode = function(){
+  gateCreateMode = !gateCreateMode;
+  const nameField = document.getElementById('gateName');
+  const signInBtn = document.getElementById('gateSignIn');
+  const createBtn = document.getElementById('gateCreate');
+  gateErr('');
+  if(gateCreateMode){
+    nameField.style.display = 'block';
+    signInBtn.textContent = 'Create account';
+    signInBtn.setAttribute('onclick','emailCreate()');
+    createBtn.textContent = 'Have an account?';
+  } else {
+    nameField.style.display = 'none';
+    signInBtn.textContent = 'Sign in';
+    signInBtn.setAttribute('onclick','emailSignIn()');
+    createBtn.textContent = 'Create account';
+  }
+};
+
+window.emailSignIn = async function(){
+  const email = document.getElementById('gateEmail').value.trim();
+  const pass  = document.getElementById('gatePass').value;
+  if(!email || !pass){ gateErr('Enter your email and password.'); return; }
+  const btn = document.getElementById('gateSignIn'); btn.disabled=true; btn.textContent='Signing in…';
+  try { await signInWithEmailAndPassword(auth, email, pass); }
+  catch(e){ gateErr(friendlyAuthError(e.code)); btn.disabled=false; btn.textContent='Sign in'; }
+};
+
+window.emailCreate = async function(){
+  const name  = document.getElementById('gateName').value.trim();
+  const email = document.getElementById('gateEmail').value.trim();
+  const pass  = document.getElementById('gatePass').value;
+  if(!name){ gateErr('Please enter your name.'); return; }
+  if(!email || !pass){ gateErr('Enter an email and a password (6+ characters).'); return; }
+  const btn = document.getElementById('gateSignIn'); btn.disabled=true; btn.textContent='Creating…';
+  try {
+    const cred = await createUserWithEmailAndPassword(auth, email, pass);
+    await updateProfile(cred.user, { displayName: name });
+    // create a profile doc so the account is recorded with its role
+    try { await setDoc(doc(db,'users',cred.user.uid,'profile','info'),{ name, email, role:'student', createdAt: serverTimestamp() }); } catch(_){}
+  }
+  catch(e){ gateErr(friendlyAuthError(e.code)); btn.disabled=false; btn.textContent='Create account'; }
+};
+
+window.emailReset = async function(){
+  const email = document.getElementById('gateEmail').value.trim();
+  if(!email){ gateErr('Enter your email first, then tap “Forgot password”.'); return; }
+  try { await sendPasswordResetEmail(auth, email); gateErr(''); toast('Password reset email sent to '+email,''); }
+  catch(e){ gateErr(friendlyAuthError(e.code)); }
+};
+
+/* ============================================================
+   ADMIN — shared site content (lessons, videos, quizzes)
+   stored in Firestore content/site, read by everyone, written by admins
+   ============================================================ */
+async function loadSiteContent(){
+  try {
+    const snap = await getDoc(doc(db,'content','site'));
+    if(snap.exists()){
+      const d = snap.data();
+      SITE.lessonContent = d.lessonContent || {};
+      SITE.extraLessons  = d.extraLessons  || [];
+    } else { SITE.lessonContent={}; SITE.extraLessons=[]; }
+  } catch(e){ console.warn('loadSiteContent failed',e); SITE.lessonContent={}; SITE.extraLessons=[]; }
+  applyExtraLessons();
+  if(typeof renderCurriculum==='function') renderCurriculum();
+}
+
+async function saveSiteContent(){
+  try {
+    await setDoc(doc(db,'content','site'),{
+      lessonContent: SITE.lessonContent || {},
+      extraLessons: SITE.extraLessons || [],
+      updatedAt: serverTimestamp(),
+      updatedBy: currentUser ? currentUser.email : 'unknown'
+    });
+    return true;
+  } catch(e){ console.warn('saveSiteContent failed',e); toast('Could not save — check your connection',''); return false; }
+}
+
+/* ---- Admin panel rendering ---- */
+window.renderAdmin = function(){
+  if(!isAdmin) return;
+  // level selector
+  const lvlSel = document.getElementById('addLvl');
+  if(lvlSel && !lvlSel.dataset.init){
+    lvlSel.innerHTML = CURRICULUM.map(L=>`<option value="${L.id}">Level ${L.numeral} — ${L.name}</option>`).join('');
+    lvlSel.dataset.init='1';
+    refreshAddModules();
+  }
+  renderAdminLessonList();
+};
+
+window.refreshAddModules = function(){
+  const lvl = document.getElementById('addLvl').value;
+  const L = lvlObj(lvl); const sel = document.getElementById('addMod');
+  if(L && sel) sel.innerHTML = L.modules.map((m,i)=>`<option value="${i}">M${i+1} — ${m.title}</option>`).join('');
+};
+
+window.renderAdminLessonList = function(){
+  const box = document.getElementById('adminLessonList'); if(!box) return;
+  let count=0, html='';
+  CURRICULUM.forEach(L=>{
+    html += `<div class="adm-lvlhd">Level ${L.numeral} · ${L.name}</div>`;
+    flatLessons(L).forEach(x=>{
+      const key=L.id+':'+x.code; const c=lessonData(key); count++;
+      let status='empty', label='No content';
+      if(c){ if(c.youtubeId && ytId(c.youtubeId)){ status='vid'; label='Video'; } else { status='full'; label='Reading'; } }
+      if(c && c.quiz && c.quiz.length && status!=='vid') label='Reading + quiz';
+      html += `<div class="adm-lrow" onclick="openLessonEditor('${key}')">
+        <span class="lc">${x.code}</span>
+        <span class="lt">${x.title}<small>${x.desc||''}</small></span>
+        <span class="lstatus ${status}">${label}</span>
+      </div>`;
+    });
+  });
+  box.innerHTML = html;
+  const cnt=document.getElementById('admLessonCount'); if(cnt) cnt.textContent = count+' lessons';
+};
+
+window.adminAddLesson = async function(){
+  const lvl  = document.getElementById('addLvl').value;
+  const mod  = parseInt(document.getElementById('addMod').value,10);
+  const code = document.getElementById('addCode').value.trim();
+  const title= document.getElementById('addTitle').value.trim();
+  const desc = document.getElementById('addDesc').value.trim();
+  if(!code || !title){ toast('Enter at least a code and a title',''); return; }
+  const L=lvlObj(lvl);
+  if(flatLessons(L).some(x=>x.code===code)){ toast('Lesson code '+code+' already exists in this level',''); return; }
+  SITE.extraLessons = SITE.extraLessons || [];
+  SITE.extraLessons.push({ lvl, mod, code, title, desc });
+  applyExtraLessons();
+  const okSave = await saveSiteContent();
+  renderCurriculum(); renderAdminLessonList();
+  document.getElementById('addCode').value=''; document.getElementById('addTitle').value=''; document.getElementById('addDesc').value='';
+  if(okSave) toast('Lesson '+code+' added','');
+  openLessonEditor(lvl+':'+code);
+};
+
+/* ---- Lesson editor ---- (editorQuiz is global so inline handlers can mutate it) */
+window.editorQuiz = [];
+window.editorKey = null;
+window.openLessonEditor = function(key){
+  if(!isAdmin) return;
+  window.editorKey = key;
+  const c = lessonData(key) || {};
+  document.getElementById('edKey').textContent = key;
+  const [lvl,code]=key.split(':'); const L=lvlObj(lvl); const meta=flatLessons(L).find(x=>x.code===code);
+  document.getElementById('edTitle').textContent = 'Edit · '+(meta?meta.title:key);
+  document.getElementById('edYoutube').value = c.youtubeId || '';
+  document.getElementById('edRead').value = (c.read||[]).join('\n\n');
+  document.getElementById('edTerms').value = (c.terms||[]).map(t=>t[0]+' :: '+t[1]).join('\n');
+  window.editorQuiz = JSON.parse(JSON.stringify(c.quiz||[]));
+  window.renderEditorQuiz();
+  document.getElementById('lessonEditor').style.display='flex';
+  document.getElementById('lessonEditor').scrollTop=0;
+};
+
+window.closeLessonEditor = function(){ document.getElementById('lessonEditor').style.display='none'; };
+
+window.renderEditorQuiz = function(){
+  const box=document.getElementById('edQuiz'); const EQ=window.editorQuiz;
+  box.innerHTML = EQ.map((q,qi)=>`
+    <div class="edq">
+      <div class="edq-head"><b>Question ${qi+1}</b><button class="edq-del" onclick="delQuizQ(${qi})">✕ remove</button></div>
+      <input class="adm-input" style="margin-bottom:8px" placeholder="Question text" value="${(q.q||'').replace(/"/g,'&quot;')}" oninput="editorQuiz[${qi}].q=this.value">
+      <div data-opts="${qi}">
+        ${(q.opts||['','']).map((o,oi)=>`
+          <div class="edq-opt">
+            <input type="radio" name="ans${qi}" ${q.ans===oi?'checked':''} onclick="editorQuiz[${qi}].ans=${oi}">
+            <input class="adm-input" style="margin:0" placeholder="Option ${oi+1}" value="${(o||'').replace(/"/g,'&quot;')}" oninput="editorQuiz[${qi}].opts[${oi}]=this.value">
+            ${(q.opts||[]).length>2?`<button class="edq-del" onclick="delOpt(${qi},${oi})">✕</button>`:''}
+          </div>`).join('')}
+      </div>
+      <button class="btn ghost sm" style="margin:6px 0 8px" onclick="addOpt(${qi})">+ Option</button>
+      <input class="adm-input" placeholder="Explanation (wrap key term in &lt;b&gt;&lt;/b&gt;)" value="${(q.ex||'').replace(/"/g,'&quot;')}" oninput="editorQuiz[${qi}].ex=this.value">
+    </div>`).join('') || '<p style="color:var(--muted);font-size:14px;font-style:italic">No quiz yet. Add a question, or leave empty for a reading-only lesson.</p>';
+};
+window.addQuizQ = function(){ window.editorQuiz.push({q:'',opts:['',''],ans:0,ex:''}); window.renderEditorQuiz(); };
+window.delQuizQ = function(i){ window.editorQuiz.splice(i,1); window.renderEditorQuiz(); };
+window.addOpt = function(qi){ window.editorQuiz[qi].opts.push(''); window.renderEditorQuiz(); };
+window.delOpt = function(qi,oi){ window.editorQuiz[qi].opts.splice(oi,1); if(window.editorQuiz[qi].ans>=window.editorQuiz[qi].opts.length) window.editorQuiz[qi].ans=0; window.renderEditorQuiz(); };
+
+window.saveLessonEditor = async function(){
+  if(!window.editorKey) return;
+  const editorKey = window.editorKey;
+  const read = document.getElementById('edRead').value.split(/\n\s*\n/).map(s=>s.trim()).filter(Boolean);
+  const terms = document.getElementById('edTerms').value.split('\n').map(line=>{
+    const i=line.indexOf('::'); if(i<0) return null;
+    const t=line.slice(0,i).trim(), d=line.slice(i+2).trim(); return (t&&d)?[t,d]:null;
+  }).filter(Boolean);
+  const yt = document.getElementById('edYoutube').value.trim();
+  const quiz = window.editorQuiz.filter(q=>q.q && q.q.trim() && (q.opts||[]).filter(o=>o&&o.trim()).length>=2);
+  if(!read.length && !yt){ toast('Add a reading or a video first',''); return; }
+  const content = { read, terms, quiz };
+  if(yt) content.youtubeId = yt;
+  SITE.lessonContent = SITE.lessonContent || {};
+  SITE.lessonContent[editorKey] = content;
+  const okSave = await saveSiteContent();
+  renderAdminLessonList();
+  closeLessonEditor();
+  if(okSave) toast('Lesson saved','✦');
 };
 
 window.signOutUser = async function(){
@@ -1844,6 +2250,13 @@ onAuthStateChanged(auth, async user => {
   currentUser = user;
   const btn = document.getElementById('authBtn');
   if(user){
+    // ── RBAC: determine admin role ──
+    isAdmin = ADMIN_EMAILS.includes((user.email||'').toLowerCase());
+    const adminLink = document.getElementById('adminNavLink');
+    if(adminLink) adminLink.style.display = isAdmin ? '' : 'none';
+    // ── Load shared admin content (lessons/videos/quizzes) for everyone ──
+    await loadSiteContent();
+    if(isAdmin && typeof renderAdmin==='function') renderAdmin();
     // ── Show the app, hide the gate ──
     showApp();
     // Update topbar avatar
@@ -1864,6 +2277,9 @@ onAuthStateChanged(auth, async user => {
   } else {
     // ── Show the gate, hide the app ──
     showGate();
+    isAdmin = false;
+    const adminLink = document.getElementById('adminNavLink');
+    if(adminLink) adminLink.style.display = 'none';
     if(btn){
       btn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg><span id="authLabel">Sign in</span>`;
       btn.classList.remove('signed-in');
