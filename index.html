@@ -251,12 +251,9 @@ nav.main a.active::after{content:""; position:absolute; left:.72em; right:.72em;
 
 /* feature grid */
 .feat{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:6px; overflow:hidden}
-/* dashboard toolkit — responsive cards (mirrors homepage toolkit, minus the Arena) */
-.dtoolkit{display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:14px}
-.dtoolkit .fcard{border:1px solid var(--line); border-radius:8px; background:var(--paper-2)}
-.dtoolkit .fcard .ic{width:34px; height:34px; margin-bottom:12px}
-.dtoolkit .fcard h4{font-size:16px}
-.dtoolkit .fcard p{font-size:13px}
+/* dashboard toolkit — the real tools embedded inline as panels */
+.dtoolpanels{display:grid; grid-template-columns:repeat(auto-fit,minmax(330px,1fr)); gap:24px}
+.tool-sub{font-size:13px; color:var(--muted); line-height:1.5; margin:0 0 14px}
 .fcard{background:var(--paper-2); padding:30px 26px; transition:.2s; cursor:pointer}
 .fcard:hover{background:#fff}
 .fcard:hover .ic{transform:scale(1.06)}
@@ -1020,14 +1017,23 @@ footer .base b{color:var(--gold-soft)}
       </div>
     </div>
 
-      <!-- toolkit (mirrors the homepage toolkit, minus the Debate Arena) -->
-      <div class="panel" style="margin-top:24px">
-        <h3>The toolkit</h3>
-        <div class="dtoolkit">
-          <div class="fcard" onclick="openArgumentLab()"><svg class="ic" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="24" cy="9" r="5"/><circle cx="11" cy="38" r="5"/><circle cx="37" cy="38" r="5"/><path d="M24 14v9M24 23l-9 11M24 23l9 11"/></svg><h4>Argument Lab <span class="arrow">→</span></h4><p>Test whether an argument is valid: read the premises and conclusion, then judge it — with the reasoning revealed.</p></div>
-          <div class="fcard" onclick="gotoDrill()"><svg class="ic" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="24" cy="24" r="16"/><circle cx="24" cy="24" r="8"/><path d="M24 4v8M24 36v8M4 24h8M36 24h8"/></svg><h4>Fallacy Trainer <span class="arrow">→</span></h4><p>Spot-the-fallacy drills from real arguments — 20 scenarios, served at random on your dashboard.</p></div>
-          <div class="fcard" onclick="openFlashcards()"><svg class="ic" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="10" y="14" width="26" height="20" rx="2" transform="rotate(-8 23 24)"/><rect x="13" y="12" width="26" height="20" rx="2"/></svg><h4>Flashcards <span class="arrow">→</span></h4><p>Every key term from the curriculum, turned into flip-cards. Shuffle the deck and test your recall.</p></div>
-          <div class="fcard" onclick="openSocratic()"><svg class="ic" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="24" cy="24" r="18"/><circle cx="16" cy="20" r="3"/><circle cx="32" cy="20" r="3"/><path d="M16 31c2 3 5 4 8 4s6-1 8-4"/></svg><h4>Socratic Questions <span class="arrow">→</span></h4><p>Pressure-test your own position: a claim, then a chain of Socratic probes that ask you to defend it honestly.</p></div>
+      <!-- toolkit — the actual tools, embedded inline (no modal) -->
+      <div class="shead" style="margin:34px 0 4px"><div class="eyebrow">The toolkit</div></div>
+      <div class="dtoolpanels">
+        <div class="panel">
+          <h3 style="margin-bottom:6px">Argument Lab</h3>
+          <p class="tool-sub">Is the argument valid — does the conclusion follow from the premises? (Ignore whether the premises are actually true.)</p>
+          <div id="dashArgLab"></div>
+        </div>
+        <div class="panel">
+          <h3 style="margin-bottom:6px">Flashcards</h3>
+          <p class="tool-sub">Key terms from across the curriculum. Tap the card to flip.</p>
+          <div id="dashFlash"></div>
+        </div>
+        <div class="panel">
+          <h3 style="margin-bottom:6px">Socratic Questions</h3>
+          <p class="tool-sub">Hold a position, then answer each probe honestly — find the weak joint in your own view.</p>
+          <div id="dashSoc"></div>
         </div>
       </div>
   </div>
@@ -2313,13 +2319,17 @@ function buildDeck(){
   return deck;
 }
 function shuffle(a){ for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+/* TOOL_HOST lets the same renderer target the modal (#toolBody) OR an inline
+   dashboard container, so the tools can live on the dashboard without a modal. */
+let TOOL_HOST={flash:null,arg:null,soc:null};
 function openFlashcards(){
+  TOOL_HOST.flash=document.getElementById('toolBody');
   fcDeck=shuffle(buildDeck()); fcIdx=0; fcFlipped=false;
   openTool('Flashcards','Tap the card to flip. '+fcDeck.length+' key terms drawn from across the curriculum.');
   renderFlashcard();
 }
 function renderFlashcard(){
-  const body=document.getElementById('toolBody');
+  const body=TOOL_HOST.flash||document.getElementById('toolBody');
   if(!fcDeck.length){ body.innerHTML='<div class="tool-card">No terms available yet — complete or add lessons first.</div>'; return; }
   const c=fcDeck[fcIdx];
   body.innerHTML=`
@@ -2357,29 +2367,30 @@ const VALIDITY=[
   {prem:['Most religions cannot all be true.','Christianity is a religion.'],con:'Christianity is not true.',valid:false,ex:'<b>Invalid.</b> "Not all can be true" doesn’t single out any one as false. A hasty leap.'},
 ];
 let vlIdx=0, vlLocked=false;
-function openArgumentLab(){ vlIdx=Math.floor(Math.random()*VALIDITY.length); vlLocked=false; openTool('Argument Lab','Is the argument VALID — does the conclusion follow from the premises? (Ignore whether the premises are actually true.)'); renderValidity(); }
+function openArgumentLab(){ TOOL_HOST.arg=document.getElementById('toolBody'); vlIdx=Math.floor(Math.random()*VALIDITY.length); vlLocked=false; openTool('Argument Lab','Is the argument VALID — does the conclusion follow from the premises? (Ignore whether the premises are actually true.)'); renderValidity(); }
 function renderValidity(){
-  const v=VALIDITY[vlIdx]; const body=document.getElementById('toolBody');
+  const v=VALIDITY[vlIdx]; const body=TOOL_HOST.arg||document.getElementById('toolBody');
   body.innerHTML=`
     <div class="tool-card">
       ${v.prem.map((p,i)=>`<div style="font-size:16px;margin-bottom:8px"><span class="tool-meta">P${i+1}</span> &nbsp;${p}</div>`).join('')}
       <div style="border-top:1px solid var(--line);margin:12px 0;padding-top:12px;font-size:16px"><span class="tool-meta">∴ Conclusion</span> &nbsp;<b>${v.con}</b></div>
-      <div id="vlEx" style="display:none;margin-top:12px;font-size:14.5px;color:var(--ink-soft);line-height:1.55"></div>
+      <div class="vlEx" style="display:none;margin-top:12px;font-size:14.5px;color:var(--ink-soft);line-height:1.55"></div>
     </div>
     <div style="display:flex;gap:10px;margin-top:14px">
-      <button class="btn ghost vbtn" id="vlValid" onclick="answerValidity(true)">Valid</button>
-      <button class="btn ghost vbtn" id="vlInvalid" onclick="answerValidity(false)">Invalid</button>
-      <button class="btn gold vbtn" id="vlNext" style="display:none" onclick="nextValidity()">Next →</button>
+      <button class="btn ghost vbtn vlValid" onclick="answerValidity(true)">Valid</button>
+      <button class="btn ghost vbtn vlInvalid" onclick="answerValidity(false)">Invalid</button>
+      <button class="btn gold vbtn vlNext" style="display:none" onclick="nextValidity()">Next →</button>
     </div>`;
 }
 function answerValidity(guess){
   if(vlLocked) return; vlLocked=true;
   const v=VALIDITY[vlIdx]; const right=guess===v.valid;
-  const ex=document.getElementById('vlEx'); ex.style.display='block';
+  const body=TOOL_HOST.arg||document.getElementById('toolBody');
+  const ex=body.querySelector('.vlEx'); ex.style.display='block';
   ex.innerHTML=(right?'<b style="color:var(--verd)">Correct — '+(v.valid?'valid':'invalid')+'.</b> ':'<b style="color:var(--garnet)">Not quite — it’s '+(v.valid?'valid':'invalid')+'.</b> ')+v.ex;
-  document.getElementById('vlValid').style.display='none';
-  document.getElementById('vlInvalid').style.display='none';
-  document.getElementById('vlNext').style.display='inline-flex';
+  body.querySelector('.vlValid').style.display='none';
+  body.querySelector('.vlInvalid').style.display='none';
+  body.querySelector('.vlNext').style.display='inline-flex';
 }
 function nextValidity(){ let n=vlIdx; while(n===vlIdx&&VALIDITY.length>1) n=Math.floor(Math.random()*VALIDITY.length); vlIdx=n; vlLocked=false; renderValidity(); }
 
@@ -2394,9 +2405,9 @@ const SOCRATIC=[
   {claim:'We should always proportion belief to evidence.',probes:['Do you hold THAT principle on sufficient evidence, or is it a commitment?','Are there beliefs (in people, in projects) that must precede the evidence?','Where is the line between healthy caution and paralysing doubt?','When has acting before the evidence was in turned out to be wise?']},
 ];
 let socIdx=0, socProbe=0;
-function openSocratic(){ socIdx=Math.floor(Math.random()*SOCRATIC.length); socProbe=0; openTool('Socratic Questions','Hold a position, then answer each probe honestly — out loud or in your notes. The goal is to find the weak joint in your own view.'); renderSocratic(); }
+function openSocratic(){ TOOL_HOST.soc=document.getElementById('toolBody'); socIdx=Math.floor(Math.random()*SOCRATIC.length); socProbe=0; openTool('Socratic Questions','Hold a position, then answer each probe honestly — out loud or in your notes. The goal is to find the weak joint in your own view.'); renderSocratic(); }
 function renderSocratic(){
-  const s=SOCRATIC[socIdx]; const body=document.getElementById('toolBody');
+  const s=SOCRATIC[socIdx]; const body=TOOL_HOST.soc||document.getElementById('toolBody');
   const shown=s.probes.slice(0,socProbe+1);
   body.innerHTML=`
     <div class="tool-card">
@@ -2416,6 +2427,16 @@ function renderSocratic(){
 }
 function nextProbe(){ const s=SOCRATIC[socIdx]; if(socProbe<s.probes.length-1) socProbe++; renderSocratic(); }
 function newSocratic(){ let n=socIdx; while(n===socIdx&&SOCRATIC.length>1) n=Math.floor(Math.random()*SOCRATIC.length); socIdx=n; socProbe=0; renderSocratic(); }
+
+/* ---- Inline dashboard tools — render the real tools into dashboard panels (no modal) ---- */
+function initDashTools(){
+  const a=document.getElementById('dashArgLab');
+  if(a){ TOOL_HOST.arg=a; vlIdx=Math.floor(Math.random()*VALIDITY.length); vlLocked=false; renderValidity(); }
+  const f=document.getElementById('dashFlash');
+  if(f){ TOOL_HOST.flash=f; fcDeck=shuffle(buildDeck()); fcIdx=0; fcFlipped=false; renderFlashcard(); }
+  const s=document.getElementById('dashSoc');
+  if(s){ TOOL_HOST.soc=s; socIdx=Math.floor(Math.random()*SOCRATIC.length); socProbe=0; renderSocratic(); }
+}
 
 /* ============================================================
    DASHBOARD MOTION — count-up numbers + replayed bar fills
@@ -2444,6 +2465,7 @@ function animateDashboard(){
   ['dRPbar','barL1','barL2','barL3'].forEach(replayBar);
   if(typeof renderRadar==='function') renderRadar();   // re-trigger the radar draw-in
   renderRankTrack(); renderCompletionRing();           // rank journey + overall ring, re-animated
+  if(typeof initDashTools==='function') initDashTools(); // render the inline toolkit tools
 }
 
 /* ── Rank progression track — all five ranks, current node glowing ── */
