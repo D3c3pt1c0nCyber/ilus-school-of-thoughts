@@ -474,8 +474,10 @@ nav.main a.active::after{content:""; position:absolute; left:.72em; right:.72em;
 .side b{font-family:var(--disp); font-size:18px; display:block; margin-top:3px}
 .side .who{font-size:13.5px; color:#C8BCA1; margin-top:6px}
 .timer{font-family:var(--mono); font-size:13px; color:var(--gold-soft)}
-.arena-cols{display:grid; grid-template-columns:1.3fr 1fr; gap:24px; margin-top:28px}
-@media(max-width:900px){.arena-cols{grid-template-columns:1fr}}
+#view-arena .wrap{max-width:1340px}
+.arena-cols{display:grid; grid-template-columns:minmax(0,2.3fr) minmax(280px,1fr); gap:28px; margin-top:28px; align-items:start}
+.arena-cols > div:last-child{position:sticky; top:84px}
+@media(max-width:900px){.arena-cols{grid-template-columns:1fr} .arena-cols > div:last-child{position:static}}
 .async{border:1px solid var(--line); border-radius:6px; overflow:hidden; background:var(--card)}
 .async .row{display:flex; align-items:center; gap:14px; padding:16px 20px; border-bottom:1px solid var(--line)}
 .async .row:last-child{border-bottom:0}
@@ -485,14 +487,11 @@ nav.main a.active::after{content:""; position:absolute; left:.72em; right:.72em;
 .status.turn{background:rgba(184,137,59,.18); color:var(--gold-deep)}
 .status.judge{background:rgba(62,107,84,.14); color:var(--verd)}
 /* ===== Bot challenge queue: avatars · fields · rank ladder ===== */
-.bot-group + .bot-group{border-top:1px solid var(--line)}
-.bot-group-h{font-family:var(--disp); font-size:12px; letter-spacing:.22em; text-transform:uppercase; color:var(--gold-deep); padding:14px 20px 8px}
-.bot-card{display:flex; align-items:center; gap:14px; padding:11px 18px; cursor:pointer; border-top:1px solid var(--line); transition:background .18s ease; position:relative}
-.bot-group-h + .bot-card{border-top:0}
-.bot-card:hover{background:rgba(184,137,59,.07)}
-.bot-card:focus-visible{outline:none; background:rgba(184,137,59,.09)}
-.bot-card::before{content:""; position:absolute; left:0; top:0; bottom:0; width:0; background:var(--gold); transition:width .18s ease}
-.bot-card:hover::before, .bot-card:focus-visible::before{width:3px}
+.botqueue .bot-group{display:grid; grid-template-columns:repeat(auto-fill,minmax(290px,1fr)); gap:12px}
+.botqueue .bot-group + .bot-group{margin-top:26px}
+.bot-group-h{grid-column:1/-1; font-family:var(--disp); font-size:12px; letter-spacing:.22em; text-transform:uppercase; color:var(--gold-deep); padding:2px 2px 5px; border-bottom:1px solid var(--line); margin-bottom:2px}
+.bot-card{display:flex; align-items:center; gap:13px; padding:12px 14px; cursor:pointer; border:1px solid var(--line); border-radius:9px; background:var(--card); transition:border-color .16s ease, background .16s ease, box-shadow .16s ease, transform .16s ease}
+.bot-card:hover, .bot-card:focus-visible{outline:none; background:rgba(184,137,59,.06); border-color:var(--gold); box-shadow:0 4px 16px rgba(28,26,20,.10); transform:translateY(-1px)}
 .bot-av{width:52px; height:52px; border-radius:50%; object-fit:cover; object-position:center top; flex:none;
         border:2px solid var(--gold); background:var(--paper-2);
         filter:grayscale(.2) sepia(.38) brightness(1.04) contrast(.92);
@@ -1296,12 +1295,8 @@ footer .base b{color:var(--gold-soft)}
       <!-- Left: Bot challenge queue -->
       <div>
         <div class="eyebrow" style="margin-bottom:14px;display:block">Bot challenge queue</div>
-        <div class="async" id="botChallengeQueue">
+        <div class="botqueue" id="botChallengeQueue">
           <!-- populated by renderBotQueue() -->
-        </div>
-        <div class="notecard" style="margin-top:22px">
-          <b style="color:var(--gold-deep)">Rules of engagement.</b>
-          Attack arguments, never people. Steelman before you strike. Concede what is true. The goal is truth and skill, never humiliating anyone.
         </div>
       </div>
       <!-- Right: Your debate record -->
@@ -1318,6 +1313,10 @@ footer .base b{color:var(--gold-soft)}
             <div><div id="statDraws" style="font-family:var(--disp);font-size:28px;font-weight:700;color:var(--gold-deep)">0</div><div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)">Draws</div></div>
             <div><div id="statLosses" style="font-family:var(--disp);font-size:28px;font-weight:700;color:var(--garnet)">0</div><div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)">Losses</div></div>
           </div>
+        </div>
+        <div class="notecard" style="margin-top:18px">
+          <b style="color:var(--gold-deep)">Rules of engagement.</b>
+          Attack arguments, never people. Steelman before you strike. Concede what is true. The goal is truth and skill, never humiliating anyone.
         </div>
       </div>
     </div>
