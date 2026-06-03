@@ -133,6 +133,8 @@ select.adm-input{cursor:pointer}
 .monogram{width:38px; height:38px; border-radius:50%; display:grid; place-items:center; flex:none;
   background:radial-gradient(circle at 35% 30%,#2a2418,#15130d); border:1.5px solid var(--gold); box-shadow:inset 0 0 0 2px rgba(184,137,59,.25)}
 .monogram span{font-family:var(--disp); font-weight:700; color:var(--gold-soft); font-size:20px; line-height:1; transform:translateY(1px)}
+.brand-seal{width:42px; height:42px; flex:none; border-radius:50%; overflow:hidden}
+.brand-seal svg{width:100%; height:100%; display:block}
 .brand b{font-family:var(--disp); font-weight:600; font-size:18.5px; letter-spacing:-.01em; white-space:nowrap}
 .brand small{display:block; font-size:10.5px; letter-spacing:.24em; text-transform:uppercase; color:var(--gold-deep); margin-top:1px; font-weight:600}
 nav.main{display:flex; gap:3px; margin-left:8px}
@@ -482,6 +484,34 @@ nav.main a.active::after{content:""; position:absolute; left:.72em; right:.72em;
 .status{font-size:12px; padding:.35em .7em; border-radius:30px; font-weight:600; letter-spacing:.03em; white-space:nowrap}
 .status.turn{background:rgba(184,137,59,.18); color:var(--gold-deep)}
 .status.judge{background:rgba(62,107,84,.14); color:var(--verd)}
+/* ===== Bot challenge queue: avatars · fields · rank ladder ===== */
+.bot-group + .bot-group{border-top:1px solid var(--line)}
+.bot-group-h{font-family:var(--disp); font-size:12px; letter-spacing:.22em; text-transform:uppercase; color:var(--gold-deep); padding:14px 20px 8px}
+.bot-card{display:flex; align-items:center; gap:14px; padding:11px 18px; cursor:pointer; border-top:1px solid var(--line); transition:background .18s ease; position:relative}
+.bot-group-h + .bot-card{border-top:0}
+.bot-card:hover{background:rgba(184,137,59,.07)}
+.bot-card:focus-visible{outline:none; background:rgba(184,137,59,.09)}
+.bot-card::before{content:""; position:absolute; left:0; top:0; bottom:0; width:0; background:var(--gold); transition:width .18s ease}
+.bot-card:hover::before, .bot-card:focus-visible::before{width:3px}
+.bot-av{width:52px; height:52px; border-radius:50%; object-fit:cover; object-position:center top; flex:none;
+        border:2px solid var(--gold); background:var(--paper-2);
+        filter:grayscale(.2) sepia(.38) brightness(1.04) contrast(.92);
+        box-shadow:0 1px 4px rgba(28,26,20,.25)}
+.bot-meta{flex:1; min-width:0}
+.bot-name{font-family:var(--disp); font-weight:500; font-size:17px; color:var(--ink)}
+.bot-sub{display:flex; align-items:center; gap:9px; margin-top:3px; flex-wrap:wrap}
+.bot-rating{font-size:12.5px; color:var(--muted); font-variant-numeric:tabular-nums}
+.rank{font-size:10px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; padding:.22em .62em; border-radius:30px; border:1px solid transparent; white-space:nowrap}
+.rank.r-beg{background:rgba(62,107,84,.14); color:var(--verd); border-color:rgba(62,107,84,.30)}
+.rank.r-int{background:rgba(184,137,59,.16); color:var(--gold-deep); border-color:rgba(184,137,59,.35)}
+.rank.r-adv{background:rgba(138,106,43,.18); color:var(--gold-deep); border-color:rgba(138,106,43,.45)}
+.rank.r-exp{background:rgba(123,44,44,.13); color:var(--garnet); border-color:rgba(123,44,44,.32)}
+.rank.r-mas{background:var(--ink); color:var(--gold-soft); border-color:var(--gold)}
+.bot-go{font-size:12px; font-weight:600; letter-spacing:.03em; color:var(--muted); white-space:nowrap; padding:.4em .8em; border:1px solid var(--line); border-radius:30px; transition:all .18s ease}
+.bot-card:hover .bot-go, .bot-card:focus-visible .bot-go{color:#fff; background:var(--gold-deep); border-color:var(--gold-deep)}
+.bot-go .arrow{display:inline-block; transition:transform .18s ease}
+.bot-card:hover .bot-go .arrow{transform:translateX(3px)}
+@media(max-width:560px){ .bot-go{display:none} .bot-av{width:44px; height:44px} }
 .status.open{background:rgba(28,26,20,.07); color:var(--ink-soft)}
 .lboard{width:100%; border-collapse:collapse; font-size:14.5px}
 .lboard th{text-align:left; font-family:var(--serif); font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); padding:0 0 12px; font-weight:600}
@@ -868,7 +898,7 @@ footer .base b{color:var(--gold-soft)}
 <header class="topbar">
   <div class="wrap row">
     <div class="brand" onclick="go('home')">
-      <div class="monogram"><span>I</span></div>
+      <div class="brand-seal" data-seal aria-hidden="true"></div>
       <div><b>Ilu&rsquo;s School of Thoughts</b><small>Reason &middot; Argue &middot; Illuminate</small></div>
     </div>
     <button class="hamb" onclick="document.querySelector('nav.main').classList.toggle('open')" aria-label="Menu"><i></i><i></i><i></i></button>
@@ -2784,6 +2814,7 @@ document.head.appendChild(revStyle);
 function runInit(){
   document.getElementById('heroSeal').innerHTML=sealSVG();
   stampSeal(document.getElementById('heroSeal'));
+  document.querySelectorAll('[data-seal]').forEach(el=>{ el.innerHTML=sealSVG(); });
   const cp=document.getElementById('certPreview'); if(cp) cp.innerHTML=certHTML();
   document.getElementById('certFull').innerHTML=certHTML();
   renderCurriculum(); renderRadar(); renderBadges(); newDrill();
@@ -3916,10 +3947,21 @@ const PRO_BOT = [
 ];
 
 const BOT_TIERS = [
-  { name:'Socrates-9',  level:'Beginner',     rating:1050, topics:[2,3,5] },
-  { name:'Hume-5',      level:'Intermediate', rating:1320, topics:[0,4,10] },
-  { name:'Kant-3',      level:'Advanced',     rating:1580, topics:[1,6,13] },
-  { name:'Aristotle-6', level:'Expert',       rating:1820, topics:[8,11,14] },
+  // Philosophy
+  { name:'Socrates-9',  field:'Philosophy', avatar:'socrates',  level:'Beginner',     rating:1050, topics:[2,3,5] },
+  { name:'Hume-5',      field:'Philosophy', avatar:'hume',      level:'Intermediate', rating:1320, topics:[0,4,10] },
+  { name:'Kant-3',      field:'Philosophy', avatar:'kant',      level:'Advanced',     rating:1580, topics:[1,6,13] },
+  { name:'Aristotle-6', field:'Philosophy', avatar:'aristotle', level:'Expert',       rating:1820, topics:[8,11,14] },
+  { name:'Nietzsche-4', field:'Philosophy', avatar:'nietzsche', level:'Master',       rating:1960, topics:[5,9,15] },
+  // Sociology
+  { name:'Comte-2',     field:'Sociology',  avatar:'comte',     level:'Beginner',     rating:1120, topics:[7,11] },
+  { name:'Durkheim-4',  field:'Sociology',  avatar:'durkheim',  level:'Intermediate', rating:1360, topics:[5,12] },
+  { name:'Weber-7',     field:'Sociology',  avatar:'weber',     level:'Advanced',     rating:1620, topics:[4,13] },
+  { name:'Marx-1',      field:'Sociology',  avatar:'marx',      level:'Expert',       rating:1780, topics:[7,9,15] },
+  // Psychology
+  { name:'James-1',     field:'Psychology', avatar:'james',     level:'Beginner',     rating:1090, topics:[8,12] },
+  { name:'Freud-8',     field:'Psychology', avatar:'freud',     level:'Intermediate', rating:1340, topics:[5,10] },
+  { name:'Jung-7',      field:'Psychology', avatar:'jung',      level:'Advanced',     rating:1600, topics:[6,9] },
 ];
 
 const PHASES = [
@@ -4095,16 +4137,29 @@ try { setArenaTopic(0); setDebateSide('aff'); } catch(e){}
 /* ── Debate history stored in memory (saved to Firestore via saveProgress) ── */
 if(!state.debateHistory) state.debateHistory = [];
 
+const RANK_CLASS = { Beginner:'r-beg', Intermediate:'r-int', Advanced:'r-adv', Expert:'r-exp', Master:'r-mas' };
 function renderBotQueue(){
   const el = document.getElementById('botChallengeQueue'); if(!el) return;
-  el.innerHTML = BOT_TIERS.map((b,i)=>`
-    <div class="row" style="cursor:pointer" onclick="challengeBot(${i})">
-      <div class="mo">
-        <b>${b.name}</b>
-        <div style="font-size:13px;color:var(--muted)">${b.level} · Rating ${b.rating}</div>
-      </div>
-      <span class="status open">Challenge →</span>
-    </div>`).join('');
+  const fields = ['Philosophy','Sociology','Psychology'];
+  el.innerHTML = fields.map(f=>{
+    const group = BOT_TIERS.map((b,i)=>({b,i}))
+      .filter(x=>x.b.field===f)
+      .sort((a,c)=>a.b.rating-c.b.rating);
+    if(!group.length) return '';
+    return `<div class="bot-group"><div class="bot-group-h">${f}</div>` +
+      group.map(({b,i})=>`
+      <div class="bot-card" onclick="challengeBot(${i})" tabindex="0" role="button"
+           aria-label="Challenge ${b.name}, ${b.field}, ${b.level}, rating ${b.rating}"
+           onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();challengeBot(${i});}">
+        <img class="bot-av" src="avatars/${b.avatar}.jpg" alt="${b.name}" loading="lazy" width="52" height="52"
+             onerror="this.style.visibility='hidden'">
+        <div class="bot-meta">
+          <div class="bot-name">${b.name}</div>
+          <div class="bot-sub"><span class="rank ${RANK_CLASS[b.level]||''}">${b.level}</span><span class="bot-rating">Rating ${b.rating}</span></div>
+        </div>
+        <span class="bot-go">Challenge <span class="arrow">→</span></span>
+      </div>`).join('') + `</div>`;
+  }).join('');
 }
 
 window.challengeBot = function(idx){
