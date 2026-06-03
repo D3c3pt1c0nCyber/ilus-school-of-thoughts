@@ -553,6 +553,108 @@ footer .base b{color:var(--gold-soft)}
 #toast.show{opacity:1; transform:translateX(-50%) translateY(0)}
 #toast .t{display:flex; align-items:center; gap:12px; background:var(--ink); color:var(--paper-2); padding:14px 22px; border-radius:40px; box-shadow:var(--sh-2); font-size:15px; font-weight:500}
 #toast .rpup{font-family:var(--mono); color:var(--gold-soft); font-weight:600}
+
+/* ============================================================
+   ADMIN · ENROLLMENT & PROGRESS DASHBOARD
+   ============================================================ */
+.ep{margin-bottom:8px}
+.ep-head{display:flex; align-items:flex-end; justify-content:space-between; gap:18px; flex-wrap:wrap; margin-bottom:22px}
+.ep-head h2{font-size:clamp(24px,3vw,34px); margin-top:6px}
+.ep-refresh{display:inline-flex; align-items:center; gap:8px; font-family:var(--mono); font-size:12px; color:var(--gold-deep);
+  background:var(--paper-2); border:1px solid var(--line-2); border-radius:30px; padding:.55em 1.05em; cursor:pointer; transition:.2s}
+.ep-refresh:hover{border-color:var(--gold); box-shadow:var(--sh-1)}
+.ep-refresh.spin svg{animation:epspin .8s linear infinite}
+@keyframes epspin{to{transform:rotate(360deg)}}
+
+/* KPI row */
+.ep-kpis{display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:24px}
+.ep-kpi{background:var(--card); border:1px solid var(--line); border-radius:8px; padding:20px 22px; box-shadow:var(--sh-1); position:relative; overflow:hidden}
+.ep-kpi::before{content:""; position:absolute; left:0; top:0; bottom:0; width:3px; background:linear-gradient(180deg,var(--gold),var(--gold-deep))}
+.ep-kpi.verd::before{background:linear-gradient(180deg,#4e8369,var(--verd))}
+.ep-kpi.garnet::before{background:linear-gradient(180deg,#a14444,var(--garnet))}
+.ep-kpi .k{font-family:var(--serif); font-size:11.5px; letter-spacing:.18em; text-transform:uppercase; color:var(--muted); font-weight:600}
+.ep-kpi .v{font-family:var(--disp); font-size:clamp(28px,4vw,40px); font-weight:600; line-height:1; margin-top:8px; color:var(--ink)}
+.ep-kpi .s{font-size:12.5px; color:var(--ink-soft); margin-top:4px}
+
+/* controls */
+.ep-controls{display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-bottom:20px}
+.ep-search{flex:1; min-width:200px; position:relative}
+.ep-search input{padding-left:2.3em}
+.ep-search svg{position:absolute; left:.75em; top:50%; transform:translateY(-50%); opacity:.4; pointer-events:none}
+.ep-sort{min-width:160px; flex:none}
+.ep-chips{display:flex; gap:6px; flex-wrap:wrap}
+.ep-chip{font-family:var(--mono); font-size:12px; padding:.45em .9em; border:1px solid var(--line-2); border-radius:30px;
+  background:var(--paper-2); cursor:pointer; transition:.18s; color:var(--ink-soft); user-select:none}
+.ep-chip:hover{border-color:var(--gold)}
+.ep-chip.on{background:var(--ink); color:var(--paper-2); border-color:var(--ink)}
+
+/* roster grid */
+.ep-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(310px,1fr)); gap:16px}
+.ep-card{display:flex; gap:16px; align-items:center; background:var(--card); border:1px solid var(--line); border-radius:8px;
+  padding:18px 20px; box-shadow:var(--sh-1); cursor:pointer; opacity:0;
+  transition:transform .3s var(--ease), box-shadow .3s var(--ease), border-color .25s ease;
+  animation:eprise .55s var(--ease-out) both}
+@keyframes eprise{from{opacity:0; translate:0 16px}to{opacity:1; translate:0 0}}
+.ep-card:hover{transform:translateY(-3px); box-shadow:var(--sh-2); border-color:var(--gold)}
+.ep-card .cring{width:62px; height:62px}
+.ep-meat{flex:1; min-width:0}
+.ep-name{font-family:var(--disp); font-weight:600; font-size:17px; letter-spacing:-.01em; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.ep-email{font-family:var(--mono); font-size:11.5px; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; margin-top:1px}
+.ep-rankbadge{display:inline-flex; align-items:center; gap:5px; font-family:var(--mono); font-size:11px; letter-spacing:.03em;
+  padding:.28em .7em; border-radius:30px; background:var(--ink); color:var(--gold-soft)}
+.ep-rankbadge .star{color:var(--gold)}
+.ep-tag-admin{font-family:var(--mono); font-size:9.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--gold-deep);
+  border:1px solid var(--gold-deep); border-radius:30px; padding:.1em .55em; margin-left:7px; vertical-align:middle}
+.ep-levels{display:flex; gap:4px; margin-top:10px}
+.ep-lv{flex:1; height:5px; border-radius:30px; background:var(--paper); border:1px solid var(--line); overflow:hidden; position:relative}
+.ep-lv i{position:absolute; left:0; top:0; bottom:0; width:0; border-radius:30px; transition:width 1s var(--ease-out)}
+.ep-lv.l1 i{background:var(--verd)} .ep-lv.l2 i{background:var(--gold)} .ep-lv.l3 i{background:var(--garnet)}
+.ep-foot{display:flex; justify-content:space-between; align-items:center; gap:8px; margin-top:11px; font-size:11.5px; color:var(--ink-soft); font-family:var(--mono)}
+.ep-foot b{color:var(--ink); font-weight:600}
+
+/* states */
+.ep-state{text-align:center; padding:54px 20px; color:var(--muted); font-family:var(--serif); line-height:1.6}
+.ep-spinner{width:34px; height:34px; border:3px solid var(--line-2); border-top-color:var(--gold); border-radius:50%; animation:epspin .8s linear infinite; margin:0 auto 14px}
+
+/* detail modal */
+.ep-detail{max-width:720px; width:100%}
+.ep-d-head{display:flex; gap:20px; align-items:center; margin-bottom:8px}
+.ep-d-head .cring{width:84px; height:84px; flex:none}
+.ep-d-head .cring-t{font-size:17px}
+.ep-d-id{flex:1; min-width:0}
+.ep-d-id h3{font-size:clamp(20px,3vw,26px); margin:0}
+.ep-d-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin:22px 0}
+.ep-stat{background:var(--paper-2); border:1px solid var(--line); border-radius:6px; padding:14px 12px; text-align:center}
+.ep-stat .v{font-family:var(--disp); font-size:clamp(20px,3.5vw,25px); font-weight:600; color:var(--ink); line-height:1}
+.ep-stat .k{font-size:10.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin-top:5px}
+.ep-d-section{margin-top:22px}
+.ep-d-section h4{font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:var(--gold-deep); margin-bottom:13px; font-family:var(--serif)}
+.ep-lvrow{display:flex; align-items:center; gap:12px; margin-bottom:10px}
+.ep-lvrow .nm{width:118px; font-size:13.5px; flex:none; color:var(--ink-soft)}
+.ep-lvbar{flex:1; height:8px; border-radius:30px; background:var(--paper); border:1px solid var(--line); overflow:hidden}
+.ep-lvbar i{display:block; height:100%; width:0; border-radius:30px; transition:width 1s var(--ease-out)}
+.ep-lvrow .pc{width:44px; text-align:right; font-family:var(--mono); font-size:12.5px; color:var(--ink-soft); flex:none}
+.ep-quiz{display:flex; flex-wrap:wrap; gap:7px}
+.ep-qchip{font-family:var(--mono); font-size:11.5px; padding:.35em .7em; border-radius:4px; border:1px solid var(--line-2); background:var(--paper-2); color:var(--ink-soft)}
+.ep-qchip.good{border-color:var(--verd); color:var(--verd)}
+.ep-qchip.mid{border-color:var(--gold-deep); color:var(--gold-deep)}
+.ep-qchip.low{border-color:var(--garnet); color:var(--garnet)}
+
+@media(max-width:860px){ .ep-kpis{grid-template-columns:repeat(2,1fr)} }
+@media(max-width:560px){
+  .ep-grid{grid-template-columns:1fr}
+  .ep-d-head{flex-direction:column; text-align:center}
+  .ep-d-head .btn{order:3}
+  .ep-lvrow .nm{width:88px; font-size:12.5px}
+  .ep-controls .ep-chips{width:100%}
+  #epDetail .cert-modal{padding:24px 18px}
+  .ep-d-grid{gap:8px}
+  .ep-stat{padding:12px 8px}
+}
+@media (prefers-reduced-motion:reduce){
+  .ep-card{animation:none; opacity:1}
+  .ep-lv i,.ep-lvbar i,.cring-fg{transition:none}
+}
 </style>
 </head>
 <body>
@@ -1179,12 +1281,58 @@ footer .base b{color:var(--gold-soft)}
 <section id="view-admin" class="view">
   <div class="pagehd">
     <div class="wrap">
-      <div class="eyebrow">Admin · Curriculum Studio</div>
-      <h1>Manage lessons &amp; content</h1>
-      <p>Edit any lesson's reading, attach a YouTube video, and build its quiz. Add new lessons to any module. Changes save to the cloud and appear for every student instantly.</p>
+      <div class="eyebrow">Admin Console</div>
+      <h1>Students &amp; curriculum</h1>
+      <p>See who's enrolled and how far they've come — then shape the curriculum they learn from.</p>
     </div>
   </div>
+  <!-- ===== Enrollment & Progress ===== -->
+  <div class="wrap ep" style="padding:30px 28px 0">
+    <div class="ep-head">
+      <div>
+        <div class="eyebrow">Cohort</div>
+        <h2>Enrollment &amp; <span style="font-style:italic;color:var(--gold-deep)">Progress</span></h2>
+      </div>
+      <button id="epRefresh" class="ep-refresh" type="button" aria-label="Refresh roster">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7M21 4v4h-4"/></svg> Refresh
+      </button>
+    </div>
+
+    <div class="ep-kpis" id="epKpis">
+      <div class="ep-kpi"><div class="k">Students</div><div class="v" id="epKpiTotal">0</div><div class="s">enrolled accounts</div></div>
+      <div class="ep-kpi verd"><div class="k">Active</div><div class="v" id="epKpiActive">0</div><div class="s">in the last 7 days</div></div>
+      <div class="ep-kpi"><div class="k">Avg completion</div><div class="v" id="epKpiAvg">0%</div><div class="s">across all students</div></div>
+      <div class="ep-kpi garnet"><div class="k">Certified</div><div class="v" id="epKpiCerts">0</div><div class="s">finished all levels</div></div>
+    </div>
+
+    <div class="ep-controls">
+      <div class="ep-search">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        <input id="epSearch" class="adm-input" type="text" placeholder="Search by name or email…" style="margin:0">
+      </div>
+      <select id="epSort" class="adm-input ep-sort" style="margin:0" aria-label="Sort students">
+        <option value="pct">Sort: Completion</option>
+        <option value="rp">Sort: Reason Points</option>
+        <option value="active">Sort: Last active</option>
+        <option value="name">Sort: Name (A–Z)</option>
+      </select>
+      <div class="ep-chips" id="epChips">
+        <span class="ep-chip on" data-f="all">All</span>
+        <span class="ep-chip" data-f="active">Active</span>
+        <span class="ep-chip" data-f="stalled">Stalled</span>
+        <span class="ep-chip" data-f="completed">Completed</span>
+      </div>
+    </div>
+
+    <div class="ep-grid" id="epGrid"></div>
+    <hr class="rule" style="margin:48px 0 0">
+  </div>
+
   <div class="wrap" style="padding:30px 28px 90px">
+    <div style="margin-bottom:20px">
+      <div class="eyebrow">Build</div>
+      <h2 style="font-size:clamp(24px,3vw,34px);margin-top:6px">Curriculum Studio</h2>
+    </div>
     <div class="admin-grid">
       <!-- Left: actions -->
       <div>
@@ -1303,6 +1451,13 @@ footer .base b{color:var(--gold-soft)}
       <button class="btn ghost sm" onclick="closeLessonEditor()">Cancel</button>
       <button class="btn gold" onclick="saveLessonEditor()">Save lesson →</button>
     </div>
+  </div>
+</div>
+
+<!-- Student progress detail modal -->
+<div id="epDetail" class="cert-modal-overlay" style="display:none;align-items:flex-start;overflow-y:auto;padding:40px 20px" onclick="if(event.target===this)closeStudentDetail()">
+  <div class="cert-modal ep-detail">
+    <div id="epDetailBody"></div>
   </div>
 </div>
 
@@ -1632,6 +1787,7 @@ function go(view,arg){
   if(view==='dashboard') setTimeout(animateDashboard, 60);
   if(view==='certificate') updateCertGate();
   if(view!=='arena' && typeof window.stopArenaTimer==='function') window.stopArenaTimer();  // pause debate clock when leaving
+  if(view!=='admin' && typeof stopRosterLive==='function') stopRosterLive();                // drop the live roster listener when leaving admin
   revealScan();
 }
 
@@ -2956,7 +3112,229 @@ window.renderAdmin = function(){
   // founder-only roles panel
   const tp = document.getElementById('adminTeamPanel');
   if(tp){ tp.style.display = isFounder ? 'block' : 'none'; if(isFounder) renderAdminTeam(); }
+  // enrollment & progress dashboard
+  epInitControls();
+  startRosterLive();
 };
+
+/* ============================================================
+   ADMIN · ENROLLMENT & PROGRESS  (roster + drill-down)
+   ============================================================ */
+const EP_GRADED = ['L1','L2','L3'];
+let EP_STUDENTS = [], EP_LOADED = false, EP_WIRED = false;
+let EP_SORT = 'pct', EP_FILTER = 'all', EP_QUERY = '';
+
+function epEsc(s){ return String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+function epMs(ts){ if(!ts) return 0; if(typeof ts.toMillis==='function') return ts.toMillis(); if(ts.seconds) return ts.seconds*1000; return 0; }
+function epAgo(ts){ const ms=epMs(ts); if(!ms) return 'never'; const diff=Date.now()-ms, m=6e4,h=36e5,d=864e5;
+  if(diff<m) return 'just now'; if(diff<h) return Math.floor(diff/m)+'m ago'; if(diff<d) return Math.floor(diff/h)+'h ago';
+  if(diff<7*d) return Math.floor(diff/d)+'d ago'; if(diff<30*d) return Math.floor(diff/(7*d))+'w ago'; return Math.floor(diff/(30*d))+'mo ago'; }
+function epTotalLessons(){ let t=0; EP_GRADED.forEach(id=>{ const L=lvlObj(id); if(L) t+=flatLessons(L).length; }); return t; }
+function epLvlPc(id, doneSet){ const L=lvlObj(id); if(!L) return {d:0,t:0,pc:0}; const all=flatLessons(L);
+  const d=all.filter(x=>doneSet.has(id+':'+x.code)).length; return {d,t:all.length,pc:all.length?Math.round(d/all.length*100):0}; }
+function epAdminEmails(){ const s=new Set(); (ADMIN_EMAILS||[]).forEach(e=>s.add(String(e).toLowerCase())); (siteAdmins||[]).forEach(e=>s.add(String(e).toLowerCase())); return s; }
+
+/* Keep the current user's denormalized summary fresh so admins can list everyone in one query */
+async function writeProfileSummary(){
+  if(!currentUser) return;
+  try{
+    let d=0,t=0; const per={};
+    EP_GRADED.forEach(id=>{ const p=lvlProgress(id); d+=p.d; t+=p.t; per[id]=p.pc; });
+    const pct=t?Math.round(d/t*100):0;
+    const scores=Object.values(state.quizScores||{}).map(q=>q&&q.pct).filter(n=>typeof n==='number');
+    const quizAvg=scores.length?Math.round(scores.reduce((a,b)=>a+b,0)/scores.length):0;
+    const wins=(state.debateHistory||[]).filter(x=>x.result==='win').length;
+    await setDoc(doc(db,'users',currentUser.uid,'profile','info'),{
+      name: currentUser.displayName || certName || (currentUser.email||'').split('@')[0] || 'Student',
+      email: (currentUser.email||'').toLowerCase(),
+      photoURL: currentUser.photoURL || '',
+      rp: state.rp||0, rank: rankFor(state.rp||0)[0],
+      done: d, total: t, pct, l1: per.L1||0, l2: per.L2||0, l3: per.L3||0,
+      quizCount: scores.length, quizAvg, wins,
+      lastActive: serverTimestamp()
+    }, { merge:true });
+  }catch(e){ console.warn('writeProfileSummary failed',e); }
+}
+window.writeProfileSummary = writeProfileSummary;
+
+let EP_UNSUB = null;   // active onSnapshot unsubscribe handle
+
+function epMapDoc(ds){
+  if(ds.id!=='info') return null;
+  const uid = (ds.ref.parent && ds.ref.parent.parent) ? ds.ref.parent.parent.id : ds.id;
+  const x = ds.data()||{};
+  if(!x.email && !x.name) return null;
+  return { uid, name:x.name||'(unnamed)', email:(x.email||'').toLowerCase(), photoURL:x.photoURL||'',
+    rp:x.rp||0, rank:x.rank||rankFor(x.rp||0)[0], done:x.done||0, total:x.total||epTotalLessons(),
+    pct:x.pct||0, l1:x.l1||0, l2:x.l2||0, l3:x.l3||0, quizCount:x.quizCount||0, quizAvg:x.quizAvg||0,
+    wins:x.wins||0, lastActive:x.lastActive||null };
+}
+function epRosterError(){ const grid=document.getElementById('epGrid'); if(grid && !EP_LOADED) grid.innerHTML = `<div class="ep-state" style="grid-column:1/-1">Couldn't load the roster.<br><span style="font-size:12.5px">Confirm the Firestore security rules allow an admin to read <code>profile</code> documents.</span></div>`; }
+
+/* Live roster: subscribe to every student's profile/info so the dashboard auto-updates in real time. */
+window.startRosterLive = async function(){
+  const grid=document.getElementById('epGrid'); if(!grid) return;
+  if(EP_UNSUB){ renderRoster(); return; }                 // already subscribed
+  if(!EP_LOADED) grid.innerHTML = `<div class="ep-state" style="grid-column:1/-1"><div class="ep-spinner"></div>Gathering the cohort…</div>`;
+  try{
+    const { onSnapshot, collectionGroup } = await import('https://www.gstatic.com/firebasejs/12.14.0/firebase-firestore.js');
+    EP_UNSUB = onSnapshot(collectionGroup(db,'profile'),
+      snap=>{ const rows=[]; snap.forEach(ds=>{ const r=epMapDoc(ds); if(r) rows.push(r); }); EP_STUDENTS=rows; EP_LOADED=true; renderRoster(); },
+      err=>{ console.warn('roster live failed',err); epRosterError(); });
+  }catch(e){ console.warn('startRosterLive failed',e); epRosterError(); }
+};
+window.stopRosterLive = function(){ if(EP_UNSUB){ try{ EP_UNSUB(); }catch(_){ } EP_UNSUB=null; } };
+/* Refresh button: drop the subscription and re-pull fresh. */
+window.loadRoster = function(force){ if(force){ stopRosterLive(); EP_LOADED=false; } startRosterLive(); };
+
+function epSetKpi(id,to,suffix){ const el=document.getElementById(id); if(!el) return; to=+to||0; suffix=suffix||'';
+  if(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches){ el.textContent=to+suffix; return; }
+  let s=null; const dur=900;
+  function step(ts){ if(s===null)s=ts; const p=Math.min(1,(ts-s)/dur); el.textContent=Math.round((1-Math.pow(1-p,3))*to)+suffix; if(p<1) requestAnimationFrame(step); }
+  requestAnimationFrame(step);
+}
+
+function renderRoster(){
+  const grid=document.getElementById('epGrid'); if(!grid) return;
+  const all=EP_STUDENTS, total=all.length, week=7*864e5, now=Date.now();
+  const active=all.filter(s=>{ const ms=epMs(s.lastActive); return ms && now-ms<week; }).length;
+  const avg=total?Math.round(all.reduce((a,s)=>a+(s.pct||0),0)/total):0;
+  const certs=all.filter(s=>s.pct>=100).length;
+  epSetKpi('epKpiTotal',total); epSetKpi('epKpiActive',active); epSetKpi('epKpiAvg',avg,'%'); epSetKpi('epKpiCerts',certs);
+
+  const adminSet=epAdminEmails();
+  let rows=all.filter(s=>{
+    if(EP_QUERY){ const q=EP_QUERY.toLowerCase(); if(!(s.name.toLowerCase().includes(q)||s.email.includes(q))) return false; }
+    const ms=epMs(s.lastActive), isActive=!!ms && now-ms<week;
+    if(EP_FILTER==='active' && !isActive) return false;
+    if(EP_FILTER==='completed' && s.pct<100) return false;
+    if(EP_FILTER==='stalled' && (s.pct>=100 || isActive)) return false;
+    return true;
+  });
+  rows.sort((a,b)=>{
+    if(EP_SORT==='name') return a.name.localeCompare(b.name);
+    if(EP_SORT==='rp') return (b.rp-a.rp)||a.name.localeCompare(b.name);
+    if(EP_SORT==='active') return epMs(b.lastActive)-epMs(a.lastActive);
+    return (b.pct-a.pct)||(b.rp-a.rp);
+  });
+
+  if(!rows.length){ grid.innerHTML=`<div class="ep-state" style="grid-column:1/-1">${total?'No students match this view.':'No students enrolled yet. As learners sign in and make progress, they&#39;ll appear here.'}</div>`; return; }
+
+  const C=2*Math.PI*26;
+  grid.innerHTML = rows.map((s,i)=>{
+    const isAdm=adminSet.has(s.email);
+    return `<div class="ep-card" style="animation-delay:${(Math.min(i,12)*0.04).toFixed(2)}s" onclick="openStudentDetail('${s.uid}')" role="button" tabindex="0" aria-label="Open ${epEsc(s.name)}">
+      <div class="cring" data-pct="${s.pct}"><svg viewBox="0 0 64 64"><circle class="cring-bg" cx="32" cy="32" r="26"/><circle class="cring-fg" cx="32" cy="32" r="26" stroke-dasharray="${C.toFixed(1)}" stroke-dashoffset="${C.toFixed(1)}"/></svg><span class="cring-t">0%</span></div>
+      <div class="ep-meat">
+        <div class="ep-name">${epEsc(s.name)}${isAdm?'<span class="ep-tag-admin">admin</span>':''}</div>
+        <div class="ep-email">${epEsc(s.email||'—')}</div>
+        <div class="ep-levels" title="Per-level completion (I · II · III)">
+          <div class="ep-lv l1"><i data-w="${s.l1}"></i></div>
+          <div class="ep-lv l2"><i data-w="${s.l2}"></i></div>
+          <div class="ep-lv l3"><i data-w="${s.l3}"></i></div>
+        </div>
+        <div class="ep-foot">
+          <span class="ep-rankbadge"><span class="star">✦</span>${epEsc(s.rank)}</span>
+          <span><b>${s.done}</b>/${s.total} · <b>${(s.rp||0).toLocaleString()}</b> RP · ${epAgo(s.lastActive)}</span>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{
+    grid.querySelectorAll('.ep-card .cring').forEach(r=>{
+      const pct=+r.getAttribute('data-pct')||0, fg=r.querySelector('.cring-fg'), tx=r.querySelector('.cring-t');
+      if(fg) fg.style.strokeDashoffset=(C*(1-pct/100)).toFixed(1);
+      if(tx) tx.textContent=pct+'%';
+    });
+    grid.querySelectorAll('.ep-lv i').forEach(i=>{ i.style.width=(+i.getAttribute('data-w')||0)+'%'; });
+  }));
+}
+
+window.openStudentDetail = async function(uid){
+  const s=EP_STUDENTS.find(x=>x.uid===uid); if(!s) return;
+  const ov=document.getElementById('epDetail'), body=document.getElementById('epDetailBody'); if(!ov||!body) return;
+  body.innerHTML=`<div class="ep-state"><div class="ep-spinner"></div>Loading ${epEsc(s.name)}'s record…</div>`;
+  ov.style.display='flex';
+  try{
+    const { getDocs, collection } = await import('https://www.gstatic.com/firebasejs/12.14.0/firebase-firestore.js');
+    const stSnap = await getDoc(doc(db,'users',uid,'progress','state'));
+    const st = stSnap.exists()?stSnap.data():{};
+    const doneSet = new Set(st.done||[]);
+    const quizScores={};
+    try{ const qs=await getDocs(collection(db,'users',uid,'quizScores')); qs.forEach(q=>quizScores[q.id]=q.data()); }catch(_){}
+    let lp=null; try{ const lpS=await getDoc(doc(db,'users',uid,'progress','lastPosition')); if(lpS.exists()) lp=lpS.data(); }catch(_){}
+    renderStudentDetail(s, doneSet, quizScores, lp);
+  }catch(e){
+    console.warn('openStudentDetail failed',e);
+    body.innerHTML=`<div class="ep-state">Couldn't load this student's detail.<br><span style="font-size:12.5px">Ensure the Firestore rules allow an admin to read <code>users/{uid}</code> subcollections.</span><div style="margin-top:18px"><button class="btn ghost sm" onclick="closeStudentDetail()">Close</button></div></div>`;
+  }
+};
+window.closeStudentDetail = function(){ const ov=document.getElementById('epDetail'); if(ov) ov.style.display='none'; };
+
+function renderStudentDetail(s, doneSet, quizScores, lp){
+  const body=document.getElementById('epDetailBody'); if(!body) return;
+  const per=EP_GRADED.map(id=>{ const L=lvlObj(id); const p=epLvlPc(id,doneSet); return {id, d:p.d, t:p.t, pc:p.pc, name:L?L.name:id, accent:L?L.accent:'gold'}; });
+  let d=0,t=0; per.forEach(p=>{d+=p.d;t+=p.t;}); const pct=t?Math.round(d/t*100):0;
+  const C=2*Math.PI*30;
+  const skills=SKILL_MAP.map(([name,lessons])=>{ const c=lessons.filter(id=>doneSet.has(id)).length; if(!c) return [name,0];
+    let base=Math.round(10+(c/lessons.length)*85); lessons.forEach(id=>{ const q=quizScores[id.replace(':','-')]; if(q&&q.pct>=80) base=Math.min(99,base+1); }); return [name,Math.min(99,base)]; });
+  const qkeys=Object.keys(quizScores).sort();
+  const quizHTML=qkeys.length? qkeys.map(k=>{ const q=quizScores[k]||{}; const pc=q.pct||0; const cls=pc>=80?'good':pc>=60?'mid':'low'; return `<span class="ep-qchip ${cls}">${epEsc(k.replace('-',':'))} · ${pc}%</span>`; }).join('') : '<span style="color:var(--muted);font-size:13px">No quizzes attempted yet.</span>';
+  const accentVar=a=>a==='verd'?'verd':a==='garnet'?'garnet':'gold';
+  const liveQuizAvg = qkeys.length ? Math.round(qkeys.reduce((a,k)=>a+((quizScores[k]||{}).pct||0),0)/qkeys.length) : (s.quizAvg||0);
+
+  body.innerHTML=`
+    <div class="ep-d-head">
+      <div class="cring" data-pct="${pct}"><svg viewBox="0 0 72 72"><circle class="cring-bg" cx="36" cy="36" r="30"/><circle class="cring-fg" cx="36" cy="36" r="30" stroke-dasharray="${C.toFixed(1)}" stroke-dashoffset="${C.toFixed(1)}"/></svg><span class="cring-t">0%</span></div>
+      <div class="ep-d-id">
+        <div class="eyebrow" style="margin-bottom:5px">${epEsc(s.rank)}${pct>=100?' · Certified':''}</div>
+        <h3>${epEsc(s.name)}</h3>
+        <div class="ep-email">${epEsc(s.email||'—')}</div>
+      </div>
+      <button class="btn ghost sm" onclick="closeStudentDetail()">Close</button>
+    </div>
+    <div class="ep-d-grid">
+      <div class="ep-stat"><div class="v">${(s.rp||0).toLocaleString()}</div><div class="k">Reason Pts</div></div>
+      <div class="ep-stat"><div class="v">${d}/${t}</div><div class="k">Lessons</div></div>
+      <div class="ep-stat"><div class="v">${liveQuizAvg}%</div><div class="k">Quiz avg</div></div>
+    </div>
+    <div class="ep-d-section">
+      <h4>Progress by level</h4>
+      ${per.map(p=>`<div class="ep-lvrow"><span class="nm">${epEsc(p.name)}</span><div class="ep-lvbar"><i data-w="${p.pc}" style="background:var(--${accentVar(p.accent)})"></i></div><span class="pc">${p.pc}%</span></div>`).join('')}
+    </div>
+    <div class="ep-d-section">
+      <h4>Argument skills</h4>
+      ${skills.map(([n,v])=>`<div class="ep-lvrow"><span class="nm">${epEsc(n)}</span><div class="ep-lvbar"><i data-w="${v}" style="background:linear-gradient(90deg,var(--gold-deep),var(--gold))"></i></div><span class="pc">${v}</span></div>`).join('')}
+    </div>
+    <div class="ep-d-section">
+      <h4>Quiz scores</h4>
+      <div class="ep-quiz">${quizHTML}</div>
+    </div>
+    ${lp?`<div class="ep-d-section"><h4>Last position</h4><div style="font-size:14px;color:var(--ink-soft)">${epEsc((lvlObj(lp.level)||{}).name||lp.level||'—')} · Lesson ${epEsc(lp.lesson||'—')}</div></div>`:''}
+  `;
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{
+    const r=body.querySelector('.cring');
+    if(r){ const fg=r.querySelector('.cring-fg'), tx=r.querySelector('.cring-t'); if(fg) fg.style.strokeDashoffset=(C*(1-pct/100)).toFixed(1); if(tx) tx.textContent=pct+'%'; }
+    body.querySelectorAll('.ep-lvbar i').forEach(i=>{ i.style.width=(+i.getAttribute('data-w')||0)+'%'; });
+  }));
+}
+
+function epInitControls(){
+  if(EP_WIRED) return; EP_WIRED=true;
+  const search=document.getElementById('epSearch');
+  if(search) search.addEventListener('input',e=>{ EP_QUERY=(e.target.value||'').trim(); renderRoster(); });
+  const sort=document.getElementById('epSort');
+  if(sort) sort.addEventListener('change',e=>{ EP_SORT=e.target.value; renderRoster(); });
+  const chips=document.getElementById('epChips');
+  if(chips) chips.addEventListener('click',e=>{ const c=e.target.closest('.ep-chip'); if(!c) return;
+    chips.querySelectorAll('.ep-chip').forEach(x=>x.classList.remove('on')); c.classList.add('on'); EP_FILTER=c.getAttribute('data-f')||'all'; renderRoster(); });
+  const rf=document.getElementById('epRefresh');
+  if(rf) rf.addEventListener('click',()=>{ rf.classList.add('spin'); Promise.resolve(loadRoster(true)).finally(()=>setTimeout(()=>rf.classList.remove('spin'),450)); });
+  const grid=document.getElementById('epGrid');
+  if(grid) grid.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){ const c=e.target.closest('.ep-card'); if(c){ e.preventDefault(); c.click(); } } });
+  document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ const ov=document.getElementById('epDetail'); if(ov && ov.style.display!=='none') closeStudentDetail(); } });
+}
 
 window.refreshAddModules = function(){
   const sel = document.getElementById('addMod'); const lvlSel=document.getElementById('addLvl');
@@ -3191,6 +3569,7 @@ window.saveProgress = async function(){
       updatedAt: serverTimestamp()
     });
   } catch(e){ console.warn('saveProgress failed',e); }
+  if(typeof writeProfileSummary==='function') writeProfileSummary();   // keep the admin roster summary fresh
 };
 
 window.saveQuizScore = async function(key, correct, total){
@@ -3303,6 +3682,7 @@ onAuthStateChanged(auth, async user => {
     const staleDone = reconcileDone();              // drop un-passed completions
     const prevRP = state.rp; recomputeRP();         // RP is derived from real achievements
     if(staleDone || state.rp!==prevRP){ refreshProgress(); if(typeof saveProgress==='function') saveProgress(); }
+    writeProfileSummary();                          // ensure this user appears in the admin roster
     const firstName = user.displayName ? user.displayName.split(' ')[0] : 'scholar';
     const dashName = document.getElementById('dashUserName');
     if(dashName) dashName.textContent = firstName;
@@ -3315,6 +3695,7 @@ onAuthStateChanged(auth, async user => {
     showGate();
     if(idleSignedOut){ gateErr('You were signed out after 10 minutes of inactivity. Please sign in again.'); idleSignedOut = false; }
     isAdmin = false; isFounder = false; siteAdmins = [];
+    if(typeof stopRosterLive==='function') stopRosterLive(); EP_STUDENTS=[]; EP_LOADED=false;   // tear down live roster on sign-out
     const adminLink = document.getElementById('adminNavLink');
     if(adminLink) adminLink.style.display = 'none';
     if(btn){
@@ -3782,6 +4163,7 @@ window.saveProgress = async function(){
       updatedAt: serverTimestamp()
     });
   } catch(e){ console.warn('saveProgress failed',e); }
+  if(typeof writeProfileSummary==='function') writeProfileSummary();   // keep the admin roster summary fresh
 };
 </script>
 </body>

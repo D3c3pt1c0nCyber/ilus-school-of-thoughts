@@ -1,0 +1,84 @@
+rules_version = '2';
+
+// ============================================================
+// Ilu's School of Thoughts — Firestore security rules
+//
+// What changed for the admin "Enrollment & Progress" dashboard:
+//   • Admins (founder + promoted) can now READ any student's data
+//     and LIST all students via a collection-group query on `profile`.
+//   • Students still read/write ONLY their own data.
+//   • Admins may seed a new student's `profile/info` (used by the
+//     "Create a user account" flow) but CANNOT alter a student's
+//     progress, quiz scores, or last position.
+//   • `content/roles` (the admin roster) is founder-only to write;
+//     other content (lessons, locks) is writable by any admin.
+// ============================================================
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function signedIn() { return request.auth != null; }
+
+    // Lower-cased email of the caller, or '' if none.
+    function emailLower() {
+      return signedIn() && request.auth.token.email != null
+        ? request.auth.token.email.lower()
+        : '';
+    }
+
+    // Founder list — keep in sync with ADMIN_EMAILS in index.html.
+    function isFounder() {
+      return emailLower() in ['joiesayen1223@gmail.com'];
+    }
+
+    // Founder, or an email promoted in content/roles.admins (a list of lower-cased emails).
+    function isAdmin() {
+      return isFounder() || (
+        signedIn()
+        && exists(/databases/$(database)/documents/content/roles)
+        && get(/databases/$(database)/documents/content/roles).data.get('admins', []) is list
+        && emailLower() in get(/databases/$(database)/documents/content/roles).data.get('admins', [])
+      );
+    }
+
+    function ownerOrAdmin(uid) {
+      return signedIn() && (request.auth.uid == uid || isAdmin());
+    }
+
+    // ---- Shared, admin-authored content ----
+    // Any signed-in user reads it; the admin roster is founder-only to write,
+    // everything else (site content, account locks) is writable by any admin.
+    match /content/{doc} {
+      allow read:  if signedIn();
+      allow write: if doc == 'roles' ? isFounder() : isAdmin();
+    }
+
+    // ---- Per-student data ----
+    match /users/{uid} {
+      allow read:  if ownerOrAdmin(uid);
+      allow write: if signedIn() && request.auth.uid == uid;
+
+      // Profile/summary doc — student owns it; an admin may SEED (create) it
+      // when creating an account for a new student, but only the student can
+      // UPDATE it afterward (so admins can't overwrite the progress mirror).
+      match /profile/{pid} {
+        allow read:   if ownerOrAdmin(uid);
+        allow create: if signedIn() && (request.auth.uid == uid || isAdmin());
+        allow update: if signedIn() && request.auth.uid == uid;
+      }
+
+      // Progress, quiz scores, last position — student-only writes; admins read.
+      match /{document=**} {
+        allow read:  if ownerOrAdmin(uid);
+        allow write: if signedIn() && request.auth.uid == uid;
+      }
+    }
+
+    // ---- Collection-group read ----
+    // Lets an admin list (and live-subscribe to) every student's profile/info
+    // via onSnapshot(collectionGroup(db,'profile')) for the real-time roster.
+    match /{path=**}/profile/{pid} {
+      allow read: if isAdmin();
+    }
+  }
+}

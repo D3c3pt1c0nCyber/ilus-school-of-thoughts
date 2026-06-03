@@ -2,3 +2,5 @@ index.previous.html
 *.log
 node_modules/
 .env
+*.bak-preadmin
+admin-dashboard-preview.html
