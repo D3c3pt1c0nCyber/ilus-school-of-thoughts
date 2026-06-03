@@ -304,7 +304,8 @@ nav.main a.active::after{content:""; position:absolute; left:.72em; right:.72em;
 
 /* ---------- curriculum view ---------- */
 .pagehd{padding:54px 0 34px; border-bottom:1px solid var(--line); background:var(--paper-2)}
-.pagehd h1{font-size:clamp(32px,4.4vw,52px); margin-top:12px}
+.pagehd h1{font-size:clamp(26px,3.4vw,40px); font-weight:500; letter-spacing:-.015em; line-height:1.14; margin-top:12px}
+.pagehd h1 .it{font-style:italic; font-weight:400; color:var(--gold-deep)}
 .pagehd p{color:var(--ink-soft); font-size:18px; max-width:62ch; margin:16px 0 0}
 .lvlblock{margin-top:40px}
 .lvlhd{display:flex; align-items:flex-end; gap:18px; flex-wrap:wrap; padding-bottom:14px; border-bottom:2px solid var(--ink)}
@@ -1049,7 +1050,7 @@ footer .base b{color:var(--gold-soft)}
   <div class="pagehd">
     <div class="wrap">
       <div class="eyebrow">The Curriculum</div>
-      <h1>Three levels, one discipline of reasoning</h1>
+      <h1>Three levels, one discipline of <span class="it">reasoning</span></h1>
       <p>The tracks are cumulative: the Intermediate level assumes the logical toolkit built in the Beginner level, and the Expert level assumes fluency in the arguments mastered before it. Click any lesson to open it.</p>
     </div>
   </div>
@@ -1077,7 +1078,7 @@ footer .base b{color:var(--gold-soft)}
   <div class="pagehd">
     <div class="wrap dash-wrap">
       <div class="eyebrow">Your study</div>
-      <h1>Welcome back, <span id="dashUserName">scholar</span></h1>
+      <h1>Welcome back, <span class="it" id="dashUserName">scholar</span></h1>
       <p>Pick up where you left off, run today&rsquo;s drill, and watch your six competencies grow.</p>
     </div>
   </div>
@@ -1163,7 +1164,7 @@ footer .base b{color:var(--gold-soft)}
   <div class="pagehd">
     <div class="wrap">
       <div class="eyebrow">Debate Arena</div>
-      <h1>Where you sharpen against real minds</h1>
+      <h1>Where you <span class="it">sharpen</span> against real minds</h1>
       <p>Take a side, keep a flow sheet, and let the rubric decide. Ranked sparring adjusts your ELO; every match is recorded for review.</p>
     </div>
   </div>
@@ -1282,7 +1283,7 @@ footer .base b{color:var(--gold-soft)}
   <div class="pagehd">
     <div class="wrap">
       <div class="eyebrow">Admin Console</div>
-      <h1>Students &amp; curriculum</h1>
+      <h1>Students &amp; <span class="it">curriculum</span></h1>
       <p>See who's enrolled and how far they've come — then shape the curriculum they learn from.</p>
     </div>
   </div>
@@ -1466,7 +1467,7 @@ footer .base b{color:var(--gold-soft)}
   <div class="pagehd">
     <div class="wrap">
       <div class="eyebrow">Credential</div>
-      <h1>Certificate of Completion</h1>
+      <h1>Certificate of <span class="it">Completion</span></h1>
       <p>Awarded for completing all three levels &mdash; First Light, The Crucible &amp; Illumination. Your certificate can be downloaded as a PDF once every level is complete.</p>
     </div>
   </div>
@@ -1494,7 +1495,6 @@ footer .base b{color:var(--gold-soft)}
 <footer style="background:var(--night);border-top:3px solid var(--gold-deep);padding:20px 0">
   <div class="wrap" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
     <span style="font-size:13px;color:#8c8068">&copy; 2026 Ilu&rsquo;s School of Thoughts &middot; <b style="color:var(--gold-soft)">&ldquo;Sapere aude&rdquo;</b></span>
-    <span style="font-size:13px;color:#8c8068">Beginner &rarr; Intermediate &rarr; Expert</span>
   </div>
 </footer>
 
@@ -2344,16 +2344,16 @@ function renderRadar(){
   document.getElementById('radar').innerHTML=g;
 
   /* ── Legend ── */
-  document.getElementById('radarLegend').innerHTML=`<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px 24px;margin-top:12px;padding-top:12px;border-top:1px solid #DCD2BB">`+
+  document.getElementById('radarLegend').innerHTML=`<div style="display:grid;grid-template-columns:1fr 1fr;gap:2px 28px;margin-top:12px;padding-top:12px;border-top:1px solid #DCD2BB">`+
     SKILLS.map(([name,val])=>{
       const col=val>=80?'#3E6B54':val>=70?'#B8893B':'#7B2C2C';
-      return `<div style="display:flex;align-items:center;gap:8px;padding:5px 0">
-        <span style="width:8px;height:8px;border-radius:50%;background:${col};flex-shrink:0"></span>
-        <span style="font-family:'Spectral',Georgia,serif;font-size:13px;color:#4A4536;flex:1">${name}</span>
-        <div style="width:52px;height:3px;background:#DCD2BB;border-radius:2px;overflow:hidden">
+      return `<div style="display:flex;align-items:center;gap:9px;padding:6px 0">
+        <span style="width:7px;height:7px;border-radius:50%;background:${col};flex:none"></span>
+        <span style="font-family:'Spectral',Georgia,serif;font-size:13px;color:#4A4536;width:82px;flex:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${name}</span>
+        <div style="flex:1;height:3px;background:#DCD2BB;border-radius:2px;overflow:hidden">
           <div class="clbar" data-w="${val}" style="width:0;height:100%;background:${col};border-radius:2px;transition:width .9s cubic-bezier(.2,.8,.2,1)"></div>
         </div>
-        <b style="font-family:'Spline Sans Mono',monospace;font-size:12px;color:#1C1A14;min-width:24px;text-align:right">${val}</b>
+        <b style="font-family:'Spline Sans Mono',monospace;font-size:12px;color:#1C1A14;width:22px;text-align:right;flex:none">${val}</b>
       </div>`;
     }).join('')+'</div>';
   requestAnimationFrame(()=>requestAnimationFrame(()=>{ document.querySelectorAll('#radarLegend .clbar').forEach((b,i)=>{ b.style.transitionDelay=(i*70)+'ms'; b.style.width=(b.dataset.w||0)+'%'; }); }));
