@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Ilu's School of Thoughts — Reason. Argue. Illuminate.</title>
+<title>Ilu's School of Thoughts · Reason. Argue. Illuminate.</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,500&family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Pinyon+Script&family=Spline+Sans+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -251,7 +251,7 @@ nav.main a.active::after{content:""; position:absolute; left:.72em; right:.72em;
 
 /* feature grid */
 .feat{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:6px; overflow:hidden}
-/* ===== Dashboard v2 — full-width rank banner + packed masonry ===== */
+/* ===== Dashboard v2 - full-width rank banner + packed masonry ===== */
 .dash-wrap{ max-width:1340px; }
 .dash-rank{ position:relative; overflow:hidden;
   background:radial-gradient(680px 220px at 90% -50%, rgba(184,137,59,.10), transparent 70%), var(--card); }
@@ -365,6 +365,11 @@ nav.main a.active::after{content:""; position:absolute; left:.72em; right:.72em;
 .lblk p{margin:0 0 16px; font-size:17.5px}
 .termcard{display:grid; grid-template-columns:auto 1fr; gap:8px 18px; background:var(--paper-2); border:1px solid var(--line); border-left:3px solid var(--gold); border-radius:4px; padding:18px 22px; font-size:15.5px}
 .termcard dt{font-weight:600; color:var(--ink)} .termcard dd{margin:0; color:var(--ink-soft)}
+.srclist{list-style:none; margin:0; padding:16px 20px; background:var(--paper-2); border:1px solid var(--line); border-left:3px solid var(--gold); border-radius:4px; font-size:15px}
+.srclist li{margin:0 0 10px; padding-left:18px; text-indent:-18px; line-height:1.55; color:var(--ink-soft)}
+.srclist li:last-child{margin-bottom:0}
+.srclist a{color:var(--gold-deep); text-decoration:none; border-bottom:1px solid var(--line)}
+.srclist a:hover{border-bottom-color:var(--gold)}
 @media(max-width:860px){
   .lesson-grid{grid-template-columns:1fr} .lside{border-right:0; border-bottom:1px solid var(--line)}
   .lmain{padding:30px 24px 60px}
@@ -669,7 +674,7 @@ footer .base b{color:var(--gold-soft)}
 
 <!-- ====== TOPBAR ====== -->
 <!-- ============================================================
-     LOGIN GATE — shown until Firebase confirms auth
+     LOGIN GATE - shown until Firebase confirms auth
      ============================================================ -->
 <div id="loginGate" style="
   position:fixed;inset:0;z-index:9000;
@@ -726,7 +731,7 @@ footer .base b{color:var(--gold-soft)}
   <!-- OR divider -->
   <div class="gate-or" style="animation:sealFade 1s .45s ease both">or with email</div>
 
-  <!-- Email / password — SIGN IN only (accounts are created by an administrator) -->
+  <!-- Email / password - SIGN IN only (accounts are created by an administrator) -->
   <div id="emailAuthBox" style="display:flex;flex-direction:column;align-items:center;animation:sealFade 1s .5s ease both">
     <input id="gateEmail" class="gate-field" type="email" placeholder="Email" autocomplete="email">
     <input id="gatePass" class="gate-field" type="password" placeholder="Password" autocomplete="current-password">
@@ -737,7 +742,7 @@ footer .base b{color:var(--gold-soft)}
 
   <!-- Sub-note -->
   <div style="margin-top:18px;font-size:13px;color:rgba(200,188,161,.45);max-width:300px;line-height:1.5">
-    No account yet? Accounts are created by the school — ask your administrator to set one up for you.
+    No account yet? Accounts are created by the school, ask your administrator to set one up for you.
   </div>
 
   <!-- Loading state (shown while Firebase checks auth) -->
@@ -746,7 +751,7 @@ footer .base b{color:var(--gold-soft)}
   </div>
 </div>
 
-<!-- App wrapper — hidden until signed in -->
+<!-- App wrapper - hidden until signed in -->
 <div id="appShell" style="display:none">
 
 <style>
@@ -756,7 +761,7 @@ footer .base b{color:var(--gold-soft)}
 </style>
 
 <!-- ============================================================
-     ILU ANIMATION LAYER — motion from the component library,
+     ILU ANIMATION LAYER - motion from the component library,
      wired to the live app. Additive & scoped; removes itself
      under prefers-reduced-motion.
      ============================================================ -->
@@ -769,7 +774,7 @@ footer .base b{color:var(--gold-soft)}
   transform:skewX(-18deg); pointer-events:none; transition:left .95s var(--ease-out); z-index:3;
 }
 .lvl:hover::after, .fcard:hover::after, .continue:hover::after{ left:140%; }
-/* lesson rows — gold accent slides in on hover */
+/* lesson rows - gold accent slides in on hover */
 .lrow{ position:relative; }
 .lrow::before{ content:""; position:absolute; left:0; top:0; height:100%; width:0;
   background:var(--gold); transition:width .28s var(--ease-out); }
@@ -832,7 +837,7 @@ footer .base b{color:var(--gold-soft)}
 @keyframes iluBump{ 0%{transform:scale(1)} 32%{transform:scale(1.11)} 100%{transform:scale(1)} }
 .ilu-bump{ animation:iluBump .5s var(--ease-out); display:inline-block; }
 
-/* hero halo — a slow breathing glow (leaves the seal's own transforms alone) */
+/* hero halo - a slow breathing glow (leaves the seal's own transforms alone) */
 .sealwrap .glow{ animation:haloBreathe 7s ease-in-out infinite; }
 @keyframes haloBreathe{ 0%,100%{opacity:1; transform:scale(1)} 50%{opacity:.74; transform:scale(1.04)} }
 
@@ -915,12 +920,12 @@ footer .base b{color:var(--gold-soft)}
       <div class="hcopy">
         <div class="eyebrow lt" style="animation:fade .6s both">A Learning Management System for Atheism &amp; Freethought</div>
         <h1 style="animation:fade .7s .05s both">Dare to <span class="it">know.</span><br>Learn to <span class="it">reason.</span></h1>
-        <p class="lead" style="animation:fade .7s .12s both">A debate-first school that doesn&rsquo;t hand you conclusions to memorise &mdash; it trains you to think. Steelman the strongest case against you, find the load-bearing premise, and answer with precision. From first questions to the public stage.</p>
+        <p class="lead" style="animation:fade .7s .12s both">A debate-first school that doesn&rsquo;t hand you conclusions to memorise. It trains you to think. Steelman the strongest case against you, find the load-bearing premise, and answer with precision. From first questions to the public stage.</p>
         <div class="ctas" style="animation:fade .7s .2s both">
           <button class="btn gold" onclick="go('dashboard')">Enter the School <span class="arrow">→</span></button>
           <button class="btn lt" onclick="go('curriculum')">Explore the Curriculum</button>
         </div>
-        <div class="motto" style="animation:fade .7s .3s both"><b>&ldquo;Sapere aude&rdquo;</b> &nbsp;&mdash;&nbsp; dare to know</div>
+        <div class="motto" style="animation:fade .7s .3s both"><b>&ldquo;Sapere aude&rdquo;</b> &nbsp;&middot;&nbsp; dare to know</div>
       </div>
       <div class="sealwrap" style="animation:fade .9s .15s both">
         <div class="glow"></div>
@@ -950,7 +955,7 @@ footer .base b{color:var(--gold-soft)}
       </div>
       <div class="reveal">
         <p style="font-size:18.5px; color:var(--ink-soft); margin:0 0 16px">Most introductions to atheism give you a list of arguments and rebuttals. Ilu&rsquo;s School inverts that. Content is the raw material; the <b>skill</b> is the product.</p>
-        <p style="font-size:18.5px; color:var(--ink-soft); margin:0">You&rsquo;ll learn to reconstruct an opponent&rsquo;s argument in its most charitable form, locate its true load-bearing premise, and respond with logic rather than slogans &mdash; making you harder to fool, slower to strawman, and more persuasive precisely because you argue fairly.</p>
+        <p style="font-size:18.5px; color:var(--ink-soft); margin:0">You&rsquo;ll learn to reconstruct an opponent&rsquo;s argument in its most charitable form, locate its true load-bearing premise, and respond with logic rather than slogans, making you harder to fool, slower to strawman, and more persuasive precisely because you argue fairly.</p>
       </div>
     </div>
   </section>
@@ -1025,7 +1030,7 @@ footer .base b{color:var(--gold-soft)}
       </div>
       <div class="steps">
         <div class="step reveal"><div class="k">1</div><h4>Learn</h4><p>Short readings, narrated video, and primary-source excerpts with inline notes.</p></div>
-        <div class="step reveal"><div class="k">2</div><h4>Drill</h4><p>Fallacy spotting, argument mapping, and spaced-repetition recall &mdash; practised in isolation.</p></div>
+        <div class="step reveal"><div class="k">2</div><h4>Drill</h4><p>Fallacy spotting, argument mapping, and spaced-repetition recall, practised in isolation.</p></div>
         <div class="step reveal"><div class="k">3</div><h4>Spar</h4><p>Structured exchanges against a peer or mentor in the Debate Arena and Socratic Circles.</p></div>
         <div class="step reveal"><div class="k">4</div><h4>Reflect</h4><p>Rubric-based feedback, a recording to review, and a six-dimension skill radar.</p></div>
       </div>
@@ -1040,12 +1045,12 @@ footer .base b{color:var(--gold-soft)}
         <h2>Built for argument, not just video</h2>
       </div>
       <div class="feat">
-        <div class="fcard reveal" onclick="openArgumentLab()"><svg class="ic" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="24" cy="9" r="5"/><circle cx="11" cy="38" r="5"/><circle cx="37" cy="38" r="5"/><path d="M24 14v9M24 23l-9 11M24 23l9 11"/></svg><h4>Argument Lab <span class="arrow">→</span></h4><p>Test whether an argument is valid: read the premises and conclusion, then judge it — with the reasoning revealed.</p></div>
-        <div class="fcard reveal" onclick="gotoDrill()"><svg class="ic" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="24" cy="24" r="16"/><circle cx="24" cy="24" r="8"/><path d="M24 4v8M24 36v8M4 24h8M36 24h8"/></svg><h4>Fallacy Trainer <span class="arrow">→</span></h4><p>Spot-the-fallacy drills from real arguments — 20 scenarios, served at random on your dashboard.</p></div>
-        <div class="fcard reveal" onclick="go('arena')"><svg class="ic" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 12h22a4 4 0 014 4v8a4 4 0 01-4 4H16l-7 6v-6H6a4 4 0 01-4-4v-8a4 4 0 014-4z" transform="translate(2 2)"/></svg><h4>Debate Arena <span class="arrow">→</span></h4><p>Timed debates against the bot — pick a side, argue opening, cross-examination, and closing, then get scored.</p></div>
+        <div class="fcard reveal" onclick="openArgumentLab()"><svg class="ic" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="24" cy="9" r="5"/><circle cx="11" cy="38" r="5"/><circle cx="37" cy="38" r="5"/><path d="M24 14v9M24 23l-9 11M24 23l9 11"/></svg><h4>Argument Lab <span class="arrow">→</span></h4><p>Test whether an argument is valid: read the premises and conclusion, then judge it, with the reasoning revealed.</p></div>
+        <div class="fcard reveal" onclick="gotoDrill()"><svg class="ic" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="24" cy="24" r="16"/><circle cx="24" cy="24" r="8"/><path d="M24 4v8M24 36v8M4 24h8M36 24h8"/></svg><h4>Fallacy Trainer <span class="arrow">→</span></h4><p>Spot-the-fallacy drills from real arguments: 20 scenarios, served at random on your dashboard.</p></div>
+        <div class="fcard reveal" onclick="go('arena')"><svg class="ic" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 12h22a4 4 0 014 4v8a4 4 0 01-4 4H16l-7 6v-6H6a4 4 0 01-4-4v-8a4 4 0 014-4z" transform="translate(2 2)"/></svg><h4>Debate Arena <span class="arrow">→</span></h4><p>Timed debates against the bot: pick a side, argue opening, cross-examination, and closing, then get scored.</p></div>
         <div class="fcard reveal" onclick="openFlashcards()"><svg class="ic" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="10" y="14" width="26" height="20" rx="2" transform="rotate(-8 23 24)"/><rect x="13" y="12" width="26" height="20" rx="2"/></svg><h4>Flashcards <span class="arrow">→</span></h4><p>Every key term from the curriculum, turned into flip-cards. Shuffle the deck and test your recall.</p></div>
         <div class="fcard reveal" onclick="openSocratic()"><svg class="ic" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="24" cy="24" r="18"/><circle cx="16" cy="20" r="3"/><circle cx="32" cy="20" r="3"/><path d="M16 31c2 3 5 4 8 4s6-1 8-4"/></svg><h4>Socratic Questions <span class="arrow">→</span></h4><p>Pressure-test your own position: a claim, then a chain of Socratic probes that ask you to defend it honestly.</p></div>
-        <div class="fcard reveal" onclick="gotoRadar()"><svg class="ic" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M24 6l15.6 9v18L24 42 8.4 33V15z"/><path d="M24 16l8 4.6v9L24 34l-8-4.4v-9z" opacity=".55"/><circle cx="24" cy="24" r="2.4" fill="currentColor"/></svg><h4>Skill Radar <span class="arrow">→</span></h4><p>Logic, Evidence, Rebuttal, Charity, Rhetoric &amp; Composure — visualised so you always know what to sharpen.</p></div>
+        <div class="fcard reveal" onclick="gotoRadar()"><svg class="ic" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M24 6l15.6 9v18L24 42 8.4 33V15z"/><path d="M24 16l8 4.6v9L24 34l-8-4.4v-9z" opacity=".55"/><circle cx="24" cy="24" r="2.4" fill="currentColor"/></svg><h4>Skill Radar <span class="arrow">→</span></h4><p>Logic, Evidence, Rebuttal, Charity, Rhetoric &amp; Composure, visualised so you always know what to sharpen.</p></div>
       </div>
     </div>
   </section>
@@ -1091,7 +1096,7 @@ footer .base b{color:var(--gold-soft)}
   </div>
   <div class="wrap dash-wrap" style="padding-bottom:80px">
 
-    <!-- Rank — full-width banner -->
+    <!-- Rank - full-width banner -->
     <div class="panel dash-rank reveal">
       <div class="dash-rank-grid">
         <div class="rankrow" style="margin:0">
@@ -1133,7 +1138,7 @@ footer .base b{color:var(--gold-soft)}
       </div>
 
       <div class="panel drill reveal">
-        <h3>Daily drill &mdash; name the fallacy</h3>
+        <h3>Daily drill: name the fallacy</h3>
         <div class="arg" id="drillArg"></div>
         <div class="dopts" id="drillOpts"></div>
         <div class="drillfb" id="drillFb"></div>
@@ -1142,7 +1147,7 @@ footer .base b{color:var(--gold-soft)}
 
       <div class="panel reveal">
         <h3>Argument Lab</h3>
-        <p class="tool-sub">Is the argument valid — does the conclusion follow from the premises? (Ignore whether the premises are actually true.)</p>
+        <p class="tool-sub">Is the argument valid: does the conclusion follow from the premises? (Ignore whether the premises are actually true.)</p>
         <div id="dashArgLab"></div>
       </div>
 
@@ -1154,7 +1159,7 @@ footer .base b{color:var(--gold-soft)}
 
       <div class="panel reveal">
         <h3>Socratic Questions</h3>
-        <p class="tool-sub">Hold a position, then answer each probe honestly — find the weak joint in your own view.</p>
+        <p class="tool-sub">Hold a position, then answer each probe honestly. Find the weak joint in your own view.</p>
         <div id="dashSoc"></div>
       </div>
 
@@ -1222,7 +1227,7 @@ footer .base b{color:var(--gold-soft)}
         </div>
         <!-- Bot statement for this phase -->
         <div id="botStatementBox" style="font-size:15px;line-height:1.62;color:#E8DDCA;margin-bottom:18px;padding:14px 16px;background:rgba(123,44,44,.12);border-left:3px solid var(--garnet);border-radius:0 3px 3px 0">
-          <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#e0a0a0;display:block;margin-bottom:8px"><span id="botPhaseLabel">Bot — opposition opening</span></span>
+          <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#e0a0a0;display:block;margin-bottom:8px"><span id="botPhaseLabel">Bot · opposition opening</span></span>
           <span id="botStatementText"></span>
         </div>
         <!-- Your turn -->
@@ -1242,8 +1247,8 @@ footer .base b{color:var(--gold-soft)}
       <div id="arenaStartRow" style="margin-top:22px">
         <div style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-soft);margin-bottom:10px">Choose your side</div>
         <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px">
-          <button id="sideAff" class="side-btn active" onclick="setDebateSide('aff')">Affirmative — <b>for</b> the motion</button>
-          <button id="sideNeg" class="side-btn" onclick="setDebateSide('neg')">Negative — <b>against</b> the motion</button>
+          <button id="sideAff" class="side-btn active" onclick="setDebateSide('aff')">Affirmative: <b>for</b> the motion</button>
+          <button id="sideNeg" class="side-btn" onclick="setDebateSide('neg')">Negative: <b>against</b> the motion</button>
         </div>
         <div style="display:flex; gap:12px; flex-wrap:wrap">
           <button class="btn gold" onclick="startBotDebate()">Start the debate <span class="arrow">→</span></button>
@@ -1262,7 +1267,7 @@ footer .base b{color:var(--gold-soft)}
         </div>
         <div class="notecard" style="margin-top:22px">
           <b style="color:var(--gold-deep)">Rules of engagement.</b>
-          Attack arguments, never people. Steelman before you strike. Concede what is true. The goal is truth and skill &mdash; never humiliating anyone.
+          Attack arguments, never people. Steelman before you strike. Concede what is true. The goal is truth and skill, never humiliating anyone.
         </div>
       </div>
       <!-- Right: Your debate record -->
@@ -1271,7 +1276,7 @@ footer .base b{color:var(--gold-soft)}
           <h3>Your debate record</h3>
           <div id="debateRecord" style="margin-top:12px">
             <div style="color:var(--muted);font-size:14px;font-style:italic;padding:12px 0">
-              No debates completed yet — challenge a bot above to start your record.
+              No debates completed yet. Challenge a bot above to start your record.
             </div>
           </div>
           <div id="debateStats" style="display:none;margin-top:16px;padding-top:16px;border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;text-align:center">
@@ -1291,7 +1296,7 @@ footer .base b{color:var(--gold-soft)}
     <div class="wrap">
       <div class="eyebrow">Admin Console</div>
       <h1>Students &amp; <span class="it">curriculum</span></h1>
-      <p>See who's enrolled and how far they've come — then shape the curriculum they learn from.</p>
+      <p>See who's enrolled and how far they've come, then shape the curriculum they learn from.</p>
     </div>
   </div>
   <!-- ===== Enrollment & Progress ===== -->
@@ -1322,7 +1327,7 @@ footer .base b{color:var(--gold-soft)}
         <option value="pct">Sort: Completion</option>
         <option value="rp">Sort: Reason Points</option>
         <option value="active">Sort: Last active</option>
-        <option value="name">Sort: Name (A–Z)</option>
+        <option value="name">Sort: Name (A-Z)</option>
       </select>
       <div class="ep-chips" id="epChips">
         <span class="ep-chip on" data-f="all">All</span>
@@ -1347,7 +1352,7 @@ footer .base b{color:var(--gold-soft)}
         <!-- Add a module -->
         <div class="panel" style="padding:24px 26px;margin-bottom:24px">
           <h3 style="margin-bottom:6px">Add a module</h3>
-          <p style="font-size:13.5px;color:var(--muted);margin-bottom:16px">Create a new module in any level. The <b>Essentials</b> track is open to everyone with no prerequisites — a good home for primers and free content.</p>
+          <p style="font-size:13.5px;color:var(--muted);margin-bottom:16px">Create a new module in any level. The <b>Essentials</b> track is open to everyone with no prerequisites, a good home for primers and free content.</p>
           <label class="adm-label">Level</label>
           <select id="modLvl" class="adm-input"></select>
           <label class="adm-label">Module title</label>
@@ -1389,7 +1394,7 @@ footer .base b{color:var(--gold-soft)}
           <div id="createUserResult" style="display:none;margin-top:14px"></div>
         </div>
 
-        <!-- Account access — lock / unlock / reset (any admin) -->
+        <!-- Account access - lock / unlock / reset (any admin) -->
         <div class="panel" style="padding:24px 26px;margin-top:24px">
           <h3 style="margin-bottom:6px">Account access</h3>
           <p style="font-size:13.5px;color:var(--muted);margin-bottom:16px">Accounts lock automatically after 5 failed sign-in attempts. Lock or unlock an account here, and trigger a password reset (the user receives an email to set a new password).</p>
@@ -1402,12 +1407,12 @@ footer .base b{color:var(--gold-soft)}
           </div>
         </div>
 
-        <!-- Manage admins — founder only -->
+        <!-- Manage admins - founder only -->
         <div id="adminTeamPanel" class="panel" style="padding:24px 26px;margin-top:24px;display:none">
           <h3 style="margin-bottom:6px">Roles &amp; access</h3>
-          <p style="font-size:13.5px;color:var(--muted);margin-bottom:16px">Grant a student account admin rights — they'll be able to edit lessons, videos, and quizzes. Only you (the founder) can manage this list.</p>
+          <p style="font-size:13.5px;color:var(--muted);margin-bottom:16px">Grant a student account admin rights. They'll be able to edit lessons, videos, and quizzes. Only you (the founder) can manage this list.</p>
           <div id="adminTeamList" style="margin-bottom:14px"></div>
-          <input id="newAdminEmail" class="adm-input" style="margin:0 0 10px" type="email" placeholder="person@email.com — must have an account already">
+          <input id="newAdminEmail" class="adm-input" style="margin:0 0 10px" type="email" placeholder="person@email.com, must have an account already">
           <div style="display:flex;gap:10px;flex-wrap:wrap">
             <button class="btn gold" onclick="addAdminEmail()">Grant admin →</button>
           </div>
@@ -1437,17 +1442,20 @@ footer .base b{color:var(--gold-soft)}
     </div>
     <p style="margin-bottom:18px">Everything here is optional except the reading. Leave the video blank for a reading-only lesson.</p>
 
-    <label class="adm-label">Estimated time to finish <span style="color:var(--muted)">— minutes (shown on the lesson)</span></label>
+    <label class="adm-label">Estimated time to finish <span style="color:var(--muted)">, minutes (shown on the lesson)</span></label>
     <input id="edMins" class="adm-input" type="number" min="1" max="600" placeholder="e.g. 8">
 
-    <label class="adm-label">YouTube URL or video ID <span style="color:var(--muted)">— optional</span></label>
+    <label class="adm-label">YouTube URL or video ID <span style="color:var(--muted)">, optional</span></label>
     <input id="edYoutube" class="adm-input" placeholder="https://youtube.com/watch?v=… or the 11-char ID">
 
-    <label class="adm-label">Reading <span style="color:var(--muted)">— one paragraph per line (blank line = new paragraph)</span></label>
+    <label class="adm-label">Reading <span style="color:var(--muted)">, one paragraph per line (blank line = new paragraph)</span></label>
     <textarea id="edRead" class="adm-input" rows="8" placeholder="First paragraph…&#10;&#10;Second paragraph…&#10;&#10;Third paragraph…"></textarea>
 
-    <label class="adm-label">Key terms <span style="color:var(--muted)">— one per line, as "Term :: definition"</span></label>
+    <label class="adm-label">Key terms <span style="color:var(--muted)">, one per line, as "Term :: definition"</span></label>
     <textarea id="edTerms" class="adm-input" rows="4" placeholder="Burden of proof :: the obligation to support a claim rests on whoever asserts it."></textarea>
+
+    <label class="adm-label">Sources &amp; further reading <span style="color:var(--muted)">, one per line; HTML allowed</span></label>
+    <textarea id="edSources" class="adm-input" rows="4" placeholder="Author, <i>Title</i> (Publisher, Year).&#10;<a href=&quot;https://example.com&quot;>Article title</a>"></textarea>
 
     <div style="display:flex;align-items:center;justify-content:space-between;margin:14px 0 8px">
       <label class="adm-label" style="margin:0">Quiz</label>
@@ -1475,7 +1483,7 @@ footer .base b{color:var(--gold-soft)}
     <div class="wrap">
       <div class="eyebrow">Credential</div>
       <h1>Certificate of <span class="it">Completion</span></h1>
-      <p>Awarded for completing all three levels &mdash; First Light, The Crucible &amp; Illumination. Your certificate can be downloaded as a PDF once every level is complete.</p>
+      <p>Awarded for completing all three levels: First Light, The Crucible &amp; Illumination. Your certificate can be downloaded as a PDF once every level is complete.</p>
     </div>
   </div>
   <div class="wrap" style="padding:34px 28px 80px">
@@ -1509,7 +1517,7 @@ footer .base b{color:var(--gold-soft)}
 
 <div id="toast"><div class="t"><span>✦</span><span id="toastMsg">Saved</span><span class="rpup" id="toastRP"></span></div></div>
 
-<!-- Generated lesson content (Level I, II, III) — sets window.SEED_LESSON_CONTENT before the app script runs -->
+<!-- Generated lesson content (Level I, II, III) - sets window.SEED_LESSON_CONTENT before the app script runs -->
 <script src="lesson-content-gen-all.js"></script>
 
 <script>
@@ -1524,7 +1532,7 @@ let certName='';
 /* ============================================================
    RBAC + ADMIN CONTENT LAYER
    ============================================================ */
-const ADMIN_EMAILS = ['joiesayen1223@gmail.com'];   // founder account(s) — can manage other admins
+const ADMIN_EMAILS = ['joiesayen1223@gmail.com'];   // founder account(s) - can manage other admins
 let isAdmin = false;     // can edit content (founder OR promoted)
 let isFounder = false;   // can manage the admin roster (founder only)
 let siteAdmins = [];     // promoted admin emails, loaded from Firestore content/roles
@@ -1538,7 +1546,7 @@ const MAX_LOGIN_ATTEMPTS = 5;
 let SITE = { lessonContent:{}, extraLessons:[], extraModules:[], levelTitles:{} };
 const SEED_LESSON_CONTENT = (typeof window!=='undefined' && window.SEED_LESSON_CONTENT) ? window.SEED_LESSON_CONTENT : {};
 
-/* lessonData(key) — the merged view a student sees: admin override > generated seed > showcase */
+/* lessonData(key) - the merged view a student sees: admin override > generated seed > showcase */
 function lessonData(key){
   return (SITE.lessonContent && SITE.lessonContent[key]) || SEED_LESSON_CONTENT[key] || LESSON_CONTENT[key] || null;
 }
@@ -1590,11 +1598,11 @@ const CURRICULUM=[
    {title:"What Atheism Is (and Isn't)",lessons:[
      ['1.1','Mapping the territory','atheism, agnosticism, antitheism, apatheism, igtheism & secular humanism'],
      ['1.2','Belief vs. knowledge','the two-axis model and why most atheists are agnostic atheists'],
-     ['1.3','The Dawkins Spectrum','the 1–7 scale of theistic probability — and locating yourself honestly'],
+     ['1.3','The Dawkins Spectrum','the 1-7 scale of theistic probability, and locating yourself honestly'],
      ['1.4','Misconceptions, dismantled','“atheism is a religion,” “atheists have no morals,” “atheism claims certainty”'] ]},
    {title:"The Tools of Reason",lessons:[
      ['2.1','Anatomy of an argument','premises and conclusions; validity versus soundness'],
-     ['2.2','Three kinds of inference','deductive, inductive & abductive reasoning — and when each applies'],
+     ['2.2','Three kinds of inference','deductive, inductive & abductive reasoning, and when each applies'],
      ['2.3','Who must prove what','burden of proof, Hitchens’s Razor, Russell’s Teapot & Sagan’s standard'],
      ['2.4','Falsifiability','why a claim that excludes no observation is inert in debate'] ]},
    {title:"Fallacy Field Guide",lessons:[
@@ -1604,7 +1612,7 @@ const CURRICULUM=[
      ['3.4','The biased brain','confirmation bias, agency detection & motivated reasoning'] ]},
    {title:"A Short History of Doubt",lessons:[
      ['4.1','Ancient skeptics','Cārvāka, Epicurus & Lucretius'],
-     ['4.2','The Enlightenment','Spinoza, Hume, the philosophes — and the meaning of “Sapere aude”'],
+     ['4.2','The Enlightenment','Spinoza, Hume, the philosophes, and the meaning of “Sapere aude”'],
      ['4.3','Modern secularism','the rise of organised freethought and the “Four Horsemen”'],
      ['4.4','Living the question','freethought worldwide and navigating nonbelief in a religious society'] ]} ]},
 
@@ -1623,7 +1631,7 @@ const CURRICULUM=[
    {title:"The Problem of Evil",lessons:[
      ['3.1','The logical problem','Epicurus and Mackie versus Plantinga’s free-will defence'],
      ['3.2','The evidential problem','Rowe’s argument from gratuitous suffering'],
-     ['3.3','Theodicies & their discontents','soul-making, greater-good & skeptical theism — and how to respond'] ]},
+     ['3.3','Theodicies & their discontents','soul-making, greater-good & skeptical theism, and how to respond'] ]},
    {title:"Science, Cosmos & Naturalism",lessons:[
      ['4.1','The illusion of design','natural selection and common creationist claims answered'],
      ['4.2','Cosmology','the Big Bang, “something from nothing,” and fine-tuning with the physics'],
@@ -1631,7 +1639,7 @@ const CURRICULUM=[
    {title:"Goodness Without God",lessons:[
      ['5.1','Where morality comes from','evolutionary roots, contractarianism & moral realism without theism'],
      ['5.2','Three ethical frameworks','consequentialism, deontology & virtue ethics, introduced'],
-     ['5.3','Meaning, previewed','purpose and value without religion — a bridge to Level III'] ]} ]},
+     ['5.3','Meaning, previewed','purpose and value without religion, a bridge to Level III'] ]} ]},
 
  {id:'L3',numeral:'III',name:'Illumination',tier:'Expert',accent:'garnet',duration:'~30 hrs · 10 wks',credential:'Advanced Certificate + Master Diploma',
   modules:[
@@ -1639,7 +1647,7 @@ const CURRICULUM=[
      ['1.1','Bayesian approaches','priors, likelihoods & the probabilistic case for and against theism'],
      ['1.2','Fine-tuning, rigorously','probability, normalizability, the “this universe” objection & the multiverse'],
      ['1.3','Reformed epistemology','Plantinga on “properly basic” belief and the Great Pumpkin objection'],
-     ['1.4','Divine hiddenness','Schellenberg’s argument — atheism’s other flagship'],
+     ['1.4','Divine hiddenness','Schellenberg’s argument, atheism’s other flagship'],
      ['1.5','Miracles & testimony','religious experience and Hume on the evidence for the miraculous'] ]},
    {title:"The Cognitive Science of Religion",lessons:[
      ['2.1','Why minds make gods','hyperactive agency detection, theory of mind & by-product theories'],
@@ -1652,16 +1660,16 @@ const CURRICULUM=[
    {title:"Secular Ethics, Deeply",lessons:[
      ['4.1','Metaethics','realism, anti-realism, error theory & quasi-realism'],
      ['4.2','Normative depth','consequentialism, deontology & virtue ethics on hard cases'],
-     ['4.3','Ethics in public','bioethics and policy — arguing morality without scripture'] ]},
+     ['4.3','Ethics in public','bioethics and policy, arguing morality without scripture'] ]},
    {title:"The Art of Public Reason",lessons:[
-     ['5.1','Competitive formats','British Parliamentary, Lincoln–Douglas, Oregon-style CX & “flowing”'],
+     ['5.1','Competitive formats','British Parliamentary, Lincoln-Douglas, Oregon-style CX & “flowing”'],
      ['5.2','Advanced rebuttal','weighing, framing, clash, collapsing/extending & the “voters”'],
      ['5.3','Steelmanning as discipline','charitable interpretation; avoiding strawmen and the Gish gallop'],
      ['5.4','Speaking at scale','public speaking, hostile audiences & Street Epistemology in practice'],
      ['5.5','The ethics of discourse','pluralism, tolerance & living well alongside the faithful'] ]},
    {title:"Capstone",lessons:[
-     ['6.1','Route A — The Debate','a moderated, full-length debate on a substantial motion, judged by a panel'],
-     ['6.2','Route B — The Thesis','a 3,000–5,000-word argued essay with a steelmanned opposition, plus oral defence'] ]} ]},
+     ['6.1','Route A: The Debate','a moderated, full-length debate on a substantial motion, judged by a panel'],
+     ['6.2','Route B: The Thesis','a 3,000-5,000-word argued essay with a steelmanned opposition, plus oral defence'] ]} ]},
 
  {id:'ES',numeral:'E',name:'Essentials',tier:'Open access · no prerequisites',accent:'teal',duration:'Self-paced · open to all',credential:'Open primer',
   modules:[
@@ -1673,45 +1681,54 @@ const CURRICULUM=[
 const LESSON_CONTENT={
  'ES:1.1':{
    read:[
-     "Welcome. Ilu&rsquo;s School of Thoughts is a debate-first school of secular thought. Most introductions hand you a list of arguments to memorise; this one trains a skill. Content is the raw material — the product is your ability to reason, to reconstruct an opponent&rsquo;s view at its strongest, and to respond with logic rather than slogans.",
-     "The school is organised into three graded levels — First Light (Beginner), The Crucible (Intermediate), and Illumination (Expert) — each gated by the one before, so the toolkit is cumulative. This <b>Essentials</b> track sits outside that ladder: it is open to everyone, with no prerequisites, as a place for primers, orientation, and whatever the school wishes to make freely available.",
-     "Every lesson follows the same rhythm: a short reading, a few key terms, and a knowledge check. Alongside the lessons you&rsquo;ll find the Debate Arena, where you argue a motion against a bot and earn Reason Points, and a Skill Radar that grows as you progress. When you complete a level, you earn a verifiable certificate. Begin wherever you like — but if you are new, First Light is the natural first step."
+     "Welcome. Ilu&rsquo;s School of Thoughts is a debate-first school of secular thought. Most introductions hand you a list of arguments to memorise; this one trains a skill. Content is the raw material; the product is your ability to reason, to reconstruct an opponent&rsquo;s view at its strongest, and to respond with logic rather than slogans.",
+     "The school is organised into three graded levels, First Light (Beginner), The Crucible (Intermediate), and Illumination (Expert), each gated by the one before, so the toolkit is cumulative. This <b>Essentials</b> track sits outside that ladder: it is open to everyone, with no prerequisites, as a place for primers, orientation, and whatever the school wishes to make freely available.",
+     "Every lesson follows the same rhythm: a short reading, a few key terms, and a knowledge check. Alongside the lessons you&rsquo;ll find the Debate Arena, where you argue a motion against a bot and earn Reason Points, and a Skill Radar that grows as you progress. When you complete a level, you earn a verifiable certificate. Begin wherever you like, but if you are new, First Light is the natural first step."
    ],
    terms:[
      ["Steelman","to restate an opposing argument in its strongest, most charitable form before responding to it."],
      ["Reason Points (RP)","the score you earn by completing lessons, quizzes, and debates; it raises your rank."],
-     ["Essentials","this open-access track — no prerequisites, free to all, for primers and orientation."]
+     ["Essentials","this open-access track: no prerequisites, free to all, for primers and orientation."]
    ],
    quiz:[
      {q:"Ilu&rsquo;s School is primarily designed to make you memorise a fixed list of arguments.",
       opts:["True","False"],ans:1,
-      ex:"The school is <b>debate-first</b> — content is the raw material, but the product is the <b>skill</b> of reasoning and responding well."},
+      ex:"The school is <b>debate-first</b>: content is the raw material, but the product is the <b>skill</b> of reasoning and responding well."},
      {q:"Which track has no prerequisites and is open to everyone?",
       opts:["The Crucible","Illumination","Essentials","Capstone"],ans:2,
-      ex:"<b>Essentials</b> sits outside the graded ladder — open access, no prerequisites."}
+      ex:"<b>Essentials</b> sits outside the graded ladder: open access, no prerequisites."}
+   ],
+   sources:[
+     "Julian Baggini, <i>Atheism: A Very Short Introduction</i> (2003).",
+     "Stephen Law, <i>Humanism: A Very Short Introduction</i> (2011)."
    ]
  },
  'L1:1.2':{
    read:[
      "People argue past one another about atheism because they collapse two different questions into one. The first is a question of belief: do you accept the claim that a god exists? The second is a question of knowledge: do you claim to know whether a god exists? Because these questions are independent, the honest answer to one does not settle the other.",
-     "Lay the two questions on two axes and four positions appear. A gnostic theist believes a god exists and claims to know it. An agnostic theist believes, but does not claim certainty. An agnostic atheist does not believe, but does not claim certainty that no god exists — this is where most self-described atheists actually sit. A gnostic atheist makes the stronger claim to know that no god exists.",
-     "This matters for every debate that follows. Atheism, properly understood, is the absence of belief — not necessarily the assertion of a universal negative. Recognising this defuses the most common opening attack — “you can’t prove no god exists” — because the agnostic atheist never claimed to. It also clarifies who carries the burden of proof: the person asserting that a god exists is making the positive claim, and the burden rests with them."
+     "Lay the two questions on two axes and four positions appear. A gnostic theist believes a god exists and claims to know it. An agnostic theist believes, but does not claim certainty. An agnostic atheist does not believe, but does not claim certainty that no god exists. This is where most self-described atheists actually sit. A gnostic atheist makes the stronger claim to know that no god exists.",
+     "This matters for every debate that follows. Atheism, properly understood, is the absence of belief, not necessarily the assertion of a universal negative. Recognising this defuses the most common opening attack, “you can’t prove no god exists,” because the agnostic atheist never claimed to. It also clarifies who carries the burden of proof: the person asserting that a god exists is making the positive claim, and the burden rests with them."
    ],
    terms:[
      ["Belief axis","whether you accept the claim (theist / atheist)."],
      ["Knowledge axis","whether you claim to know (gnostic / agnostic)."],
-     ["Agnostic atheist","lacks belief in any god without claiming certainty — the most common position."]
+     ["Agnostic atheist","lacks belief in any god without claiming certainty, the most common position."]
    ],
    quiz:[
      {q:"Atheism is the claim that no gods exist and necessarily involves certainty.",
       opts:["True","False"],ans:1,
-      ex:"Atheism is a <b>lack of belief</b>. Most atheists are agnostic atheists and claim no certainty — so the statement is false."},
+      ex:"Atheism is a <b>lack of belief</b>. Most atheists are agnostic atheists and claim no certainty, so the statement is false."},
      {q:"“I don’t believe in any god, but I don’t claim to know for sure.” This person is best described as a(n):",
       opts:["Gnostic theist","Agnostic atheist","Gnostic atheist","Apatheist"],ans:1,
       ex:"No belief + no claim to certainty = <b>agnostic atheist</b>."},
      {q:"In a debate, who carries the burden of proof for the claim “a god exists”?",
-      opts:["The atheist, who must disprove it","Both sides equally","The person asserting a god exists","Neither — it’s unprovable"],ans:2,
+      opts:["The atheist, who must disprove it","Both sides equally","The person asserting a god exists","Neither; it’s unprovable"],ans:2,
       ex:"The <b>burden falls on the one making the positive claim</b>. Demanding the skeptic disprove it shifts the burden."}
+   ],
+   sources:[
+     "George H. Smith, <i>Atheism: The Case Against God</i> (1979).",
+     "Michael Martin, <i>Atheism: A Philosophical Justification</i> (1990).",
+     "<a href=\"https://plato.stanford.edu/entries/atheism-agnosticism/\" target=\"_blank\" rel=\"noopener\">Stanford Encyclopedia of Philosophy: &ldquo;Atheism and Agnosticism&rdquo;</a>"
    ]
  }
 };
@@ -1754,7 +1771,7 @@ function qrSVG(seed){
    ============================================================ */
 function certHTML(opts){
   const o=Object.assign({name:certName||"Your Name",title:"Certificate of Completion",
-    award:"has completed the full course of study — First Light, The Crucible &amp; Illumination — and is awarded the",
+    award:"has completed the full course of study, First Light, The Crucible &amp; Illumination, and is awarded the",
     comp:"Attests the holder can define terms precisely, reason in valid arguments, identify fallacies, steelman opposing views, and argue with both charity and rigour.",
     date:"14 May 2026",cid:"ISOT-2026-7F3A9C"},opts||{});
   return `<div class="frame"></div>
@@ -1803,7 +1820,7 @@ function go(view,arg){
    ============================================================ */
 /* ── Level lock helpers ── */
 function isLevelUnlocked(lvlId){
-  if(lvlId==='ES') return true;   // Essentials — open, no prerequisites
+  if(lvlId==='ES') return true;   // Essentials - open, no prerequisites
   if(lvlId==='L1') return true;
   if(lvlId==='L2') return lvlProgress('L1').pc===100;
   if(lvlId==='L3') return lvlProgress('L2').pc===100;
@@ -1820,7 +1837,7 @@ function updateCertGate(){
   const a=lvlProgress('L1').pc===100, b=lvlProgress('L2').pc===100, c=lvlProgress('L3').pc===100;
   const mark=v=>v?'<span style="color:var(--verd)">✓</span>':'<span style="color:var(--muted)">○</span>';
   if(a&&b&&c){
-    el.innerHTML='<span style="color:var(--verd);font-weight:600">✓ All three levels complete — your certificate is ready. Click “Download PDF”.</span>';
+    el.innerHTML='<span style="color:var(--verd);font-weight:600">✓ All three levels complete. Your certificate is ready. Click “Download PDF”.</span>';
     if(btn){ btn.disabled=false; btn.style.opacity=''; btn.style.cursor='pointer'; btn.title='Download your certificate as a PDF'; }
   } else {
     el.innerHTML='<span style="color:var(--ink-soft)">Your certificate downloads as a PDF once all three levels are complete:</span><br>'
@@ -1834,7 +1851,7 @@ function downloadCertificate(){
     updateCertGate(); return;
   }
   if(!certName){ openCertModal(); return; }   // make sure a name is set first
-  toast('Opening print dialog — choose “Save as PDF”','');
+  toast('Opening print dialog, choose “Save as PDF”','');
   setTimeout(()=>window.print(), 450);
 }
 
@@ -1898,7 +1915,7 @@ function renderCurriculum(){
           const inter=LESSON_CONTENT[key]?' ✦':'';
           h+=`<div class="lrow ${done?'done':''}" data-key="${key}" onclick="openLesson('${L.id}','${les[0]}')">
             <span class="lc">${les[0]}</span>
-            <div class="lt"><b>${les[1]}${inter}</b> <span>— ${les[2]}</span></div>
+            <div class="lt"><b>${les[1]}${inter}</b> <span> · ${les[2]}</span></div>
             <svg class="play" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
             <span class="st">${done?'<svg width=12 height=12 viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg>':''}</span>
           </div>`;
@@ -1955,7 +1972,7 @@ function openLesson(lvlId,code){
       <span class="sc">${x.code}</span><span class="dt">${dn?'<svg width=10 height=10 viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3.5"><path d="M5 13l4 4L19 7"/></svg>':''}</span>
       <span style="flex:1">${x.title}</span></div>`;
   }).join('');
-  // main — pull merged content (admin override > generated seed > showcase)
+  // main - pull merged content (admin override > generated seed > showcase)
   const content=lessonData(key);
   const vid = content && content.youtubeId ? ytId(content.youtubeId) : '';
   const hasQuiz = !!(content && content.quiz && content.quiz.length);
@@ -1969,7 +1986,7 @@ function openLesson(lvlId,code){
   // ── Tabs: Reading | Quiz ──
   h+=`<div class="ltabs">
       <button class="ltabbtn active" id="tabReadBtn" onclick="lessonTab('read')">📖 Reading</button>
-      <button class="ltabbtn" id="tabQuizBtn" onclick="lessonTab('quiz')">✎ Quiz${hasQuiz?'':' · —'}${done?' ✓':''}</button>
+      <button class="ltabbtn" id="tabQuizBtn" onclick="lessonTab('quiz')">✎ Quiz${hasQuiz?'':' · n/a'}${done?' ✓':''}</button>
     </div>`;
 
   // ── Reading panel ──
@@ -1983,6 +2000,8 @@ function openLesson(lvlId,code){
     h+=`<div class="lblk"><span class="eyebrow">Read</span>`+content.read.map(p=>`<p>${p}</p>`).join('')+`</div>`;
     if(content.terms && content.terms.length)
       h+=`<div class="lblk"><span class="eyebrow">Key terms</span><dl class="termcard">`+content.terms.map(t=>`<dt>${t[0]}</dt><dd>${t[1]}</dd>`).join('')+`</dl></div>`;
+    if(content.sources && content.sources.length)
+      h+=`<div class="lblk"><span class="eyebrow">Sources &amp; further reading</span><ul class="srclist">`+content.sources.map(s=>`<li>${s}</li>`).join('')+`</ul></div>`;
     if(hasQuiz)
       h+=`<div class="lblk"><div class="notecard">Finished reading? Switch to the <b>Quiz</b> tab and score 60%+ to complete this lesson.</div>
         <button class="btn gold" onclick="lessonTab('quiz')">Go to the quiz <span class="arrow">→</span></button></div>`;
@@ -2001,7 +2020,7 @@ function openLesson(lvlId,code){
   if(hasQuiz){
     h+=`<div class="lblk"><span class="eyebrow">Knowledge check</span><div class="quiz" id="quiz"></div></div>`;
   } else {
-    h+=`<div class="lblk"><div class="notecard">This lesson has no quiz — complete it from the <b>Reading</b> tab.</div></div>`;
+    h+=`<div class="lblk"><div class="notecard">This lesson has no quiz. Complete it from the <b>Reading</b> tab.</div></div>`;
   }
   h+=`</div>`;
 
@@ -2023,7 +2042,7 @@ function lessonTab(name){
 }
 
 function advanceLesson(key){
-  /* Move to the next lesson in the flat list — used by both markComplete and "Next lesson" button */
+  /* Move to the next lesson in the flat list - used by both markComplete and "Next lesson" button */
   const [lvl,code]=key.split(':');
   const all=flatLessons(lvlObj(lvl));
   const idx=all.findIndex(x=>x.code===code);
@@ -2034,9 +2053,9 @@ function advanceLesson(key){
     // reached the end of a level's lesson list
     refreshProgress();
     if(allLevelsComplete()){
-      // All three levels done — award the completion certificate
+      // All three levels done - award the completion certificate
       award('all-levels-complete', 200, 'Programme complete! 🎓');
-      toast('🎓 All three levels complete — preparing your certificate…','');
+      toast('🎓 All three levels complete, preparing your certificate…','');
       setTimeout(()=>{
         if(!certName && currentUser && currentUser.displayName) certName = currentUser.displayName;
         go('certificate');
@@ -2044,8 +2063,8 @@ function advanceLesson(key){
         if(typeof window.openCertModal==='function') window.openCertModal();  // prompt name → generate
       }, 1000);
     }
-    else if(lvl==='L1' && isLevelUnlocked('L2')) toast('Level I complete — Level II unlocked! 🎉','');
-    else if(lvl==='L2' && isLevelUnlocked('L3')) toast('Level II complete — Level III unlocked! 🎉','');
+    else if(lvl==='L1' && isLevelUnlocked('L2')) toast('Level I complete. Level II unlocked! 🎉','');
+    else if(lvl==='L2' && isLevelUnlocked('L3')) toast('Level II complete. Level III unlocked! 🎉','');
     else if(lvl==='L3') toast('Level III complete! 🏆','');
     else toast('Section complete! 🏆','');
   }
@@ -2056,7 +2075,7 @@ function markComplete(key){
   if(!state.done.has(key)){
     state.done.add(key); award(key,30,'Lesson complete'); refreshProgress(); saveProgress();
   }
-  // Always advance — whether first time or already done
+  // Always advance - whether first time or already done
   setTimeout(()=>advanceLesson(key), state.done.has(key) ? 0 : 1200);
 }
 
@@ -2114,13 +2133,13 @@ function checkQuiz(key){
     if(contBtn) contBtn.style.display='inline-flex';
     if(tryBtn)  tryBtn.style.display='none';
     if(!state.done.has(key)){ state.done.add(key); refreshProgress(); }   // ← checkmark only here
-    award(key,40, correct===total ? 'Perfect — lesson passed!' : 'Lesson passed!');
+    award(key,40, correct===total ? 'Perfect, lesson passed!' : 'Lesson passed!');
   } else {
-    pill.textContent = `Score ${correct}/${total} (${pct}%) — 60% needed to pass`;
+    pill.textContent = `Score ${correct}/${total} (${pct}%) · 60% needed to pass`;
     pill.style.color = 'var(--garnet)';
     if(tryBtn)  tryBtn.style.display='inline-flex';
     if(contBtn) contBtn.style.display='none';
-    toast('Not passed yet — review the explanations and try again','');
+    toast('Not passed yet, review the explanations and try again','');
   }
 }
 
@@ -2181,7 +2200,7 @@ function refreshProgress(){
     if(pc) pc.textContent = unlocked ? pr.pc+'%' : 'Locked 🔒';
     if(track) track.classList.toggle('locked', !unlocked);
   });
-  // dashboard headline stats — real numbers
+  // dashboard headline stats - real numbers
   const dl=document.getElementById('dLessons'); if(dl) dl.textContent=state.done.size;
   const dw=document.getElementById('dWins'); if(dw) dw.textContent=(state.debateHistory||[]).filter(d=>d.result==='win').length;
   renderCurriculum();
@@ -2193,7 +2212,7 @@ function refreshProgress(){
   if(typeof renderRankTrack==='function'){ renderRankTrack(); renderCompletionRing(); }
 }
 
-/* Continue learning — points at the student's actual next lesson */
+/* Continue learning - points at the student's actual next lesson */
 function renderContinue(){
   const box=document.getElementById('continueCards'); if(!box) return;
   let target=null;
@@ -2213,7 +2232,7 @@ function renderContinue(){
   const thumb = L.accent==='verd'?'verd':L.accent==='garnet'?'garnet':'gold';
   box.innerHTML=`<div class="continue" onclick="openLesson('${L.id}','${x.code}')">
     <div class="thumb ${thumb}">${L.numeral}</div>
-    <div class="ct"><div class="tl">${L.name} &middot; Module ${x.mi+1}</div><b>${x.code} &mdash; ${x.title}</b><span>${x.desc||''}</span></div>
+    <div class="ct"><div class="tl">${L.name} &middot; Module ${x.mi+1}</div><b>${x.code} &middot; ${x.title}</b><span>${x.desc||''}</span></div>
     <span class="arrow" style="color:var(--gold-deep);font-size:22px">→</span></div>`;
 }
 
@@ -2272,7 +2291,7 @@ function renderRadar(){
     </filter>
   </defs>`;
 
-  /* ── Rings — alternating shaded bands ── */
+  /* ── Rings - alternating shaded bands ── */
   RINGS.forEach((f,ri)=>{
     let pts='';
     for(let i=0;i<N;i++){const a=-Math.PI/2+i/N*Math.PI*2; pts+=`${(cx+Math.cos(a)*R*f).toFixed(1)},${(cy+Math.sin(a)*R*f).toFixed(1)} `;}
@@ -2327,7 +2346,7 @@ function renderRadar(){
       onmouseenter="showRadarTip(evt,'${name}: ${val}/100')"
       onmouseleave="hideRadarTip()"/>`;
 
-    // skill label — two lines: name + score
+    // skill label - two lines: name + score
     const lyOff = sinA > 0.7 ? 4 : sinA < -0.7 ? -8 : 0;
     g+=`<text x="${lx.toFixed(1)}" y="${(ly+lyOff+3).toFixed(1)}" text-anchor="${anchor}"
       font-family="'Fraunces',Georgia,serif" font-style="italic" font-size="13.5" fill="#1C1A14" opacity="0">
@@ -2398,60 +2417,60 @@ const DRILLS=[
  {arg:"“Either you believe in God, or your life has no meaning at all.”",
   opts:["False dilemma","Straw man","Appeal to authority","Circular reasoning"],ans:0,
   ex:"Only two options are offered when many secular sources of meaning exist between them."},
- {arg:"“Of course the universe was designed — look how perfectly everything fits together.”",
+ {arg:"“Of course the universe was designed, look how perfectly everything fits together.”",
   opts:["Begging the question","Equivocation","Hasty generalization","Genetic fallacy"],ans:0,
   ex:"“Fits together → designed” assumes the conclusion in the premise; the claim is smuggled in rather than argued."},
  {arg:"“My pastor has a doctorate, so his argument that the soul exists must be correct.”",
   opts:["Appeal to inappropriate authority","Tu quoque","Composition","No true Scotsman"],ans:0,
-  ex:"A credential outside the relevant field doesn’t establish the claim — the argument must still stand on its merits."},
+  ex:"A credential outside the relevant field doesn’t establish the claim; the argument must still stand on its merits."},
  {arg:"“Atheism led to Stalin’s atrocities, so atheism is a dangerous worldview.”",
   opts:["Genetic fallacy","Guilt by association","Hasty generalization","Appeal to consequences"],ans:1,
-  ex:"<b>Guilt by association</b> — tying a position to bad actors who held it, rather than engaging its truth. Stalin’s crimes don’t follow from a mere lack of god-belief."},
- {arg:"“Don’t listen to her case against the resurrection — she was raised an atheist.”",
+  ex:"<b>Guilt by association</b>, tying a position to bad actors who held it, rather than engaging its truth. Stalin’s crimes don’t follow from a mere lack of god-belief."},
+ {arg:"“Don’t listen to her case against the resurrection, she was raised an atheist.”",
   opts:["Genetic fallacy","Straw man","Red herring","Bandwagon"],ans:0,
   ex:"The <b>genetic fallacy</b> judges a claim by its origin rather than its merits. How someone was raised says nothing about whether their argument is sound."},
  {arg:"“Billions of people across history have believed in a god, so there must be one.”",
   opts:["Appeal to authority","Argumentum ad populum","Composition","Begging the question"],ans:1,
-  ex:"<b>Ad populum</b> — popularity isn’t truth. Most people once believed the sun orbited the Earth."},
+  ex:"<b>Ad populum</b>: popularity isn’t truth. Most people once believed the sun orbited the Earth."},
  {arg:"“So you’re saying we should just throw out all morality and do whatever we want?”",
   opts:["Straw man","False dilemma","Slippery slope","Equivocation"],ans:0,
-  ex:"A <b>straw man</b> — distorting the secular-ethics position into an absurd one nobody defends, then attacking the distortion."},
+  ex:"A <b>straw man</b>: distorting the secular-ethics position into an absurd one nobody defends, then attacking the distortion."},
  {arg:"“If we allow same-sex marriage, soon people will be marrying their pets.”",
   opts:["Slippery slope","False dilemma","Hasty generalization","Tu quoque"],ans:0,
   ex:"A <b>slippery slope</b> asserts a chain of dire consequences with no argument that each step actually follows."},
  {arg:"“Science can’t explain what caused the Big Bang, so God did it.”",
   opts:["God of the gaps","Equivocation","Circular reasoning","Composition"],ans:0,
-  ex:"<b>God of the gaps</b> — inserting a deity wherever current science is incomplete. A gap in knowledge isn’t evidence for a specific cause."},
+  ex:"<b>God of the gaps</b>: inserting a deity wherever current science is incomplete. A gap in knowledge isn’t evidence for a specific cause."},
  {arg:"“The Bible is true because it’s the word of God, and we know it’s God’s word because the Bible says so.”",
   opts:["Circular reasoning","Appeal to authority","Equivocation","Red herring"],ans:0,
-  ex:"<b>Circular reasoning</b> — the conclusion is smuggled into the premises. The claim is used to prove itself."},
+  ex:"<b>Circular reasoning</b>: the conclusion is smuggled into the premises. The claim is used to prove itself."},
  {arg:"“Faith has gotten me through hard times, so my religion must be true.”",
   opts:["Appeal to consequences","Appeal to emotion","Wishful thinking","All of these overlap here"],ans:3,
-  ex:"Comfort is real, but the usefulness of a belief doesn’t bear on its <b>truth</b> — this blends appeal to consequences, emotion, and wishful thinking."},
+  ex:"Comfort is real, but the usefulness of a belief doesn’t bear on its <b>truth</b>. This blends appeal to consequences, emotion, and wishful thinking."},
  {arg:"“Every part of the watch has a purpose, so the whole universe must have a purpose too.”",
   opts:["Composition","Division","Hasty generalization","Equivocation"],ans:0,
-  ex:"The <b>composition fallacy</b> — assuming what’s true of the parts must be true of the whole."},
+  ex:"The <b>composition fallacy</b>: assuming what’s true of the parts must be true of the whole."},
  {arg:"“You criticise the Church, but you’re not perfect either, so your point is invalid.”",
   opts:["Tu quoque","Ad hominem","Red herring","Straw man"],ans:0,
-  ex:"<b>Tu quoque</b> (‘you too’) — deflecting a criticism by pointing at the critic instead of answering it."},
- {arg:"“A real atheist would never celebrate Christmas — so you’re not really one.”",
+  ex:"<b>Tu quoque</b> (‘you too’): deflecting a criticism by pointing at the critic instead of answering it."},
+ {arg:"“A real atheist would never celebrate Christmas, so you’re not really one.”",
   opts:["No true Scotsman","Genetic fallacy","Begging the question","Bandwagon"],ans:0,
-  ex:"<b>No true Scotsman</b> — redefining a category mid-argument to exclude any counterexample."},
+  ex:"<b>No true Scotsman</b>: redefining a category mid-argument to exclude any counterexample."},
  {arg:"“Where do you get your morals if not from God? Anyway, look at how beautiful cathedrals are.”",
   opts:["Red herring","Straw man","False dilemma","Equivocation"],ans:0,
-  ex:"A <b>red herring</b> — switching to an irrelevant topic (architecture) to dodge the question of secular ethics."},
- {arg:"“Faith just means trust — you have faith your chair will hold you, so faith in God is the same.”",
+  ex:"A <b>red herring</b>: switching to an irrelevant topic (architecture) to dodge the question of secular ethics."},
+ {arg:"“Faith just means trust, you have faith your chair will hold you, so faith in God is the same.”",
   opts:["Equivocation","Composition","Circular reasoning","Bandwagon"],ans:0,
-  ex:"<b>Equivocation</b> — sliding between two senses of ‘faith’: evidence-based confidence vs. belief without evidence."},
+  ex:"<b>Equivocation</b>: sliding between two senses of ‘faith’: evidence-based confidence vs. belief without evidence."},
  {arg:"“My near-death experience proves heaven is real.”",
   opts:["Hasty generalization","Anecdotal evidence","Appeal to authority","Composition"],ans:1,
-  ex:"<b>Anecdotal evidence</b> — a single vivid personal experience can’t establish a universal metaphysical claim; it has many natural explanations."},
- {arg:"“If God didn’t exist, the universe wouldn’t exist — and it clearly does!”",
+  ex:"<b>Anecdotal evidence</b>: a single vivid personal experience can’t establish a universal metaphysical claim; it has many natural explanations."},
+ {arg:"“If God didn’t exist, the universe wouldn’t exist, and it clearly does!”",
   opts:["Begging the question","Affirming the consequent","Composition","Bandwagon"],ans:1,
-  ex:"<b>Affirming the consequent</b> — ‘if A then B; B, therefore A’ is invalid. The universe’s existence doesn’t entail its proposed cause."},
+  ex:"<b>Affirming the consequent</b>: ‘if A then B; B, therefore A’ is invalid. The universe’s existence doesn’t entail its proposed cause."},
  {arg:"“Atheists are just angry at God.”",
   opts:["Straw man","Ad hominem","Psychologising / poisoning the well","Tu quoque"],ans:2,
-  ex:"<b>Poisoning the well</b> — pre-emptively attributing a hidden motive to dismiss the person rather than engage the argument (one can’t be angry at what one doesn’t believe exists)."}
+  ex:"<b>Poisoning the well</b>: pre-emptively attributing a hidden motive to dismiss the person rather than engage the argument (one can’t be angry at what one doesn’t believe exists)."}
 ];
 let drillIdx=-1, drillLocked=false;
 function newDrill(){
@@ -2472,11 +2491,11 @@ function answerDrill(i){
   const fb=document.getElementById('drillFb'); const right=i===d.ans;
   fb.innerHTML=(right?'<b style="color:var(--verd)">Correct.</b> ':'<b style="color:var(--garnet)">Not quite.</b> ')+d.ex;
   fb.classList.add('show');
-  toast(right?'Good eye! 🎯':'Keep practising','');   // drills are practice — no banked RP
+  toast(right?'Good eye! 🎯':'Keep practising','');   // drills are practice - no banked RP
 }
 
 /* ============================================================
-   TOOLKIT — homepage cards (flashcards / argument lab / socratic)
+   TOOLKIT - homepage cards (flashcards / argument lab / socratic)
    ============================================================ */
 function closeToolModal(){ document.getElementById('toolModal').style.display='none'; }
 function openTool(title,sub){
@@ -2510,7 +2529,7 @@ function openFlashcards(){
 }
 function renderFlashcard(){
   const body=TOOL_HOST.flash||document.getElementById('toolBody');
-  if(!fcDeck.length){ body.innerHTML='<div class="tool-card">No terms available yet — complete or add lessons first.</div>'; return; }
+  if(!fcDeck.length){ body.innerHTML='<div class="tool-card">No terms available yet. Complete or add lessons first.</div>'; return; }
   const c=fcDeck[fcIdx];
   body.innerHTML=`
     <div class="tool-card tool-flip" onclick="fcFlip()">
@@ -2536,18 +2555,18 @@ const VALIDITY=[
   {prem:['All humans are mortal.','Socrates is human.'],con:'Socrates is mortal.',valid:true,ex:'A textbook valid syllogism (modus Barbara). The conclusion follows necessarily from the premises.'},
   {prem:['If it rained, the ground is wet.','The ground is wet.'],con:'Therefore it rained.',valid:false,ex:'<b>Affirming the consequent.</b> The ground could be wet for other reasons; the conclusion does not follow.'},
   {prem:['If God exists, the universe has a cause.','God does not exist.'],con:'Therefore the universe has no cause.',valid:false,ex:'<b>Denying the antecedent.</b> Even if God doesn’t exist, the universe might have some other cause.'},
-  {prem:['If a being is omniscient, it knows all truths.','God is omniscient.'],con:'God knows all truths.',valid:true,ex:'Valid — <b>modus ponens</b>. If P→Q and P, then Q.'},
+  {prem:['If a being is omniscient, it knows all truths.','God is omniscient.'],con:'God knows all truths.',valid:true,ex:'Valid: <b>modus ponens</b>. If P→Q and P, then Q.'},
   {prem:['No purely physical process is conscious.','Thinking is a purely physical process.'],con:'Thinking is not conscious.',valid:true,ex:'Valid in form (the conclusion follows). Validity is about structure, not whether the premises are true.'},
-  {prem:['Some atheists are philosophers.','Some philosophers are theists.'],con:'Therefore some atheists are theists.',valid:false,ex:'<b>Invalid.</b> Two "some" premises don’t connect the end terms — a classic undistributed-middle error.'},
+  {prem:['Some atheists are philosophers.','Some philosophers are theists.'],con:'Therefore some atheists are theists.',valid:false,ex:'<b>Invalid.</b> Two "some" premises don’t connect the end terms, a classic undistributed-middle error.'},
   {prem:['If the argument is sound, its conclusion is true.','The argument is not sound.'],con:'Its conclusion is false.',valid:false,ex:'<b>Denying the antecedent.</b> An unsound argument can still have a true conclusion.'},
-  {prem:['Either the cause is natural or it is supernatural.','The cause is not natural.'],con:'The cause is supernatural.',valid:true,ex:'Valid — <b>disjunctive syllogism</b>. (Whether the first premise is *true* is a separate question of soundness.)'},
-  {prem:['All sound arguments are valid.','This argument is valid.'],con:'This argument is sound.',valid:false,ex:'<b>Invalid.</b> Validity is necessary but not sufficient for soundness — the premises must also be true.'},
-  {prem:['If morality requires God, then atheists cannot be moral.','Many atheists are moral.'],con:'Morality does not require God.',valid:true,ex:'Valid — <b>modus tollens</b>. If P→Q and not-Q, then not-P.'},
-  {prem:['Everything that begins to exist has a cause.','The universe began to exist.'],con:'The universe has a cause.',valid:true,ex:'Valid in form (the Kalām’s logic). Soundness depends on whether both premises are actually true — that’s the real debate.'},
+  {prem:['Either the cause is natural or it is supernatural.','The cause is not natural.'],con:'The cause is supernatural.',valid:true,ex:'Valid: <b>disjunctive syllogism</b>. (Whether the first premise is *true* is a separate question of soundness.)'},
+  {prem:['All sound arguments are valid.','This argument is valid.'],con:'This argument is sound.',valid:false,ex:'<b>Invalid.</b> Validity is necessary but not sufficient for soundness; the premises must also be true.'},
+  {prem:['If morality requires God, then atheists cannot be moral.','Many atheists are moral.'],con:'Morality does not require God.',valid:true,ex:'Valid: <b>modus tollens</b>. If P→Q and not-Q, then not-P.'},
+  {prem:['Everything that begins to exist has a cause.','The universe began to exist.'],con:'The universe has a cause.',valid:true,ex:'Valid in form (the Kalām’s logic). Soundness depends on whether both premises are actually true, that’s the real debate.'},
   {prem:['Most religions cannot all be true.','Christianity is a religion.'],con:'Christianity is not true.',valid:false,ex:'<b>Invalid.</b> "Not all can be true" doesn’t single out any one as false. A hasty leap.'},
 ];
 let vlIdx=0, vlLocked=false;
-function openArgumentLab(){ TOOL_HOST.arg=document.getElementById('toolBody'); vlIdx=Math.floor(Math.random()*VALIDITY.length); vlLocked=false; openTool('Argument Lab','Is the argument VALID — does the conclusion follow from the premises? (Ignore whether the premises are actually true.)'); renderValidity(); }
+function openArgumentLab(){ TOOL_HOST.arg=document.getElementById('toolBody'); vlIdx=Math.floor(Math.random()*VALIDITY.length); vlLocked=false; openTool('Argument Lab','Is the argument VALID: does the conclusion follow from the premises? (Ignore whether the premises are actually true.)'); renderValidity(); }
 function renderValidity(){
   const v=VALIDITY[vlIdx]; const body=TOOL_HOST.arg||document.getElementById('toolBody');
   body.innerHTML=`
@@ -2567,7 +2586,7 @@ function answerValidity(guess){
   const v=VALIDITY[vlIdx]; const right=guess===v.valid;
   const body=TOOL_HOST.arg||document.getElementById('toolBody');
   const ex=body.querySelector('.vlEx'); ex.style.display='block';
-  ex.innerHTML=(right?'<b style="color:var(--verd)">Correct — '+(v.valid?'valid':'invalid')+'.</b> ':'<b style="color:var(--garnet)">Not quite — it’s '+(v.valid?'valid':'invalid')+'.</b> ')+v.ex;
+  ex.innerHTML=(right?'<b style="color:var(--verd)">Correct: '+(v.valid?'valid':'invalid')+'.</b> ':'<b style="color:var(--garnet)">Not quite: it’s '+(v.valid?'valid':'invalid')+'.</b> ')+v.ex;
   body.querySelector('.vlValid').style.display='none';
   body.querySelector('.vlInvalid').style.display='none';
   body.querySelector('.vlNext').style.display='inline-flex';
@@ -2576,16 +2595,16 @@ function nextValidity(){ let n=vlIdx; while(n===vlIdx&&VALIDITY.length>1) n=Math
 
 /* ---- Socratic Questions: pressure-test your own position ---- */
 const SOCRATIC=[
-  {claim:'There is no good evidence that any god exists.',probes:['What would count, for you, as good evidence either way?','Is "absence of evidence" the same as "evidence of absence" here — and does it matter?','Could a sincere believer accept your standard of evidence? If not, why not?','What is the strongest reason on the other side, stated as its holder would?']},
+  {claim:'There is no good evidence that any god exists.',probes:['What would count, for you, as good evidence either way?','Is "absence of evidence" the same as "evidence of absence" here, and does it matter?','Could a sincere believer accept your standard of evidence? If not, why not?','What is the strongest reason on the other side, stated as its holder would?']},
   {claim:'Morality does not require religion.',probes:['Where, then, do moral obligations get their force?','If two people’s moral intuitions conflict, how do you adjudicate without appeal to authority?','Does your view make morality objective, or a matter of agreement? Are you comfortable with that?','What would a thoughtful theist say you’re leaving out?']},
-  {claim:'Faith and reason are fundamentally opposed.',probes:['What exactly do you mean by "faith" — and does the believer mean the same?','Do you hold any beliefs you cannot fully justify by evidence? How is that different?','Could there be reasonable faith, or is the phrase a contradiction for you?','Steelman the view that faith and reason can cooperate.']},
+  {claim:'Faith and reason are fundamentally opposed.',probes:['What exactly do you mean by "faith", and does the believer mean the same?','Do you hold any beliefs you cannot fully justify by evidence? How is that different?','Could there be reasonable faith, or is the phrase a contradiction for you?','Steelman the view that faith and reason can cooperate.']},
   {claim:'The universe needs no creator.',probes:['Does "needs no creator" mean one is impossible, or merely unnecessary?','What explains why there is something rather than nothing, on your view?','Is "it just is" a stopping point you’d accept from an opponent?','What is the best version of the cosmological argument you must answer?']},
   {claim:'Religious belief is a product of culture, not truth.',probes:['Does explaining how a belief arises tell us whether it’s true?','Could the same "it’s just culture" move be turned on your own beliefs?','What would distinguish a culturally-transmitted truth from a culturally-transmitted error?','How would a believer account for the diversity of religions without abandoning their own?']},
-  {claim:'A meaningful life needs no afterlife.',probes:['What makes a life meaningful, on your account?','If everything ends, does anything you do "finally" matter — and must it, to be meaningful now?','Is meaning something you discover or something you create? Can it be both?','What does the person who disagrees fear losing, and is that fear unreasonable?']},
+  {claim:'A meaningful life needs no afterlife.',probes:['What makes a life meaningful, on your account?','If everything ends, does anything you do "finally" matter, and must it, to be meaningful now?','Is meaning something you discover or something you create? Can it be both?','What does the person who disagrees fear losing, and is that fear unreasonable?']},
   {claim:'We should always proportion belief to evidence.',probes:['Do you hold THAT principle on sufficient evidence, or is it a commitment?','Are there beliefs (in people, in projects) that must precede the evidence?','Where is the line between healthy caution and paralysing doubt?','When has acting before the evidence was in turned out to be wise?']},
 ];
 let socIdx=0, socProbe=0;
-function openSocratic(){ TOOL_HOST.soc=document.getElementById('toolBody'); socIdx=Math.floor(Math.random()*SOCRATIC.length); socProbe=0; openTool('Socratic Questions','Hold a position, then answer each probe honestly — out loud or in your notes. The goal is to find the weak joint in your own view.'); renderSocratic(); }
+function openSocratic(){ TOOL_HOST.soc=document.getElementById('toolBody'); socIdx=Math.floor(Math.random()*SOCRATIC.length); socProbe=0; openTool('Socratic Questions','Hold a position, then answer each probe honestly, out loud or in your notes. The goal is to find the weak joint in your own view.'); renderSocratic(); }
 function renderSocratic(){
   const s=SOCRATIC[socIdx]; const body=TOOL_HOST.soc||document.getElementById('toolBody');
   const shown=s.probes.slice(0,socProbe+1);
@@ -2601,14 +2620,14 @@ function renderSocratic(){
     <div style="display:flex;gap:10px;margin-top:14px">
       ${socProbe < s.probes.length-1
         ? `<button class="btn gold vbtn" onclick="nextProbe()">Next probe →</button>`
-        : `<span class="tool-meta" style="align-self:center">All probes shown — sit with the hardest one.</span>`}
+        : `<span class="tool-meta" style="align-self:center">All probes shown. Sit with the hardest one.</span>`}
       <button class="btn ghost sm" style="margin-left:auto" onclick="newSocratic()">New claim ↻</button>
     </div>`;
 }
 function nextProbe(){ const s=SOCRATIC[socIdx]; if(socProbe<s.probes.length-1) socProbe++; renderSocratic(); }
 function newSocratic(){ let n=socIdx; while(n===socIdx&&SOCRATIC.length>1) n=Math.floor(Math.random()*SOCRATIC.length); socIdx=n; socProbe=0; renderSocratic(); }
 
-/* ---- Inline dashboard tools — render the real tools into dashboard panels (no modal) ---- */
+/* ---- Inline dashboard tools - render the real tools into dashboard panels (no modal) ---- */
 function initDashTools(){
   const a=document.getElementById('dashArgLab');
   if(a){ TOOL_HOST.arg=a; vlIdx=Math.floor(Math.random()*VALIDITY.length); vlLocked=false; renderValidity(); }
@@ -2619,7 +2638,7 @@ function initDashTools(){
 }
 
 /* ============================================================
-   DASHBOARD MOTION — count-up numbers + replayed bar fills
+   DASHBOARD MOTION - count-up numbers + replayed bar fills
    ============================================================ */
 function countUp(el,dur){
   if(!el) return; dur=dur||1100;
@@ -2648,7 +2667,7 @@ function animateDashboard(){
   if(typeof initDashTools==='function') initDashTools(); // render the inline toolkit tools
 }
 
-/* ── Rank progression track — all five ranks, current node glowing ── */
+/* ── Rank progression track - all five ranks, current node glowing ── */
 function renderRankTrack(){
   const box=document.getElementById('rankTrack'); if(!box) return;
   const TH=RANKS, rp=state.rp||0, N=TH.length;
@@ -2665,7 +2684,7 @@ function renderRankTrack(){
   requestAnimationFrame(()=>requestAnimationFrame(()=>{ if(fill) fill.style.width=pos.toFixed(1)+'%'; }));
 }
 
-/* ── Overall completion ring — total lessons done across the three graded levels ── */
+/* ── Overall completion ring - total lessons done across the three graded levels ── */
 function renderCompletionRing(){
   const box=document.getElementById('overallRing'); if(!box) return;
   let d=0,t=0; ['L1','L2','L3'].forEach(id=>{ const p=lvlProgress(id); d+=p.d; t+=p.t; });
@@ -2724,7 +2743,7 @@ const BADGES=[
  {n:"Socratic", how:"Complete ‘The Cognitive Science of Religion’ (Level III, Module 2)",
    icon:'<circle cx="12" cy="12" r="9"/><circle cx="9" cy="10" r="1.4" fill="currentColor"/><circle cx="15" cy="10" r="1.4" fill="currentColor"/><path d="M8 15c1.5 2 6.5 2 8 0"/>',
    check:()=>modDone(['L3:2.1','L3:2.2','L3:2.3'])},
- {n:"Sapere Aude", how:"Earn the Master Diploma — complete all of Level III",
+ {n:"Sapere Aude", how:"Earn the Master Diploma, complete all of Level III",
    icon:'<path d="M12 2l2.2 5.6L20 8l-4.5 3.7L17 18l-5-3-5 3 1.5-6.3L4 8l5.8-.4z"/>',
    check:()=>lvlProgress('L3').pc===100}
 ];
@@ -2732,7 +2751,7 @@ function renderBadges(){
   const box=document.getElementById('badges'); if(!box) return;
   box.innerHTML=BADGES.map(b=>{
     const earned=b.check();
-    return `<div class="badge ${earned?'':'locked'}" title="${earned?'✓ Unlocked — '+b.how:'Locked — '+b.how}">
+    return `<div class="badge ${earned?'':'locked'}" title="${earned?'✓ Unlocked: '+b.how:'Locked: '+b.how}">
       <div class="med"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">${b.icon}</svg></div>
       <div class="bn">${b.n}</div></div>`;
   }).join('');
@@ -2758,7 +2777,7 @@ document.head.appendChild(revStyle);
 /* ============================================================
    INIT
    ============================================================ */
-(function init(){
+function runInit(){
   document.getElementById('heroSeal').innerHTML=sealSVG();
   stampSeal(document.getElementById('heroSeal'));
   const cp=document.getElementById('certPreview'); if(cp) cp.innerHTML=certHTML();
@@ -2766,11 +2785,16 @@ document.head.appendChild(revStyle);
   renderCurriculum(); renderRadar(); renderBadges(); newDrill();
   renderBotQueue(); renderDebateRecord();
   syncRP(); refreshProgress(); revealScan(); initCountUps();
-})();
+}
+/* runInit() is invoked at the very end of the page's last inline <script> (the debate
+   add-on block), once renderBotQueue / renderDebateRecord (defined there) exist.
+   Calling it here would throw "renderBotQueue is not defined" and abort the rest of
+   init (revealScan, initCountUps, ...). It is not tied to DOMContentLoaded so the first
+   render does not wait on the deferred Firebase module. */
 </script>
 
 <!-- ============================================================
-     FIREBASE — Auth + Firestore progress saving
+     FIREBASE - Auth + Firestore progress saving
      ============================================================ -->
 <script type="module">
 import { initializeApp, deleteApp } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-app.js";
@@ -2820,7 +2844,7 @@ function showGate(){
   app.style.display = 'none';
   gate.style.display = 'flex';
   gate.classList.remove('fade-out');
-  // fade in smoothly — avoids jarring flash
+  // fade in smoothly - avoids jarring flash
   requestAnimationFrame(()=> requestAnimationFrame(()=>{ gate.style.opacity = '1'; }));
   document.getElementById('loginChecking').style.display = 'none';
   resetLoginBtn();
@@ -2844,10 +2868,10 @@ function friendlyAuthError(code){
     'auth/invalid-email':'That doesn\'t look like a valid email.',
     'auth/missing-password':'Please enter a password.',
     'auth/weak-password':'Password should be at least 6 characters.',
-    'auth/email-already-in-use':'An account with that email already exists — try signing in.',
+    'auth/email-already-in-use':'An account with that email already exists. Try signing in.',
     'auth/invalid-credential':'Email or password is incorrect.',
     'auth/wrong-password':'Email or password is incorrect.',
-    'auth/user-not-found':'No account with that email — try creating one.',
+    'auth/user-not-found':'No account with that email. Try creating one.',
     'auth/too-many-requests':'Too many attempts. Wait a moment and try again.',
   };
   return map[code] || 'Something went wrong. Please try again.';
@@ -2869,7 +2893,7 @@ window.emailSignIn = async function(){
   }
   // 5-attempt soft lock (per browser)
   if(getFails(email) >= MAX_LOGIN_ATTEMPTS){
-    gateErr('Too many failed attempts — this account is locked. Contact your administrator to unlock it.'); return;
+    gateErr('Too many failed attempts. This account is locked. Contact your administrator to unlock it.'); return;
   }
   const btn = document.getElementById('gateSignIn'); btn.disabled=true; btn.textContent='Signing in…';
   try {
@@ -2896,7 +2920,7 @@ window.emailReset = async function(){
 };
 
 /* ============================================================
-   ADMIN — create local accounts (secondary app keeps admin signed in)
+   ADMIN - create local accounts (secondary app keeps admin signed in)
    ============================================================ */
 function genTempPassword(){
   // readable temp password: Word + 4 digits + symbol
@@ -2935,7 +2959,7 @@ window.adminCreateUser = async function(){
         A password-setup email was sent to them for confirmation. They can sign in with the temporary password and then change it, or use the email link to set their own.
       </div></div>`;
     nameEl.value=''; emailEl.value='';
-    toast('Account created — setup email sent','✦');
+    toast('Account created, setup email sent','✦');
   } catch(e){
     out.style.display='block';
     out.innerHTML = `<div style="padding:12px 14px;background:rgba(123,44,44,.12);border:1px solid rgba(123,44,44,.35);border-radius:4px;color:var(--garnet);font-size:14px">${friendlyAuthError(e.code)||'Could not create the account.'}</div>`;
@@ -2951,7 +2975,7 @@ window.adminCreateUser = async function(){
 window.changePassword = async function(){
   if(!currentUser){ return; }
   const isPwUser = (currentUser.providerData||[]).some(p=>p.providerId==='password');
-  if(!isPwUser){ toast('Your account is managed by Google — change your password there',''); return; }
+  if(!isPwUser){ toast('Your account is managed by Google, change your password there',''); return; }
   const np = prompt('Enter a new password (at least 6 characters):');
   if(np===null) return;
   if(np.length<6){ toast('Password must be at least 6 characters',''); return; }
@@ -2967,7 +2991,7 @@ window.changePassword = async function(){
 };
 
 /* ============================================================
-   ADMIN — shared site content (lessons, videos, quizzes)
+   ADMIN - shared site content (lessons, videos, quizzes)
    stored in Firestore content/site, read by everyone, written by admins
    ============================================================ */
 async function loadSiteContent(){
@@ -3003,7 +3027,7 @@ async function saveRoles(){
   try {
     await setDoc(doc(db,'content','roles'),{ admins: siteAdmins, updatedAt: serverTimestamp(), updatedBy: currentUser?currentUser.email:'' });
     return true;
-  } catch(e){ console.warn('saveRoles failed',e); toast('Could not save roles — only the founder can change admins',''); return false; }
+  } catch(e){ console.warn('saveRoles failed',e); toast('Could not save roles, only the founder can change admins',''); return false; }
 }
 
 window.addAdminEmail = async function(){
@@ -3042,7 +3066,7 @@ window.renderAdminTeam = function(){
 /* ── Account access: lock / unlock / reset password (admins) ── */
 async function saveLocks(){
   try { await setDoc(doc(db,'content','locks'),{ locked: lockedEmails, updatedAt: serverTimestamp(), updatedBy: currentUser?currentUser.email:'' }); return true; }
-  catch(e){ console.warn('saveLocks failed',e); toast('Could not save — check Firestore rules',''); return false; }
+  catch(e){ console.warn('saveLocks failed',e); toast('Could not save, check Firestore rules',''); return false; }
 }
 
 window.adminLockAccount = async function(){
@@ -3060,7 +3084,7 @@ window.adminUnlockAccount = async function(email){
   email = email || (document.getElementById('lockEmail').value||'').trim().toLowerCase();
   lockedEmails = lockedEmails.filter(e=>e!==email);
   const ok=await saveLocks(); renderLockList();
-  if(ok) toast(email+' unlocked — they may also need to clear failed-attempt count by signing in fresh','✦');
+  if(ok) toast(email+' unlocked, they may also need to clear failed-attempt count by signing in fresh','✦');
 };
 
 window.adminResetUserPassword = async function(){
@@ -3083,7 +3107,7 @@ window.renderLockList = function(){
 async function saveSiteContent(){
   try {
     await setDoc(doc(db,'content','site'),{
-      // store as a JSON string — lesson "terms" are nested arrays, which Firestore can't store natively
+      // store as a JSON string - lesson "terms" are nested arrays, which Firestore can't store natively
       lessonContentJSON: JSON.stringify(SITE.lessonContent || {}),
       extraLessons: SITE.extraLessons || [],
       extraModules: SITE.extraModules || [],
@@ -3095,15 +3119,15 @@ async function saveSiteContent(){
   } catch(e){
     console.warn('saveSiteContent failed', e);
     const msg = (e && e.code==='permission-denied')
-      ? 'Permission denied — publish the Firestore rules (content/site write).'
-      : 'Could not save — '+((e&&e.message)||'unknown error');
+      ? 'Permission denied, publish the Firestore rules (content/site write).'
+      : 'Could not save, '+((e&&e.message)||'unknown error');
     toast(msg,'');
     return false;
   }
 }
 
 /* ---- Admin panel rendering ---- */
-function lvlOptions(){ return CURRICULUM.map(L=>`<option value="${L.id}">${L.id==='ES'?'Essentials (open)':'Level '+L.numeral+' — '+L.name}</option>`).join(''); }
+function lvlOptions(){ return CURRICULUM.map(L=>`<option value="${L.id}">${L.id==='ES'?'Essentials (open)':'Level '+L.numeral+' · '+L.name}</option>`).join(''); }
 
 window.renderAdmin = function(){
   if(!isAdmin) return;
@@ -3234,7 +3258,7 @@ function renderRoster(){
       <div class="cring" data-pct="${s.pct}"><svg viewBox="0 0 64 64"><circle class="cring-bg" cx="32" cy="32" r="26"/><circle class="cring-fg" cx="32" cy="32" r="26" stroke-dasharray="${C.toFixed(1)}" stroke-dashoffset="${C.toFixed(1)}"/></svg><span class="cring-t">0%</span></div>
       <div class="ep-meat">
         <div class="ep-name">${epEsc(s.name)}${isAdm?'<span class="ep-tag-admin">admin</span>':''}</div>
-        <div class="ep-email">${epEsc(s.email||'—')}</div>
+        <div class="ep-email">${epEsc(s.email||' · ')}</div>
         <div class="ep-levels" title="Per-level completion (I · II · III)">
           <div class="ep-lv l1"><i data-w="${s.l1}"></i></div>
           <div class="ep-lv l2"><i data-w="${s.l2}"></i></div>
@@ -3297,7 +3321,7 @@ function renderStudentDetail(s, doneSet, quizScores, lp){
       <div class="ep-d-id">
         <div class="eyebrow" style="margin-bottom:5px">${epEsc(s.rank)}${pct>=100?' · Certified':''}</div>
         <h3>${epEsc(s.name)}</h3>
-        <div class="ep-email">${epEsc(s.email||'—')}</div>
+        <div class="ep-email">${epEsc(s.email||' · ')}</div>
       </div>
       <button class="btn ghost sm" onclick="closeStudentDetail()">Close</button>
     </div>
@@ -3318,7 +3342,7 @@ function renderStudentDetail(s, doneSet, quizScores, lp){
       <h4>Quiz scores</h4>
       <div class="ep-quiz">${quizHTML}</div>
     </div>
-    ${lp?`<div class="ep-d-section"><h4>Last position</h4><div style="font-size:14px;color:var(--ink-soft)">${epEsc((lvlObj(lp.level)||{}).name||lp.level||'—')} · Lesson ${epEsc(lp.lesson||'—')}</div></div>`:''}
+    ${lp?`<div class="ep-d-section"><h4>Last position</h4><div style="font-size:14px;color:var(--ink-soft)">${epEsc((lvlObj(lp.level)||{}).name||lp.level||' · ')} · Lesson ${epEsc(lp.lesson||' · ')}</div></div>`:''}
   `;
   requestAnimationFrame(()=>requestAnimationFrame(()=>{
     const r=body.querySelector('.cring');
@@ -3347,7 +3371,7 @@ window.refreshAddModules = function(){
   const sel = document.getElementById('addMod'); const lvlSel=document.getElementById('addLvl');
   if(!sel||!lvlSel) return;
   const L = lvlObj(lvlSel.value);
-  if(L) sel.innerHTML = L.modules.map((m,i)=>`<option value="${i}">M${i+1} — ${m.title}</option>`).join('');
+  if(L) sel.innerHTML = L.modules.map((m,i)=>`<option value="${i}">M${i+1} · ${m.title}</option>`).join('');
 };
 
 window.adminAddModule = async function(){
@@ -3459,6 +3483,7 @@ window.openLessonEditor = function(key){
   document.getElementById('edYoutube').value = c.youtubeId || '';
   document.getElementById('edRead').value = (c.read||[]).join('\n\n');
   document.getElementById('edTerms').value = (c.terms||[]).map(t=>t[0]+' :: '+t[1]).join('\n');
+  document.getElementById('edSources').value = (c.sources||[]).join('\n');
   window.editorQuiz = JSON.parse(JSON.stringify(c.quiz||[]));
   window.renderEditorQuiz();
   document.getElementById('lessonEditor').style.display='flex';
@@ -3505,6 +3530,8 @@ window.saveLessonEditor = async function(){
   const content = { read, terms, quiz };
   if(yt) content.youtubeId = yt;
   if(mins>0) content.mins = mins;
+  const sources = document.getElementById('edSources').value.split('\n').map(s=>s.trim()).filter(Boolean);
+  if(sources.length) content.sources = sources;
   SITE.lessonContent = SITE.lessonContent || {};
   SITE.lessonContent[editorKey] = content;
   const okSave = await saveSiteContent();
@@ -3739,7 +3766,7 @@ window.generateCertificate = async function(){
     try {
       await updateDoc(doc(db,'users',currentUser.uid,'progress','state'),{ certName: name });
     } catch(e){
-      // doc may not exist yet — use setDoc
+      // doc may not exist yet - use setDoc
       await setDoc(doc(db,'users',currentUser.uid,'progress','state'),{ certName: name }, { merge: true });
     }
   }
@@ -3766,121 +3793,121 @@ window.generateCertificate = async function(){
    Each topic gives the bot a line for every phase. */
 const DEBATE_TOPICS = [
   { motion:'The problem of evil makes an all-good, all-powerful God improbable.', bot:{
-    opening:'The opposition holds that suffering is no evidence against God. The free-will defence shows a perfectly good being could permit evil for goods we cannot see — and soul-making, as John Hick argued, requires a world with real adversity.',
-    cross:'You point to gratuitous suffering — but how could you, with a finite vantage, possibly know a given evil serves no greater purpose? Absence of a visible reason is not evidence of absence.',
+    opening:'The opposition holds that suffering is no evidence against God. The free-will defence shows a perfectly good being could permit evil for goods we cannot see, and soul-making, as John Hick argued, requires a world with real adversity.',
+    cross:'You point to gratuitous suffering, but how could you, with a finite vantage, possibly know a given evil serves no greater purpose? Absence of a visible reason is not evidence of absence.',
     closing:'My opponent has shown only that evil is troubling, not that it is improbable on theism. Once we admit our limited vantage, the argument from evil loses its force.' }},
   { motion:'Objective morality can exist without God.', bot:{
     opening:'I argue it cannot. Without a transcendent ground, moral claims are just preferences or evolved instincts. "Cruelty is wrong" would describe how we feel, not a fact binding on everyone.',
-    cross:'You appeal to human flourishing — but why is flourishing good? Smuggling in "persons matter" is borrowing a conclusion that secular naturalism has not earned.',
+    cross:'You appeal to human flourishing, but why is flourishing good? Smuggling in "persons matter" is borrowing a conclusion that secular naturalism has not earned.',
     closing:'My opponent assumes the very objectivity in question. A universe of particles has no oughts. Without a lawgiver, morality is real to us, but not objectively binding.' }},
   { motion:'Faith is not a reliable path to truth.', bot:{
-    opening:'The opposition overstates the case. Faith, properly understood, is trust proportioned to experience — not belief without reason. We rely on testimony and trust constantly; faith is continuous with that.',
+    opening:'The opposition overstates the case. Faith, properly understood, is trust proportioned to experience, not belief without reason. We rely on testimony and trust constantly; faith is continuous with that.',
     cross:'If faith never tracks truth, how do you explain the countless reformed and refined beliefs held faithfully across traditions? You are attacking a caricature of faith.',
-    closing:'My opponent has shown only that BAD faith fails — not faith itself. Reasonable trust, open to revision, remains a legitimate route to many truths.' }},
+    closing:'My opponent has shown only that BAD faith fails, not faith itself. Reasonable trust, open to revision, remains a legitimate route to many truths.' }},
   { motion:'The burden of proof lies with the person who claims a god exists.', bot:{
     opening:'I deny this. "There is no god" is itself a positive claim about reality and carries its own burden. The atheist who asserts it owes us an argument as much as the theist does.',
-    cross:'You hide behind "I merely lack belief" — but if you act and argue as though no god exists, you hold a thesis, and theses must be defended.',
+    cross:'You hide behind "I merely lack belief", but if you act and argue as though no god exists, you hold a thesis, and theses must be defended.',
     closing:'Burden is not a one-way street. My opponent wants the privileges of a claim with none of its costs. Both sides must argue.' }},
   { motion:'Science and religion are fundamentally incompatible.', bot:{
     opening:'They are not. Science asks how; religion asks why. Newton, Faraday and Mendel did first-rate science while devout. The domains are distinct, not contradictory.',
-    cross:'You cite specific clashes — but those are conflicts between particular claims and particular findings, not between science and religion as such. Why generalise from a few cases?',
+    cross:'You cite specific clashes, but those are conflicts between particular claims and particular findings, not between science and religion as such. Why generalise from a few cases?',
     closing:'My opponent confuses local disputes with a deep incompatibility. Methodological naturalism is a tool, not a metaphysics. The two enterprises can coexist.' }},
   { motion:'A meaningful life does not require belief in an afterlife.', bot:{
     opening:'I argue meaning is thinned without permanence. If all achievements are erased by death and the heat-death of the cosmos, the opposition must explain how anything finally matters.',
-    cross:'You say meaning is "made, not found" — but if you author it yourself, isn\'t it arbitrary? What stops it collapsing into mere preference?',
+    cross:'You say meaning is "made, not found", but if you author it yourself, isn\'t it arbitrary? What stops it collapsing into mere preference?',
     closing:'My opponent offers meaning that is real but fragile. Without some lasting frame, the significance of a finite life remains, on their view, hard to secure.' }},
   { motion:'The fine-tuning of the universe is better explained without a designer.', bot:{
     opening:'The constants sit in an extraordinarily narrow life-permitting range. Design is the natural inference; the multiverse is an untested posit invoked precisely to avoid that conclusion.',
-    cross:'You appeal to a multiverse — but we have no independent evidence for it. Isn\'t replacing one unobservable (God) with infinitely many unobservable universes a steep price?',
+    cross:'You appeal to a multiverse, but we have no independent evidence for it. Isn\'t replacing one unobservable (God) with infinitely many unobservable universes a steep price?',
     closing:'My opponent trades a single elegant explanation for a sprawling, evidence-free one. On simplicity alone, design remains the stronger inference.' }},
   { motion:'Religious texts should not be the basis of public law.', bot:{
-    opening:'I argue scripture has rightly shaped law for millennia — prohibitions on murder and theft, the dignity of persons. To bar it entirely is to discard a deep moral inheritance.',
-    cross:'You want "neutral" secular reasons — but whose neutrality? Secular liberalism is itself a contested tradition, not a view from nowhere.',
+    opening:'I argue scripture has rightly shaped law for millennia, prohibitions on murder and theft, the dignity of persons. To bar it entirely is to discard a deep moral inheritance.',
+    cross:'You want "neutral" secular reasons, but whose neutrality? Secular liberalism is itself a contested tradition, not a view from nowhere.',
     closing:'My opponent wants to exile one tradition while privileging another. A genuinely plural society should let all moral sources, religious included, into public argument.' }},
   { motion:'Doubt is a virtue, not a failing.', bot:{
     opening:'I argue unceasing doubt is paralysis, not virtue. At some point one must commit, trust, and act. The person who doubts everything builds nothing and believes nothing.',
-    cross:'You praise doubt — but you do not doubt that doubt is good, nor that reason works. Don\'t your own commitments show that some convictions must be held firmly?',
+    cross:'You praise doubt, but you do not doubt that doubt is good, nor that reason works. Don\'t your own commitments show that some convictions must be held firmly?',
     closing:'My opponent celebrates a doubt they do not actually practise. Healthy inquiry needs trust as much as suspicion. Doubt without commitment is not wisdom.' }},
   { motion:'The concept of eternal hell is morally indefensible.', bot:{
-    opening:'I argue the opposition misreads the tradition. Many theologians frame hell as freely chosen separation, not imposed torture — the soul that finally refuses the good gets what it has chosen.',
-    cross:'You call infinite punishment disproportionate — but if the good rejected is itself infinite, why assume the consequence must be finite?',
-    closing:'My opponent attacks the crudest picture of hell. On a more careful account — self-exclusion, not sadism — the moral objection loses much of its bite.' }},
+    opening:'I argue the opposition misreads the tradition. Many theologians frame hell as freely chosen separation, not imposed torture, the soul that finally refuses the good gets what it has chosen.',
+    cross:'You call infinite punishment disproportionate, but if the good rejected is itself infinite, why assume the consequence must be finite?',
+    closing:'My opponent attacks the crudest picture of hell. On a more careful account, self-exclusion, not sadism, the moral objection loses much of its bite.' }},
   { motion:'Miracle claims are always less probable than a natural explanation.', bot:{
     opening:'Hume\'s maxim overreaches. If miracles are possible at all, then sufficient testimony could in principle establish one. To rule them out in advance is to assume the conclusion.',
-    cross:'You say "extraordinary claims need extraordinary evidence" — but who sets that bar, and doesn\'t setting it impossibly high simply guarantee your own conclusion?',
+    cross:'You say "extraordinary claims need extraordinary evidence", but who sets that bar, and doesn\'t setting it impossibly high simply guarantee your own conclusion?',
     closing:'My opponent has assumed naturalism, not argued for it. Whether a miracle occurred is a question of evidence in each case, not a verdict to be issued beforehand.' }},
   { motion:'Children should not be assigned the religion of their parents.', bot:{
-    opening:'I argue this misunderstands how identity works. Children inherit a language, a culture, a cuisine — and a tradition. Raising a child within a faith is not indoctrination; it is transmission.',
-    cross:'You would withhold all religious formation until adulthood — but no upbringing is neutral. Raising a child in secular assumptions is just as formative. Why is that exempt?',
-    closing:'My opponent demands a neutrality that does not exist. Every child is raised inside some worldview. Fairness means teaching it openly and allowing later revision — not erasing it.' }},
+    opening:'I argue this misunderstands how identity works. Children inherit a language, a culture, a cuisine, and a tradition. Raising a child within a faith is not indoctrination; it is transmission.',
+    cross:'You would withhold all religious formation until adulthood, but no upbringing is neutral. Raising a child in secular assumptions is just as formative. Why is that exempt?',
+    closing:'My opponent demands a neutrality that does not exist. Every child is raised inside some worldview. Fairness means teaching it openly and allowing later revision, not erasing it.' }},
   { motion:'Consciousness does not require an immaterial soul.', bot:{
     opening:'I argue the "hard problem" remains unsolved. No account of neurons firing explains why there is something it is like to see red. That explanatory gap keeps the soul hypothesis alive.',
-    cross:'You point to brain-damage studies — but correlation of mind with brain is exactly what dualists expect if the brain is the soul\'s instrument. How does that settle it?',
+    cross:'You point to brain-damage studies, but correlation of mind with brain is exactly what dualists expect if the brain is the soul\'s instrument. How does that settle it?',
     closing:'My opponent assumes physicalism can close a gap it has not closed. Until subjective experience is explained in physical terms, the immaterial mind remains a live option.' }},
   { motion:'Secular ethics can fully ground universal human rights.', bot:{
     opening:'I argue rights-talk borrows theological capital. "All humans have inherent dignity" is a claim that flourished on the idea of persons made in a divine image. Strip that, and what grounds it?',
-    cross:'On a purely naturalist view we are evolved primates — so where does an inviolable right come from? Why not just the interests of the powerful?',
+    cross:'On a purely naturalist view we are evolved primates, so where does an inviolable right come from? Why not just the interests of the powerful?',
     closing:'My opponent affirms human rights but cannot say what they rest on. A secure foundation for universal dignity is precisely what secular naturalism has struggled to supply.' }},
   { motion:'Religious belief is best explained by cognitive science, not by God.', bot:{
-    opening:'I argue this commits the genetic fallacy. Showing how a belief arises says nothing about whether it is true. Our faculties for detecting mathematics also "evolved" — that does not make maths false.',
+    opening:'I argue this commits the genetic fallacy. Showing how a belief arises says nothing about whether it is true. Our faculties for detecting mathematics also "evolved", that does not make maths false.',
     cross:'If natural explanations of belief debunk religion, don\'t they equally debunk your belief in naturalism, which also arose from the same evolved brain?',
     closing:'My opponent confuses origin with justification. A cognitive account of why people believe leaves the truth question exactly where it was.' }},
   { motion:'One can live a fully ethical life without any religion.', bot:{
     opening:'I argue religion supplies what secular ethics struggles to: motivation, community, and a horizon beyond self-interest. The non-religious can be good, but they lean on borrowed moral capital.',
-    cross:'You point to good atheists — granted — but are they good BECAUSE of their naturalism, or are they coasting on values a religious civilisation bequeathed them?',
+    cross:'You point to good atheists, granted, but are they good BECAUSE of their naturalism, or are they coasting on values a religious civilisation bequeathed them?',
     closing:'My opponent shows the non-religious can act well. They have not shown that their worldview, on its own resources, can sustain that goodness across generations.' }},
 ];
 
 /* Bot arguing FOR the motion (used when the user chooses the Negative side).
    Index-aligned with DEBATE_TOPICS; the .bot lines above are the AGAINST case. */
 const PRO_BOT = [
-  { opening:'I argue the motion stands. In every hour, creatures suffer agonies that serve no discernible purpose — the fawn burning alone in a forest no one sees. A being able and willing to prevent gratuitous suffering, and good, is hard to square with what we observe.',
-    cross:'You will appeal to reasons we cannot see — but if every horror is excused by an invisible greater good, your theism becomes unfalsifiable. Doesn’t that drain it of content?',
+  { opening:'I argue the motion stands. In every hour, creatures suffer agonies that serve no discernible purpose, the fawn burning alone in a forest no one sees. A being able and willing to prevent gratuitous suffering, and good, is hard to square with what we observe.',
+    cross:'You will appeal to reasons we cannot see, but if every horror is excused by an invisible greater good, your theism becomes unfalsifiable. Doesn’t that drain it of content?',
     closing:'I claim not certainty but probability. The scale of apparently pointless suffering tilts the scales. On the evidence, an all-good, all-powerful God is the less likely hypothesis.' },
-  { opening:'I argue morality can stand without God. Moral facts can be grounded in the well-being of conscious creatures — suffering is bad for the sufferer whether or not a god exists. Reason, not revelation, shows us how to reduce harm.',
-    cross:'You say without God morality is mere preference — but the Euthyphro dilemma shows grounding it in a divine will is itself arbitrary. Why is your foundation firmer than mine?',
+  { opening:'I argue morality can stand without God. Moral facts can be grounded in the well-being of conscious creatures, suffering is bad for the sufferer whether or not a god exists. Reason, not revelation, shows us how to reduce harm.',
+    cross:'You say without God morality is mere preference, but the Euthyphro dilemma shows grounding it in a divine will is itself arbitrary. Why is your foundation firmer than mine?',
     closing:'Mathematics is objective without a divine mathematician; ethics can be objective without a divine commander. Morality rests on reasons open to all. The motion stands.' },
-  { opening:'I argue faith — belief held without or against evidence — has no mechanism of self-correction. Across history it has affirmed contradictory claims with equal conviction. A method yielding opposite truths to different believers cannot be reliable.',
-    cross:'You will redefine faith as reasonable trust — but then it collapses into evidence-based belief and does no distinctive work. Which faith are you actually defending?',
+  { opening:'I argue faith, belief held without or against evidence, has no mechanism of self-correction. Across history it has affirmed contradictory claims with equal conviction. A method yielding opposite truths to different believers cannot be reliable.',
+    cross:'You will redefine faith as reasonable trust, but then it collapses into evidence-based belief and does no distinctive work. Which faith are you actually defending?',
     closing:'Where faith agrees with evidence, evidence did the work; where they diverge, faith misleads. As a path to truth it adds nothing reliable. The motion stands.' },
-  { opening:'I argue the burden falls on whoever asserts an entity exists — that is simply how rational discourse works. "A god exists" is the positive existential claim and, like any such claim, requires support.',
-    cross:'You say denial is also a claim — but withholding assent for want of evidence is the default for every unproven entity, from Russell’s teapot to undiscovered particles. Why treat gods differently?',
+  { opening:'I argue the burden falls on whoever asserts an entity exists, that is simply how rational discourse works. "A god exists" is the positive existential claim and, like any such claim, requires support.',
+    cross:'You say denial is also a claim, but withholding assent for want of evidence is the default for every unproven entity, from Russell’s teapot to undiscovered particles. Why treat gods differently?',
     closing:'We don’t demand proof that dragons don’t exist; we await evidence that they do. Consistency requires the same here. The burden lies with the claimant. The motion stands.' },
   { opening:'I argue their methods are incompatible. Science proportions belief to evidence and holds every claim revisable; revealed religion fixes certain claims by authority beyond evidence. Those epistemologies pull opposite ways.',
-    cross:'You cite devout scientists — but people hold incompatible ideas in separate compartments. Compartmentalisation in a person isn’t coherence between the methods. How do you answer that?',
-    closing:'Where their claims overlapped — the age of the earth, the origin of species — the methods collided and evidence won every time. The incompatibility is methodological. The motion stands.' },
-  { opening:'I argue meaning comes from within this life — love, work, beauty, the good we do others. That a thing ends does not make it meaningless: a symphony is not pointless because it stops, nor a friendship because we are mortal.',
-    cross:'You say without permanence nothing finally matters — but why should infinite duration confer meaning that finite duration cannot? An endless task could be just as empty. Why is length the measure?',
+    cross:'You cite devout scientists, but people hold incompatible ideas in separate compartments. Compartmentalisation in a person isn’t coherence between the methods. How do you answer that?',
+    closing:'Where their claims overlapped, the age of the earth, the origin of species, the methods collided and evidence won every time. The incompatibility is methodological. The motion stands.' },
+  { opening:'I argue meaning comes from within this life, love, work, beauty, the good we do others. That a thing ends does not make it meaningless: a symphony is not pointless because it stops, nor a friendship because we are mortal.',
+    cross:'You say without permanence nothing finally matters, but why should infinite duration confer meaning that finite duration cannot? An endless task could be just as empty. Why is length the measure?',
     closing:'Billions live deeply meaningful lives without certainty of an afterlife. Meaning lies in how we live, not how long. The motion stands.' },
-  { opening:'I argue naturalistic explanations are stronger. The constants may be necessary, or shaped by deeper physics; and a vast multiverse — motivated by inflationary cosmology — would make a life-permitting universe unsurprising.',
-    cross:'You call the multiverse unobservable — but a single undetectable, unexplained designer is hardly more parsimonious. Why is one unobservable mind simpler than universes physics already suggests?',
-    closing:'A designer only relocates the puzzle — who fine-tuned the fine-tuner? Naturalism keeps the explanation within physics. The motion stands.' },
+  { opening:'I argue naturalistic explanations are stronger. The constants may be necessary, or shaped by deeper physics; and a vast multiverse, motivated by inflationary cosmology, would make a life-permitting universe unsurprising.',
+    cross:'You call the multiverse unobservable, but a single undetectable, unexplained designer is hardly more parsimonious. Why is one unobservable mind simpler than universes physics already suggests?',
+    closing:'A designer only relocates the puzzle, who fine-tuned the fine-tuner? Naturalism keeps the explanation within physics. The motion stands.' },
   { opening:'I argue law in a plural society must rest on reasons all citizens can weigh, whatever their faith. Grounding statute in one tradition’s scripture imposes its theology on those who don’t share it, and privileges one revelation over all others.',
-    cross:'You say secular reasoning is just another tradition — but it appeals to evidence and shared human interests a Muslim, Christian, Hindu, or atheist can all assess. Scripture cannot claim that reach.',
+    cross:'You say secular reasoning is just another tradition, but it appeals to evidence and shared human interests a Muslim, Christian, Hindu, or atheist can all assess. Scripture cannot claim that reach.',
     closing:'No citizen should be bound by a holy book they have no reason to accept. Public law needs public reasons. The motion stands.' },
-  { opening:'I argue doubt is the engine of inquiry. Every advance — Copernican, Darwinian, medical — began with someone doubting a received certainty. The willingness to say "I might be wrong" is what makes knowledge self-correcting.',
-    cross:'You warn doubt becomes paralysis — but I defend proportioned doubt, not universal scepticism. Holding beliefs provisionally is not refusing to act. Why conflate the two?',
+  { opening:'I argue doubt is the engine of inquiry. Every advance, Copernican, Darwinian, medical, began with someone doubting a received certainty. The willingness to say "I might be wrong" is what makes knowledge self-correcting.',
+    cross:'You warn doubt becomes paralysis, but I defend proportioned doubt, not universal scepticism. Holding beliefs provisionally is not refusing to act. Why conflate the two?',
     closing:'Certainty closes the mind; doubt keeps it open to correction. Far from a failing, it is the central intellectual virtue. The motion stands.' },
   { opening:'I argue infinite punishment for finite wrongs is the very definition of disproportion. No human act, committed across mere decades, could warrant unending torment. A perfectly just being would not impose it.',
-    cross:'You reframe hell as freely chosen separation — but who, fully grasping the stakes, would choose eternal agony? If they cannot, the choice isn’t free; if they can, the system is built to ensure their ruin.',
+    cross:'You reframe hell as freely chosen separation, but who, fully grasping the stakes, would choose eternal agony? If they cannot, the choice isn’t free; if they can, the system is built to ensure their ruin.',
     closing:'Whether imposed or "chosen", endless suffering for temporal failings cannot be reconciled with justice or love. The concept is indefensible. The motion stands.' },
-  { opening:'I argue with Hume: a miracle violates the most well-established regularities, against the entire weight of human experience — while testimony is frequently mistaken or embellished. The error in the report is always the more probable hypothesis.',
-    cross:'You say ruling out miracles assumes the conclusion — but I rule nothing out; I weigh probabilities. Given how often testimony fails, why believe the one explanation that contradicts all else we know?',
-    closing:'It is not that miracles are impossible — only that honest error or natural cause is always more probable than a suspension of nature. The motion stands.' },
-  { opening:'I argue we’d never call a child a "Marxist child" or a "libertarian child" — we treat those as conclusions one reaches. Religious identity is likewise a contested set of claims; labelling a child with it pre-empts a judgement they haven’t yet made.',
-    cross:'You say all upbringing is formative — true — but there’s a difference between teaching a child ABOUT a tradition and declaring them a member before they can assess it. Why not raise them informed and let them choose?',
+  { opening:'I argue with Hume: a miracle violates the most well-established regularities, against the entire weight of human experience, while testimony is frequently mistaken or embellished. The error in the report is always the more probable hypothesis.',
+    cross:'You say ruling out miracles assumes the conclusion, but I rule nothing out; I weigh probabilities. Given how often testimony fails, why believe the one explanation that contradicts all else we know?',
+    closing:'It is not that miracles are impossible, only that honest error or natural cause is always more probable than a suspension of nature. The motion stands.' },
+  { opening:'I argue we’d never call a child a "Marxist child" or a "libertarian child", we treat those as conclusions one reaches. Religious identity is likewise a contested set of claims; labelling a child with it pre-empts a judgement they haven’t yet made.',
+    cross:'You say all upbringing is formative, true, but there’s a difference between teaching a child ABOUT a tradition and declaring them a member before they can assess it. Why not raise them informed and let them choose?',
     closing:'Respecting a child’s future autonomy means not stamping them with metaphysics in infancy. Teach and expose, but do not assign. The motion stands.' },
   { opening:'I argue the evidence ties mind to brain at every turn. Anaesthesia suspends consciousness; a stroke can erase language, memory, even personality; specific lesions remove specific faculties. Mind tracks matter so tightly that a separate soul becomes idle.',
-    cross:'You invoke the hard problem — but a gap in our current explanation is not evidence for a soul. "We can’t yet explain it physically" does not entail "therefore immaterial substance." Isn’t that god-of-the-gaps?',
+    cross:'You invoke the hard problem, but a gap in our current explanation is not evidence for a soul. "We can’t yet explain it physically" does not entail "therefore immaterial substance." Isn’t that god-of-the-gaps?',
     closing:'Every advance in neuroscience makes the mind more dependent on the brain, not less. The soul adds nothing we need. The motion stands.' },
-  { opening:'I argue human rights rest on capacities we can identify without theology — the ability to suffer, to have interests, to flourish or be harmed. Equal moral status follows from our shared vulnerability and rationality, not from divine decree.',
-    cross:'You say rights need a divine image — but scriptures have justified slavery and conquest too. If the same texts ground both rights and atrocities, how is divine grounding more secure than reasoned, secular grounding?',
+  { opening:'I argue human rights rest on capacities we can identify without theology, the ability to suffer, to have interests, to flourish or be harmed. Equal moral status follows from our shared vulnerability and rationality, not from divine decree.',
+    cross:'You say rights need a divine image, but scriptures have justified slavery and conquest too. If the same texts ground both rights and atrocities, how is divine grounding more secure than reasoned, secular grounding?',
     closing:'The Universal Declaration was signed by believers and non-believers alike, justified by shared human reason. Rights stand on what we are and what we can suffer. The motion stands.' },
   { opening:'I argue the cognitive science of religion explains belief economically: hyperactive agency detection, theory of mind, and a bias toward purpose reliably produce god-concepts across unrelated cultures. We can account for the belief without its object.',
-    cross:'You cry genetic fallacy — but I don’t claim the explanation disproves God; I claim it’s the BEST explanation of the belief, removing any need to posit a deity to explain why people believe. Why add an entity the data doesn’t require?',
+    cross:'You cry genetic fallacy, but I don’t claim the explanation disproves God; I claim it’s the BEST explanation of the belief, removing any need to posit a deity to explain why people believe. Why add an entity the data doesn’t require?',
     closing:'When a natural mechanism fully accounts for why belief is so widespread, the divine hypothesis becomes explanatorily redundant. The motion stands.' },
-  { opening:'I argue ethics is about how we treat one another — honesty, compassion, fairness, courage — none of which require a creed. Secular humanists and millions of unaffiliated people demonstrably live lives of integrity and service.',
-    cross:'You say the non-religious borrow moral capital — but moral intuitions predate every scripture and appear across all cultures. Why assume goodness is on loan from religion rather than a shared human inheritance?',
+  { opening:'I argue ethics is about how we treat one another, honesty, compassion, fairness, courage, none of which require a creed. Secular humanists and millions of unaffiliated people demonstrably live lives of integrity and service.',
+    cross:'You say the non-religious borrow moral capital, but moral intuitions predate every scripture and appear across all cultures. Why assume goodness is on loan from religion rather than a shared human inheritance?',
     closing:'Societies with low religiosity rank among the most peaceful and altruistic on earth. A fully ethical life plainly needs no religion. The motion stands.' },
 ];
 
@@ -3892,7 +3919,7 @@ const BOT_TIERS = [
 ];
 
 const PHASES = [
-  { key:'opening', label:'Opening Statement', secs:600, prompt:'Open your case {STANCE} the motion — state your two or three strongest reasons clearly.' },
+  { key:'opening', label:'Opening Statement', secs:600, prompt:'Open your case {STANCE} the motion. State your two or three strongest reasons clearly.' },
   { key:'cross',   label:'Cross-Examination', secs:300, prompt:'Answer the bot’s challenge directly, then press the weakest link in its case.' },
   { key:'closing', label:'Closing Statement', secs:600, prompt:'Summarise why your case outweighs the opposition. Don’t introduce brand-new arguments.' },
 ];
@@ -3934,7 +3961,7 @@ window.resetDebate = function(){
   document.getElementById('arenaResult').style.display='none';
   document.getElementById('arenaStartRow').style.display='block';
   updateSidesUI();
-  toast('Debate reset — choose a side and start again','');
+  toast('Debate reset, choose a side and start again','');
 };
 
 function setArenaTopic(idx){
@@ -3980,7 +4007,7 @@ function runPhase(){
   const botRole  = aff ? 'opposition' : 'proposition';
   renderPhaseTracker();
   document.getElementById('stagePhase').textContent = ph.label;
-  document.getElementById('botPhaseLabel').textContent = arenaState.botName+' — '+botRole+' '+ph.key;
+  document.getElementById('botPhaseLabel').textContent = arenaState.botName+' · '+botRole+' '+ph.key;
   document.getElementById('botStatementText').textContent = botLines[ph.key];
   document.getElementById('yourPhaseLabel').textContent = ph.label.toLowerCase();
   document.getElementById('yourPrompt').textContent = ph.prompt.replace('{STANCE}', aff?'FOR':'AGAINST');
@@ -4040,8 +4067,8 @@ window.submitPhase = function(auto){
   document.getElementById('scoreBot').textContent=arenaState.scoreBot;
   if(typeof bumpEl==='function'){ bumpEl(document.getElementById('scoreYou')); bumpEl(document.getElementById('scoreBot')); }
   fb.style.color = you>=4?'#7ecfa4':you>=3?'var(--gold-soft)':'#e0a080';
-  fb.textContent = (auto && !text? 'Time! No statement entered — 0 this phase. ' : '')
-    + (you>=4?'✦ Strong — evidence and engagement both landed.':you>=3?'Solid round. Cite a thinker or address the bot directly to score higher.':'Develop it further — more substance, evidence, and direct rebuttal.');
+  fb.textContent = (auto && !text? 'Time! No statement entered, 0 this phase. ' : '')
+    + (you>=4?'✦ Strong: evidence and engagement both landed.':you>=3?'Solid round. Cite a thinker or address the bot directly to score higher.':'Develop it further, more substance, evidence, and direct rebuttal.');
   arenaState.phaseIdx++;
   if(arenaState.phaseIdx < PHASES.length){ setTimeout(runPhase, 1500); }
   else { setTimeout(endDebate, 1200); }
@@ -4090,7 +4117,7 @@ function renderDebateRecord(){
   const statsEl = document.getElementById('debateStats');
   if(!el) return;
   if(!state.debateHistory || !state.debateHistory.length){
-    el.innerHTML = '<div style="color:var(--muted);font-size:14px;font-style:italic;padding:12px 0">No debates completed yet — challenge a bot above to start your record.</div>';
+    el.innerHTML = '<div style="color:var(--muted);font-size:14px;font-style:italic;padding:12px 0">No debates completed yet. Challenge a bot above to start your record.</div>';
     if(statsEl) statsEl.style.display = 'none';
     return;
   }
@@ -4106,7 +4133,7 @@ function renderDebateRecord(){
     const label = d.result==='win'?'Won':d.result==='draw'?'Draw':'Lost';
     return `<div class="row">
       <div class="mo"><b style="font-size:14px">${d.motion}</b>
-      <div style="font-size:12px;color:var(--muted)">${d.bot} · Score ${d.you}–${d.bot_score}</div></div>
+      <div style="font-size:12px;color:var(--muted)">${d.bot} · Score ${d.you}-${d.bot_score}</div></div>
       <span style="font-size:12px;font-weight:700;color:${col};white-space:nowrap">${label}</span>
     </div>`;
   }).join('');
@@ -4139,11 +4166,11 @@ function endDebate(){
   res.innerHTML = `
     <div style="font-size:30px;margin-bottom:10px">${won?'🏆':tied?'🤝':'📚'}</div>
     <div style="font-family:var(--disp);font-size:25px;font-weight:700;color:${won?'#7ecfa4':tied?'var(--gold-soft)':'#e07070'};margin-bottom:8px">
-      ${won?'You won the debate!':tied?'A draw — well matched':'The bot edged this one'}
+      ${won?'You won the debate!':tied?'A draw, well matched':'The bot edged this one'}
     </div>
     <div style="font-size:14px;color:#C8BCA1;margin-bottom:6px">You argued <b style="color:#F0E6CE">${arenaState.side==='aff'?'for':'against'}</b> · vs ${arenaState.botName} on “${DEBATE_TOPICS[arenaState.topicIdx].motion}”</div>
     <div style="font-size:15px;color:#C8BCA1;margin-bottom:16px">
-      Final score &nbsp; You <b style="color:#7ecfa4;font-size:20px">${you}</b> &nbsp;–&nbsp; <b style="color:#e07070;font-size:20px">${bot}</b> Bot
+      Final score &nbsp; You <b style="color:#7ecfa4;font-size:20px">${you}</b> &nbsp;-&nbsp; <b style="color:#e07070;font-size:20px">${bot}</b> Bot
     </div>
     <div style="font-size:13px;color:var(--gold-soft);margin-bottom:20px">+${rp} RP awarded</div>
     <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
@@ -4172,6 +4199,11 @@ window.saveProgress = async function(){
   } catch(e){ console.warn('saveProgress failed',e); }
   if(typeof writeProfileSummary==='function') writeProfileSummary();   // keep the admin roster summary fresh
 };
+
+/* Boot the app now that every helper is defined, including renderBotQueue /
+   renderDebateRecord declared above in this block. Runs during parse (this is a classic
+   script), so the first render does not wait on the deferred Firebase module. */
+runInit();
 </script>
 </body>
 </html>

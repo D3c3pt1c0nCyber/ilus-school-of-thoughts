@@ -1,10 +1,10 @@
-/* Auto-extracted generated lesson content — Level I, II, III */
+/* Auto-extracted generated lesson content - Level I, II, III */
 window.SEED_LESSON_CONTENT = {
  "L1:1.1": {
   "read": [
-   "Ask ten people what an atheist is and you may get ten answers: someone angry at God, someone certain no gods exist, someone who simply shrugs. The confusion is not trivial, because a debate goes nowhere if the two sides are arguing about different things. The cleanest definition is the narrowest one: an atheist is a person who lacks belief in any god. That is a claim about the state of one&rsquo;s own belief, not a cosmic verdict. Before we can defend or attack a position, we have to know which position is actually on the table &mdash; and that means mapping the territory carefully.",
+   "Ask ten people what an atheist is and you may get ten answers: someone angry at God, someone certain no gods exist, someone who simply shrugs. The confusion is not trivial, because a debate goes nowhere if the two sides are arguing about different things. The cleanest definition is the narrowest one: an atheist is a person who lacks belief in any god. That is a claim about the state of one&rsquo;s own belief, not a cosmic verdict. Before we can defend or attack a position, we have to know which position is actually on the table, and that means mapping the territory carefully.",
    "The key move is to separate two different questions. One is about knowledge: do you claim to <i>know</i> whether a god exists? The other is about belief: do you <i>believe</i> one exists? Theism and atheism answer the belief question; gnosticism and agnosticism answer the knowledge question. The two axes combine, so a person can be an agnostic atheist (no belief, but no claim to certainty) just as coherently as a gnostic theist (belief plus a claim to know). Nearby sit related stances: antitheism opposes religion&rsquo;s influence, apatheism finds the question uninteresting, igtheism says &ldquo;god&rdquo; is too ill-defined to argue about, and secular humanism builds an ethical life without appeal to the divine.",
-   "In a real exchange, the first job is to pin down which position your interlocutor holds, and to state your own honestly. A common error is to attack the strong claim &mdash; &ldquo;you can&rsquo;t prove no gods exist anywhere&rdquo; &mdash; against someone who only said they lack belief. That misfires, and a fair debater refuses the bait in both directions. Notice too where the burden of proof sits: whoever asserts a positive claim, theist or strong atheist, owes a reason for it. The believer who says they are convinced by design or moral order is making a serious case worth engaging, not a confusion to be mocked. Clarity first, then argument."
+   "In a real exchange, the first job is to pin down which position your interlocutor holds, and to state your own honestly. A common error is to attack the strong claim (&ldquo;you can&rsquo;t prove no gods exist anywhere&rdquo;) against someone who only said they lack belief. That misfires, and a fair debater refuses the bait in both directions. Notice too where the burden of proof sits: whoever asserts a positive claim, theist or strong atheist, owes a reason for it. The believer who says they are convinced by design or moral order is making a serious case worth engaging, not a confusion to be mocked. Clarity first, then argument."
   ],
   "terms": [
    [
@@ -56,26 +56,31 @@ window.SEED_LESSON_CONTENT = {
     "ans": 1,
     "ex": "Demanding proof of a universal negative attacks a strong claim the opponent never made; the <b>burden of proof</b> falls on whoever asserts a positive claim, not on someone who merely lacks belief."
    }
+  ],
+  "sources": [
+   "Julian Baggini, <i>Atheism: A Very Short Introduction</i> (2003).",
+   "George H. Smith, <i>Atheism: The Case Against God</i> (1979).",
+   "<a href=\"https://plato.stanford.edu/entries/atheism-agnosticism/\" target=\"_blank\" rel=\"noopener\">Stanford Encyclopedia of Philosophy: &ldquo;Atheism and Agnosticism&rdquo;</a>"
   ]
  },
  "L1:1.3": {
   "read": [
-   "Ask two people who both call themselves &ldquo;atheists&rdquo; whether God exists, and you may hear two very different answers. One says the existence of God is exactly as unlikely as the existence of fairies; the other says only that she has seen no good reason to believe and is waiting for one. In <i>The God Delusion</i>, Richard Dawkins proposed a 1&ndash;7 scale to make this difference visible. Position 1 is the person certain God exists; position 7 is the person certain God does not. The scale&rsquo;s real work is forcing a vague label to become a specific, defensible claim about confidence.",
+   "Ask two people who both call themselves &ldquo;atheists&rdquo; whether God exists, and you may hear two very different answers. One says the existence of God is exactly as unlikely as the existence of fairies; the other says only that she has seen no good reason to believe and is waiting for one. In <i>The God Delusion</i>, Richard Dawkins proposed a 1-7 scale to make this difference visible. Position 1 is the person certain God exists; position 7 is the person certain God does not. The scale&rsquo;s real work is forcing a vague label to become a specific, defensible claim about confidence.",
    "The key move is that the spectrum measures <i>probability of belief</i>, not group membership. A 6 (&ldquo;very low probability, but short of zero&rdquo;) and a 7 (&ldquo;I know there is no God&rdquo;) are both atheists, yet they owe the room different things: the 7 has taken on a positive claim of certainty that is hard to discharge. Dawkins placed himself at 6, leaning toward 7, precisely because certainty about a negative existential claim is a heavy burden. The theist side has the same structure. A 1 claims knowledge of God; a 2 holds a high but admittedly fallible probability. Each number names a real, distinct intellectual position rather than a tribe.",
    "In a live debate, watch for two failures the scale exposes. The first is the bait-and-switch: a speaker argues for a modest position (say, a 6) but defends it as if attacking a 7, or pins a 7&rsquo;s certainty on an opponent who never claimed it. The second is mistaking the scale for a popularity contest, as if the &ldquo;reasonable&rdquo; answer must be the middle. It need not be; where you sit should track the evidence and arguments you actually hold, not a wish to seem balanced. The honest use is simple: state your number, say why, and hold opponents only to the number they chose."
   ],
   "terms": [
    [
     "Dawkins Spectrum",
-    "A 1&ndash;7 scale, introduced by Richard Dawkins, that ranks a person&rsquo;s confidence in the existence of God from certain belief (1) to certain disbelief (7)."
+    "A 1-7 scale, introduced by Richard Dawkins, that ranks a person&rsquo;s confidence in the existence of God from certain belief (1) to certain disbelief (7)."
    ],
    [
     "De facto theist",
-    "Dawkins&rsquo;s label for position 2 &mdash; someone who does not claim certainty but assigns a very high probability to God&rsquo;s existence and lives as though God is there."
+    "Dawkins&rsquo;s label for position 2: someone who does not claim certainty but assigns a very high probability to God&rsquo;s existence and lives as though God is there."
    ],
    [
     "De facto atheist",
-    "Dawkins&rsquo;s label for position 6 &mdash; someone who cannot claim certainty but assigns a very low probability to God&rsquo;s existence and lives as though God is not there."
+    "Dawkins&rsquo;s label for position 6: someone who cannot claim certainty but assigns a very low probability to God&rsquo;s existence and lives as though God is not there."
    ],
    [
     "Strong atheism",
@@ -90,7 +95,7 @@ window.SEED_LESSON_CONTENT = {
      "False"
     ],
     "ans": 1,
-    "ex": "False. The scale ranks <b>probability of belief</b> on a 1&ndash;7 continuum, not group membership; two people sharing the label &ldquo;atheist&rdquo; can sit at different numbers."
+    "ex": "False. The scale ranks <b>probability of belief</b> on a 1-7 continuum, not group membership; two people sharing the label &ldquo;atheist&rdquo; can sit at different numbers."
    },
    {
     "q": "Dawkins placed himself at which position, and why?",
@@ -113,13 +118,17 @@ window.SEED_LESSON_CONTENT = {
     "ans": 1,
     "ex": "This is a <b>bait-and-switch</b>: honest use of the scale means holding opponents only to the number they chose, not to a more extreme one that is easier to attack."
    }
+  ],
+  "sources": [
+   "Richard Dawkins, <i>The God Delusion</i> (2006), ch. 2 (the 1-7 spectrum).",
+   "<a href=\"https://plato.stanford.edu/entries/atheism-agnosticism/\" target=\"_blank\" rel=\"noopener\">Stanford Encyclopedia of Philosophy: &ldquo;Atheism and Agnosticism&rdquo;</a>"
   ]
  },
  "L1:1.4": {
   "read": [
    "Three claims surface in almost every debate about atheism, often from thoughtful people arguing in good faith: that atheism is just another religion, that atheists have no grounds for morality, and that atheism is itself a confident claim to know no god exists. Each sounds reasonable, and each deserves a real answer rather than a sneer. The work of this lesson is not to score points but to sort the claims into the ones that rest on a misreading of what atheism is, and the genuine questions hiding underneath them that a careful atheist still has to face honestly.",
-   "Start with the shared root of the confusion: a category error about what atheism asserts. Atheism is a position on a single question &mdash; do you accept the claim that a god exists? An atheist answers no, or not yet convinced. That is a stance about one belief, not a worldview, a community, or a moral code. A religion bundles claims about the cosmos, rituals, sacred texts, and rules for living; atheism supplies none of these. So &ldquo;atheism is a religion&rdquo; mistakes the absence of one belief for the presence of a whole system. The morality charge makes a similar leap, assuming that without a divine lawgiver no grounding for ethics can exist &mdash; a serious philosophical question, but not one atheism by itself answers either way.",
-   "In a live exchange, watch for the slide from the narrow claim to the broad one. A skilled interlocutor may say &ldquo;you can&rsquo;t prove there&rsquo;s no god,&rdquo; which is true and which most atheists readily grant &mdash; lacking belief is not the same as asserting certain disproof. The charitable move is to agree where they are right and locate precisely where the inference fails. Concede that some atheists do build full worldviews and ethical frameworks; just note those come from elsewhere, not from atheism itself. Distinguishing the position from the people who hold it keeps the conversation honest and stops a fair theist objection from being answered with a strawman."
+   "Start with the shared root of the confusion: a category error about what atheism asserts. Atheism is a position on a single question: do you accept the claim that a god exists? An atheist answers no, or not yet convinced. That is a stance about one belief, not a worldview, a community, or a moral code. A religion bundles claims about the cosmos, rituals, sacred texts, and rules for living; atheism supplies none of these. So &ldquo;atheism is a religion&rdquo; mistakes the absence of one belief for the presence of a whole system. The morality charge makes a similar leap, assuming that without a divine lawgiver no grounding for ethics can exist, a serious philosophical question, but not one atheism by itself answers either way.",
+   "In a live exchange, watch for the slide from the narrow claim to the broad one. A skilled interlocutor may say &ldquo;you can&rsquo;t prove there&rsquo;s no god,&rdquo; which is true and which most atheists readily grant: lacking belief is not the same as asserting certain disproof. The charitable move is to agree where they are right and locate precisely where the inference fails. Concede that some atheists do build full worldviews and ethical frameworks; just note those come from elsewhere, not from atheism itself. Distinguishing the position from the people who hold it keeps the conversation honest and stops a fair theist objection from being answered with a strawman."
   ],
   "terms": [
    [
@@ -136,7 +145,7 @@ window.SEED_LESSON_CONTENT = {
    ],
    [
     "Grounding of morality",
-    "The philosophical question of what justifies moral claims &mdash; a question logically separate from whether any particular person believes in a god."
+    "The philosophical question of what justifies moral claims, a question logically separate from whether any particular person believes in a god."
    ]
   ],
   "quiz": [
@@ -171,13 +180,17 @@ window.SEED_LESSON_CONTENT = {
     "ans": 1,
     "ex": "The <b>grounding of morality</b> is a genuine philosophical question separate from atheism, so the charitable move is to acknowledge it honestly rather than pretend atheism already answers it."
    }
+  ],
+  "sources": [
+   "Julian Baggini, <i>Atheism: A Very Short Introduction</i> (2003).",
+   "Phil Zuckerman, <i>Society without God</i> (2008)."
   ]
  },
  "L1:2.1": {
   "read": [
-   "Every debate eventually comes down to a single question: does the conclusion actually follow from the reasons given for it? A claim like &ldquo;the universe must have a cause&rdquo; is not an argument by itself&mdash;it&rsquo;s a conclusion looking for support. An argument is the structured package: one or more statements offered as reasons (the premises) plus the statement they&rsquo;re meant to support (the conclusion). Learning to separate these pieces is the first real skill of reasoning. Before you can judge whether someone is right, you have to find what they&rsquo;re actually claiming and what work each sentence is doing. Most bad debates are just two people who never located the argument they were having.",
-   "Once the parts are visible, two very different questions open up. The first is about structure: if the premises were true, would the conclusion have to be true? An argument that passes this test is valid&mdash;its form is airtight regardless of content. But validity says nothing about whether the premises are actually true. &ldquo;All cats are immortal; Felix is a cat; so Felix is immortal&rdquo; is perfectly valid and obviously worthless, because a premise is false. An argument that is both valid and built entirely from true premises is sound. Soundness is the gold standard: it forces the conclusion on anyone who accepts the facts. Validity is cheap; soundness is what you&rsquo;re actually after.",
-   "In a live exchange, this distinction is your sharpest tool, and it cuts in two directions. When an opponent&rsquo;s reasoning is valid, attacking the conclusion directly is wasted breath&mdash;you must instead challenge a premise, because a valid structure leaves no other crack. When the structure is broken, no amount of true premises will save it, and you can grant every fact while still rejecting the conclusion. A careful theist arguing from contingency, for instance, often has a valid structure; the honest reply targets a specific premise, not the logic. Naming whether you dispute the truth of a premise or the validity of the link keeps a debate fair and precise, and it stops you from swinging at the wrong target."
+   "Every debate eventually comes down to a single question: does the conclusion actually follow from the reasons given for it? A claim like &ldquo;the universe must have a cause&rdquo; is not an argument by itself; it&rsquo;s a conclusion looking for support. An argument is the structured package: one or more statements offered as reasons (the premises) plus the statement they&rsquo;re meant to support (the conclusion). Learning to separate these pieces is the first real skill of reasoning. Before you can judge whether someone is right, you have to find what they&rsquo;re actually claiming and what work each sentence is doing. Most bad debates are just two people who never located the argument they were having.",
+   "Once the parts are visible, two very different questions open up. The first is about structure: if the premises were true, would the conclusion have to be true? An argument that passes this test is valid; its form is airtight regardless of content. But validity says nothing about whether the premises are actually true. &ldquo;All cats are immortal; Felix is a cat; so Felix is immortal&rdquo; is perfectly valid and obviously worthless, because a premise is false. An argument that is both valid and built entirely from true premises is sound. Soundness is the gold standard: it forces the conclusion on anyone who accepts the facts. Validity is cheap; soundness is what you&rsquo;re actually after.",
+   "In a live exchange, this distinction is your sharpest tool, and it cuts in two directions. When an opponent&rsquo;s reasoning is valid, attacking the conclusion directly is wasted breath. You must instead challenge a premise, because a valid structure leaves no other crack. When the structure is broken, no amount of true premises will save it, and you can grant every fact while still rejecting the conclusion. A careful theist arguing from contingency, for instance, often has a valid structure; the honest reply targets a specific premise, not the logic. Naming whether you dispute the truth of a premise or the validity of the link keeps a debate fair and precise, and it stops you from swinging at the wrong target."
   ],
   "terms": [
    [
@@ -205,7 +218,7 @@ window.SEED_LESSON_CONTENT = {
      "False"
     ],
     "ans": 0,
-    "ex": "<b>Validity</b> concerns structure alone&mdash;whether the conclusion would follow if the premises were true. A valid argument can have false premises; it just can&rsquo;t be <b>sound</b> unless those premises are actually true."
+    "ex": "<b>Validity</b> concerns structure alone: whether the conclusion would follow if the premises were true. A valid argument can have false premises; it just can&rsquo;t be <b>sound</b> unless those premises are actually true."
    },
    {
     "q": "An argument is valid but you know one of its premises is false. What follows about the conclusion?",
@@ -215,7 +228,7 @@ window.SEED_LESSON_CONTENT = {
      "This argument fails to establish the conclusion, though it may still be true on other grounds"
     ],
     "ans": 2,
-    "ex": "A false premise breaks <b>soundness</b>, so the argument doesn&rsquo;t prove its conclusion. But a conclusion can still happen to be true for entirely different reasons&mdash;a broken argument doesn&rsquo;t make the claim false."
+    "ex": "A false premise breaks <b>soundness</b>, so the argument doesn&rsquo;t prove its conclusion. But a conclusion can still happen to be true for entirely different reasons; a broken argument doesn&rsquo;t make the claim false."
    },
    {
     "q": "Your opponent presents a clearly valid argument. Which is the productive line of attack?",
@@ -227,13 +240,17 @@ window.SEED_LESSON_CONTENT = {
     "ans": 1,
     "ex": "Because <b>validity</b> guarantees the conclusion follows if the premises hold, the only honest opening is to challenge a <b>premise</b>. Denying the conclusion outright or conceding the validity gets you nowhere."
    }
+  ],
+  "sources": [
+   "Irving M. Copi, Carl Cohen &amp; Kenneth McMahon, <i>Introduction to Logic, 14th ed.</i> (2014).",
+   "<a href=\"https://iep.utm.edu/val-snd/\" target=\"_blank\" rel=\"noopener\">Internet Encyclopedia of Philosophy: &ldquo;Validity and Soundness&rdquo;</a>"
   ]
  },
  "L1:2.2": {
   "read": [
    "Suppose someone argues that the universe must have a cause, that the universe began to exist, and so the universe has a cause. Now suppose a second person notices that every swan she has seen is white and concludes that all swans are white. A third looks at fresh tire tracks in the snow and says a car passed recently. All three are reasoning, but they are not doing the same thing. The first guarantees its conclusion if the premises hold; the second only makes its conclusion likely; the third picks the best story for the evidence. Knowing which kind of inference is on the table is the first skill of careful thought.",
-   "Deduction moves from general premises to a conclusion that cannot be false if those premises are true &mdash; validity is about structure, soundness adds that the premises really are true. Induction generalizes from observed cases to unobserved ones, trading certainty for reach; it can be strong or weak but never airtight, since the next swan might be black. Abduction, or inference to the best explanation, starts with a puzzling fact and reaches for the hypothesis that would explain it most economically. Each has a proper job. Mathematics leans deductive, the empirical sciences lean inductive and abductive, and most everyday and philosophical argument blends all three.",
-   "In a live debate the danger is mismatching the standard to the tool. A theist offering a deductive cosmological argument should be challenged on validity and on the truth of each premise, not faulted for failing to be &lsquo;merely probable.&rsquo; An inductive claim, by contrast, is fairly pressed on sample size and counterexamples, while an abductive claim &mdash; say, that fine-tuning is best explained by design &mdash; is judged against rival explanations and on simplicity, scope, and fit. Watch for a common slip: dressing up an inductive or abductive case in the language of proof, then treating its conclusion as certain. Name the inference first, then apply the right test."
+   "Deduction moves from general premises to a conclusion that cannot be false if those premises are true. Validity is about structure, soundness adds that the premises really are true. Induction generalizes from observed cases to unobserved ones, trading certainty for reach; it can be strong or weak but never airtight, since the next swan might be black. Abduction, or inference to the best explanation, starts with a puzzling fact and reaches for the hypothesis that would explain it most economically. Each has a proper job. Mathematics leans deductive, the empirical sciences lean inductive and abductive, and most everyday and philosophical argument blends all three.",
+   "In a live debate the danger is mismatching the standard to the tool. A theist offering a deductive cosmological argument should be challenged on validity and on the truth of each premise, not faulted for failing to be &lsquo;merely probable.&rsquo; An inductive claim, by contrast, is fairly pressed on sample size and counterexamples, while an abductive claim (say, that fine-tuning is best explained by design) is judged against rival explanations and on simplicity, scope, and fit. Watch for a common slip: dressing up an inductive or abductive case in the language of proof, then treating its conclusion as certain. Name the inference first, then apply the right test."
   ],
   "terms": [
    [
@@ -261,7 +278,7 @@ window.SEED_LESSON_CONTENT = {
      "False"
     ],
     "ans": 0,
-    "ex": "Validity concerns form, not truth of premises. An argument can be <b>valid</b> yet unsound, and a false premise does not force a false conclusion &mdash; it just fails to guarantee a true one. Only a <b>sound</b> argument (valid plus all-true premises) guarantees truth."
+    "ex": "Validity concerns form, not truth of premises. An argument can be <b>valid</b> yet unsound, and a false premise does not force a false conclusion; it just fails to guarantee a true one. Only a <b>sound</b> argument (valid plus all-true premises) guarantees truth."
    },
    {
     "q": "&ldquo;Every raven observed so far is black, so all ravens are black.&rdquo; Which kind of inference is this?",
@@ -271,7 +288,7 @@ window.SEED_LESSON_CONTENT = {
      "Abductive"
     ],
     "ans": 1,
-    "ex": "Generalizing from observed cases to all cases is <b>inductive reasoning</b>. The conclusion is made probable but not guaranteed &mdash; an unobserved raven could break the pattern, which is why induction never reaches certainty."
+    "ex": "Generalizing from observed cases to all cases is <b>inductive reasoning</b>. The conclusion is made probable but not guaranteed: an unobserved raven could break the pattern, which is why induction never reaches certainty."
    },
    {
     "q": "A detective finds the best explanation of muddy footprints is that someone entered through the window. What is the most appropriate test of this reasoning?",
@@ -281,15 +298,19 @@ window.SEED_LESSON_CONTENT = {
      "Whether the sample of footprints is large enough"
     ],
     "ans": 1,
-    "ex": "This is <b>abductive reasoning</b>, or inference to the best explanation. It is judged by comparison with rival explanations on fit, scope, and simplicity &mdash; not by deductive necessity or by sample size, which belong to deduction and induction respectively."
+    "ex": "This is <b>abductive reasoning</b>, or inference to the best explanation. It is judged by comparison with rival explanations on fit, scope, and simplicity, not by deductive necessity or by sample size, which belong to deduction and induction respectively."
    }
+  ],
+  "sources": [
+   "Patrick J. Hurley, <i>A Concise Introduction to Logic</i> (2018).",
+   "<a href=\"https://plato.stanford.edu/entries/abduction/\" target=\"_blank\" rel=\"noopener\">Stanford Encyclopedia of Philosophy: &ldquo;Abduction&rdquo;</a>"
   ]
  },
  "L1:2.3": {
   "read": [
-   "Two people disagree about whether something exists &mdash; a god, a hidden cause, an unseen force. One says it is there; the other is not convinced. A natural reflex is to treat this as a tie, where each side owes the other an equal case. But debates rarely work that way. When someone advances a claim, the work of supporting it falls on them, not on the person who simply has not been persuaded. The question this lesson asks is concrete: when a positive assertion is made and challenged, who is actually obligated to produce evidence, and what happens to the claim if that obligation goes unmet?",
-   "The principle at work is the &lsquo;burden of proof&rsquo;: the person making a positive claim carries the duty to support it. Hitchens&rsquo;s Razor sharpens this into a rule of thumb &mdash; what is asserted without evidence can be dismissed without evidence. Bertrand Russell illustrated the same idea with a teapot: if he claimed a tiny teapot orbited the Sun, too small for any telescope to see, no one could strictly disprove it, yet the impossibility of disproof would not make his claim reasonable to believe. Carl Sagan added a calibration: extraordinary claims require extraordinary evidence. The more a claim departs from what we already have good reason to accept, the stronger the support it needs.",
-   "In a real debate, watch for the burden being quietly reversed. A defender of a claim may demand that you disprove it &mdash; &lsquo;You can&rsquo;t show it&rsquo;s false, so it stands.&rsquo; That inverts the obligation, since unfalsifiable claims are exactly the ones that carry no weight on their own. The fair move is to grant the strongest version of an opponent&rsquo;s position and still ask what supports it. A thoughtful theist can accept all of this and argue that evidence does exist; that is a legitimate debate. What these tools forbid is treating &lsquo;you cannot refute me&rsquo; as if it were a reason to believe."
+   "Two people disagree about whether something exists: a god, a hidden cause, an unseen force. One says it is there; the other is not convinced. A natural reflex is to treat this as a tie, where each side owes the other an equal case. But debates rarely work that way. When someone advances a claim, the work of supporting it falls on them, not on the person who simply has not been persuaded. The question this lesson asks is concrete: when a positive assertion is made and challenged, who is actually obligated to produce evidence, and what happens to the claim if that obligation goes unmet?",
+   "The principle at work is the &lsquo;burden of proof&rsquo;: the person making a positive claim carries the duty to support it. Hitchens&rsquo;s Razor sharpens this into a rule of thumb: what is asserted without evidence can be dismissed without evidence. Bertrand Russell illustrated the same idea with a teapot: if he claimed a tiny teapot orbited the Sun, too small for any telescope to see, no one could strictly disprove it, yet the impossibility of disproof would not make his claim reasonable to believe. Carl Sagan added a calibration: extraordinary claims require extraordinary evidence. The more a claim departs from what we already have good reason to accept, the stronger the support it needs.",
+   "In a real debate, watch for the burden being quietly reversed. A defender of a claim may demand that you disprove it: &lsquo;You can&rsquo;t show it&rsquo;s false, so it stands.&rsquo; That inverts the obligation, since unfalsifiable claims are exactly the ones that carry no weight on their own. The fair move is to grant the strongest version of an opponent&rsquo;s position and still ask what supports it. A thoughtful theist can accept all of this and argue that evidence does exist; that is a legitimate debate. What these tools forbid is treating &lsquo;you cannot refute me&rsquo; as if it were a reason to believe."
   ],
   "terms": [
    [
@@ -306,7 +327,7 @@ window.SEED_LESSON_CONTENT = {
    ],
    [
     "Sagan&rsquo;s standard",
-    "The idea that extraordinary claims require extraordinary evidence &mdash; the further a claim departs from established knowledge, the stronger its support must be."
+    "The idea that extraordinary claims require extraordinary evidence: the further a claim departs from established knowledge, the stronger its support must be."
    ]
   ],
   "quiz": [
@@ -328,7 +349,7 @@ window.SEED_LESSON_CONTENT = {
      "False"
     ],
     "ans": 1,
-    "ex": "False. This is the point of <b>Russell&rsquo;s Teapot</b> &mdash; an unfalsifiable claim cannot be refuted, but that immunity from disproof gives no positive reason to accept it."
+    "ex": "False. This is the point of <b>Russell&rsquo;s Teapot</b>, an unfalsifiable claim cannot be refuted, but that immunity from disproof gives no positive reason to accept it."
    },
    {
     "q": "Which principle best captures the idea that a claim far outside established knowledge needs unusually strong support?",
@@ -340,6 +361,11 @@ window.SEED_LESSON_CONTENT = {
     "ans": 1,
     "ex": "<b>Sagan&rsquo;s standard</b> holds that extraordinary claims require extraordinary evidence; the more a claim departs from what we already have reason to accept, the stronger its support must be."
    }
+  ],
+  "sources": [
+   "Bertrand Russell, <i>Is There a God?</i> (1952). (Russell&rsquo;s Teapot).",
+   "Carl Sagan, <i>The Demon-Haunted World</i> (1995).",
+   "Christopher Hitchens, <i>God Is Not Great</i> (2007)."
   ]
  },
  "L1:2.4": {
@@ -396,18 +422,23 @@ window.SEED_LESSON_CONTENT = {
     "ans": 1,
     "ex": "Adding an exception solely to dodge a failed test is an <b>ad hoc rescue</b>; each such patch removes more possible refutations until the claim forbids nothing and becomes unfalsifiable."
    }
+  ],
+  "sources": [
+   "Karl Popper, <i>Conjectures and Refutations</i> (1963).",
+   "Antony Flew, &ldquo;Theology and Falsification&rdquo; (1950), the invisible-gardener parable.",
+   "<a href=\"https://plato.stanford.edu/entries/popper/\" target=\"_blank\" rel=\"noopener\">Stanford Encyclopedia of Philosophy: &ldquo;Karl Popper&rdquo;</a>"
   ]
  },
  "L1:3.1": {
   "read": [
-   "A formal fallacy is a mistake in the shape of an argument, not in its content. An argument can be built entirely from true statements and still fail, because validity is about whether the conclusion is forced by the premises &mdash; not about whether the premises happen to be true. Consider the believer who reasons, &ldquo;If God exists, the universe is ordered; the universe is ordered; therefore God exists.&rdquo; Every premise here may be granted for the sake of argument. The question this lesson asks is narrower and harder: even granting them, does the conclusion actually follow? Often the answer is no, and seeing why takes practice.",
-   "Two patterns cause most of the trouble, both involving a conditional &ldquo;if P, then Q.&rdquo; <i>Affirming the consequent</i> notes that Q is true and concludes that P must be true &mdash; but Q could have many other causes, so this is invalid. <i>Denying the antecedent</i> notes that P is false and concludes Q is false &mdash; equally invalid, for the same reason. Their two valid cousins are easy to confuse with them. <i>Modus ponens</i> affirms P to get Q, and <i>modus tollens</i> denies Q to get not-P. The valid forms run with the conditional&rsquo;s direction; the fallacies run against it, and that single reversal is the whole error.",
-   "Watch for these in any debate, especially your own arguments. The order example earlier affirms the consequent: order has candidate explanations beyond design, so it cannot by itself deliver the designer. A common atheist misstep mirrors it &mdash; &ldquo;if God existed there would be no evil; there is evil; so no God&rdquo; smuggles in a premise the theist will rightly contest. Two cautions keep you honest. First, calling a form invalid does not show the conclusion is false; a true claim can have a broken argument, and a fair debater attacks the reasoning while leaving the conclusion open. Second, fix the form before you reach for content."
+   "A formal fallacy is a mistake in the shape of an argument, not in its content. An argument can be built entirely from true statements and still fail, because validity is about whether the conclusion is forced by the premises, not about whether the premises happen to be true. Consider the believer who reasons, &ldquo;If God exists, the universe is ordered; the universe is ordered; therefore God exists.&rdquo; Every premise here may be granted for the sake of argument. The question this lesson asks is narrower and harder: even granting them, does the conclusion actually follow? Often the answer is no, and seeing why takes practice.",
+   "Two patterns cause most of the trouble, both involving a conditional &ldquo;if P, then Q.&rdquo; <i>Affirming the consequent</i> notes that Q is true and concludes that P must be true, but Q could have many other causes, so this is invalid. <i>Denying the antecedent</i> notes that P is false and concludes Q is false: equally invalid, for the same reason. Their two valid cousins are easy to confuse with them. <i>Modus ponens</i> affirms P to get Q, and <i>modus tollens</i> denies Q to get not-P. The valid forms run with the conditional&rsquo;s direction; the fallacies run against it, and that single reversal is the whole error.",
+   "Watch for these in any debate, especially your own arguments. The order example earlier affirms the consequent: order has candidate explanations beyond design, so it cannot by itself deliver the designer. A common atheist misstep mirrors it, &ldquo;if God existed there would be no evil; there is evil; so no God&rdquo; smuggles in a premise the theist will rightly contest. Two cautions keep you honest. First, calling a form invalid does not show the conclusion is false; a true claim can have a broken argument, and a fair debater attacks the reasoning while leaving the conclusion open. Second, fix the form before you reach for content."
   ],
   "terms": [
    [
     "Validity",
-    "A property of an argument&rsquo;s structure: if the premises were true, the conclusion would be forced &mdash; regardless of whether the premises actually are true."
+    "A property of an argument&rsquo;s structure: if the premises were true, the conclusion would be forced: regardless of whether the premises actually are true."
    ],
    [
     "Affirming the consequent",
@@ -430,7 +461,7 @@ window.SEED_LESSON_CONTENT = {
      "False"
     ],
     "ans": 1,
-    "ex": "False. <b>Validity</b> concerns structure, not the truth of the parts &mdash; true premises and a true conclusion can still sit inside an invalid form that fails to connect them."
+    "ex": "False. <b>Validity</b> concerns structure, not the truth of the parts; true premises and a true conclusion can still sit inside an invalid form that fails to connect them."
    },
    {
     "q": "&ldquo;If it rained, the street is wet. The street is wet. So it rained.&rdquo; This argument:",
@@ -454,13 +485,17 @@ window.SEED_LESSON_CONTENT = {
     "ans": 2,
     "ex": "Denying the consequent to deny the antecedent is <b>modus tollens</b>, a valid form. The others reverse the conditional or contradict it."
    }
+  ],
+  "sources": [
+   "Irving M. Copi &amp; Carl Cohen, <i>Introduction to Logic</i> (2014).",
+   "<a href=\"https://iep.utm.edu/fallacy/\" target=\"_blank\" rel=\"noopener\">Internet Encyclopedia of Philosophy: &ldquo;Fallacies&rdquo;</a>"
   ]
  },
  "L1:3.2": {
   "read": [
-   "A fallacy of relevance smuggles in something that feels like a reason but does no logical work. The question to keep asking is simple: does this point bear on whether the claim is true, or only on how we feel about the person making it? Suppose a debater says, &ldquo;Of course he argues for God&rsquo;s existence &mdash; he&rsquo;s a paid apologist.&rdquo; That may be worth noting about his motives, but it leaves his actual argument untouched. A claim stands or falls on its evidence and structure, not on the biography, funding, or sincerity of whoever happens to voice it.",
-   "These fallacies share one engine: they redirect attention from the claim to something nearby. The ad hominem attacks the person instead of the argument. The appeal to inappropriate authority leans on a name rather than the reasoning behind it. The appeal to emotion stirs fear or pity in place of support. The appeal to ignorance treats the absence of disproof as if it were proof. The genetic fallacy judges a claim by where it came from. Each can be unmasked the same way &mdash; strip out the distraction and ask whether any reason for the conclusion remains standing.",
-   "In a live debate these rarely arrive labelled. An opponent may cite a brilliant physicist&rsquo;s religious views as if expertise in one field settled a question in another &mdash; a misplaced appeal to authority, even when the authority is real and well-meaning. Watch, too, for the trap working in both directions: dismissing a religious argument merely because faith inspired it is itself a genetic fallacy, and a careful secular thinker refuses that shortcut. The disciplined move is always to answer the strongest version of the argument on its merits, and to flag the irrelevant appeal without pretending it has scored a point."
+   "A fallacy of relevance smuggles in something that feels like a reason but does no logical work. The question to keep asking is simple: does this point bear on whether the claim is true, or only on how we feel about the person making it? Suppose a debater says, &ldquo;Of course he argues for God&rsquo;s existence: he&rsquo;s a paid apologist.&rdquo; That may be worth noting about his motives, but it leaves his actual argument untouched. A claim stands or falls on its evidence and structure, not on the biography, funding, or sincerity of whoever happens to voice it.",
+   "These fallacies share one engine: they redirect attention from the claim to something nearby. The ad hominem attacks the person instead of the argument. The appeal to inappropriate authority leans on a name rather than the reasoning behind it. The appeal to emotion stirs fear or pity in place of support. The appeal to ignorance treats the absence of disproof as if it were proof. The genetic fallacy judges a claim by where it came from. Each can be unmasked the same way, strip out the distraction and ask whether any reason for the conclusion remains standing.",
+   "In a live debate these rarely arrive labelled. An opponent may cite a brilliant physicist&rsquo;s religious views as if expertise in one field settled a question in another: a misplaced appeal to authority, even when the authority is real and well-meaning. Watch, too, for the trap working in both directions: dismissing a religious argument merely because faith inspired it is itself a genetic fallacy, and a careful secular thinker refuses that shortcut. The disciplined move is always to answer the strongest version of the argument on its merits, and to flag the irrelevant appeal without pretending it has scored a point."
   ],
   "terms": [
    [
@@ -510,15 +545,19 @@ window.SEED_LESSON_CONTENT = {
      "Appeal to ignorance"
     ],
     "ans": 0,
-    "ex": "Expertise in chemistry does not transfer to metaphysics, so this is an <b>appeal to inappropriate authority</b> &mdash; the credential is real but irrelevant to the claim at hand."
+    "ex": "Expertise in chemistry does not transfer to metaphysics, so this is an <b>appeal to inappropriate authority</b>: the credential is real but irrelevant to the claim at hand."
    }
+  ],
+  "sources": [
+   "Douglas Walton, <i>Informal Logic: A Pragmatic Approach</i> (2008).",
+   "<a href=\"https://iep.utm.edu/fallacy/\" target=\"_blank\" rel=\"noopener\">Internet Encyclopedia of Philosophy: &ldquo;Fallacies&rdquo;</a>"
   ]
  },
  "L1:3.3": {
   "read": [
-   "Some arguments fail not because a premise is false but because the question was rigged before the evidence ever arrived. Two families of error do this quietly. Fallacies of presumption smuggle in a conclusion the arguer was supposed to earn &mdash; the disputed point is treated as already settled, or the menu of options is trimmed until only one answer remains. Fallacies of ambiguity exploit slack in language, letting a word shift meaning between premises so the inference only looks valid. In both cases the machinery seems sound; the rigging sits upstream, in what the argument quietly assumes or in how its terms are defined.",
-   "Consider the classic shapes. A false dilemma offers two choices as if they exhausted the field &mdash; &ldquo;either the universe came from nothing or God made it&rdquo; &mdash; ignoring live alternatives. Begging the question assumes its conclusion among the premises, as when scripture is called reliable because it is the word of God, which is the very point at issue. Equivocation trades on a word&rsquo;s double meaning: &ldquo;the universe has laws, and laws need a lawgiver&rdquo; slides from descriptive regularity to legislation. Special pleading exempts a favored claim from a standard applied to everything else &mdash; &ldquo;everything has a cause, except God.&rdquo; God-of-the-gaps treats a current gap in explanation as positive evidence for design.",
-   "Treat these charitably, because each often points at a real intuition worth answering. The theist invoking design is responding to genuine wonder at order; the cosmological arguer is pressing a serious question about why anything exists at all. Your job in a debate is not to mock the slip but to name it and reopen what was closed: ask for the missing options the dilemma omitted, request an independent reason that does not assume the conclusion, pin each key word to a single fixed sense, and ask why the exempted case earns its exemption. A gap in knowledge is an invitation to inquire, not a finished proof &mdash; and saying so, plainly and fairly, is the whole skill."
+   "Some arguments fail not because a premise is false but because the question was rigged before the evidence ever arrived. Two families of error do this quietly. Fallacies of presumption smuggle in a conclusion the arguer was supposed to earn: the disputed point is treated as already settled, or the menu of options is trimmed until only one answer remains. Fallacies of ambiguity exploit slack in language, letting a word shift meaning between premises so the inference only looks valid. In both cases the machinery seems sound; the rigging sits upstream, in what the argument quietly assumes or in how its terms are defined.",
+   "Consider the classic shapes. A false dilemma offers two choices as if they exhausted the field, &ldquo;either the universe came from nothing or God made it&rdquo;, ignoring live alternatives. Begging the question assumes its conclusion among the premises, as when scripture is called reliable because it is the word of God, which is the very point at issue. Equivocation trades on a word&rsquo;s double meaning: &ldquo;the universe has laws, and laws need a lawgiver&rdquo; slides from descriptive regularity to legislation. Special pleading exempts a favored claim from a standard applied to everything else: &ldquo;everything has a cause, except God.&rdquo; God-of-the-gaps treats a current gap in explanation as positive evidence for design.",
+   "Treat these charitably, because each often points at a real intuition worth answering. The theist invoking design is responding to genuine wonder at order; the cosmological arguer is pressing a serious question about why anything exists at all. Your job in a debate is not to mock the slip but to name it and reopen what was closed: ask for the missing options the dilemma omitted, request an independent reason that does not assume the conclusion, pin each key word to a single fixed sense, and ask why the exempted case earns its exemption. A gap in knowledge is an invitation to inquire, not a finished proof, and saying so, plainly and fairly, is the whole skill."
   ],
   "terms": [
    [
@@ -540,7 +579,7 @@ window.SEED_LESSON_CONTENT = {
   ],
   "quiz": [
    {
-    "q": "&ldquo;Scripture is reliable because it is the inspired word of God&rdquo; &mdash; offered to someone who doubts scripture is divine &mdash; commits which fallacy?",
+    "q": "&ldquo;Scripture is reliable because it is the inspired word of God&rdquo;, offered to someone who doubts scripture is divine, commits which fallacy?",
     "opts": [
      "False dilemma",
      "Begging the question",
@@ -548,7 +587,7 @@ window.SEED_LESSON_CONTENT = {
      "Special pleading"
     ],
     "ans": 1,
-    "ex": "The claim assumes its conclusion &mdash; scripture's divine origin &mdash; as a premise. That is <b>begging the question</b>, since the divine origin is exactly what the doubter disputes."
+    "ex": "The claim assumes its conclusion, scripture's divine origin, as a premise. That is <b>begging the question</b>, since the divine origin is exactly what the doubter disputes."
    },
    {
     "q": "&ldquo;The universe is governed by laws, and every law requires a lawgiver, so there must be a divine lawgiver.&rdquo; The flaw is best described as:",
@@ -560,7 +599,7 @@ window.SEED_LESSON_CONTENT = {
     "ex": "<b>Equivocation</b>: &lsquo;law&rsquo; means a descriptive regularity in the first premise but a legislated rule in the second. The shift makes the conclusion only appear to follow."
    },
    {
-    "q": "Saying &ldquo;everything that exists has a cause &mdash; except God&rdquo; is an example of special pleading.",
+    "q": "Saying &ldquo;everything that exists has a cause, except God&rdquo; is an example of special pleading.",
     "opts": [
      "True",
      "False"
@@ -568,6 +607,10 @@ window.SEED_LESSON_CONTENT = {
     "ans": 0,
     "ex": "True. Exempting one favored claim from a standard applied to everything else, with no independent justification, is <b>special pleading</b>."
    }
+  ],
+  "sources": [
+   "Douglas Walton, <i>Begging the Question: Circular Reasoning as a Tactic of Argumentation</i> (1991).",
+   "<a href=\"https://iep.utm.edu/fallacy/\" target=\"_blank\" rel=\"noopener\">Internet Encyclopedia of Philosophy: &ldquo;Fallacies&rdquo;</a>"
   ]
  },
  "L1:3.4": {
@@ -625,13 +668,17 @@ window.SEED_LESSON_CONTENT = {
     "ans": 0,
     "ex": "This is <b>agency detection</b>: the brain&rsquo;s reflex to read deliberate intention into an event that may have an impersonal cause, a shortcut that once protected our ancestors from predators."
    }
+  ],
+  "sources": [
+   "Daniel Kahneman, <i>Thinking, Fast and Slow</i> (2011).",
+   "Justin L. Barrett, <i>Why Would Anyone Believe in God?</i> (2004)."
   ]
  },
  "L1:4.1": {
   "read": [
-   "Long before the European Enlightenment, thinkers on two continents asked a blunt question: what can we actually know, and what are we just told to accept? In ancient India, the C&#257;rv&#257;ka school answered that perception is the only reliable source of knowledge, so claims about gods, souls, and an afterlife&mdash;none of which anyone perceives&mdash;should be set aside. In the Greek world, Epicurus and his Roman follower Lucretius built a physics of atoms and void that explained the visible world without appeal to divine management. These were not sneering dismissals of religion. They were attempts to draw a clear line between what evidence supports and what tradition asserts.",
-   "The shared move is methodological, not merely conclusory. C&#257;rv&#257;ka pressed hard on inference itself: how do you justify a general rule like &lsquo;all smoke comes from fire&rsquo; without already assuming the future will resemble the past? Epicurus took a different route, arguing that the gods, if they exist, are perfect and self-sufficient, and so have no reason to meddle in human affairs or fear&mdash;a point meant to dissolve dread, not to insult belief. Lucretius then asked why a good and powerful creator would build a world so full of waste, disease, and danger to the very creatures it supposedly favored. Each argument targets a specific claim and offers reasons, leaving the conclusion to follow.",
-   "In a live debate, the lesson is to notice which claim is actually on the table. A defender of theism can grant C&#257;rv&#257;ka&rsquo;s point about perception while arguing that some beliefs are reasonable without being directly observed&mdash;mathematics, for instance. The Epicurean &lsquo;distant gods&rsquo; argument only bites against a meddling, fearsome deity, not every conception of the divine, and a sharp theist will say so. The strongest use of these ancient skeptics is therefore narrow and honest: cite them to demand evidence and to expose a specific bad argument, not as a blanket proof that belief is irrational. Match the objection to the claim, or you will be answering a position no one holds."
+   "Long before the European Enlightenment, thinkers on two continents asked a blunt question: what can we actually know, and what are we just told to accept? In ancient India, the C&#257;rv&#257;ka school answered that perception is the only reliable source of knowledge, so claims about gods, souls, and an afterlife, none of which anyone perceives, should be set aside. In the Greek world, Epicurus and his Roman follower Lucretius built a physics of atoms and void that explained the visible world without appeal to divine management. These were not sneering dismissals of religion. They were attempts to draw a clear line between what evidence supports and what tradition asserts.",
+   "The shared move is methodological, not merely conclusory. C&#257;rv&#257;ka pressed hard on inference itself: how do you justify a general rule like &lsquo;all smoke comes from fire&rsquo; without already assuming the future will resemble the past? Epicurus took a different route, arguing that the gods, if they exist, are perfect and self-sufficient, and so have no reason to meddle in human affairs or fear, a point meant to dissolve dread, not to insult belief. Lucretius then asked why a good and powerful creator would build a world so full of waste, disease, and danger to the very creatures it supposedly favored. Each argument targets a specific claim and offers reasons, leaving the conclusion to follow.",
+   "In a live debate, the lesson is to notice which claim is actually on the table. A defender of theism can grant C&#257;rv&#257;ka&rsquo;s point about perception while arguing that some beliefs are reasonable without being directly observed: mathematics, for instance. The Epicurean &lsquo;distant gods&rsquo; argument only bites against a meddling, fearsome deity, not every conception of the divine, and a sharp theist will say so. The strongest use of these ancient skeptics is therefore narrow and honest: cite them to demand evidence and to expose a specific bad argument, not as a blanket proof that belief is irrational. Match the objection to the claim, or you will be answering a position no one holds."
   ],
   "terms": [
    [
@@ -682,18 +729,23 @@ window.SEED_LESSON_CONTENT = {
     "ans": 1,
     "ex": "The Roman poet <b>Lucretius</b>, developing Epicurean physics in his work on the nature of things, pressed the point that a flawed, dangerous world fits poorly with a benevolent and omnipotent designer."
    }
+  ],
+  "sources": [
+   "Tim Whitmarsh, <i>Battling the Gods: Atheism in the Ancient World</i> (2015).",
+   "Lucretius, <i>On the Nature of Things (De Rerum Natura)</i> (c. 50 BCE).",
+   "Epicurus, <i>Letter to Menoeceus</i> (c. 300 BCE)."
   ]
  },
  "L1:4.2": {
   "read": [
-   "The Enlightenment is often described as the moment Europe traded faith for reason, but that summary hides the real question this lesson asks: what did these thinkers actually want to free people from, and from what? When Kant answered the prize question &ldquo;What is Enlightenment?&rdquo; he gave the motto &lsquo;Sapere aude&rsquo; &mdash; dare to know &mdash; and defined the era as humanity&rsquo;s release from a self-imposed immaturity. Note the phrase &lsquo;self-imposed.&rsquo; The target was not God but the habit of outsourcing one&rsquo;s own judgment to any authority &mdash; clergy, kings, or guild &mdash; that promised to do the thinking for you.",
+   "The Enlightenment is often described as the moment Europe traded faith for reason, but that summary hides the real question this lesson asks: what did these thinkers actually want to free people from, and from what? When Kant answered the prize question &ldquo;What is Enlightenment?&rdquo; he gave the motto &lsquo;Sapere aude&rsquo; (dare to know) and defined the era as humanity&rsquo;s release from a self-imposed immaturity. Note the phrase &lsquo;self-imposed.&rsquo; The target was not God but the habit of outsourcing one&rsquo;s own judgment to any authority (clergy, kings, or guild) that promised to do the thinking for you.",
    "That reframing matters because the leading figures disagreed sharply about religion itself. Spinoza identified God with the whole of nature and read scripture as a historical document, yet he wrote as a devout man seeking the intellectual love of God. Hume turned a skeptical eye on miracle reports and the design argument, arguing that uniform experience should weigh against extraordinary testimony, while stopping short of dogmatic denial. The French philosophes ranged from Voltaire&rsquo;s deism to a handful of outright materialists. The common thread was method, not a creed: claims about the world should answer to evidence and public reason rather than to inherited station or revelation accepted on command.",
-   "In a live debate, the lesson is to separate two claims that get fused together. &ldquo;Reason should be free to examine any belief&rdquo; is the Enlightenment&rsquo;s actual commitment; &ldquo;therefore religion is false&rdquo; is a separate conclusion that figures like Spinoza and many deists explicitly rejected. A fair opponent can hold that faith and free inquiry coexist &mdash; Kant himself argued reason has limits and left room for moral faith. Watch for the move that treats &lsquo;Sapere aude&rsquo; as if it settled metaphysics. It does not. It sets a procedure for how beliefs earn assent, and a believer can accept that procedure without abandoning belief."
+   "In a live debate, the lesson is to separate two claims that get fused together. &ldquo;Reason should be free to examine any belief&rdquo; is the Enlightenment&rsquo;s actual commitment; &ldquo;therefore religion is false&rdquo; is a separate conclusion that figures like Spinoza and many deists explicitly rejected. A fair opponent can hold that faith and free inquiry coexist. Kant himself argued reason has limits and left room for moral faith. Watch for the move that treats &lsquo;Sapere aude&rsquo; as if it settled metaphysics. It does not. It sets a procedure for how beliefs earn assent, and a believer can accept that procedure without abandoning belief."
   ],
   "terms": [
    [
     "Sapere aude",
-    "Kant&rsquo;s Latin motto for the Enlightenment, meaning &lsquo;dare to know&rsquo; &mdash; the call to use one&rsquo;s own understanding rather than defer to authority."
+    "Kant&rsquo;s Latin motto for the Enlightenment, meaning &lsquo;dare to know&rsquo;, the call to use one&rsquo;s own understanding rather than defer to authority."
    ],
    [
     "Self-imposed immaturity",
@@ -716,7 +768,7 @@ window.SEED_LESSON_CONTENT = {
      "False"
     ],
     "ans": 1,
-    "ex": "False. <b>Sapere aude</b> calls for daring to use one&rsquo;s own understanding rather than deferring to authority. It defines a method for how beliefs earn assent, not a conclusion that religion is false &mdash; Kant himself left room for moral faith."
+    "ex": "False. <b>Sapere aude</b> calls for daring to use one&rsquo;s own understanding rather than deferring to authority. It defines a method for how beliefs earn assent, not a conclusion that religion is false. Kant himself left room for moral faith."
    },
    {
     "q": "Which best describes Spinoza&rsquo;s view of God?",
@@ -727,7 +779,7 @@ window.SEED_LESSON_CONTENT = {
      "A materialist who reduced everything to atoms"
     ],
     "ans": 1,
-    "ex": "Spinoza identified God with nature itself and read scripture historically, yet wrote as a devout thinker pursuing the <b>intellectual love of God</b> &mdash; not the atheist he was often accused of being."
+    "ex": "Spinoza identified God with nature itself and read scripture historically, yet wrote as a devout thinker pursuing the <b>intellectual love of God</b>, not the atheist he was often accused of being."
    },
    {
     "q": "According to Hume, why should we be cautious about accepting reports of miracles?",
@@ -738,14 +790,19 @@ window.SEED_LESSON_CONTENT = {
      "Because only clergy report them"
     ],
     "ans": 2,
-    "ex": "Hume argued from <b>uniform experience</b>: since our consistent observation supports natural laws, testimony to a miracle must be weighed against that body of experience and rarely outweighs it &mdash; a point about evidence, not a dogmatic denial."
+    "ex": "Hume argued from <b>uniform experience</b>: since our consistent observation supports natural laws, testimony to a miracle must be weighed against that body of experience and rarely outweighs it, a point about evidence, not a dogmatic denial."
    }
+  ],
+  "sources": [
+   "Immanuel Kant, <i>An Answer to the Question: What Is Enlightenment?</i> (1784).",
+   "David Hume, <i>An Enquiry concerning Human Understanding</i> (1748).",
+   "Baruch Spinoza, <i>Theological-Political Treatise</i> (1670)."
   ]
  },
  "L1:4.3": {
   "read": [
    "Doubt about the gods is ancient, but the doubter working alone is a different thing from doubt that builds institutions. This lesson asks a concrete question: what changed when freethinkers stopped being scattered individuals and started forming societies, journals, and movements? From the nineteenth century onward, secularism acquired the machinery of any organised cause. Figures like George Holyoake, who coined &ldquo;secularism,&rdquo; and Robert Ingersoll, the American orator known as &ldquo;the Great Agnostic,&rdquo; gave unbelief a public platform, a vocabulary, and a respectable face. The shift was less about new arguments than about new infrastructure for an old one.",
-   "Organised freethought reframed the goal. Instead of merely denying particular doctrines, it argued for a public sphere ordered without appeal to revelation: ethics grounded in human welfare, schools free of catechism, and laws justified by reasons available to believer and unbeliever alike. This is the secular settlement, and it does not by itself claim God does not exist. The early twenty-first century &ldquo;New Atheism&rdquo; pushed harder. Its &ldquo;Four Horsemen&rdquo;&mdash;Richard Dawkins, Daniel Dennett, Sam Harris, and the late Christopher Hitchens&mdash;treated religious belief as a factual claim deserving the same scrutiny as any other, and argued it fails that test.",
+   "Organised freethought reframed the goal. Instead of merely denying particular doctrines, it argued for a public sphere ordered without appeal to revelation: ethics grounded in human welfare, schools free of catechism, and laws justified by reasons available to believer and unbeliever alike. This is the secular settlement, and it does not by itself claim God does not exist. The early twenty-first century &ldquo;New Atheism&rdquo; pushed harder. Its &ldquo;Four Horsemen&rdquo; (Richard Dawkins, Daniel Dennett, Sam Harris, and the late Christopher Hitchens) treated religious belief as a factual claim deserving the same scrutiny as any other, and argued it fails that test.",
    "In a real debate, the useful move is to keep two questions apart. One is political: should the state stay neutral on contested theological claims? Many thoughtful believers answer yes and are allies of secularism in that sense. The other is metaphysical: is there a God? You can hold a confident answer to either without committing to a particular answer to the other. Watch for the slide that treats &ldquo;the state should be secular&rdquo; as if it settled &ldquo;God does not exist,&rdquo; or the reverse. The strongest case for organised secularism rests on the political claim, which costs the theist far less to grant."
   ],
   "terms": [
@@ -755,7 +812,7 @@ window.SEED_LESSON_CONTENT = {
    ],
    [
     "Organised freethought",
-    "The nineteenth- and twentieth-century movement that gave unbelief institutions&mdash;societies, journals, and public lecturers&mdash;rather than leaving it to isolated individuals."
+    "The nineteenth- and twentieth-century movement that gave unbelief institutions (societies, journals, and public lecturers) rather than leaving it to isolated individuals."
    ],
    [
     "New Atheism",
@@ -785,7 +842,7 @@ window.SEED_LESSON_CONTENT = {
      "False"
     ],
     "ans": 1,
-    "ex": "False. The <b>secular settlement</b> is a claim about how the state should justify its laws&mdash;by public reasons&mdash;and many religious believers endorse it. It does not settle the separate metaphysical question of God&rsquo;s existence."
+    "ex": "False. The <b>secular settlement</b> is a claim about how the state should justify its laws (by public reasons) and many religious believers endorse it. It does not settle the separate metaphysical question of God&rsquo;s existence."
    },
    {
     "q": "Which group is meant by the &ldquo;Four Horsemen&rdquo; of New Atheism?",
@@ -797,13 +854,17 @@ window.SEED_LESSON_CONTENT = {
     "ans": 1,
     "ex": "The label refers to <b>Dawkins, Dennett, Harris, and Hitchens</b>, after their 2007 recorded conversation. The other names are earlier freethinkers, not part of that specific group."
    }
+  ],
+  "sources": [
+   "R. Dawkins, D. Dennett, S. Harris &amp; C. Hitchens, <i>The Four Horsemen</i> (2019).",
+   "Charles Taylor, <i>A Secular Age</i> (2007)."
   ]
  },
  "L1:4.4": {
   "read": [
    "Doubt is not only a Western inheritance, and it is rarely lived in a vacuum. The person who stops believing usually still has a mother who prays, a workplace that closes for holy days, and a state whose laws may assume a god. So the real question of this lesson is not &ldquo;is there a God?&rdquo; but a quieter one: how does a freethinker actually live among believers, in a society built largely by and for the faithful? That is a practical question as much as a philosophical one, and the answer has looked very different in S&atilde;o Paulo, in Cairo, in Stockholm, and in a small town where everyone knows your pew.",
    "Freethought has independent roots across the world. The Indian C&amacr;rv&amacr;ka school argued for a materialist, this-world ethics roughly two and a half millennia ago; Chinese and Arabic writers questioned scripture and miracle long before the European Enlightenment. This matters because it undercuts the claim that unbelief is merely a modern Western fashion or a colonial import. At the same time, the lived freedom to voice doubt is unevenly distributed: in much of Northern Europe nonbelief is unremarkable, while in several countries open apostasy still carries legal or social penalty up to death. &ldquo;Living the question&rdquo; therefore means holding a genuine conviction while reading the room you are standing in honestly.",
-   "In debate, watch for two opposite errors. The first treats the secular, comfortable skeptic as the universal case and forgets that for many people doubt is dangerous, not edgy &mdash; this flattens real courage into a lifestyle pose. The second treats every religious society as uniformly oppressive, ignoring believers who themselves defend the doubter&rsquo;s right to speak. The charitable, accurate move is to separate three things that often get fused: whether a belief is true, whether holding it is psychologically or culturally understandable, and whether dissent from it is safe. A strong freethinker can grant the second and fight for the third without conceding the first."
+   "In debate, watch for two opposite errors. The first treats the secular, comfortable skeptic as the universal case and forgets that for many people doubt is dangerous, not edgy. This flattens real courage into a lifestyle pose. The second treats every religious society as uniformly oppressive, ignoring believers who themselves defend the doubter&rsquo;s right to speak. The charitable, accurate move is to separate three things that often get fused: whether a belief is true, whether holding it is psychologically or culturally understandable, and whether dissent from it is safe. A strong freethinker can grant the second and fight for the third without conceding the first."
   ],
   "terms": [
    [
@@ -853,13 +914,17 @@ window.SEED_LESSON_CONTENT = {
     "ans": 0,
     "ex": "A strong argument separates truth, psychological or cultural understandability, and the safety of <b>apostasy</b>; conceding that a belief is understandable or defending the dissenter&rsquo;s safety does not concede that the belief is true."
    }
+  ],
+  "sources": [
+   "Phil Zuckerman, <i>Living the Secular Life</i> (2014).",
+   "Greg M. Epstein, <i>Good Without God</i> (2009)."
   ]
  },
  "L2:1.1": {
   "read": [
-   "Walk into any debate about God&rsquo;s existence and within minutes someone will ask a deceptively simple question: why is there something rather than nothing? The cosmological arguments are the family of answers that try to reason from the bare fact that a world exists to a cause beyond it. They are not one argument but several, and treating them as interchangeable is the fastest way to lose the thread. This lesson introduces the three strongest members of the family &mdash; the Kalam, Leibnizian contingency, and the Thomistic ways &mdash; and shows what each is actually claiming so you can engage the version a serious theist defends, not a cartoon of it.",
-   "The three differ in their starting point. The Kalam argues that whatever begins to exist has a cause, the universe began to exist, so the universe has a cause. Leibniz sidesteps the question of a beginning entirely: he argues from the Principle of Sufficient Reason that every contingent thing &mdash; anything that could have failed to exist &mdash; needs an explanation, and the whole chain of contingent things needs one too. The Thomistic ways are different again, arguing not about the past but about the present moment: that things being actualized, sustained, or caused right now point to a first member that needs no further support. Each route ends near a necessary or uncaused being, but they get there by distinct logical machinery.",
-   "In a live exchange, the common mistake is answering one argument as though it were another. Telling a Thomist &lsquo;the universe might be eternal&rsquo; misses the point, because his argument grants an eternal universe and still asks what sustains it now. Telling a Kalam defender &lsquo;everything has a cause, so what caused God?&rsquo; misfires, because the premise is that whatever begins has a cause, and a beginningless being is exactly the proposed exception. The honest move is to identify which argument is on the table, grant its real structure, and press the premise that actually carries the weight &mdash; whether causation can be extended beyond time, whether the Principle of Sufficient Reason holds, or whether a per se causal series truly cannot regress forever."
+   "Walk into any debate about God&rsquo;s existence and within minutes someone will ask a deceptively simple question: why is there something rather than nothing? The cosmological arguments are the family of answers that try to reason from the bare fact that a world exists to a cause beyond it. They are not one argument but several, and treating them as interchangeable is the fastest way to lose the thread. This lesson introduces the three strongest members of the family (the Kalam, Leibnizian contingency, and the Thomistic ways) and shows what each is actually claiming so you can engage the version a serious theist defends, not a cartoon of it.",
+   "The three differ in their starting point. The Kalam argues that whatever begins to exist has a cause, the universe began to exist, so the universe has a cause. Leibniz sidesteps the question of a beginning entirely: he argues from the Principle of Sufficient Reason that every contingent thing, anything that could have failed to exist, needs an explanation, and the whole chain of contingent things needs one too. The Thomistic ways are different again, arguing not about the past but about the present moment: that things being actualized, sustained, or caused right now point to a first member that needs no further support. Each route ends near a necessary or uncaused being, but they get there by distinct logical machinery.",
+   "In a live exchange, the common mistake is answering one argument as though it were another. Telling a Thomist &lsquo;the universe might be eternal&rsquo; misses the point, because his argument grants an eternal universe and still asks what sustains it now. Telling a Kalam defender &lsquo;everything has a cause, so what caused God?&rsquo; misfires, because the premise is that whatever begins has a cause, and a beginningless being is exactly the proposed exception. The honest move is to identify which argument is on the table, grant its real structure, and press the premise that actually carries the weight: whether causation can be extended beyond time, whether the Principle of Sufficient Reason holds, or whether a per se causal series truly cannot regress forever."
   ],
   "terms": [
    [
@@ -909,13 +974,18 @@ window.SEED_LESSON_CONTENT = {
     "ans": 1,
     "ex": "The Thomistic ways turn on a <b>per se causal series</b>, where members depend on a prior cause acting in the present moment, which is why the argument can concede an eternal past and still press its question."
    }
+  ],
+  "sources": [
+   "William Lane Craig, <i>The Kalām Cosmological Argument</i> (1979).",
+   "Alexander R. Pruss, &ldquo;The Leibnizian Cosmological Argument,&rdquo; in <i>The Blackwell Companion to Natural Theology</i> (2009).",
+   "<a href=\"https://plato.stanford.edu/entries/cosmological-argument/\" target=\"_blank\" rel=\"noopener\">Stanford Encyclopedia of Philosophy: &ldquo;Cosmological Argument&rdquo;</a>"
   ]
  },
  "L2:1.2": {
   "read": [
-   "Look at the universe and you find arrangement that looks built for a purpose. The eye focuses light; the bird&rsquo;s wing exploits the physics of lift; the laws of nature themselves permit stars to burn long enough for chemistry to do interesting things. The teleological argument&mdash;from the Greek <i>telos</i>, meaning end or goal&mdash;asks a direct question: if we routinely infer a designer from a watch or a clock, why not from systems in nature that are far more intricate? William Paley pressed exactly this analogy in 1802. The central question of this lesson is whether order that resembles design is itself evidence <i>of</i> design, and if so, how strong that evidence really is.",
-   "The modern version trades biology for physics. The constants that govern our universe&mdash;the strength of gravity, the cosmological constant, the ratio of fundamental forces&mdash;appear to sit in an astonishingly narrow band that permits stars, carbon, and chemistry. Shift several of them by a tiny fraction and you get a universe of nothing but hydrogen, or one that collapses or flies apart before anything can form. This is the apparent &ldquo;fine-tuning&rdquo; of the constants. The theist&rsquo;s steelman is a probabilistic one: life-permitting values are vanishingly rare in the space of possible values, yet here we are, so a tuning intelligence is a better explanation than blind luck. The force of the argument lies in that improbability, not in mere complexity.",
-   "In a real debate, watch which version of the argument is on the table&mdash;biological design and cosmic fine-tuning fail and succeed for different reasons, so collapsing them invites confusion. The strongest theistic move is comparative: it does not claim chance is impossible, only that design predicts a life-permitting universe better than chance does. The strongest reply is usually the multiverse, which converts improbability into a selection effect, or an appeal to ignorance about whether the constants <i>could</i> have differed at all. A careful interlocutor keeps two questions apart: are the constants genuinely improbable, and does &ldquo;designer&rdquo; actually explain them better than the rival hypotheses? Concede the first too fast and you lose ground you never needed to cede."
+   "Look at the universe and you find arrangement that looks built for a purpose. The eye focuses light; the bird&rsquo;s wing exploits the physics of lift; the laws of nature themselves permit stars to burn long enough for chemistry to do interesting things. The teleological argument (from the Greek <i>telos</i>, meaning end or goal) asks a direct question: if we routinely infer a designer from a watch or a clock, why not from systems in nature that are far more intricate? William Paley pressed exactly this analogy in 1802. The central question of this lesson is whether order that resembles design is itself evidence <i>of</i> design, and if so, how strong that evidence really is.",
+   "The modern version trades biology for physics. The constants that govern our universe (the strength of gravity, the cosmological constant, the ratio of fundamental forces) appear to sit in an astonishingly narrow band that permits stars, carbon, and chemistry. Shift several of them by a tiny fraction and you get a universe of nothing but hydrogen, or one that collapses or flies apart before anything can form. This is the apparent &ldquo;fine-tuning&rdquo; of the constants. The theist&rsquo;s steelman is a probabilistic one: life-permitting values are vanishingly rare in the space of possible values, yet here we are, so a tuning intelligence is a better explanation than blind luck. The force of the argument lies in that improbability, not in mere complexity.",
+   "In a real debate, watch which version of the argument is on the table: biological design and cosmic fine-tuning fail and succeed for different reasons, so collapsing them invites confusion. The strongest theistic move is comparative: it does not claim chance is impossible, only that design predicts a life-permitting universe better than chance does. The strongest reply is usually the multiverse, which converts improbability into a selection effect, or an appeal to ignorance about whether the constants <i>could</i> have differed at all. A careful interlocutor keeps two questions apart: are the constants genuinely improbable, and does &ldquo;designer&rdquo; actually explain them better than the rival hypotheses? Concede the first too fast and you lose ground you never needed to cede."
   ],
   "terms": [
    [
@@ -967,13 +1037,18 @@ window.SEED_LESSON_CONTENT = {
     "ans": 2,
     "ex": "The <b>multiverse</b> hypothesis posits many universes with differing constants; given enough of them, a life-permitting one is unsurprising, and observers can only find themselves in such a universe."
    }
+  ],
+  "sources": [
+   "William Paley, <i>Natural Theology</i> (1802).",
+   "<a href=\"https://plato.stanford.edu/entries/teleological-arguments/\" target=\"_blank\" rel=\"noopener\">Stanford Encyclopedia of Philosophy: &ldquo;Teleological Arguments for God&rsquo;s Existence&rdquo;</a>",
+   "<a href=\"https://plato.stanford.edu/entries/fine-tuning/\" target=\"_blank\" rel=\"noopener\">Stanford Encyclopedia of Philosophy: &ldquo;Fine-Tuning&rdquo;</a>"
   ]
  },
  "L2:1.3": {
   "read": [
-   "Most arguments for God start from something you can point at &mdash; a universe that exists, a watch-like complexity in living things, the felt pull of moral duty. The ontological argument is the strange one: it starts from nothing but a definition and tries to reason its way to a necessary being using logic alone. Anselm, writing in the eleventh century, defined God as &ldquo;that than which nothing greater can be conceived.&rdquo; His claim was that once you grasp that definition, denying God&rsquo;s existence lands you in contradiction. The question this lesson asks is sharp: can a being&rsquo;s existence really follow from the mere concept of it, or has a verbal trick been dressed up as a proof?",
-   "Anselm&rsquo;s move runs like this. You can hold the idea of the greatest conceivable being in your mind. But a being that exists in reality is greater than one existing only as an idea. So if the greatest conceivable being existed only in the mind, you could conceive something greater &mdash; the same being, but real &mdash; which is a contradiction. Therefore it must exist in reality. Plantinga&rsquo;s twentieth-century version trades &ldquo;greatness&rdquo; for the tools of modal logic, the logic of possibility and necessity. He defines a maximally great being as one that exists necessarily and possesses its perfections in every possible world. His key premise: it is at least possible that such a being exists. Given a standard modal principle, what is possibly necessary is actually necessary &mdash; so the being exists.",
-   "In a live debate, do not waste energy denying that these arguments are valid; both are carefully built, and Plantinga himself granted his was not a coercive proof. The pressure point is the premises, not the inference. Against Anselm, press whether &ldquo;existence&rdquo; is a property that makes a thing greater, or whether it merely says the thing is &mdash; the objection Kant later sharpened. Against Plantinga, the whole argument rests on one word: &ldquo;possible.&rdquo; Granting that a maximally great being is genuinely possible already concedes that it exists necessarily, so an atheist who admits the possibility premise has lost. Watch for that, and notice the mirror move: it is equally coherent to claim such a being is impossible, which collapses the argument just as fast."
+   "Most arguments for God start from something you can point at, a universe that exists, a watch-like complexity in living things, the felt pull of moral duty. The ontological argument is the strange one: it starts from nothing but a definition and tries to reason its way to a necessary being using logic alone. Anselm, writing in the eleventh century, defined God as &ldquo;that than which nothing greater can be conceived.&rdquo; His claim was that once you grasp that definition, denying God&rsquo;s existence lands you in contradiction. The question this lesson asks is sharp: can a being&rsquo;s existence really follow from the mere concept of it, or has a verbal trick been dressed up as a proof?",
+   "Anselm&rsquo;s move runs like this. You can hold the idea of the greatest conceivable being in your mind. But a being that exists in reality is greater than one existing only as an idea. So if the greatest conceivable being existed only in the mind, you could conceive something greater (the same being, but real) which is a contradiction. Therefore it must exist in reality. Plantinga&rsquo;s twentieth-century version trades &ldquo;greatness&rdquo; for the tools of modal logic, the logic of possibility and necessity. He defines a maximally great being as one that exists necessarily and possesses its perfections in every possible world. His key premise: it is at least possible that such a being exists. Given a standard modal principle, what is possibly necessary is actually necessary, so the being exists.",
+   "In a live debate, do not waste energy denying that these arguments are valid; both are carefully built, and Plantinga himself granted his was not a coercive proof. The pressure point is the premises, not the inference. Against Anselm, press whether &ldquo;existence&rdquo; is a property that makes a thing greater, or whether it merely says the thing is, the objection Kant later sharpened. Against Plantinga, the whole argument rests on one word: &ldquo;possible.&rdquo; Granting that a maximally great being is genuinely possible already concedes that it exists necessarily, so an atheist who admits the possibility premise has lost. Watch for that, and notice the mirror move: it is equally coherent to claim such a being is impossible, which collapses the argument just as fast."
   ],
   "terms": [
    [
@@ -1001,7 +1076,7 @@ window.SEED_LESSON_CONTENT = {
      "False"
     ],
     "ans": 1,
-    "ex": "False. The <b>ontological argument</b> is distinctive precisely because it works from the concept or definition of God alone, not from empirical observation of the world &mdash; that is the job of design and cosmological arguments."
+    "ex": "False. The <b>ontological argument</b> is distinctive precisely because it works from the concept or definition of God alone, not from empirical observation of the world. That is the job of design and cosmological arguments."
    },
    {
     "q": "In Plantinga&rsquo;s modal version, which premise does the entire argument hinge on?",
@@ -1024,13 +1099,18 @@ window.SEED_LESSON_CONTENT = {
     "ans": 1,
     "ex": "The argument is valid, so attacking the inference fails. The live target is the <b>possibility premise</b>: because &ldquo;maximally great&rdquo; includes necessary existence, claiming such a being is impossible is just as coherent as claiming it is possible, which neutralizes the argument."
    }
+  ],
+  "sources": [
+   "Anselm of Canterbury, <i>Proslogion</i> (1078).",
+   "Alvin Plantinga, <i>The Nature of Necessity</i> (1974).",
+   "<a href=\"https://plato.stanford.edu/entries/ontological-arguments/\" target=\"_blank\" rel=\"noopener\">Stanford Encyclopedia of Philosophy: &ldquo;Ontological Arguments&rdquo;</a>"
   ]
  },
  "L2:1.4": {
   "read": [
-   "Two of theism&rsquo;s most resilient arguments do not point at the cosmos but at the human interior. The moral argument asks where binding obligations come from: when we say torturing a child for fun is really wrong &mdash; not merely disapproved of, not just bad for the gene pool &mdash; what makes that true? The argument from consciousness asks a parallel question about the felt quality of experience: why is there something it is like to taste coffee or see red at all? Both arguments share a strategy. They take a feature of the mind that almost everyone grants is real and claim that a purely physical universe has no comfortable place for it.",
-   "The moral argument runs roughly: if objective moral facts exist, they need a foundation; a personal God grounds them better than blind matter; objective moral facts do exist; therefore God. The consciousness argument presses that subjective experience &mdash; qualia &mdash; resists reduction to brain states, since you could know every neural fact and still not know what seeing red is like. A mind at the root of reality, the theist says, makes minds appearing later in it unsurprising. Both are inferences to the best explanation: not proofs, but claims that theism accounts for morality and mind more economically than naturalism does.",
-   "In a real debate, do not concede the loaded premise. The strongest reply to the moral argument is not &ldquo;morality is just opinion&rdquo; &mdash; that hands over objectivity for free &mdash; but to show secular groundings (contractualism, the suffering of sentient beings) that need no deity. Against the consciousness argument, the move is to ask whether theism actually explains qualia or merely relabels the mystery as &ldquo;a mind did it.&rdquo; Watch for the slide from &ldquo;naturalism hasn&rsquo;t explained X yet&rdquo; to &ldquo;naturalism can&rsquo;t explain X.&rdquo; Naming that gap &mdash; the difference between an unsolved problem and an unsolvable one &mdash; is usually the whole contest."
+   "Two of theism&rsquo;s most resilient arguments do not point at the cosmos but at the human interior. The moral argument asks where binding obligations come from: when we say torturing a child for fun is really wrong, not merely disapproved of, not just bad for the gene pool. What makes that true? The argument from consciousness asks a parallel question about the felt quality of experience: why is there something it is like to taste coffee or see red at all? Both arguments share a strategy. They take a feature of the mind that almost everyone grants is real and claim that a purely physical universe has no comfortable place for it.",
+   "The moral argument runs roughly: if objective moral facts exist, they need a foundation; a personal God grounds them better than blind matter; objective moral facts do exist; therefore God. The consciousness argument presses that subjective experience (qualia) resists reduction to brain states, since you could know every neural fact and still not know what seeing red is like. A mind at the root of reality, the theist says, makes minds appearing later in it unsurprising. Both are inferences to the best explanation: not proofs, but claims that theism accounts for morality and mind more economically than naturalism does.",
+   "In a real debate, do not concede the loaded premise. The strongest reply to the moral argument is not &ldquo;morality is just opinion&rdquo; (that hands over objectivity for free) but to show secular groundings (contractualism, the suffering of sentient beings) that need no deity. Against the consciousness argument, the move is to ask whether theism actually explains qualia or merely relabels the mystery as &ldquo;a mind did it.&rdquo; Watch for the slide from &ldquo;naturalism hasn&rsquo;t explained X yet&rdquo; to &ldquo;naturalism can&rsquo;t explain X.&rdquo; Naming that gap, the difference between an unsolved problem and an unsolvable one, is usually the whole contest."
   ],
   "terms": [
    [
@@ -1039,7 +1119,7 @@ window.SEED_LESSON_CONTENT = {
    ],
    [
     "Qualia",
-    "the subjective, felt qualities of experience &mdash; what it is like to taste, see, or feel something."
+    "the subjective, felt qualities of experience, what it is like to taste, see, or feel something."
    ],
    [
     "Hard problem of consciousness",
@@ -1058,7 +1138,7 @@ window.SEED_LESSON_CONTENT = {
      "False"
     ],
     "ans": 0,
-    "ex": "Correct. The argument treats God as the best <b>foundation</b> for objective moral facts and reasons from their existence to a grounder &mdash; it is an inference to the best explanation, not a proof."
+    "ex": "Correct. The argument treats God as the best <b>foundation</b> for objective moral facts and reasons from their existence to a grounder; it is an inference to the best explanation, not a proof."
    },
    {
     "q": "Which reply to the moral argument is strategically strongest in a debate?",
@@ -1080,15 +1160,20 @@ window.SEED_LESSON_CONTENT = {
      "Whether animals have brains"
     ],
     "ans": 1,
-    "ex": "The hard problem asks why physical processing is accompanied by any <b>felt experience</b> &mdash; qualia &mdash; at all. The easy problems concern mechanisms; the hard problem concerns why those mechanisms feel like anything."
+    "ex": "The hard problem asks why physical processing is accompanied by any <b>felt experience</b> (qualia) at all. The easy problems concern mechanisms; the hard problem concerns why those mechanisms feel like anything."
    }
+  ],
+  "sources": [
+   "J. P. Moreland &amp; William Lane Craig, <i>Philosophical Foundations for a Christian Worldview</i> (2003).",
+   "David J. Chalmers, <i>The Conscious Mind</i> (1996). (the &ldquo;hard problem&rdquo; of consciousness).",
+   "<a href=\"https://plato.stanford.edu/entries/religion-morality/\" target=\"_blank\" rel=\"noopener\">Stanford Encyclopedia of Philosophy: &ldquo;Religion and Morality&rdquo;</a>"
   ]
  },
  "L2:2.1": {
   "read": [
-   "The cosmological arguments all start from a fact almost no one disputes: things exist, and they seem to have causes. From there, the theist reasons that the chain of causes cannot run backward forever, so it must terminate in a first cause that itself was not caused &mdash; and that uncaused cause is named God. The Kal&#257;m version sharpens this: whatever begins to exist has a cause, the universe began to exist, therefore the universe has a cause. Our task in this lesson is not to mock the argument but to ask the harder question: does the conclusion actually follow, and does the word &lsquo;God&rsquo; earn its place in it?",
-   "The strongest replies target the argument&rsquo;s hidden assumptions rather than its mood. First, causation as we know it is a feature of events inside spacetime; extending it to the origin of spacetime itself is a move that needs defending, not assuming. Second, the rejection of an infinite past often rests on the claim that an &ldquo;actual infinite&rdquo; cannot exist &mdash; a respectable position, but a contested mathematical and metaphysical one, not a settled fact. Third, even if a first cause is granted, nothing in the logic delivers a mind, a person, or a moral lawgiver. The argument, at its honest best, gets you to &ldquo;something uncaused,&rdquo; and then quietly relabels that something.",
-   "In a live debate, watch for two pivots. When you press &ldquo;who caused God,&rdquo; a careful theist will answer that God is defined as uncaused, so the question misfires &mdash; and they are right that it is not a knockout. Your real job is to ask why the universe cannot share that same exemption, since granting one brute uncaused thing already concedes the principle. The second pivot is the composition fallacy: the leap from &ldquo;every part of the universe has a cause&rdquo; to &ldquo;the universe as a whole has a cause.&rdquo; Name that move out loud. A fair opponent will respect a clean objection far more than a sneer, and clarity wins rooms."
+   "The cosmological arguments all start from a fact almost no one disputes: things exist, and they seem to have causes. From there, the theist reasons that the chain of causes cannot run backward forever, so it must terminate in a first cause that itself was not caused, and that uncaused cause is named God. The Kal&#257;m version sharpens this: whatever begins to exist has a cause, the universe began to exist, therefore the universe has a cause. Our task in this lesson is not to mock the argument but to ask the harder question: does the conclusion actually follow, and does the word &lsquo;God&rsquo; earn its place in it?",
+   "The strongest replies target the argument&rsquo;s hidden assumptions rather than its mood. First, causation as we know it is a feature of events inside spacetime; extending it to the origin of spacetime itself is a move that needs defending, not assuming. Second, the rejection of an infinite past often rests on the claim that an &ldquo;actual infinite&rdquo; cannot exist, a respectable position, but a contested mathematical and metaphysical one, not a settled fact. Third, even if a first cause is granted, nothing in the logic delivers a mind, a person, or a moral lawgiver. The argument, at its honest best, gets you to &ldquo;something uncaused,&rdquo; and then quietly relabels that something.",
+   "In a live debate, watch for two pivots. When you press &ldquo;who caused God,&rdquo; a careful theist will answer that God is defined as uncaused, so the question misfires, and they are right that it is not a knockout. Your real job is to ask why the universe cannot share that same exemption, since granting one brute uncaused thing already concedes the principle. The second pivot is the composition fallacy: the leap from &ldquo;every part of the universe has a cause&rdquo; to &ldquo;the universe as a whole has a cause.&rdquo; Name that move out loud. A fair opponent will respect a clean objection far more than a sneer, and clarity wins rooms."
   ],
   "terms": [
    [
@@ -1127,7 +1212,7 @@ window.SEED_LESSON_CONTENT = {
      "The naturalistic fallacy"
     ],
     "ans": 1,
-    "ex": "This is the <b>composition fallacy</b> &mdash; wrongly transferring a property of the parts to the whole. The whole universe may not need a cause in the same sense its internal events do."
+    "ex": "This is the <b>composition fallacy</b>, wrongly transferring a property of the parts to the whole. The whole universe may not need a cause in the same sense its internal events do."
    },
    {
     "q": "Even if a debater grants the cosmological argument a first cause, what does the bare logic of the argument NOT establish about that cause?",
@@ -1139,13 +1224,18 @@ window.SEED_LESSON_CONTENT = {
     "ans": 1,
     "ex": "The argument can at most reach an <b>uncaused cause</b>; it contains no step delivering personhood, intelligence, or moral agency. Identifying that cause as &ldquo;God&rdquo; is an added claim requiring its own support."
    }
+  ],
+  "sources": [
+   "J. L. Mackie, <i>The Miracle of Theism</i> (1982).",
+   "Graham Oppy, <i>Arguing about Gods</i> (2006).",
+   "<a href=\"https://plato.stanford.edu/entries/cosmological-argument/\" target=\"_blank\" rel=\"noopener\">Stanford Encyclopedia of Philosophy: &ldquo;Cosmological Argument&rdquo;</a>"
   ]
  },
  "L2:2.2": {
   "read": [
-   "The fine-tuning argument is one of the strongest cards a theist can play, so meet it head-on. The claim is that several physical constants &mdash; the strength of gravity, the cosmological constant, the mass ratios of particles &mdash; sit in a narrow band that permits stable atoms, stars, and chemistry. Nudge them slightly and you get a sterile cosmos. The theist concludes that a fine-tuner set the dials. The honest question for this lesson is not whether the constants look improbable, but whether &lsquo;a designer did it&rsquo; is the best explanation, or merely the first one that flatters our intuitions about purpose.",
-   "Three responses do real work. First, the multiverse: if physical reality contains a vast ensemble of regions with varying constants, then at least some will support observers, and we necessarily find ourselves in one of those. This is where the anthropic principle earns its keep &mdash; it is an observer-selection effect, not a cause. We could not have measured constants hostile to our own existence, so the apparent &lsquo;tuning&rsquo; partly reflects the bias of who is asking. Second, sub-optimal design: a cosmos mostly hostile to life, plus jury-rigged biology like the recurrent laryngeal nerve, fits an unguided process better than a flawless engineer.",
-   "In a live debate, watch two moves. A theist may call the multiverse unfalsifiable speculation &mdash; a fair jab, so concede it is provisional and note that several mainstream physics models predict it rather than invent it to dodge God. The deeper trap is treating the anthropic principle as a full explanation; it dissolves the &lsquo;why are we surprised&rsquo; puzzle but does not by itself say why any life-permitting region exists. Pair it with the multiverse or with our ignorance of whether the constants could even differ. And keep sub-optimal design in reserve: it shifts the burden, asking the designer hypothesis to explain the waste and the kludges it predicts poorly."
+   "The fine-tuning argument is one of the strongest cards a theist can play, so meet it head-on. The claim is that several physical constants (the strength of gravity, the cosmological constant, the mass ratios of particles) sit in a narrow band that permits stable atoms, stars, and chemistry. Nudge them slightly and you get a sterile cosmos. The theist concludes that a fine-tuner set the dials. The honest question for this lesson is not whether the constants look improbable, but whether &lsquo;a designer did it&rsquo; is the best explanation, or merely the first one that flatters our intuitions about purpose.",
+   "Three responses do real work. First, the multiverse: if physical reality contains a vast ensemble of regions with varying constants, then at least some will support observers, and we necessarily find ourselves in one of those. This is where the anthropic principle earns its keep; it is an observer-selection effect, not a cause. We could not have measured constants hostile to our own existence, so the apparent &lsquo;tuning&rsquo; partly reflects the bias of who is asking. Second, sub-optimal design: a cosmos mostly hostile to life, plus jury-rigged biology like the recurrent laryngeal nerve, fits an unguided process better than a flawless engineer.",
+   "In a live debate, watch two moves. A theist may call the multiverse unfalsifiable speculation, a fair jab, so concede it is provisional and note that several mainstream physics models predict it rather than invent it to dodge God. The deeper trap is treating the anthropic principle as a full explanation; it dissolves the &lsquo;why are we surprised&rsquo; puzzle but does not by itself say why any life-permitting region exists. Pair it with the multiverse or with our ignorance of whether the constants could even differ. And keep sub-optimal design in reserve: it shifts the burden, asking the designer hypothesis to explain the waste and the kludges it predicts poorly."
   ],
   "terms": [
    [
@@ -1184,7 +1274,7 @@ window.SEED_LESSON_CONTENT = {
      "It replaces physics with pure philosophy"
     ],
     "ans": 1,
-    "ex": "The <b>multiverse</b> provides a large ensemble of regions with differing constants. Combined with the <b>anthropic principle</b>, this makes our life-permitting region expected rather than improbable &mdash; without disproving a designer outright."
+    "ex": "The <b>multiverse</b> provides a large ensemble of regions with differing constants. Combined with the <b>anthropic principle</b>, this makes our life-permitting region expected rather than improbable, without disproving a designer outright."
    },
    {
     "q": "Why does the sub-optimal design observation strengthen the secular case?",
@@ -1195,8 +1285,13 @@ window.SEED_LESSON_CONTENT = {
      "Because it relies on the multiverse being confirmed"
     ],
     "ans": 0,
-    "ex": "<b>Sub-optimal design</b> &mdash; a largely sterile cosmos and jury-rigged biology like the recurrent laryngeal nerve &mdash; shifts the burden onto the designer hypothesis, which predicts efficiency rather than waste."
+    "ex": "<b>Sub-optimal design</b> (a largely sterile cosmos and jury-rigged biology like the recurrent laryngeal nerve) shifts the burden onto the designer hypothesis, which predicts efficiency rather than waste."
    }
+  ],
+  "sources": [
+   "Richard Dawkins, <i>The Blind Watchmaker</i> (1986).",
+   "Elliott Sober, <i>The Design Argument</i> (2003).",
+   "<a href=\"https://plato.stanford.edu/entries/fine-tuning/\" target=\"_blank\" rel=\"noopener\">Stanford Encyclopedia of Philosophy: &ldquo;Fine-Tuning&rdquo;</a>"
   ]
  },
  "L2:2.3": {
@@ -1254,18 +1349,23 @@ window.SEED_LESSON_CONTENT = {
     "ans": 0,
     "ex": "The strongest reply invokes <b>necessary existence</b>: contingent things like islands have no &lsquo;greatest&rsquo; member, so the parody may not mirror a being defined as necessarily existing."
    }
+  ],
+  "sources": [
+   "Gaunilo of Marmoutiers, <i>On Behalf of the Fool</i> (c. 1080).",
+   "Immanuel Kant, <i>Critique of Pure Reason</i> (1781). (existence is not a predicate).",
+   "<a href=\"https://plato.stanford.edu/entries/ontological-arguments/\" target=\"_blank\" rel=\"noopener\">Stanford Encyclopedia of Philosophy: &ldquo;Ontological Arguments&rdquo;</a>"
   ]
  },
  "L2:2.4": {
   "read": [
    "A common argument for God runs like this: objective moral values exist, those values can only come from God, so God exists. The second premise is where the work happens, and it leans on the idea that without a divine lawgiver, right and wrong would be mere preference. Plato saw the problem first. In his dialogue, Socrates presses a young man named Euthyphro with a single question that still cuts: is an action good because the gods command it, or do the gods command it because it is good? Either answer the theist picks carries a cost. The choice is genuine, and it sits at the center of whether morality needs a commander at all.",
-   "Take the first horn: good simply means whatever God commands. Then if God had commanded cruelty, cruelty would be good, and calling God&rsquo;s nature &ldquo;good&rdquo; just means &ldquo;God is whatever God is&rdquo; &mdash; an empty compliment. Most thoughtful theists reject this and take the second horn: God commands things because they are already good. But that concedes the crucial point. Goodness has a standard God recognizes rather than invents, which means the standard is independent of the command. The strongest theistic reply is the third option: goodness is grounded in God&rsquo;s unchanging nature, not in arbitrary will or an external rule. That is a serious move, but it relocates the question rather than ending it &mdash; we can still ask why that nature counts as good.",
-   "In a live debate, the dilemma is a scalpel, not a hammer. Your opponent will likely reach for the &ldquo;grounded in God&rsquo;s nature&rdquo; answer, so be ready: ask what makes that nature good, and whether they can name a quality &mdash; reducing suffering, honoring persons &mdash; that would be good even on its own. If they can, command was never doing the work. Stay charitable. The point is not that believers lack morals; plainly they have them. The point is that the moral argument fails to show God is the *source* of morality, which means ethics can be grounded in reasons, consequences, and human flourishing without any divine command behind it."
+   "Take the first horn: good simply means whatever God commands. Then if God had commanded cruelty, cruelty would be good, and calling God&rsquo;s nature &ldquo;good&rdquo; just means &ldquo;God is whatever God is&rdquo;, an empty compliment. Most thoughtful theists reject this and take the second horn: God commands things because they are already good. But that concedes the crucial point. Goodness has a standard God recognizes rather than invents, which means the standard is independent of the command. The strongest theistic reply is the third option: goodness is grounded in God&rsquo;s unchanging nature, not in arbitrary will or an external rule. That is a serious move, but it relocates the question rather than ending it; we can still ask why that nature counts as good.",
+   "In a live debate, the dilemma is a scalpel, not a hammer. Your opponent will likely reach for the &ldquo;grounded in God&rsquo;s nature&rdquo; answer, so be ready: ask what makes that nature good, and whether they can name a quality (reducing suffering, honoring persons) that would be good even on its own. If they can, command was never doing the work. Stay charitable. The point is not that believers lack morals; plainly they have them. The point is that the moral argument fails to show God is the *source* of morality, which means ethics can be grounded in reasons, consequences, and human flourishing without any divine command behind it."
   ],
   "terms": [
    [
     "Euthyphro dilemma",
-    "Plato&rsquo;s question of whether an act is good because God commands it, or commanded because it is already good &mdash; either answer undermines the claim that morality depends on divine command."
+    "Plato&rsquo;s question of whether an act is good because God commands it, or commanded because it is already good. Either answer undermines the claim that morality depends on divine command."
    ],
    [
     "Moral argument",
@@ -1293,7 +1393,7 @@ window.SEED_LESSON_CONTENT = {
     "ex": "The <b>Euthyphro dilemma</b> forces a choice: either goodness is whatever is commanded, or the command tracks a goodness that already exists independently."
    },
    {
-    "q": "True or False: Taking the first horn &mdash; that &ldquo;good&rdquo; just means &ldquo;whatever God commands&rdquo; &mdash; makes calling God good informative and substantial.",
+    "q": "True or False: Taking the first horn, that &ldquo;good&rdquo; just means &ldquo;whatever God commands&rdquo;, makes calling God good informative and substantial.",
     "opts": [
      "True",
      "False"
@@ -1312,6 +1412,10 @@ window.SEED_LESSON_CONTENT = {
     "ans": 1,
     "ex": "This presses the <b>grounding problem</b>: if any quality would be good independently, then divine command was never the actual source of its goodness."
    }
+  ],
+  "sources": [
+   "Plato, <i>Euthyphro</i> (c. 399 BCE).",
+   "<a href=\"https://plato.stanford.edu/entries/religion-morality/\" target=\"_blank\" rel=\"noopener\">Stanford Encyclopedia of Philosophy: &ldquo;Religion and Morality&rdquo;</a>"
   ]
  },
  "L2:3.1": {
@@ -1370,13 +1474,18 @@ window.SEED_LESSON_CONTENT = {
     "ans": 1,
     "ex": "<b>Omnipotence</b> is power over the logically possible; forcing a genuinely free choice is incoherent, so failing to do it is no limit on God&rsquo;s power."
    }
+  ],
+  "sources": [
+   "J. L. Mackie, &ldquo;Evil and Omnipotence,&rdquo; <i>Mind</i> 64 (1955).",
+   "Alvin Plantinga, <i>God, Freedom, and Evil</i> (1974).",
+   "<a href=\"https://plato.stanford.edu/entries/evil/\" target=\"_blank\" rel=\"noopener\">Stanford Encyclopedia of Philosophy: &ldquo;The Problem of Evil&rdquo;</a>"
   ]
  },
  "L2:3.2": {
   "read": [
-   "Earlier in this module we met the logical problem of evil, which claimed that &ldquo;God exists&rdquo; and &ldquo;evil exists&rdquo; flatly contradict each other. Most philosophers now grant that the bare existence of evil does not strictly disprove God&mdash;a sufficiently clever theodicy can keep the two consistent. So a sharper question replaces it: not whether any evil at all rules God out, but whether the sheer amount and apparent pointlessness of suffering counts as strong evidence against an all-powerful, all-knowing, all-good being. This is the evidential problem of evil. It trades the demand for contradiction for the more modest, and arguably more dangerous, claim that the world looks like one no such God would run.",
-   "William Rowe&rsquo;s 1979 version is the standard reference point. He asks us to picture a fawn burned in a forest fire, dying slowly over days, unseen by any person. Rowe&rsquo;s argument runs: (1) there exist instances of intense suffering an omnipotent, omniscient being could have prevented without thereby losing some greater good or allowing an evil equally bad or worse; (2) such a being would prevent any suffering it could, unless doing so cost a greater good or admitted a worse evil; (3) so no such being exists. Premise (2) is a claim about goodness most theists accept. The weight falls on premise (1)&mdash;the inductive judgment that at least some suffering really is gratuitous, serving no outweighing purpose.",
-   "In a live debate, the move to watch is the jump from &ldquo;no purpose we can see&rdquo; to &ldquo;no purpose at all.&rdquo; Rowe&rsquo;s honest answer is that he does not claim to prove this, only that the fawn case makes gratuitous suffering reasonable to believe. The strongest theist reply, due to Stephen Wykstra, attacks exactly this step: given the gap between our minds and an infinite God&rsquo;s, our failure to spot a reason is weak evidence that none exists, much as a beginner&rsquo;s failure to see a chess master&rsquo;s plan does not show there is none. So the real contest is not over whether suffering is awful&mdash;both sides agree it is&mdash;but over how much our ignorance is allowed to carry."
+   "Earlier in this module we met the logical problem of evil, which claimed that &ldquo;God exists&rdquo; and &ldquo;evil exists&rdquo; flatly contradict each other. Most philosophers now grant that the bare existence of evil does not strictly disprove God, a sufficiently clever theodicy can keep the two consistent. So a sharper question replaces it: not whether any evil at all rules God out, but whether the sheer amount and apparent pointlessness of suffering counts as strong evidence against an all-powerful, all-knowing, all-good being. This is the evidential problem of evil. It trades the demand for contradiction for the more modest, and arguably more dangerous, claim that the world looks like one no such God would run.",
+   "William Rowe&rsquo;s 1979 version is the standard reference point. He asks us to picture a fawn burned in a forest fire, dying slowly over days, unseen by any person. Rowe&rsquo;s argument runs: (1) there exist instances of intense suffering an omnipotent, omniscient being could have prevented without thereby losing some greater good or allowing an evil equally bad or worse; (2) such a being would prevent any suffering it could, unless doing so cost a greater good or admitted a worse evil; (3) so no such being exists. Premise (2) is a claim about goodness most theists accept. The weight falls on premise (1), the inductive judgment that at least some suffering really is gratuitous, serving no outweighing purpose.",
+   "In a live debate, the move to watch is the jump from &ldquo;no purpose we can see&rdquo; to &ldquo;no purpose at all.&rdquo; Rowe&rsquo;s honest answer is that he does not claim to prove this, only that the fawn case makes gratuitous suffering reasonable to believe. The strongest theist reply, due to Stephen Wykstra, attacks exactly this step: given the gap between our minds and an infinite God&rsquo;s, our failure to spot a reason is weak evidence that none exists, much as a beginner&rsquo;s failure to see a chess master&rsquo;s plan does not show there is none. So the real contest is not over whether suffering is awful (both sides agree it is) but over how much our ignorance is allowed to carry."
   ],
   "terms": [
    [
@@ -1389,7 +1498,7 @@ window.SEED_LESSON_CONTENT = {
    ],
    [
     "Noseeum inference",
-    "The contested reasoning from &ldquo;we see no justifying reason for this evil&rdquo; to &ldquo;there is no justifying reason&rdquo;&mdash;named for the move &lsquo;I don&rsquo;t see &rsquo;um, so there ain&rsquo;t &rsquo;um.&rsquo;"
+    "The contested reasoning from &ldquo;we see no justifying reason for this evil&rdquo; to &ldquo;there is no justifying reason&rdquo;, named for the move &lsquo;I don&rsquo;t see &rsquo;um, so there ain&rsquo;t &rsquo;um.&rsquo;"
    ],
    [
     "Skeptical theism",
@@ -1406,7 +1515,7 @@ window.SEED_LESSON_CONTENT = {
      "It argues only about moral, never natural, evil"
     ],
     "ans": 1,
-    "ex": "The <b>evidential problem</b> concedes that God and evil may be logically consistent, but argues that the amount and apparent pointlessness of suffering makes God&rsquo;s existence improbable&mdash;an inductive claim, not a demonstration of contradiction."
+    "ex": "The <b>evidential problem</b> concedes that God and evil may be logically consistent, but argues that the amount and apparent pointlessness of suffering makes God&rsquo;s existence improbable, an inductive claim, not a demonstration of contradiction."
    },
    {
     "q": "In Rowe&rsquo;s argument, which premise carries the disputed empirical weight?",
@@ -1424,15 +1533,19 @@ window.SEED_LESSON_CONTENT = {
      "False"
     ],
     "ans": 1,
-    "ex": "False. Rowe presented the existence of <b>gratuitous suffering</b> as a reasonable inductive belief grounded in cases like the burning fawn, not as a strict proof&mdash;which is why his argument is evidential rather than logical."
+    "ex": "False. Rowe presented the existence of <b>gratuitous suffering</b> as a reasonable inductive belief grounded in cases like the burning fawn, not as a strict proof, which is why his argument is evidential rather than logical."
    }
+  ],
+  "sources": [
+   "William L. Rowe, &ldquo;The Problem of Evil and Some Varieties of Atheism,&rdquo; <i>American Philosophical Quarterly</i> 16 (1979).",
+   "<a href=\"https://plato.stanford.edu/entries/evil/\" target=\"_blank\" rel=\"noopener\">Stanford Encyclopedia of Philosophy: &ldquo;The Problem of Evil&rdquo;</a>"
   ]
  },
  "L2:3.3": {
   "read": [
-   "A child suffers and dies of bone cancer. The atheist points to that fact and asks how it squares with a God who is all-powerful, all-knowing, and perfectly good. The theist rarely denies the suffering. Instead, a theodicy is offered &mdash; a story about why a good God would permit evils like this one. The question this lesson asks is concrete: do these stories actually discharge the burden, or do they relocate it? We will look at three of the strongest replies on offer &mdash; soul-making, the greater-good defense, and skeptical theism &mdash; and ask of each what it explains, what it costs, and where a careful opponent should press.",
-   "Soul-making, associated with John Hick, holds that a world with genuine hardship is the only kind that can grow courage, compassion, and moral character; a frictionless paradise would produce no one worth being. The greater-good defense generalizes this: every evil God permits is logically tied to a good that outweighs it or to preventing a worse evil. Skeptical theism takes a different route entirely. It grants that we cannot see the good that justifies a given horror, but denies that our failure to see one is evidence there is none &mdash; our cognitive grasp of the space of possible goods may simply be too limited to judge. Each move is coherent. Each also pays a price somewhere else.",
-   "In a real debate, watch for the gap between the abstract and the particular. A defense that explains why some suffering exists rarely explains this suffering &mdash; the fawn burned in a forest fire no human will ever witness, the infant whose pain teaches no one anything. Press the soul-making theorist on suffering that destroys rather than builds character, and on animals who cannot be ennobled by it. Press skeptical theism on its symmetry problem: if our ignorance blocks the inference from &ldquo;I see no justifying good&rdquo; to &ldquo;there is none,&rdquo; it may equally block our ordinary moral confidence that we should relieve suffering at all. The strongest theodicies survive the abstract challenge; the honest question is whether any survives the specific case."
+   "A child suffers and dies of bone cancer. The atheist points to that fact and asks how it squares with a God who is all-powerful, all-knowing, and perfectly good. The theist rarely denies the suffering. Instead, a theodicy is offered, a story about why a good God would permit evils like this one. The question this lesson asks is concrete: do these stories actually discharge the burden, or do they relocate it? We will look at three of the strongest replies on offer (soul-making, the greater-good defense, and skeptical theism) and ask of each what it explains, what it costs, and where a careful opponent should press.",
+   "Soul-making, associated with John Hick, holds that a world with genuine hardship is the only kind that can grow courage, compassion, and moral character; a frictionless paradise would produce no one worth being. The greater-good defense generalizes this: every evil God permits is logically tied to a good that outweighs it or to preventing a worse evil. Skeptical theism takes a different route entirely. It grants that we cannot see the good that justifies a given horror, but denies that our failure to see one is evidence there is none: our cognitive grasp of the space of possible goods may simply be too limited to judge. Each move is coherent. Each also pays a price somewhere else.",
+   "In a real debate, watch for the gap between the abstract and the particular. A defense that explains why some suffering exists rarely explains this suffering, the fawn burned in a forest fire no human will ever witness, the infant whose pain teaches no one anything. Press the soul-making theorist on suffering that destroys rather than builds character, and on animals who cannot be ennobled by it. Press skeptical theism on its symmetry problem: if our ignorance blocks the inference from &ldquo;I see no justifying good&rdquo; to &ldquo;there is none,&rdquo; it may equally block our ordinary moral confidence that we should relieve suffering at all. The strongest theodicies survive the abstract challenge; the honest question is whether any survives the specific case."
   ],
   "terms": [
    [
@@ -1476,7 +1589,7 @@ window.SEED_LESSON_CONTENT = {
    {
     "q": "Which objection most directly targets the greater-good defense and soul-making accounts together?",
     "opts": [
-     "Cases of suffering &mdash; such as an animal dying unseen &mdash; that build no character and serve no good anyone can identify",
+     "Cases of suffering, such as an animal dying unseen, that build no character and serve no good anyone can identify",
      "The claim that God does not exist by definition",
      "The observation that some people enjoy their lives",
      "The fact that theodicies are written in books"
@@ -1484,13 +1597,17 @@ window.SEED_LESSON_CONTENT = {
     "ans": 0,
     "ex": "Both the <b>greater-good defense</b> and soul-making struggle with apparently gratuitous suffering that ennobles no one and is tied to no discernible good, which is why opponents press the specific case rather than the abstract claim."
    }
+  ],
+  "sources": [
+   "John Hick, <i>Evil and the God of Love</i> (1966). (soul-making theodicy).",
+   "Marilyn McCord Adams &amp; Robert M. Adams (eds.), <i>The Problem of Evil</i> (1990)."
   ]
  },
  "L2:4.1": {
   "read": [
-   "Living things look engineered. An eye focuses light, a wing exploits airflow, a clotting cascade stops bleeding in precise stages. For most of history the obvious explanation was a designer, and the inference felt as solid as finding a watch on a heath and concluding a watchmaker made it. The honest question this lesson asks is narrow: does the appearance of design require a designer, or can an unguided process produce structures that look purposeful? Darwin&rsquo;s answer was not that complex organs arose by chance. It was that a specific non-random mechanism &mdash; natural selection acting on heritable variation &mdash; can accumulate function over deep time without foresight.",
-   "Natural selection has three ingredients: organisms vary, some variation is inherited, and variants that reproduce more leave more copies. Run that loop across millions of generations and traits that aid survival become common while others fade. The key move is that selection is not chance &mdash; mutation supplies undirected variation, but selection is a ruthless filter that preserves what works. Complexity builds in small steps, each one viable on its own. A partial eye that detects only light versus dark still beats no eye, which is why we find every gradient from light-sensitive patches to camera eyes across living species. &ldquo;Design&rdquo; here is a description of the outcome, not a confession about the cause.",
-   "In a real debate the strongest creationist objections deserve fair hearing, not mockery. &ldquo;Irreducible complexity&rdquo; &mdash; the claim that some systems fail if any part is removed &mdash; is a genuine prediction, but it has repeatedly been answered by showing parts that had earlier, different functions (co-option), so removing a part today says nothing about its history. &ldquo;What use is half a wing?&rdquo; assumes the final function was the only function; gliding, thermoregulation, and brooding are all partial uses. Watch for two recurring moves: shifting design from biology to physics or cosmology mid-argument, and treating &ldquo;we don&rsquo;t yet know the pathway&rdquo; as &ldquo;there is no pathway.&rdquo; Pressing for a testable prediction usually clarifies which side is doing science."
+   "Living things look engineered. An eye focuses light, a wing exploits airflow, a clotting cascade stops bleeding in precise stages. For most of history the obvious explanation was a designer, and the inference felt as solid as finding a watch on a heath and concluding a watchmaker made it. The honest question this lesson asks is narrow: does the appearance of design require a designer, or can an unguided process produce structures that look purposeful? Darwin&rsquo;s answer was not that complex organs arose by chance. It was that a specific non-random mechanism, natural selection acting on heritable variation, can accumulate function over deep time without foresight.",
+   "Natural selection has three ingredients: organisms vary, some variation is inherited, and variants that reproduce more leave more copies. Run that loop across millions of generations and traits that aid survival become common while others fade. The key move is that selection is not chance; mutation supplies undirected variation, but selection is a ruthless filter that preserves what works. Complexity builds in small steps, each one viable on its own. A partial eye that detects only light versus dark still beats no eye, which is why we find every gradient from light-sensitive patches to camera eyes across living species. &ldquo;Design&rdquo; here is a description of the outcome, not a confession about the cause.",
+   "In a real debate the strongest creationist objections deserve fair hearing, not mockery. &ldquo;Irreducible complexity&rdquo;, the claim that some systems fail if any part is removed, is a genuine prediction, but it has repeatedly been answered by showing parts that had earlier, different functions (co-option), so removing a part today says nothing about its history. &ldquo;What use is half a wing?&rdquo; assumes the final function was the only function; gliding, thermoregulation, and brooding are all partial uses. Watch for two recurring moves: shifting design from biology to physics or cosmology mid-argument, and treating &ldquo;we don&rsquo;t yet know the pathway&rdquo; as &ldquo;there is no pathway.&rdquo; Pressing for a testable prediction usually clarifies which side is doing science."
   ],
   "terms": [
    [
@@ -1542,13 +1659,18 @@ window.SEED_LESSON_CONTENT = {
     "ans": 1,
     "ex": "Shifting the <b>argument from design</b> between biology and physics avoids defending either claim on its own evidence."
    }
+  ],
+  "sources": [
+   "Charles Darwin, <i>On the Origin of Species</i> (1859).",
+   "Richard Dawkins, <i>The Blind Watchmaker</i> (1986).",
+   "Jerry A. Coyne, <i>Why Evolution Is True</i> (2009)."
   ]
  },
  "L2:4.2": {
   "read": [
-   "Strike a match in a dark room and you can trace the fire back: the friction, the phosphorus, the box. Cosmology asks the same question at the largest possible scale. The universe is expanding, galaxies are flying apart, and if you run that film backward everything converges toward a hot, dense beginning roughly 13.8 billion years ago &mdash; the Big Bang. The evidence is solid: the cosmic microwave background, the abundance of light elements, the redshift of distant galaxies. So far this is physics, not theology. The real debate starts with a harder question: what, if anything, came before that beginning, and does a beginning require a beginner?",
-   "Two arguments dominate. The first is &ldquo;something from nothing&rdquo; &mdash; the claim that the cosmos cannot have sprung from sheer nonexistence without a cause, so a necessary being must ground it. The theist&rsquo;s instinct here is reasonable: in ordinary life, things that begin to exist have causes. The second is fine-tuning &mdash; several physical constants, such as the strength of gravity or the cosmological constant, sit in extraordinarily narrow ranges that permit stars, chemistry, and life. Tilt them slightly and you get no atoms at all. Both arguments are serious. The honest secular reply is not to mock them but to ask whether the premises survive contact with the physics they invoke.",
-   "In a live debate, watch the word &ldquo;nothing.&rdquo; The physicist&rsquo;s &ldquo;nothing&rdquo; &mdash; a quantum vacuum or fluctuating field &mdash; is not the philosopher&rsquo;s &ldquo;nothing,&rdquo; the total absence of anything, and conflating them smuggles in the conclusion. With fine-tuning, watch for the leap from &ldquo;unlikely&rdquo; to &ldquo;designed,&rdquo; which skips live alternatives like a multiverse or unknown constraints on the constants. The fair move is not to declare either side a knockdown. It is to separate the established science (the Big Bang) from the contested metaphysics (what it implies) and insist each premise earns its place. A good critic can grant the universe had a beginning and still ask what that beginning licenses you to conclude."
+   "Strike a match in a dark room and you can trace the fire back: the friction, the phosphorus, the box. Cosmology asks the same question at the largest possible scale. The universe is expanding, galaxies are flying apart, and if you run that film backward everything converges toward a hot, dense beginning roughly 13.8 billion years ago, the Big Bang. The evidence is solid: the cosmic microwave background, the abundance of light elements, the redshift of distant galaxies. So far this is physics, not theology. The real debate starts with a harder question: what, if anything, came before that beginning, and does a beginning require a beginner?",
+   "Two arguments dominate. The first is &ldquo;something from nothing&rdquo;, the claim that the cosmos cannot have sprung from sheer nonexistence without a cause, so a necessary being must ground it. The theist&rsquo;s instinct here is reasonable: in ordinary life, things that begin to exist have causes. The second is fine-tuning: several physical constants, such as the strength of gravity or the cosmological constant, sit in extraordinarily narrow ranges that permit stars, chemistry, and life. Tilt them slightly and you get no atoms at all. Both arguments are serious. The honest secular reply is not to mock them but to ask whether the premises survive contact with the physics they invoke.",
+   "In a live debate, watch the word &ldquo;nothing.&rdquo; The physicist&rsquo;s &ldquo;nothing&rdquo;, a quantum vacuum or fluctuating field, is not the philosopher&rsquo;s &ldquo;nothing,&rdquo; the total absence of anything, and conflating them smuggles in the conclusion. With fine-tuning, watch for the leap from &ldquo;unlikely&rdquo; to &ldquo;designed,&rdquo; which skips live alternatives like a multiverse or unknown constraints on the constants. The fair move is not to declare either side a knockdown. It is to separate the established science (the Big Bang) from the contested metaphysics (what it implies) and insist each premise earns its place. A good critic can grant the universe had a beginning and still ask what that beginning licenses you to conclude."
   ],
   "terms": [
    [
@@ -1600,13 +1722,18 @@ window.SEED_LESSON_CONTENT = {
     "ans": 1,
     "ex": "The charitable move accepts that <b>fine-tuning</b> is a real observation while challenging the inference to design, since explanations such as a multiverse or unknown constraints on the constants remain on the table."
    }
+  ],
+  "sources": [
+   "Lawrence M. Krauss, <i>A Universe from Nothing</i> (2012).",
+   "Sean Carroll, <i>The Big Picture</i> (2016).",
+   "Stephen Hawking &amp; Leonard Mlodinow, <i>The Grand Design</i> (2010)."
   ]
  },
  "L2:4.3": {
   "read": [
-   "When a scientist studies a disease, an earthquake, or the origin of a species, she looks only for natural causes &mdash; never for a miracle. Critics sometimes read this as a confession of faith: science, they say, has simply assumed that nothing supernatural exists and then declared victory. That charge confuses two very different things that both travel under the name &ldquo;naturalism.&rdquo; One is a working rule about how to investigate the world. The other is a sweeping claim about what the world ultimately contains. Telling them apart is the whole task of this lesson, because almost every argument over &ldquo;science versus God&rdquo; turns on it.",
-   "Methodological naturalism is the practice of explaining observable events by appeal to natural causes that can be tested, measured, and checked by others. It does not deny that anything beyond nature could exist; it simply brackets such questions because supernatural causes cannot be controlled for or independently verified. Philosophical (or metaphysical) naturalism is a stronger thesis: it asserts that nature is in fact all there is &mdash; no gods, no souls, no realm beyond the physical. The first is a method any researcher can adopt, theist or atheist alike. The second is a conclusion about reality, and it needs its own argument. A devout believer can do excellent science precisely because the method asks nothing about her private metaphysics.",
-   "Watch for the slide from one to the other in live debate. An opponent may grant that science uses methodological naturalism, then accuse it of smuggling in atheism &mdash; treating the method as if it already proved nature is everything. The clean reply separates the claims: the method explains why a lab notebook never records &ldquo;and then a miracle occurred,&rdquo; while leaving the larger metaphysical question open. The reverse error is yours to avoid. If you argue from &ldquo;science finds only natural causes&rdquo; straight to &ldquo;therefore the supernatural does not exist,&rdquo; you have treated a rule of procedure as a discovery about reality. Honest naturalism states its method plainly and argues for its metaphysics separately."
+   "When a scientist studies a disease, an earthquake, or the origin of a species, she looks only for natural causes, never for a miracle. Critics sometimes read this as a confession of faith: science, they say, has simply assumed that nothing supernatural exists and then declared victory. That charge confuses two very different things that both travel under the name &ldquo;naturalism.&rdquo; One is a working rule about how to investigate the world. The other is a sweeping claim about what the world ultimately contains. Telling them apart is the whole task of this lesson, because almost every argument over &ldquo;science versus God&rdquo; turns on it.",
+   "Methodological naturalism is the practice of explaining observable events by appeal to natural causes that can be tested, measured, and checked by others. It does not deny that anything beyond nature could exist; it simply brackets such questions because supernatural causes cannot be controlled for or independently verified. Philosophical (or metaphysical) naturalism is a stronger thesis: it asserts that nature is in fact all there is: no gods, no souls, no realm beyond the physical. The first is a method any researcher can adopt, theist or atheist alike. The second is a conclusion about reality, and it needs its own argument. A devout believer can do excellent science precisely because the method asks nothing about her private metaphysics.",
+   "Watch for the slide from one to the other in live debate. An opponent may grant that science uses methodological naturalism, then accuse it of smuggling in atheism, treating the method as if it already proved nature is everything. The clean reply separates the claims: the method explains why a lab notebook never records &ldquo;and then a miracle occurred,&rdquo; while leaving the larger metaphysical question open. The reverse error is yours to avoid. If you argue from &ldquo;science finds only natural causes&rdquo; straight to &ldquo;therefore the supernatural does not exist,&rdquo; you have treated a rule of procedure as a discovery about reality. Honest naturalism states its method plainly and argues for its metaphysics separately."
   ],
   "terms": [
    [
@@ -1615,7 +1742,7 @@ window.SEED_LESSON_CONTENT = {
    ],
    [
     "Philosophical naturalism",
-    "the metaphysical claim that nature is all there is &mdash; no gods, souls, or any reality beyond the physical."
+    "the metaphysical claim that nature is all there is: no gods, souls, or any reality beyond the physical."
    ],
    [
     "Bracketing",
@@ -1658,13 +1785,17 @@ window.SEED_LESSON_CONTENT = {
     "ans": 0,
     "ex": "This is the <b>procedure-to-reality slide</b>: a rule about how to investigate (methodological naturalism) is mistaken for a discovery about what exists. The metaphysical claim needs its own argument."
    }
+  ],
+  "sources": [
+   "David Papineau, <i>Philosophical Naturalism</i> (1993).",
+   "<a href=\"https://plato.stanford.edu/entries/naturalism/\" target=\"_blank\" rel=\"noopener\">Stanford Encyclopedia of Philosophy: &ldquo;Naturalism&rdquo;</a>"
   ]
  },
  "L2:5.1": {
   "read": [
-   "Can a person be good without believing in God? The believer often presses a sharper version: even if atheists behave well, can they account for why anything is right or wrong without a divine lawgiver? This lesson takes that challenge seriously. The question is not whether secular people happen to act morally &mdash; plainly many do &mdash; but whether morality has any firm grounding once God is removed from the picture. A secular ethic has to answer two things: where our moral sense came from in the first place, and what could make a moral claim actually true rather than merely felt.",
-   "Start with origins. Evolutionary biology explains why social animals develop cooperation, empathy, and a sense of fairness: groups whose members protect kin and reciprocate favors tend to survive and reproduce. That gives us the &lsquo;moral emotions&rsquo; &mdash; guilt, indignation, gratitude &mdash; without any supernatural source. But origins are not justification; that something evolved does not make it right. So secular ethics offers grounding theories. Contractarianism says moral rules are the terms rational agents would agree to for mutual benefit, like a fair contract. Moral realism goes further: some moral facts hold independently of anyone&rsquo;s opinion or agreement, much as mathematical truths do, discoverable by reason.",
-   "In a real debate, keep two questions apart. The &lsquo;where did our conscience come from&rsquo; question is answered by evolution; the &lsquo;what makes cruelty actually wrong&rsquo; question is answered by an ethical theory. Conflating them produces the genetic fallacy &mdash; judging a belief by its origin rather than its merit. Be charitable to the theist: their worry that morality needs a foundation is legitimate, and the Euthyphro dilemma cuts both ways for everyone. The secularist&rsquo;s strongest move is not to deny that grounding matters but to show that contracts among reasoners, or mind-independent moral facts, can supply it. Watch for opponents who quietly slide from &lsquo;you can&rsquo;t explain why&rsquo; to &lsquo;therefore you can&rsquo;t be good.&rsquo;"
+   "Can a person be good without believing in God? The believer often presses a sharper version: even if atheists behave well, can they account for why anything is right or wrong without a divine lawgiver? This lesson takes that challenge seriously. The question is not whether secular people happen to act morally (plainly many do) but whether morality has any firm grounding once God is removed from the picture. A secular ethic has to answer two things: where our moral sense came from in the first place, and what could make a moral claim actually true rather than merely felt.",
+   "Start with origins. Evolutionary biology explains why social animals develop cooperation, empathy, and a sense of fairness: groups whose members protect kin and reciprocate favors tend to survive and reproduce. That gives us the &lsquo;moral emotions&rsquo; (guilt, indignation, gratitude) without any supernatural source. But origins are not justification; that something evolved does not make it right. So secular ethics offers grounding theories. Contractarianism says moral rules are the terms rational agents would agree to for mutual benefit, like a fair contract. Moral realism goes further: some moral facts hold independently of anyone&rsquo;s opinion or agreement, much as mathematical truths do, discoverable by reason.",
+   "In a real debate, keep two questions apart. The &lsquo;where did our conscience come from&rsquo; question is answered by evolution; the &lsquo;what makes cruelty actually wrong&rsquo; question is answered by an ethical theory. Conflating them produces the genetic fallacy, judging a belief by its origin rather than its merit. Be charitable to the theist: their worry that morality needs a foundation is legitimate, and the Euthyphro dilemma cuts both ways for everyone. The secularist&rsquo;s strongest move is not to deny that grounding matters but to show that contracts among reasoners, or mind-independent moral facts, can supply it. Watch for opponents who quietly slide from &lsquo;you can&rsquo;t explain why&rsquo; to &lsquo;therefore you can&rsquo;t be good.&rsquo;"
   ],
   "terms": [
    [
@@ -1713,12 +1844,17 @@ window.SEED_LESSON_CONTENT = {
     "ans": 1,
     "ex": "The <b>Euthyphro dilemma</b> directly pressures theism: either good is arbitrary because God commands it, or goodness exists prior to God&rsquo;s command. It cuts both ways rather than targeting only one side."
    }
+  ],
+  "sources": [
+   "Frans de Waal, <i>Primates and Philosophers</i> (2006).",
+   "David Gauthier, <i>Morals by Agreement</i> (1986).",
+   "<a href=\"https://plato.stanford.edu/entries/moral-realism/\" target=\"_blank\" rel=\"noopener\">Stanford Encyclopedia of Philosophy: &ldquo;Moral Realism&rdquo;</a>"
   ]
  },
  "L2:5.2": {
   "read": [
    "Ask whether an action is right, and you have to answer a prior question first: right in what sense? Suppose a doctor can save five patients by quietly using the organs of one healthy visitor. Almost everyone recoils. But notice that &ldquo;five lives saved&rdquo; sounds like a clear win, so the recoil must be tracking something the arithmetic misses. That gap is where ethical theory begins. This lesson introduces the three families of answer that have dominated the conversation: judge actions by their results, judge them by the duties they honor, or judge the person doing them. Each is trying to name what the doctor case already makes you feel.",
-   "Consequentialism says an act is right insofar as it produces the best outcomes, with classical utilitarianism cashing &ldquo;best&rdquo; out as the most well-being for the most people. Deontology says some acts are obligatory or forbidden in themselves &mdash; you may not use a person merely as a means, however good the payoff. Virtue ethics shifts the target entirely: instead of scoring acts, it asks what a person of good character would do, treating honesty or courage as the real unit of ethics. These are not three answers to one question but three readings of what the question even is. None requires God to get started; each can also be held by a believer, which is exactly the point this module presses.",
+   "Consequentialism says an act is right insofar as it produces the best outcomes, with classical utilitarianism cashing &ldquo;best&rdquo; out as the most well-being for the most people. Deontology says some acts are obligatory or forbidden in themselves: you may not use a person merely as a means, however good the payoff. Virtue ethics shifts the target entirely: instead of scoring acts, it asks what a person of good character would do, treating honesty or courage as the real unit of ethics. These are not three answers to one question but three readings of what the question even is. None requires God to get started; each can also be held by a believer, which is exactly the point this module presses.",
    "In a live debate, the fast move is to assume your opponent shares your framework and then call them inconsistent. They usually do not. When someone defends a rule that costs lives, they may be a deontologist, not a bad accountant. When someone bites the bullet on the doctor case, they may be a consistent consequentialist, not a monster. The skill is to identify which framework is in play, then test it on its own terms: press the consequentialist on whose well-being counts, the deontologist on where the rules come from, the virtue theorist on what to do when good people disagree. Naming the framework is half the argument."
   ],
   "terms": [
@@ -1757,7 +1893,7 @@ window.SEED_LESSON_CONTENT = {
      "False"
     ],
     "ans": 1,
-    "ex": "False. None of the three frameworks requires God to get started, but each is also compatible with theism &mdash; a believer can be a <b>deontologist</b>, consequentialist, or virtue ethicist, which is why this module separates ethics from its grounding."
+    "ex": "False. None of the three frameworks requires God to get started, but each is also compatible with theism, a believer can be a <b>deontologist</b>, consequentialist, or virtue ethicist, which is why this module separates ethics from its grounding."
    },
    {
     "q": "In the case where a doctor could save five patients by sacrificing one healthy visitor, which framework most directly explains the common refusal by appealing to a rule against using a person merely as a means?",
@@ -1770,13 +1906,18 @@ window.SEED_LESSON_CONTENT = {
     "ans": 2,
     "ex": "<b>Deontology</b> forbids treating a person merely as a means even when the outcome looks favorable; a strict consequentialist or utilitarian would instead weigh the five lives against the one."
    }
+  ],
+  "sources": [
+   "James Rachels &amp; Stuart Rachels, <i>The Elements of Moral Philosophy</i> (2019).",
+   "John Stuart Mill, <i>Utilitarianism</i> (1863).",
+   "Aristotle, <i>Nicomachean Ethics</i> (c. 340 BCE)."
   ]
  },
  "L2:5.3": {
   "read": [
-   "Can a life mean anything if no god assigned it a meaning? Many people feel the force of the worry: if the universe was not built for us, then our projects, loves, and sacrifices look like brief noise against a silent background. The theist often presses here, and fairly so &mdash; the claim that we matter seems to need some anchor outside ourselves. This lesson does not try to settle the question. It maps the terrain. We separate two ideas that ordinary speech jams together: whether the cosmos has a built-in purpose, and whether your particular life can hold value. Keeping them apart is the first move, and it changes what the debate is even about.",
-   "The secular reply usually grants the first point and denies that it settles the second. Suppose the universe assigns no goal to anyone. It does not follow that nothing is good or worth doing, because value may be relational rather than stamped into the fabric of reality. A friendship is valuable to the people in it; a cure is valuable to the patient who lives. On this view, meaning is conferred, not discovered &mdash; it arises from beings who care, choose, and commit. The theist can press back hard: conferred meaning looks invented, and invented meaning seems too flimsy to carry a life. That objection is real, and a good secularist answers it rather than waving it off. The honest version of the position is that subjective engagement and objectively worthwhile activities together can ground a life, even with no cosmic memo behind them.",
-   "In a live debate, watch for a quiet slide between two questions. Someone argues that the universe has no purpose, then concludes that your life has no purpose, as if these were one claim. Name the gap out loud. Watch also for the demand that meaning must be permanent to count &mdash; ask why duration should decide worth, since a finite kindness is not made worthless by ending. Finally, notice when &lsquo;objective value&rsquo; is treated as something only a god could supply; that is a conclusion to be argued, not a starting assumption. This lesson is a doorway. Level III takes up whether secular value can be objective at all, and how to defend it without smuggling in the very thing it set aside."
+   "Can a life mean anything if no god assigned it a meaning? Many people feel the force of the worry: if the universe was not built for us, then our projects, loves, and sacrifices look like brief noise against a silent background. The theist often presses here, and fairly so: the claim that we matter seems to need some anchor outside ourselves. This lesson does not try to settle the question. It maps the terrain. We separate two ideas that ordinary speech jams together: whether the cosmos has a built-in purpose, and whether your particular life can hold value. Keeping them apart is the first move, and it changes what the debate is even about.",
+   "The secular reply usually grants the first point and denies that it settles the second. Suppose the universe assigns no goal to anyone. It does not follow that nothing is good or worth doing, because value may be relational rather than stamped into the fabric of reality. A friendship is valuable to the people in it; a cure is valuable to the patient who lives. On this view, meaning is conferred, not discovered; it arises from beings who care, choose, and commit. The theist can press back hard: conferred meaning looks invented, and invented meaning seems too flimsy to carry a life. That objection is real, and a good secularist answers it rather than waving it off. The honest version of the position is that subjective engagement and objectively worthwhile activities together can ground a life, even with no cosmic memo behind them.",
+   "In a live debate, watch for a quiet slide between two questions. Someone argues that the universe has no purpose, then concludes that your life has no purpose, as if these were one claim. Name the gap out loud. Watch also for the demand that meaning must be permanent to count. Ask why duration should decide worth, since a finite kindness is not made worthless by ending. Finally, notice when &lsquo;objective value&rsquo; is treated as something only a god could supply; that is a conclusion to be argued, not a starting assumption. This lesson is a doorway. Level III takes up whether secular value can be objective at all, and how to defend it without smuggling in the very thing it set aside."
   ],
   "terms": [
    [
@@ -1826,13 +1967,17 @@ window.SEED_LESSON_CONTENT = {
     "ans": 1,
     "ex": "The school&rsquo;s ethic is fair argument, so the <b>invented-meaning objection</b> is steelmanned and answered rather than waved off; a good secularist meets it head-on."
    }
+  ],
+  "sources": [
+   "Philip Kitcher, <i>Life After Faith: The Case for Secular Humanism</i> (2014).",
+   "Susan Wolf, <i>Meaning in Life and Why It Matters</i> (2010)."
   ]
  },
  "L3:1.1": {
   "read": [
-   "The classical proofs and disproofs of God promised certainty, and largely failed to deliver it. Bayesian philosophy of religion reframes the entire dispute as a question of probability rather than proof. Instead of asking whether theism can be demonstrated beyond doubt, it asks how a piece of evidence should shift our confidence in the hypothesis that God exists. This move, championed by thinkers such as Richard Swinburne on the theistic side and many critics on the other, turns the debate into a disciplined accounting exercise: every observation about the universe — its order, its suffering, its very existence — becomes data to be weighed rather than a knockout blow to be landed.",
+   "The classical proofs and disproofs of God promised certainty, and largely failed to deliver it. Bayesian philosophy of religion reframes the entire dispute as a question of probability rather than proof. Instead of asking whether theism can be demonstrated beyond doubt, it asks how a piece of evidence should shift our confidence in the hypothesis that God exists. This move, championed by thinkers such as Richard Swinburne on the theistic side and many critics on the other, turns the debate into a disciplined accounting exercise: every observation about the universe (its order, its suffering, its very existence) becomes data to be weighed rather than a knockout blow to be landed.",
    "At the heart of the method is Bayes' theorem, which updates a prior probability into a posterior probability in light of new evidence. Two quantities drive the result. The prior captures how plausible we judged theism before considering the evidence, often resting on simplicity or background knowledge. The likelihood asks how expected the evidence is if God exists, compared with how expected it is on naturalism. A fine-tuned universe, the theist argues, is far more probable given a designer than given blind chance, so it raises theism's posterior. The atheist replies that gratuitous suffering is far less expected on theism, dragging that same posterior back down. The verdict turns on which likelihoods we honestly assign.",
-   "The probabilistic frame sharpens the debate without settling it, and that is precisely its value to a critical thinker. It exposes where disagreement really lives: rarely in the arithmetic, almost always in the priors and likelihoods each side smuggles in. A theist who assigns theism a high prior on grounds of simplicity, and an atheist who finds naturalism simpler, can run identical calculations to opposite conclusions. Recognizing this protects you from two errors — treating a single argument as decisive, and dismissing an opponent as irrational when they have merely weighted the inputs differently. The honest Bayesian asks not who won, but whose probability assignments survive scrutiny, and why."
+   "The probabilistic frame sharpens the debate without settling it, and that is precisely its value to a critical thinker. It exposes where disagreement really lives: rarely in the arithmetic, almost always in the priors and likelihoods each side smuggles in. A theist who assigns theism a high prior on grounds of simplicity, and an atheist who finds naturalism simpler, can run identical calculations to opposite conclusions. Recognizing this protects you from two errors: treating a single argument as decisive, and dismissing an opponent as irrational when they have merely weighted the inputs differently. The honest Bayesian asks not who won, but whose probability assignments survive scrutiny, and why."
   ],
   "terms": [
    [
@@ -1884,13 +2029,17 @@ window.SEED_LESSON_CONTENT = {
     "ans": 1,
     "ex": "Bayesianism abandons the demand for certainty and instead asks how each observation should <b>shift our confidence</b> in theism, weighing evidence rather than seeking a knockout proof."
    }
+  ],
+  "sources": [
+   "Richard Swinburne, <i>The Existence of God, 2nd ed.</i> (2004).",
+   "<a href=\"https://plato.stanford.edu/entries/bayes-theorem/\" target=\"_blank\" rel=\"noopener\">Stanford Encyclopedia of Philosophy: &ldquo;Bayes&rsquo; Theorem&rdquo;</a>"
   ]
  },
  "L3:1.2": {
   "read": [
-   "The fine-tuning argument observes that several physical constants — the cosmological constant, the strength of the strong nuclear force, the ratio of electron to proton mass — fall within astonishingly narrow ranges that permit chemistry, stars, and eventually life. Defenders argue this calls for explanation: design is presented as a better account than blind chance. To engage this seriously we must resist two cheap moves. We should not pretend the numbers are unimpressive, and we should not assume design wins by default. The real work lies in asking what &ldquo;probability&rdquo; even means when applied to the constants of a single universe, and whether the inference survives scrutiny once that question is pressed honestly.",
-   "The decisive technical objection concerns normalizability. To say a value is improbable, we need a probability distribution over the possible values — and that distribution must sum or integrate to one. But the ranges proposed for many constants are unbounded, or infinite, and there is no non-arbitrary way to spread probability evenly across an infinite interval. A uniform distribution over all real numbers cannot be normalized; it is not a probability distribution at all. Without it, the claim &ldquo;this value is fantastically unlikely&rdquo; lacks a defined meaning. The theist can reply that some natural measure exists, but specifying and justifying that measure is precisely the burden, not a detail to be waved past.",
-   "Two further moves shape the debate. The multiverse hypothesis proposes that many universes with varying constants exist, so a life-permitting one is unsurprising — we observe a hospitable universe because we could exist nowhere else. The standard rejoinder, the &ldquo;this universe&rdquo; objection, presses that even granting many universes, the fine-tuning of <i>this</i> particular one still seems to want explaining. The sharpest response invokes observer selection: given that observers arise only in hospitable universes, conditioning on our own existence is exactly what we should do. A strong debater grants the data&rsquo;s force, then relocates the dispute to measure and inference, where theism&rsquo;s burden is heaviest."
+   "The fine-tuning argument observes that several physical constants (the cosmological constant, the strength of the strong nuclear force, the ratio of electron to proton mass) fall within astonishingly narrow ranges that permit chemistry, stars, and eventually life. Defenders argue this calls for explanation: design is presented as a better account than blind chance. To engage this seriously we must resist two cheap moves. We should not pretend the numbers are unimpressive, and we should not assume design wins by default. The real work lies in asking what &ldquo;probability&rdquo; even means when applied to the constants of a single universe, and whether the inference survives scrutiny once that question is pressed honestly.",
+   "The decisive technical objection concerns normalizability. To say a value is improbable, we need a probability distribution over the possible values, and that distribution must sum or integrate to one. But the ranges proposed for many constants are unbounded, or infinite, and there is no non-arbitrary way to spread probability evenly across an infinite interval. A uniform distribution over all real numbers cannot be normalized; it is not a probability distribution at all. Without it, the claim &ldquo;this value is fantastically unlikely&rdquo; lacks a defined meaning. The theist can reply that some natural measure exists, but specifying and justifying that measure is precisely the burden, not a detail to be waved past.",
+   "Two further moves shape the debate. The multiverse hypothesis proposes that many universes with varying constants exist, so a life-permitting one is unsurprising; we observe a hospitable universe because we could exist nowhere else. The standard rejoinder, the &ldquo;this universe&rdquo; objection, presses that even granting many universes, the fine-tuning of <i>this</i> particular one still seems to want explaining. The sharpest response invokes observer selection: given that observers arise only in hospitable universes, conditioning on our own existence is exactly what we should do. A strong debater grants the data&rsquo;s force, then relocates the dispute to measure and inference, where theism&rsquo;s burden is heaviest."
   ],
   "terms": [
    [
@@ -1944,13 +2093,18 @@ window.SEED_LESSON_CONTENT = {
     "ans": 1,
     "ex": "Because observers exist only where conditions permit, we should <b>condition on our own existence</b>; finding ourselves in a hospitable universe is then exactly what we should expect, undercutting the surprise the objection trades on."
    }
+  ],
+  "sources": [
+   "Robin Collins, <i>The Teleological Argument (in The Blackwell Companion to Natural Theology)</i> (2009).",
+   "Timothy McGrew, Lydia McGrew &amp; Eric Vestrup, <i>Probabilities and the Fine-Tuning Argument</i> (2001).",
+   "<a href=\"https://plato.stanford.edu/entries/fine-tuning/\" target=\"_blank\" rel=\"noopener\">Stanford Encyclopedia of Philosophy: &ldquo;Fine-Tuning&rdquo;</a>"
   ]
  },
  "L3:1.3": {
   "read": [
-   "When a theist says they simply find themselves believing in God, the secular instinct is to demand an argument — show me the inference, the evidence, the chain of reasoning. Reformed epistemology, developed most rigorously by Alvin Plantinga, refuses that demand at the gate. It challenges the assumption (often traced to evidentialism) that belief in God is rational only if supported by propositional evidence or argument. Instead, Plantinga asks why we should treat theistic belief differently from a whole class of beliefs we already accept without argument: that the past is real, that other minds exist, that our senses are generally reliable. If those foundations stand without proof, the question becomes sharper than it first appears.",
-   "Plantinga's central move is to classify belief in God as <i>properly basic</i> — a belief held immediately rather than inferred from other beliefs, yet still rational. We do not argue our way to the existence of the external world; we form that belief directly in response to experience, and it sits at the foundation of our noetic structure. Plantinga proposes that belief in God can arise the same way, triggered by experiences such as gratitude, awe, or a sense of being known. On his later account, such belief counts as <i>warranted</i> when produced by cognitive faculties functioning properly in their intended environment. The argument does not claim God exists; it claims theistic belief need not rest on argument to be reasonable.",
-   "The most cited challenge is the Great Pumpkin objection, which Plantinga himself raised: if belief in God can be properly basic, what stops belief in Linus's Great Pumpkin — or any absurd thing — from claiming the same status? If the category has no gatekeeper, it seems to license everything. Plantinga answers that proper basicality is not arbitrary; criteria are built up from clear examples, and a community can reasonably exclude beliefs with no grounding in experience or proper function. For a debate-first thinker, the live question is whether this reply genuinely discriminates God-belief from arbitrary belief, or merely relocates the dispute to which faculties and grounds are legitimate — a fight evidentialists and Reformed epistemologists are still having."
+   "When a theist says they simply find themselves believing in God, the secular instinct is to demand an argument: show me the inference, the evidence, the chain of reasoning. Reformed epistemology, developed most rigorously by Alvin Plantinga, refuses that demand at the gate. It challenges the assumption (often traced to evidentialism) that belief in God is rational only if supported by propositional evidence or argument. Instead, Plantinga asks why we should treat theistic belief differently from a whole class of beliefs we already accept without argument: that the past is real, that other minds exist, that our senses are generally reliable. If those foundations stand without proof, the question becomes sharper than it first appears.",
+   "Plantinga's central move is to classify belief in God as <i>properly basic</i>, a belief held immediately rather than inferred from other beliefs, yet still rational. We do not argue our way to the existence of the external world; we form that belief directly in response to experience, and it sits at the foundation of our noetic structure. Plantinga proposes that belief in God can arise the same way, triggered by experiences such as gratitude, awe, or a sense of being known. On his later account, such belief counts as <i>warranted</i> when produced by cognitive faculties functioning properly in their intended environment. The argument does not claim God exists; it claims theistic belief need not rest on argument to be reasonable.",
+   "The most cited challenge is the Great Pumpkin objection, which Plantinga himself raised: if belief in God can be properly basic, what stops belief in Linus's Great Pumpkin, or any absurd thing, from claiming the same status? If the category has no gatekeeper, it seems to license everything. Plantinga answers that proper basicality is not arbitrary; criteria are built up from clear examples, and a community can reasonably exclude beliefs with no grounding in experience or proper function. For a debate-first thinker, the live question is whether this reply genuinely discriminates God-belief from arbitrary belief, or merely relocates the dispute to which faculties and grounds are legitimate, a fight evidentialists and Reformed epistemologists are still having."
   ],
   "terms": [
    [
@@ -1963,7 +2117,7 @@ window.SEED_LESSON_CONTENT = {
    ],
    [
     "Warrant",
-    "Plantinga's term for whatever, in sufficient quantity, turns true belief into knowledge — for him, the product of cognitive faculties functioning properly in their proper environment."
+    "Plantinga's term for whatever, in sufficient quantity, turns true belief into knowledge, for him, the product of cognitive faculties functioning properly in their proper environment."
    ],
    [
     "Great Pumpkin objection",
@@ -1980,7 +2134,7 @@ window.SEED_LESSON_CONTENT = {
      "That it requires more evidence than ordinary beliefs"
     ],
     "ans": 1,
-    "ex": "A properly basic belief is held <b>immediately rather than inferred</b> from other beliefs, yet can still be rational — like belief in the external world or other minds."
+    "ex": "A properly basic belief is held <b>immediately rather than inferred</b> from other beliefs, yet can still be rational, like belief in the external world or other minds."
    },
    {
     "q": "What is the core of the Great Pumpkin objection?",
@@ -2004,13 +2158,17 @@ window.SEED_LESSON_CONTENT = {
     "ans": 1,
     "ex": "Plantinga argues proper basicality is <b>not arbitrary</b>: criteria are assembled inductively from clear cases, so a community can reasonably exclude beliefs lacking grounding in experience or proper function."
    }
+  ],
+  "sources": [
+   "Alvin Plantinga, <i>Warranted Christian Belief</i> (2000).",
+   "Alvin Plantinga, <i>God and Other Minds</i> (1967)."
   ]
  },
  "L3:1.4": {
   "read": [
-   "The problem of evil asks why a good God permits suffering; divine hiddenness asks something quieter but no less sharp — why, if a loving God exists, are there sincere people who through no fault of their own fail to believe? J.L. Schellenberg sharpened this into a formal argument in the early 1990s, and it now stands beside the problem of evil as a leading case for atheism. The intuition is simple and almost pastoral: a perfectly loving God would want a conscious relationship with every finite person capable of one, much as a loving parent makes herself available to her child. Yet some people seek God honestly and find only silence. That silence, the argument claims, is evidence against the loving God in question.",
-   "Schellenberg builds the case as a deductive chain. If a perfectly loving God exists, then God is always open to a personal relationship with anyone capable of it. Such openness requires that no honest, non-resistant person ever lacks belief that God exists, since one cannot relate to someone one does not believe is there. But non-resistant nonbelief plainly occurs: there are people who are open to God, who would welcome the relationship, and who still do not believe. From these premises it follows that no perfectly loving God exists. The argument's force lies in its narrow target — it does not concern the stubborn or the indifferent, but precisely those whose unbelief is sincere and unwilled, the people a loving God should most readily reach.",
-   "The debate hinges on whether the link between perfect love and constant relational availability really holds. Theists respond in several ways: perhaps God permits hiddenness so that faith remains a free, morally weighty response rather than a coerced acknowledgment; perhaps a felt divine presence would overwhelm human autonomy; perhaps some apparent non-resistance masks subtler resistance only God can see; or perhaps relationship with God does not strictly require propositional belief that God exists. Schellenberg presses back that these defenses either misdescribe what love demands or smuggle in goods a loving God could secure without leaving anyone in the dark. As a debater, treat hiddenness as a precision instrument — its premises are clean enough that the disagreement reduces to one disputed conditional, which is exactly where the sharpest exchanges happen."
+   "The problem of evil asks why a good God permits suffering; divine hiddenness asks something quieter but no less sharp: why, if a loving God exists, are there sincere people who through no fault of their own fail to believe? J.L. Schellenberg sharpened this into a formal argument in the early 1990s, and it now stands beside the problem of evil as a leading case for atheism. The intuition is simple and almost pastoral: a perfectly loving God would want a conscious relationship with every finite person capable of one, much as a loving parent makes herself available to her child. Yet some people seek God honestly and find only silence. That silence, the argument claims, is evidence against the loving God in question.",
+   "Schellenberg builds the case as a deductive chain. If a perfectly loving God exists, then God is always open to a personal relationship with anyone capable of it. Such openness requires that no honest, non-resistant person ever lacks belief that God exists, since one cannot relate to someone one does not believe is there. But non-resistant nonbelief plainly occurs: there are people who are open to God, who would welcome the relationship, and who still do not believe. From these premises it follows that no perfectly loving God exists. The argument's force lies in its narrow target; it does not concern the stubborn or the indifferent, but precisely those whose unbelief is sincere and unwilled, the people a loving God should most readily reach.",
+   "The debate hinges on whether the link between perfect love and constant relational availability really holds. Theists respond in several ways: perhaps God permits hiddenness so that faith remains a free, morally weighty response rather than a coerced acknowledgment; perhaps a felt divine presence would overwhelm human autonomy; perhaps some apparent non-resistance masks subtler resistance only God can see; or perhaps relationship with God does not strictly require propositional belief that God exists. Schellenberg presses back that these defenses either misdescribe what love demands or smuggle in goods a loving God could secure without leaving anyone in the dark. As a debater, treat hiddenness as a precision instrument; its premises are clean enough that the disagreement reduces to one disputed conditional, which is exactly where the sharpest exchanges happen."
   ],
   "terms": [
    [
@@ -2040,7 +2198,7 @@ window.SEED_LESSON_CONTENT = {
      "Doubt experienced by committed believers"
     ],
     "ans": 1,
-    "ex": "The argument focuses narrowly on <b>non-resistant nonbelief</b> — sincere, open inquirers who are not refusing God. Targeting the willfully resistant would let the theist off too easily."
+    "ex": "The argument focuses narrowly on <b>non-resistant nonbelief</b>: sincere, open inquirers who are not refusing God. Targeting the willfully resistant would let the theist off too easily."
    },
    {
     "q": "On Schellenberg's reasoning, why is non-resistant nonbelief evidence against a perfectly loving God?",
@@ -2064,12 +2222,16 @@ window.SEED_LESSON_CONTENT = {
     "ans": 0,
     "ex": "A leading reply is the <b>free-response defense</b>: an overwhelming divine presence could coerce assent, so God permits hiddenness to keep faith a genuine, morally significant choice."
    }
+  ],
+  "sources": [
+   "J. L. Schellenberg, <i>Divine Hiddenness and Human Reason</i> (1993).",
+   "<a href=\"https://plato.stanford.edu/entries/divine-hiddenness/\" target=\"_blank\" rel=\"noopener\">Stanford Encyclopedia of Philosophy: &ldquo;Divine Hiddenness&rdquo;</a>"
   ]
  },
  "L3:1.5": {
   "read": [
-   "When someone reports a miracle — a healing, a resurrection, a voice in the desert — what should a rational person conclude? The question is not whether the event would be remarkable if true, but whether the testimony reporting it can carry the weight being placed on it. David Hume sharpened this into a problem about evidence rather than metaphysics. He did not claim miracles are impossible; he argued instead that the very feature making an event miraculous — its violation of a uniform law of nature — is also the feature that stacks the prior probability massively against it. So the believer and the skeptic can agree on the report itself and still disagree about what it is reasonable to infer.",
-   "Hume's core move is a comparison of improbabilities. A law of nature is supported by an enormous, unbroken run of past observation, so the probability that it failed on one occasion is, by definition, as low as evidence can make anything. Against this we weigh the probability that the testimony is mistaken or deceptive — and human testimony, he observed, fails often: people are credulous, memory distorts, witnesses have motives, and wonder is pleasurable to report and to hear. His maxim is that no testimony suffices to establish a miracle unless its falsehood would be more miraculous than the event it reports. Only when the witness being wrong is itself harder to believe than the law breaking should we credit the claim.",
+   "When someone reports a miracle (a healing, a resurrection, a voice in the desert), what should a rational person conclude? The question is not whether the event would be remarkable if true, but whether the testimony reporting it can carry the weight being placed on it. David Hume sharpened this into a problem about evidence rather than metaphysics. He did not claim miracles are impossible; he argued instead that the very feature making an event miraculous, its violation of a uniform law of nature, is also the feature that stacks the prior probability massively against it. So the believer and the skeptic can agree on the report itself and still disagree about what it is reasonable to infer.",
+   "Hume's core move is a comparison of improbabilities. A law of nature is supported by an enormous, unbroken run of past observation, so the probability that it failed on one occasion is, by definition, as low as evidence can make anything. Against this we weigh the probability that the testimony is mistaken or deceptive, and human testimony, he observed, fails often: people are credulous, memory distorts, witnesses have motives, and wonder is pleasurable to report and to hear. His maxim is that no testimony suffices to establish a miracle unless its falsehood would be more miraculous than the event it reports. Only when the witness being wrong is itself harder to believe than the law breaking should we credit the claim.",
    "The debate turns on whether Hume rigged the scales. Defenders of religious experience reply that he treats laws as exceptionless when they may simply describe regularities a deity could suspend, and that cumulative independent witnesses can raise probability the way agreeing detectives convict. Bayesians note that a high prior against an event can be overcome by sufficiently improbable-if-false evidence, so the argument is a framework, not a verdict. The strongest secular position is therefore narrow: not that miracles never occur, but that the standard of evidence required to rationally believe a specific one is rarely met by the anecdotal, interested, and unrepeatable testimony usually offered. That is a claim a thoughtful believer can engage without conceding the existence of God."
   ],
   "terms": [
@@ -2095,7 +2257,7 @@ window.SEED_LESSON_CONTENT = {
     "q": "On Hume's account, what makes an alleged miracle so hard to establish by testimony?",
     "opts": [
      "Miracles are logically impossible, so no evidence could count",
-     "The very feature that makes it a miracle — violating a uniform law — sets its prior probability extremely low",
+     "The very feature that makes it a miracle, violating a uniform law, sets its prior probability extremely low",
      "Religious witnesses are always lying",
      "Laws of nature have no observational support"
     ],
@@ -2124,13 +2286,18 @@ window.SEED_LESSON_CONTENT = {
     "ans": 2,
     "ex": "The charitable and narrow reading is evidential, not metaphysical: it targets the <b>standard of evidence</b> for a particular claim, leaving open both rare exceptions and the broader question of God's existence."
    }
+  ],
+  "sources": [
+   "David Hume, &ldquo;Of Miracles,&rdquo; <i>An Enquiry concerning Human Understanding</i> §X (1748).",
+   "John Earman, <i>Hume&rsquo;s Abject Failure: The Argument Against Miracles</i> (2000).",
+   "<a href=\"https://plato.stanford.edu/entries/miracles/\" target=\"_blank\" rel=\"noopener\">Stanford Encyclopedia of Philosophy: &ldquo;Miracles&rdquo;</a>"
   ]
  },
  "L3:2.1": {
   "read": [
-   "Ask a believer why the world feels saturated with intention — why a rustle in the grass reads as a presence, why fortune and misfortune seem aimed — and you reach a question that long predates theology: not whether gods exist, but why human minds reach for them so readily and across every culture. The cognitive science of religion treats belief as a natural phenomenon to be explained, not a verdict to be reached. It asks what features of ordinary cognition — perception, social reasoning, memory — make supernatural agents intuitive rather than exotic. Crucially, explaining the origin of an intuition leaves its truth untouched; that is a separate matter, and a fair inquiry keeps the two questions apart.",
-   "The leading account points to a bundle of mental tools that evolved for mundane survival but spill over into religious belief. A Hyperactive Agency Detection Device errs toward seeing predators and persons in ambiguous stimuli, because a false alarm costs little while a missed lion is fatal — so the cosmos comes pre-loaded with sensed agents. Layered onto this is theory of mind, our reflex for attributing beliefs, desires, and intentions to others; once engaged, it can model agents who are invisible, disembodied, or watching from above. By-product theory unites these: god-concepts are not a dedicated adaptation but a side effect of cognitive systems selected for other tasks, made memorable by being minimally counterintuitive — mostly ordinary, with one arresting violation.",
-   "For an expert debate, this literature reshapes the terrain rather than settling it. The secular debater gains a strong reply to the universality argument: belief being culturally ubiquitous is exactly what by-product theory predicts whether or not any god exists, so universality is not evidence of the divine. Yet the charitable thinker concedes the symmetry — a theist can grant the mechanism and answer that God designed minds disposed to perceive him, the so-called sensus divinitatis. The cognitive account therefore neutralizes a common argument for theism without refuting theism itself; it shifts the burden, exposes the genetic fallacy lurking on both sides, and demands that each camp argue from evidence rather than from the mere prevalence of belief."
+   "Ask a believer why the world feels saturated with intention: why a rustle in the grass reads as a presence, why fortune and misfortune seem aimed, and you reach a question that long predates theology: not whether gods exist, but why human minds reach for them so readily and across every culture. The cognitive science of religion treats belief as a natural phenomenon to be explained, not a verdict to be reached. It asks what features of ordinary cognition (perception, social reasoning, memory) make supernatural agents intuitive rather than exotic. Crucially, explaining the origin of an intuition leaves its truth untouched; that is a separate matter, and a fair inquiry keeps the two questions apart.",
+   "The leading account points to a bundle of mental tools that evolved for mundane survival but spill over into religious belief. A Hyperactive Agency Detection Device errs toward seeing predators and persons in ambiguous stimuli, because a false alarm costs little while a missed lion is fatal, so the cosmos comes pre-loaded with sensed agents. Layered onto this is theory of mind, our reflex for attributing beliefs, desires, and intentions to others; once engaged, it can model agents who are invisible, disembodied, or watching from above. By-product theory unites these: god-concepts are not a dedicated adaptation but a side effect of cognitive systems selected for other tasks, made memorable by being minimally counterintuitive: mostly ordinary, with one arresting violation.",
+   "For an expert debate, this literature reshapes the terrain rather than settling it. The secular debater gains a strong reply to the universality argument: belief being culturally ubiquitous is exactly what by-product theory predicts whether or not any god exists, so universality is not evidence of the divine. Yet the charitable thinker concedes the symmetry; a theist can grant the mechanism and answer that God designed minds disposed to perceive him, the so-called sensus divinitatis. The cognitive account therefore neutralizes a common argument for theism without refuting theism itself; it shifts the burden, exposes the genetic fallacy lurking on both sides, and demands that each camp argue from evidence rather than from the mere prevalence of belief."
   ],
   "terms": [
    [
@@ -2184,13 +2351,18 @@ window.SEED_LESSON_CONTENT = {
     "ans": 2,
     "ex": "Explaining the <b>origin</b> of a belief does not settle its truth; treating the causal story as a disproof commits the genetic fallacy, which is why the account shifts the burden of argument rather than refuting theism."
    }
+  ],
+  "sources": [
+   "Pascal Boyer, <i>Religion Explained</i> (2001).",
+   "Stewart Guthrie, <i>Faces in the Clouds</i> (1993).",
+   "Justin L. Barrett, <i>Why Would Anyone Believe in God?</i> (2004)."
   ]
  },
  "L3:2.2": {
   "read": [
-   "If religion is so costly — in time, resources, foregone behavior, and risk — why does it appear in every known human society? The cognitive science of religion reframes the question by treating belief not as a truth claim to be refuted but as a piece of mental and social technology: something that does work for the people and groups who carry it. This framing brackets the question of whether any god exists and asks instead what religious cognition accomplishes. A technology need not be true to be useful; a compass that pointed the wrong way would be discarded, but religion has been retained across millennia. That persistence is the puzzle, and a serious secular thinker should find it genuinely interesting rather than merely embarrassing.",
-   "Two leading proposals dominate. Terror-management theory holds that humans, uniquely aware of their own mortality, experience a paralyzing potential for dread, and that worldviews promising symbolic or literal immortality buffer that anxiety; experiments show mortality reminders strengthen attachment to one’s belief system. The social-cohesion account argues that shared rituals, costly signals of commitment, and watchful gods solve cooperation problems — they let strangers trust one another and punish free-riders, enabling groups to scale. Both treat religion as performing a function. The deep dispute is whether that function explains religion’s origin (an adaptation selected for) or merely its persistence (a useful byproduct of cognition that evolved for other ends).",
-   "For debate, the lesson is precision about what a functional account does and does not establish. Showing that religion reduces death anxiety or builds cohesion does not show it is false — usefulness and truth are independent — and a believer can grant every functional finding while holding that the function is exactly what a real and provident God would design us to need. Equally, the secular debater should resist the lazy leap from “religion is adaptive” to “religion is therefore vindicated,” since adaptive beliefs can be systematically inaccurate. The sharpest exchanges turn on the adaptationist question itself: distinguishing a trait built by selection from a spandrel riding on machinery evolved for agency-detection, theory of mind, and coalition-tracking."
+   "If religion is so costly (in time, resources, foregone behavior, and risk) why does it appear in every known human society? The cognitive science of religion reframes the question by treating belief not as a truth claim to be refuted but as a piece of mental and social technology: something that does work for the people and groups who carry it. This framing brackets the question of whether any god exists and asks instead what religious cognition accomplishes. A technology need not be true to be useful; a compass that pointed the wrong way would be discarded, but religion has been retained across millennia. That persistence is the puzzle, and a serious secular thinker should find it genuinely interesting rather than merely embarrassing.",
+   "Two leading proposals dominate. Terror-management theory holds that humans, uniquely aware of their own mortality, experience a paralyzing potential for dread, and that worldviews promising symbolic or literal immortality buffer that anxiety; experiments show mortality reminders strengthen attachment to one’s belief system. The social-cohesion account argues that shared rituals, costly signals of commitment, and watchful gods solve cooperation problems; they let strangers trust one another and punish free-riders, enabling groups to scale. Both treat religion as performing a function. The deep dispute is whether that function explains religion’s origin (an adaptation selected for) or merely its persistence (a useful byproduct of cognition that evolved for other ends).",
+   "For debate, the lesson is precision about what a functional account does and does not establish. Showing that religion reduces death anxiety or builds cohesion does not show it is false; usefulness and truth are independent, and a believer can grant every functional finding while holding that the function is exactly what a real and provident God would design us to need. Equally, the secular debater should resist the lazy leap from “religion is adaptive” to “religion is therefore vindicated,” since adaptive beliefs can be systematically inaccurate. The sharpest exchanges turn on the adaptationist question itself: distinguishing a trait built by selection from a spandrel riding on machinery evolved for agency-detection, theory of mind, and coalition-tracking."
   ],
   "terms": [
    [
@@ -2220,7 +2392,7 @@ window.SEED_LESSON_CONTENT = {
      "Religious belief disappears once a society becomes wealthy enough"
     ],
     "ans": 1,
-    "ex": "Terror-management theory holds that humans uniquely know they will die, and that worldviews offering symbolic or literal immortality <b>buffer the resulting anxiety</b> — supported by findings that mortality reminders strengthen attachment to one’s belief system."
+    "ex": "Terror-management theory holds that humans uniquely know they will die, and that worldviews offering symbolic or literal immortality <b>buffer the resulting anxiety</b>, supported by findings that mortality reminders strengthen attachment to one’s belief system."
    },
    {
     "q": "A debater argues: “Studies show religion reduces death anxiety and builds cooperation, therefore religious claims are false.” What is the strongest objection to this reasoning?",
@@ -2231,7 +2403,7 @@ window.SEED_LESSON_CONTENT = {
      "Death anxiety cannot be measured in experiments"
     ],
     "ans": 1,
-    "ex": "The argument commits a category error: <b>usefulness and truth are independent</b>. Demonstrating that a belief performs a psychological or social function says nothing about whether the belief is accurate — a point a charitable account must concede in both directions."
+    "ex": "The argument commits a category error: <b>usefulness and truth are independent</b>. Demonstrating that a belief performs a psychological or social function says nothing about whether the belief is accurate, a point a charitable account must concede in both directions."
    },
    {
     "q": "In the adaptationist debate, what distinguishes treating religion as an adaptation from treating it as a byproduct?",
@@ -2244,13 +2416,18 @@ window.SEED_LESSON_CONTENT = {
     "ans": 0,
     "ex": "The dispute hinges on causal origin: an adaptation is a trait <b>selected for its function</b>, while a byproduct (spandrel) is an incidental side effect of systems such as agency-detection or theory of mind that evolved for unrelated reasons."
    }
+  ],
+  "sources": [
+   "Ara Norenzayan, <i>Big Gods: How Religion Transformed Cooperation and Conflict</i> (2013).",
+   "David Sloan Wilson, <i>Darwin&rsquo;s Cathedral</i> (2002).",
+   "Ernest Becker, <i>The Denial of Death</i> (1973). (terror-management theory)."
   ]
  },
  "L3:2.3": {
   "read": [
-   "Ask most people why they hold their deepest convictions and they will point to evidence and reasoning. Ask the cognitive science of religion the same question and a stranger picture emerges: beliefs are sticky in ways that have little to do with logic. The mind treats well-worn commitments as load-bearing, woven into identity, community, and emotional stability. So when we ask how minds actually change — how a lifelong believer becomes a skeptic, or the reverse — we are not asking about a clean exchange of one argument for a better one. We are asking how a deeply integrated cognitive and social structure comes apart and reassembles. That is a far harder and far more interesting problem than winning a debate.",
-   "Research on deconversion suggests it is rarely a single thunderbolt and more often a slow accumulation of unresolved tension — intellectual doubts, moral disappointments, social fractures — that crosses a threshold. Belief revision tends to follow this pattern across domains: humans update gradually, protecting core commitments and conceding the periphery first. This is where Street Epistemology enters. Rather than attacking conclusions, it uses calibrated, non-confrontational questions to help a person examine the reliability of their own method for forming beliefs. The wager is that asking someone whether their reasons would persuade them in another context is more likely to prompt genuine reflection than presenting a knockdown counterargument that triggers defensive entrenchment.",
-   "For a debate-first school this carries a sharp implication: the rhetorical victory and the changed mind are different prizes, and chasing the first can forfeit the second. A believer who feels cornered will often harden, a phenomenon sometimes linked to the backfire effect, because conceding now threatens identity and belonging, not just a proposition. The expert debater therefore treats charity and curiosity as strategic, not merely polite. Understanding the actual psychology of revision — thresholds, identity protection, the value of self-generated doubt — lets you argue in ways that respect an interlocutor's reasoning faculty rather than overwhelming it. The aim is not to humiliate a worldview but to make space in which a person can revise it themselves."
+   "Ask most people why they hold their deepest convictions and they will point to evidence and reasoning. Ask the cognitive science of religion the same question and a stranger picture emerges: beliefs are sticky in ways that have little to do with logic. The mind treats well-worn commitments as load-bearing, woven into identity, community, and emotional stability. So when we ask how minds actually change (how a lifelong believer becomes a skeptic, or the reverse), we are not asking about a clean exchange of one argument for a better one. We are asking how a deeply integrated cognitive and social structure comes apart and reassembles. That is a far harder and far more interesting problem than winning a debate.",
+   "Research on deconversion suggests it is rarely a single thunderbolt and more often a slow accumulation of unresolved tension (intellectual doubts, moral disappointments, social fractures) that crosses a threshold. Belief revision tends to follow this pattern across domains: humans update gradually, protecting core commitments and conceding the periphery first. This is where Street Epistemology enters. Rather than attacking conclusions, it uses calibrated, non-confrontational questions to help a person examine the reliability of their own method for forming beliefs. The wager is that asking someone whether their reasons would persuade them in another context is more likely to prompt genuine reflection than presenting a knockdown counterargument that triggers defensive entrenchment.",
+   "For a debate-first school this carries a sharp implication: the rhetorical victory and the changed mind are different prizes, and chasing the first can forfeit the second. A believer who feels cornered will often harden, a phenomenon sometimes linked to the backfire effect, because conceding now threatens identity and belonging, not just a proposition. The expert debater therefore treats charity and curiosity as strategic, not merely polite. Understanding the actual psychology of revision (thresholds, identity protection, the value of self-generated doubt) lets you argue in ways that respect an interlocutor's reasoning faculty rather than overwhelming it. The aim is not to humiliate a worldview but to make space in which a person can revise it themselves."
   ],
   "terms": [
    [
@@ -2304,6 +2481,11 @@ window.SEED_LESSON_CONTENT = {
     "ans": 1,
     "ex": "When a belief is tied to identity and belonging, a cornering argument can produce <b>identity-protective entrenchment</b> (the backfire effect), hardening the view rather than changing it."
    }
+  ],
+  "sources": [
+   "Peter Boghossian, <i>A Manual for Creating Atheists</i> (2013). (Street Epistemology).",
+   "Leon Festinger, Henry Riecken &amp; Stanley Schachter, <i>When Prophecy Fails</i> (1956).",
+   "Daniel Kahneman, <i>Thinking, Fast and Slow</i> (2011)."
   ]
  },
  "L3:3.1": {
@@ -2364,13 +2546,18 @@ window.SEED_LESSON_CONTENT = {
     "ans": 1,
     "ex": "The strongest theistic counter targets the lack of a neutral arbiter: if value is <b>created rather than discovered</b>, Nietzsche offers no principled barrier against the powerful crafting self-serving values, which raises the question of whether his affirmation truly answers nihilism."
    }
+  ],
+  "sources": [
+   "Friedrich Nietzsche, <i>The Gay Science</i> (1882).",
+   "Friedrich Nietzsche, <i>Thus Spoke Zarathustra</i> (1883).",
+   "<a href=\"https://plato.stanford.edu/entries/nietzsche/\" target=\"_blank\" rel=\"noopener\">Stanford Encyclopedia of Philosophy: &ldquo;Friedrich Nietzsche&rdquo;</a>"
   ]
  },
  "L3:3.2": {
   "read": [
-   "If the universe holds no built-in meaning, what follows? This is the question Albert Camus and Jean-Paul Sartre press with rare nerve. Camus names the collision between our hunger for clarity and a silent, indifferent cosmos the absurd. He refuses two easy exits: suicide, which capitulates, and the leap of faith, which he thinks smuggles meaning back in by fiat. A believer may answer that the cosmos is not silent at all — that meaning is given by God — and Camus takes that claim seriously even as he declines it. His project is to ask whether one can live honestly inside the absurd without resolving it in either direction.",
-   "Camus answers yes: we can revolt, holding the tension open rather than dissolving it, and his image of Sisyphus pushing the boulder forever becomes a portrait of defiant joy without illusion. Sartre sharpens the stakes from a different angle. For him existence precedes essence — we arrive with no fixed nature and must author ourselves through choice. This is radical freedom, and it is terrible: we are, he says, condemned to be free, fully responsible for who we become, with no external script to blame. Bad faith is the self-deception of pretending our choices were forced on us. Both thinkers locate dignity not in cosmic guarantees but in how lucidly a person owns their situation.",
-   "The debate this opens is whether meaning genuinely requires a transcendent source. The theist argues that without God, words like value and obligation float free of any anchor, leaving Camus and Sartre to borrow moral weight they cannot fund. That is a serious charge. The secular reply is that meaning can be made rather than found — that a life is significant because of the commitments we build and sustain, not because the stars endorse them. A sharp interlocutor will notice the cost on each side: the believer must defend why a divine command confers genuine worth rather than mere obedience, while the existentialist must explain why self-authored values bind anyone beyond the self who authored them."
+   "If the universe holds no built-in meaning, what follows? This is the question Albert Camus and Jean-Paul Sartre press with rare nerve. Camus names the collision between our hunger for clarity and a silent, indifferent cosmos the absurd. He refuses two easy exits: suicide, which capitulates, and the leap of faith, which he thinks smuggles meaning back in by fiat. A believer may answer that the cosmos is not silent at all (that meaning is given by God) and Camus takes that claim seriously even as he declines it. His project is to ask whether one can live honestly inside the absurd without resolving it in either direction.",
+   "Camus answers yes: we can revolt, holding the tension open rather than dissolving it, and his image of Sisyphus pushing the boulder forever becomes a portrait of defiant joy without illusion. Sartre sharpens the stakes from a different angle. For him existence precedes essence: we arrive with no fixed nature and must author ourselves through choice. This is radical freedom, and it is terrible: we are, he says, condemned to be free, fully responsible for who we become, with no external script to blame. Bad faith is the self-deception of pretending our choices were forced on us. Both thinkers locate dignity not in cosmic guarantees but in how lucidly a person owns their situation.",
+   "The debate this opens is whether meaning genuinely requires a transcendent source. The theist argues that without God, words like value and obligation float free of any anchor, leaving Camus and Sartre to borrow moral weight they cannot fund. That is a serious charge. The secular reply is that meaning can be made rather than found, that a life is significant because of the commitments we build and sustain, not because the stars endorse them. A sharp interlocutor will notice the cost on each side: the believer must defend why a divine command confers genuine worth rather than mere obedience, while the existentialist must explain why self-authored values bind anyone beyond the self who authored them."
   ],
   "terms": [
    [
@@ -2422,13 +2609,18 @@ window.SEED_LESSON_CONTENT = {
     "ans": 0,
     "ex": "The strongest theistic objection is that meaning and moral obligation seem to require a <b>transcendent ground</b>; absent God, the critic argues, the existentialists borrow normative weight they cannot justify. The secular reply is that meaning is made through binding commitments rather than found in the cosmos."
    }
+  ],
+  "sources": [
+   "Albert Camus, <i>The Myth of Sisyphus</i> (1942).",
+   "Jean-Paul Sartre, <i>Existentialism Is a Humanism</i> (1946).",
+   "<a href=\"https://plato.stanford.edu/entries/existentialism/\" target=\"_blank\" rel=\"noopener\">Stanford Encyclopedia of Philosophy: &ldquo;Existentialism&rdquo;</a>"
   ]
  },
  "L3:3.3": {
   "read": [
-   "If meaning is not handed down from a creator or written into the structure of the cosmos, where does it come from? This is the central wager of secular meaning-making, and it does not begin by denying that believers find genuine purpose in the divine. It begins by asking whether purpose requires that source at all. The naturalist answer is that meaning is not discovered like a fossil but constructed like a relationship — built through commitments, attachments, and projects that matter to us even if they do not register on a cosmic ledger. The question facing this level is not whether life has meaning, but what kind of thing meaning is once we stop treating it as a gift from outside.",
-   "Three living traditions sketch how this construction works. Humanism locates value in human flourishing and solidarity, holding that the absence of a divine author makes our responsibility to one another more urgent, not less. Secular Stoicism, drawing on Epictetus and Marcus Aurelius without their cosmic theology, teaches that meaning grows from aligning our judgments with what we actually control — our intentions and responses — and releasing the rest. Secular Buddhism, as developed by writers like Stephen Batchelor, treats practices such as mindfulness and the easing of craving as a method for reducing self-imposed suffering, not as a path to literal rebirth. Each offers a discipline: meaning is something you do, repeatedly, rather than something you are told.",
-   "The debate implication is sharper than it first appears. A theist may grant that these practices work yet argue they borrow capital from religious frameworks that made them coherent — that a Stoic cosmos or a Buddhist dharma originally grounded the very disciplines secularists now keep while discarding the metaphysics. The strongest secular reply is not to dismiss this lineage but to test whether the practices stand on naturalistic legs: do compassion, equanimity, and solidarity survive translation into a universe with no built-in purpose? If they do, meaning is shown to be load-bearing without a foundation underneath it. If they collapse, the borrowing charge holds. That empirical-sounding wager — meaning by demonstration rather than decree — is what an expert defender must be ready to argue on both sides."
+   "If meaning is not handed down from a creator or written into the structure of the cosmos, where does it come from? This is the central wager of secular meaning-making, and it does not begin by denying that believers find genuine purpose in the divine. It begins by asking whether purpose requires that source at all. The naturalist answer is that meaning is not discovered like a fossil but constructed like a relationship, built through commitments, attachments, and projects that matter to us even if they do not register on a cosmic ledger. The question facing this level is not whether life has meaning, but what kind of thing meaning is once we stop treating it as a gift from outside.",
+   "Three living traditions sketch how this construction works. Humanism locates value in human flourishing and solidarity, holding that the absence of a divine author makes our responsibility to one another more urgent, not less. Secular Stoicism, drawing on Epictetus and Marcus Aurelius without their cosmic theology, teaches that meaning grows from aligning our judgments with what we actually control, our intentions and responses, and releasing the rest. Secular Buddhism, as developed by writers like Stephen Batchelor, treats practices such as mindfulness and the easing of craving as a method for reducing self-imposed suffering, not as a path to literal rebirth. Each offers a discipline: meaning is something you do, repeatedly, rather than something you are told.",
+   "The debate implication is sharper than it first appears. A theist may grant that these practices work yet argue they borrow capital from religious frameworks that made them coherent, that a Stoic cosmos or a Buddhist dharma originally grounded the very disciplines secularists now keep while discarding the metaphysics. The strongest secular reply is not to dismiss this lineage but to test whether the practices stand on naturalistic legs: do compassion, equanimity, and solidarity survive translation into a universe with no built-in purpose? If they do, meaning is shown to be load-bearing without a foundation underneath it. If they collapse, the borrowing charge holds. That empirical-sounding wager, meaning by demonstration rather than decree, is what an expert defender must be ready to argue on both sides."
   ],
   "terms": [
    [
@@ -2469,7 +2661,7 @@ window.SEED_LESSON_CONTENT = {
      "It abandons ethics entirely"
     ],
     "ans": 1,
-    "ex": "Secular Stoicism retains the practical core — aligning judgments with what we actually control — while dropping the <b>cosmic theology</b> of Epictetus and Marcus Aurelius."
+    "ex": "Secular Stoicism retains the practical core, aligning judgments with what we actually control, while dropping the <b>cosmic theology</b> of Epictetus and Marcus Aurelius."
    },
    {
     "q": "What is the strongest secular response to the theist's borrowed-capital objection?",
@@ -2480,15 +2672,20 @@ window.SEED_LESSON_CONTENT = {
      "Insist the objection is too rude to answer"
     ],
     "ans": 2,
-    "ex": "Rather than dismissing the lineage, the strongest reply tests whether compassion, equanimity, and solidarity <b>stand on naturalistic legs</b> — showing meaning can be load-bearing without a foundation beneath it."
+    "ex": "Rather than dismissing the lineage, the strongest reply tests whether compassion, equanimity, and solidarity <b>stand on naturalistic legs</b>, showing meaning can be load-bearing without a foundation beneath it."
    }
+  ],
+  "sources": [
+   "Viktor E. Frankl, <i>Man&rsquo;s Search for Meaning</i> (1946).",
+   "William B. Irvine, <i>A Guide to the Good Life: The Ancient Art of Stoic Joy</i> (2009).",
+   "Stephen Batchelor, <i>Buddhism Without Beliefs</i> (1997)."
   ]
  },
  "L3:4.1": {
   "read": [
-   "When you say an act is wrong, what exactly are you doing? Metaethics steps back from particular moral judgments to ask what moral talk is even about. Are there moral facts that hold independently of what anyone believes — the way the mass of an electron holds whether or not we measure it? Or is moral language doing something else entirely: voicing approval, issuing commands, coordinating a community? This is the layer beneath normative theory. Two people can agree perfectly that cruelty is wrong while disagreeing radically about whether that wrongness is discovered or invented. Getting clear here shapes everything downstream, including how a secular thinker should answer the theist who insists that without God, the word ‘wrong’ refers to nothing at all.",
-   "The terrain divides along two questions: do moral claims aim at truth, and if so, is any of them true? Moral realists say yes to both — there are objective moral facts, whether grounded in non-natural properties, natural ones, or constructed-but-binding agreements. Anti-realists deny mind-independent moral facts. Within anti-realism, error theorists like Mackie hold that moral claims do aim at truth but all systematically fail, because the objective values they presuppose simply do not exist; moral discourse is a useful, sincere mistake. Quasi-realists, following Blackburn, take a subtler route: moral statements express attitudes rather than describe facts, yet through projection and refinement we earn the right to speak of moral truth, knowledge, and mind-independence without positing spooky objects.",
-   "For a debate school this map is indispensable, because most clashes over ethics are really metaethical clashes in disguise. The theist who argues that secular morality ‘has no foundation’ is usually assuming realism requires a divine guarantor — a claim a naturalist realist or a quasi-realist can answer without conceding the premise. Charitably, that worry tracks something real: error theory genuinely concedes there are no objective values, and a thinker who takes that path owes an account of why we should keep playing the moral game. The strongest secular positions do not dodge this. They either locate moral facts in features of persons and their lives, or they explain, without illusion, why our practice of holding each other accountable survives the discovery that morality was never written in the stars."
+   "When you say an act is wrong, what exactly are you doing? Metaethics steps back from particular moral judgments to ask what moral talk is even about. Are there moral facts that hold independently of what anyone believes, the way the mass of an electron holds whether or not we measure it? Or is moral language doing something else entirely: voicing approval, issuing commands, coordinating a community? This is the layer beneath normative theory. Two people can agree perfectly that cruelty is wrong while disagreeing radically about whether that wrongness is discovered or invented. Getting clear here shapes everything downstream, including how a secular thinker should answer the theist who insists that without God, the word ‘wrong’ refers to nothing at all.",
+   "The terrain divides along two questions: do moral claims aim at truth, and if so, is any of them true? Moral realists say yes to both: there are objective moral facts, whether grounded in non-natural properties, natural ones, or constructed-but-binding agreements. Anti-realists deny mind-independent moral facts. Within anti-realism, error theorists like Mackie hold that moral claims do aim at truth but all systematically fail, because the objective values they presuppose simply do not exist; moral discourse is a useful, sincere mistake. Quasi-realists, following Blackburn, take a subtler route: moral statements express attitudes rather than describe facts, yet through projection and refinement we earn the right to speak of moral truth, knowledge, and mind-independence without positing spooky objects.",
+   "For a debate school this map is indispensable, because most clashes over ethics are really metaethical clashes in disguise. The theist who argues that secular morality ‘has no foundation’ is usually assuming realism requires a divine guarantor, a claim a naturalist realist or a quasi-realist can answer without conceding the premise. Charitably, that worry tracks something real: error theory genuinely concedes there are no objective values, and a thinker who takes that path owes an account of why we should keep playing the moral game. The strongest secular positions do not dodge this. They either locate moral facts in features of persons and their lives, or they explain, without illusion, why our practice of holding each other accountable survives the discovery that morality was never written in the stars."
   ],
   "terms": [
    [
@@ -2524,7 +2721,7 @@ window.SEED_LESSON_CONTENT = {
     "q": "A theist argues that without God, secular morality has no foundation. Which response best fits a charitable, in-scope reply?",
     "opts": [
      "Concede that morality is meaningless without God",
-     "Point out that the objection assumes realism needs a divine guarantor — a premise a naturalist realist or quasi-realist can reject while still grounding moral claims",
+     "Point out that the objection assumes realism needs a divine guarantor, a premise a naturalist realist or quasi-realist can reject while still grounding moral claims",
      "Insist that all moral claims are simply expressions of feeling and nothing more",
      "Argue that moral facts are written into the physical structure of the stars"
     ],
@@ -2542,13 +2739,18 @@ window.SEED_LESSON_CONTENT = {
     "ans": 2,
     "ex": "Realism's core commitment is <b>mind-independence</b>: a moral fact obtains regardless of what anyone believes or feels about it. Consensus, authority, and intensity of feeling are all <b>attitude-dependent</b>, so none of them captures the objectivity the realist is claiming."
    }
+  ],
+  "sources": [
+   "J. L. Mackie, <i>Ethics: Inventing Right and Wrong</i> (1977). (error theory).",
+   "Simon Blackburn, <i>Ruling Passions</i> (1998). (quasi-realism).",
+   "<a href=\"https://plato.stanford.edu/entries/moral-anti-realism/\" target=\"_blank\" rel=\"noopener\">Stanford Encyclopedia of Philosophy: &ldquo;Moral Anti-Realism&rdquo;</a>"
   ]
  },
  "L3:4.2": {
   "read": [
-   "When ethical theories agree on easy cases, they tell us little; their real character shows under pressure. Hard cases — the surgeon who could carve five organs from one healthy visitor, the lie that turns away a murderer at the door, the promise kept at ruinous cost — are the laboratory of normative ethics. Each major secular framework offers a different account of what makes an act right, and each pays a price somewhere. The expert question is not which theory is flawless, but which handles the widest range of cases with the fewest violations of considered judgment. Theists join this same inquiry; divine-command views must also explain why the murderer-at-the-door case feels the way it does.",
-   "Consequentialism judges acts by outcomes, classically the greatest aggregate welfare. Its strength is impartial seriousness about suffering; its strain is that it can license using a person as a mere instrument when the math favors it. Deontology answers that some acts are forbidden regardless of yield — you may not kill the innocent visitor even to save five — because persons bear rights and duties that outcomes cannot override. Its strain is rigidity: must you never lie, even to the murderer? Virtue ethics shifts the question from the act to the agent, asking what a person of practical wisdom, courage, and honesty would do, and what choosing reveals about character. Its strain is action-guidance: it describes the good person more readily than the right deed.",
-   "The debate implication is that these frameworks are best read as rival emphases rather than sealed systems, and a skilled debater tracks where each bites. Press a consequentialist on rights and a deontologist on disastrous outcomes; ask a virtue theorist for a decision when wise people disagree. The same scalpel cuts theistic ethics: a believer who grounds morality in God still owes an account of how commands engage consequences, duties, and character — and whether goodness is prior to the command or constituted by it, the old Euthyphro pressure. Strong reasoning here is charitable first: state the opponent's best version, locate the case that strains it, then ask whether the repair preserves what made the theory attractive."
+   "When ethical theories agree on easy cases, they tell us little; their real character shows under pressure. Hard cases (the surgeon who could carve five organs from one healthy visitor, the lie that turns away a murderer at the door, the promise kept at ruinous cost) are the laboratory of normative ethics. Each major secular framework offers a different account of what makes an act right, and each pays a price somewhere. The expert question is not which theory is flawless, but which handles the widest range of cases with the fewest violations of considered judgment. Theists join this same inquiry; divine-command views must also explain why the murderer-at-the-door case feels the way it does.",
+   "Consequentialism judges acts by outcomes, classically the greatest aggregate welfare. Its strength is impartial seriousness about suffering; its strain is that it can license using a person as a mere instrument when the math favors it. Deontology answers that some acts are forbidden regardless of yield; you may not kill the innocent visitor even to save five, because persons bear rights and duties that outcomes cannot override. Its strain is rigidity: must you never lie, even to the murderer? Virtue ethics shifts the question from the act to the agent, asking what a person of practical wisdom, courage, and honesty would do, and what choosing reveals about character. Its strain is action-guidance: it describes the good person more readily than the right deed.",
+   "The debate implication is that these frameworks are best read as rival emphases rather than sealed systems, and a skilled debater tracks where each bites. Press a consequentialist on rights and a deontologist on disastrous outcomes; ask a virtue theorist for a decision when wise people disagree. The same scalpel cuts theistic ethics: a believer who grounds morality in God still owes an account of how commands engage consequences, duties, and character, and whether goodness is prior to the command or constituted by it, the old Euthyphro pressure. Strong reasoning here is charitable first: state the opponent's best version, locate the case that strains it, then ask whether the repair preserves what made the theory attractive."
   ],
   "terms": [
    [
@@ -2565,12 +2767,12 @@ window.SEED_LESSON_CONTENT = {
    ],
    [
     "Euthyphro problem",
-    "The challenge of whether something is good because God commands it, or commanded because it is already good — pressing on any theory that grounds morality in divine will."
+    "The challenge of whether something is good because God commands it, or commanded because it is already good, pressing on any theory that grounds morality in divine will."
    ]
   ],
   "quiz": [
    {
-    "q": "The transplant case — killing one healthy visitor to save five patients with their organs — is most often used as an objection to which framework?",
+    "q": "The transplant case, killing one healthy visitor to save five patients with their organs, is most often used as an objection to which framework?",
     "opts": [
      "Consequentialism",
      "Deontology",
@@ -2584,7 +2786,7 @@ window.SEED_LESSON_CONTENT = {
     "q": "A deontologist who insists you may never lie, even to a murderer asking where your friend is hiding, illustrates which characteristic strain of the view?",
     "opts": [
      "That it ignores suffering entirely",
-     "Rigidity — absolute duties can demand outcomes that seem clearly wrong",
+     "Rigidity: absolute duties can demand outcomes that seem clearly wrong",
      "That it cannot define a good person",
      "That it always defers to consequences"
     ],
@@ -2600,15 +2802,20 @@ window.SEED_LESSON_CONTENT = {
      "Whether virtue can be taught"
     ],
     "ans": 2,
-    "ex": "The <b>Euthyphro</b> dilemma asks whether goodness is prior to God's command or constituted by it — a fair challenge a charitable debater raises without assuming the believer cannot answer it."
+    "ex": "The <b>Euthyphro</b> dilemma asks whether goodness is prior to God's command or constituted by it, a fair challenge a charitable debater raises without assuming the believer cannot answer it."
    }
+  ],
+  "sources": [
+   "Derek Parfit, <i>On What Matters</i> (2011).",
+   "Philippa Foot, <i>The Problem of Abortion and the Doctrine of Double Effect</i> (1967). (the trolley problem).",
+   "James &amp; Stuart Rachels, <i>The Elements of Moral Philosophy</i> (2019)."
   ]
  },
  "L3:4.3": {
   "read": [
    "When a hospital ethics board weighs whether to withdraw a ventilator, or a legislature debates the limits of genetic editing, the participants rarely cite a shared sacred text. They reason instead toward conclusions a Catholic, a Muslim, and an atheist can all be expected to honor. This is the distinctive demand of public bioethics: it must justify life-and-death decisions in terms that bind people who disagree about ultimate reality. A believer may privately hold that human dignity flows from being made in God&rsquo;s image, and that conviction is coherent and serious. But the policy that governs the shared clinic cannot rest on a premise only some citizens accept.",
-   "The standard secular response is to ground bioethical norms in considerations anyone can inspect: the capacity to suffer, the interest in continued life, the value of autonomous choice, and the demand for fairness in distributing scarce care. From these, frameworks like the four-principle approach&mdash;autonomy, beneficence, non-maleficence, and justice&mdash;build arguments that travel across worldviews. The point is not that God is absent from the universe, but that a public argument should appeal to reasons each affected party can in principle weigh and contest. A claim grounded in suffering invites counter-evidence and refinement; a claim grounded in revelation, however true, leaves the dissenter no foothold for shared deliberation.",
-   "This generates the sharpest debate in the field. Critics, including many thoughtful believers, argue that stripping ethics of transcendent grounding leaves dignity floating without an anchor&mdash;that &ldquo;capacity to suffer&rdquo; cannot bear the weight that &ldquo;sacred&rdquo; once carried. The secular debater should concede the force of this worry rather than wave it away, then press the practical question: which framework actually lets a religiously plural society decide together? Public reason does not claim to be the whole moral truth; it claims to be the fairest currency for coercive policy among people who will never agree on first principles. Defending that modest, contestable claim is the real work."
+   "The standard secular response is to ground bioethical norms in considerations anyone can inspect: the capacity to suffer, the interest in continued life, the value of autonomous choice, and the demand for fairness in distributing scarce care. From these, frameworks like the four-principle approach (autonomy, beneficence, non-maleficence, and justice) build arguments that travel across worldviews. The point is not that God is absent from the universe, but that a public argument should appeal to reasons each affected party can in principle weigh and contest. A claim grounded in suffering invites counter-evidence and refinement; a claim grounded in revelation, however true, leaves the dissenter no foothold for shared deliberation.",
+   "This generates the sharpest debate in the field. Critics, including many thoughtful believers, argue that stripping ethics of transcendent grounding leaves dignity floating without an anchor, that &ldquo;capacity to suffer&rdquo; cannot bear the weight that &ldquo;sacred&rdquo; once carried. The secular debater should concede the force of this worry rather than wave it away, then press the practical question: which framework actually lets a religiously plural society decide together? Public reason does not claim to be the whole moral truth; it claims to be the fairest currency for coercive policy among people who will never agree on first principles. Defending that modest, contestable claim is the real work."
   ],
   "terms": [
    [
@@ -2617,7 +2824,7 @@ window.SEED_LESSON_CONTENT = {
    ],
    [
     "Principlism",
-    "A widely used bioethics framework that evaluates cases through four mid-level principles&mdash;respect for autonomy, beneficence, non-maleficence, and justice&mdash;rather than a single overarching theory."
+    "A widely used bioethics framework that evaluates cases through four mid-level principles (respect for autonomy, beneficence, non-maleficence, and justice) rather than a single overarching theory."
    ],
    [
     "Moral status",
@@ -2649,7 +2856,7 @@ window.SEED_LESSON_CONTENT = {
      "Sanctity, purity, loyalty, and authority"
     ],
     "ans": 1,
-    "ex": "Principlism works through four <b>mid-level principles</b>&mdash;respect for autonomy, beneficence, non-maleficence, and justice&mdash;chosen because they can be defended without committing to one comprehensive moral theory."
+    "ex": "Principlism works through four <b>mid-level principles</b> (respect for autonomy, beneficence, non-maleficence, and justice) chosen because they can be defended without committing to one comprehensive moral theory."
    },
    {
     "q": "What is the strongest objection a secular debater should charitably grant before responding?",
@@ -2662,6 +2869,11 @@ window.SEED_LESSON_CONTENT = {
     "ans": 1,
     "ex": "The serious worry, pressed by many thoughtful believers, is that <b>secular grounding may leave dignity without a firm anchor</b>. A strong debater concedes its force, then argues public reason is still the fairest basis for coercive policy among people who disagree."
    }
+  ],
+  "sources": [
+   "Tom L. Beauchamp &amp; James F. Childress, <i>Principles of Biomedical Ethics</i> (2019). (the four principles).",
+   "Peter Singer, <i>Practical Ethics</i> (2011).",
+   "John Rawls, <i>The Idea of Public Reason Revisited</i> (1997)."
   ]
  },
  "L3:5.1": {
@@ -2722,18 +2934,22 @@ window.SEED_LESSON_CONTENT = {
     "ans": 1,
     "ex": "Flowing tracks each claim in parallel columns, and an argument left unrebutted is treated as <b>conceded</b>, which is why precise, claim-by-claim response matters more than rhetorical force."
    }
+  ],
+  "sources": [
+   "Alfred Snider &amp; Maxwell Schnurer, <i>Many Sides: Debate Across the Curriculum</i> (2002).",
+   "National Speech &amp; Debate Association: format guides (Lincoln-Douglas, Policy/CX, Public Forum)."
   ]
  },
  "L3:5.2": {
   "read": [
-   "By Level III you can already build a case and answer the obvious objections. Advanced rebuttal asks a harder question: once two trained interlocutors have traded arguments, how does a fair-minded observer decide which side actually prevailed? The temptation is to count points, to imagine that whoever raised more objections to theism, or whoever defended more of them, has won. But a debate is not a ledger of claims; it is a contest of <i>weighed</i> reasons. The mature secular advocate learns to ask not merely “is this argument true?” but “how much does it matter, and against what?” That shift — from asserting to weighing — separates someone who can talk about religion from someone who can genuinely reason in public about it.",
-   "The core skill is comparison under a shared standard. <b>Framing</b> sets the lens through which both sides should be judged: what counts as a good explanation, what burden each party carries, what we should believe absent decisive evidence. <b>Weighing</b> then ranks the surviving arguments by strength, scope, and probability rather than by volume. <b>Clash</b> is the discipline of meeting the strongest version of an opponent’s point head-on instead of restating your own. As exchanges multiply you cannot defend everything, so you <b>collapse</b> onto the few lines you can win decisively and <b>extend</b> them — carrying a conceded or unanswered point forward as established. The “<b>voters</b>” are the handful of decisive issues you ask the judge to vote on, the place where comparison is done explicitly rather than left implicit.",
-   "For the public reasoner this reframes the whole project. Charitable engagement is not a courtesy; it is what makes clash real, because rebutting a caricature of theism settles nothing. A believer’s best argument — fine-tuning, the intelligibility of the universe, moral realism, religious experience — deserves to be stated at full strength before it is weighed. The honest secular case rarely rests on having more objections; it rests on showing that the most load-bearing of those objections survives the strongest reply and outweighs what the theist offers in return. Conceding minor ground to collapse onto a decisive voter is a sign of strength, not retreat. Reasoning in public, then, is less about winning every exchange than about making the comparison transparent enough that a fair observer can see why one explanation should be preferred."
+   "By Level III you can already build a case and answer the obvious objections. Advanced rebuttal asks a harder question: once two trained interlocutors have traded arguments, how does a fair-minded observer decide which side actually prevailed? The temptation is to count points, to imagine that whoever raised more objections to theism, or whoever defended more of them, has won. But a debate is not a ledger of claims; it is a contest of <i>weighed</i> reasons. The mature secular advocate learns to ask not merely “is this argument true?” but “how much does it matter, and against what?” That shift, from asserting to weighing, separates someone who can talk about religion from someone who can genuinely reason in public about it.",
+   "The core skill is comparison under a shared standard. <b>Framing</b> sets the lens through which both sides should be judged: what counts as a good explanation, what burden each party carries, what we should believe absent decisive evidence. <b>Weighing</b> then ranks the surviving arguments by strength, scope, and probability rather than by volume. <b>Clash</b> is the discipline of meeting the strongest version of an opponent’s point head-on instead of restating your own. As exchanges multiply you cannot defend everything, so you <b>collapse</b> onto the few lines you can win decisively and <b>extend</b> them, carrying a conceded or unanswered point forward as established. The “<b>voters</b>” are the handful of decisive issues you ask the judge to vote on, the place where comparison is done explicitly rather than left implicit.",
+   "For the public reasoner this reframes the whole project. Charitable engagement is not a courtesy; it is what makes clash real, because rebutting a caricature of theism settles nothing. A believer’s best argument (fine-tuning, the intelligibility of the universe, moral realism, religious experience) deserves to be stated at full strength before it is weighed. The honest secular case rarely rests on having more objections; it rests on showing that the most load-bearing of those objections survives the strongest reply and outweighs what the theist offers in return. Conceding minor ground to collapse onto a decisive voter is a sign of strength, not retreat. Reasoning in public, then, is less about winning every exchange than about making the comparison transparent enough that a fair observer can see why one explanation should be preferred."
   ],
   "terms": [
    [
     "Framing",
-    "The interpretive standard a debater proposes for how the question should be judged — what counts as evidence, who bears the burden of proof, and what to believe when the evidence is inconclusive."
+    "The interpretive standard a debater proposes for how the question should be judged: what counts as evidence, who bears the burden of proof, and what to believe when the evidence is inconclusive."
    ],
    [
     "Weighing",
@@ -2758,7 +2974,7 @@ window.SEED_LESSON_CONTENT = {
      "Weighing is only used by the side defending theism"
     ],
     "ans": 1,
-    "ex": "Weighing is <b>comparison</b>, not accumulation. A judge ranks the strongest surviving arguments by strength, scope, and probability — not by who raised more points. Counting objections is exactly the mistake weighing corrects."
+    "ex": "Weighing is <b>comparison</b>, not accumulation. A judge ranks the strongest surviving arguments by strength, scope, and probability, not by who raised more points. Counting objections is exactly the mistake weighing corrects."
    },
    {
     "q": "Why is charitable engagement treated as essential to genuine clash rather than mere politeness?",
@@ -2782,13 +2998,17 @@ window.SEED_LESSON_CONTENT = {
     "ans": 2,
     "ex": "Collapsing means <b>narrowing</b> onto your most decisive arguments and extending them, rather than thinly defending everything. Conceding minor ground to win on a few clear voters is a sign of strength, not surrender."
    }
+  ],
+  "sources": [
+   "Alfred Snider &amp; Maxwell Schnurer, <i>Many Sides: Debate Across the Curriculum</i> (2002).",
+   "Robert J. Branham, <i>Debate and Critical Analysis</i> (1991)."
   ]
  },
  "L3:5.3": {
   "read": [
-   "When you argue against a position, which version of it are you actually defeating? The strawman is the caricature you build because it is easy to knock down: the believer reduced to a fearful simpleton, the materialist reduced to a soulless nihilist. Refuting that caricature feels like victory, but it leaves your real opponent untouched and your audience unconvinced. The disciplined alternative is steelmanning—deliberately reconstructing the opposing argument in its strongest, most defensible form before you respond. This is not politeness for its own sake. It is the only honest test of whether your own position can survive contact with a serious challenge rather than a convenient one.",
-   "Charitable interpretation means reading an argument the way its most thoughtful defender would state it, supplying the missing premise and resolving ambiguity in the speaker's favor. Against the cosmological argument, the steelman is not “a magic man made everything,” but the careful claim that contingent things require a necessary ground of being—a position Aquinas and Leibniz developed with real precision. Steelmanning does not require agreement; you may still judge the premise false. It requires accuracy. The discipline also guards against the Gish gallop, the tactic of burying an opponent under many weak claims so fast that none can be answered. The charitable arguer refuses to play volume, selecting the strongest claim and engaging it fully.",
-   "In public reason, steelmanning is what converts debate from a contest of applause into a search for what holds up. An audience can tell when you have understood the other side; a believer who hears their actual reasoning restated will trust your subsequent objection far more than one who hears it mocked. Strategically, the strongest refutation is one your opponent recognizes as fair—they cannot retreat to “you misunderstood me.” The cost is real: steelmanning is slower, demands deep reading, and sometimes reveals that the strong version of a theistic claim is harder to dismiss than you hoped. That discomfort is the point. A conclusion that only survives against a caricature was never well-defended at all."
+   "When you argue against a position, which version of it are you actually defeating? The strawman is the caricature you build because it is easy to knock down: the believer reduced to a fearful simpleton, the materialist reduced to a soulless nihilist. Refuting that caricature feels like victory, but it leaves your real opponent untouched and your audience unconvinced. The disciplined alternative is steelmanning, deliberately reconstructing the opposing argument in its strongest, most defensible form before you respond. This is not politeness for its own sake. It is the only honest test of whether your own position can survive contact with a serious challenge rather than a convenient one.",
+   "Charitable interpretation means reading an argument the way its most thoughtful defender would state it, supplying the missing premise and resolving ambiguity in the speaker's favor. Against the cosmological argument, the steelman is not “a magic man made everything,” but the careful claim that contingent things require a necessary ground of being, a position Aquinas and Leibniz developed with real precision. Steelmanning does not require agreement; you may still judge the premise false. It requires accuracy. The discipline also guards against the Gish gallop, the tactic of burying an opponent under many weak claims so fast that none can be answered. The charitable arguer refuses to play volume, selecting the strongest claim and engaging it fully.",
+   "In public reason, steelmanning is what converts debate from a contest of applause into a search for what holds up. An audience can tell when you have understood the other side; a believer who hears their actual reasoning restated will trust your subsequent objection far more than one who hears it mocked. Strategically, the strongest refutation is one your opponent recognizes as fair; they cannot retreat to “you misunderstood me.” The cost is real: steelmanning is slower, demands deep reading, and sometimes reveals that the strong version of a theistic claim is harder to dismiss than you hoped. That discomfort is the point. A conclusion that only survives against a caricature was never well-defended at all."
   ],
   "terms": [
    [
@@ -2841,6 +3061,10 @@ window.SEED_LESSON_CONTENT = {
     "ans": 1,
     "ex": "When you restate an opponent's actual reasoning fairly, they <b>cannot retreat to “you misunderstood me,”</b> and the audience trusts an objection aimed at the real argument far more than one aimed at a caricature."
    }
+  ],
+  "sources": [
+   "Daniel C. Dennett, <i>Intuition Pumps and Other Tools for Thinking</i> (2013). (Rapoport&rsquo;s rules for steelmanning).",
+   "Douglas Walton, <i>Informal Logic</i> (2008)."
   ]
  },
  "L3:5.4": {
@@ -2901,6 +3125,10 @@ window.SEED_LESSON_CONTENT = {
     "ans": 1,
     "ex": "At scale the audience scores <b>fairness and temperament</b>, not just logic. Embarrassing a reasonable believer signals combativeness and can forfeit the watching majority."
    }
+  ],
+  "sources": [
+   "Peter Boghossian &amp; James Lindsay, <i>How to Have Impossible Conversations</i> (2019).",
+   "Peter Boghossian, <i>A Manual for Creating Atheists</i> (2013)."
   ]
  },
  "L3:5.5": {
@@ -2961,12 +3189,16 @@ window.SEED_LESSON_CONTENT = {
     "ans": 2,
     "ex": "The lesson’s closing standard is to be <b>uncompromising about evidence and generous about persons</b> at the same time, without collapsing either commitment into the other. Reciprocity does not require pretending all claims are equally supported."
    }
+  ],
+  "sources": [
+   "John Rawls, <i>Political Liberalism</i> (1993). (public reason).",
+   "Jürgen Habermas, <i>Between Naturalism and Religion</i> (2008)."
   ]
  },
  "L3:6.1": {
   "read": [
-   "A capstone is the test of whether a school of thought has taught you anything that survives contact with a live opponent. Route A asks you to defend or oppose a substantial motion — something like &ldquo;This house holds that moral facts exist independently of any mind&rdquo; — in a full-length, moderated debate before a judging panel. The motion is fixed in advance and you are assigned a side, so the exercise rewards reasoning rather than personal conviction. This is deliberately hard: a substantial motion is one where serious thinkers genuinely disagree and where the strongest case for theism, naturalism, or moral realism each has real teeth. You are not asked to win a rigged contest; you are asked to show that you can carry a position you may not even hold.",
-   "A strong submission does three things at once. First, it states the motion&rsquo;s key terms precisely, because most debates that go nowhere are really arguments about a word neither side defined. Second, it advances a clear positive case in a few numbered claims, each with a reason and at least one piece of support, rather than a scattershot list of talking points. Third — and this separates expert work from competent work — it engages the opponent&rsquo;s best argument in the form that opponent would recognize, not a weakened caricature. If you are opposing a design argument, you must meet the version a careful theist actually defends, concede what is genuinely persuasive in it, and then show precisely where you think it falls short. Charity is not politeness here; it is the only way to earn a real victory.",
+   "A capstone is the test of whether a school of thought has taught you anything that survives contact with a live opponent. Route A asks you to defend or oppose a substantial motion, something like &ldquo;This house holds that moral facts exist independently of any mind&rdquo;, in a full-length, moderated debate before a judging panel. The motion is fixed in advance and you are assigned a side, so the exercise rewards reasoning rather than personal conviction. This is deliberately hard: a substantial motion is one where serious thinkers genuinely disagree and where the strongest case for theism, naturalism, or moral realism each has real teeth. You are not asked to win a rigged contest; you are asked to show that you can carry a position you may not even hold.",
+   "A strong submission does three things at once. First, it states the motion&rsquo;s key terms precisely, because most debates that go nowhere are really arguments about a word neither side defined. Second, it advances a clear positive case in a few numbered claims, each with a reason and at least one piece of support, rather than a scattershot list of talking points. Third, and this separates expert work from competent work, it engages the opponent&rsquo;s best argument in the form that opponent would recognize, not a weakened caricature. If you are opposing a design argument, you must meet the version a careful theist actually defends, concede what is genuinely persuasive in it, and then show precisely where you think it falls short. Charity is not politeness here; it is the only way to earn a real victory.",
    "The debate implication is that judging tracks argumentative quality, not applause. The panel scores on a published rubric weighting four things: clarity of the case, strength and relevance of evidence, quality of rebuttal and cross-examination, and intellectual charity toward the other side. A debater who scores points by misrepresenting an opponent loses marks even if the room laughs. This design encodes the school&rsquo;s core commitment: that a position is only as strong as its response to the best objection, and that respecting your opponent&rsquo;s reasoning is a condition of taking your own seriously. Route A is therefore less a performance than a demonstration that you can hold a thesis, expose it to pressure, and let the better argument show itself under fair conditions."
   ],
   "terms": [
@@ -3019,15 +3251,19 @@ window.SEED_LESSON_CONTENT = {
      "Personal conviction, applause, costume, and stage presence"
     ],
     "ans": 1,
-    "ex": "The published rubric weights clarity, evidence, rebuttal, and <b>charity</b> — applause and showmanship earn no points."
+    "ex": "The published rubric weights clarity, evidence, rebuttal, and <b>charity</b>. Applause and showmanship earn no points."
    }
+  ],
+  "sources": [
+   "Alfred Snider &amp; Maxwell Schnurer, <i>Many Sides: Debate Across the Curriculum</i> (2002).",
+   "Trudy Govier, <i>A Practical Study of Argument</i> (2013)."
   ]
  },
  "L3:6.2": {
   "read": [
-   "Route B asks you to do what a debate stage cannot: sustain a single argument across 3,000 to 5,000 words and then defend it aloud under questioning. The thesis is not a survey of secular thought and not a polemic against religion. It is one defensible claim — narrow enough to argue rigorously, large enough to matter — pursued from premises through to a conclusion you are prepared to own. The format exists because expertise is measured less by the conclusions you reach than by the quality of the path you take to reach them. A graduate of this school should be able to think in public, slowly, and be corrected without collapse.",
-   "A strong submission has three load-bearing parts. First, a clear thesis stated early, with the key terms defined so a reader cannot mistake what you are and are not claiming. Second, a chain of argument where each step earns the next, evidence is cited rather than gestured at, and the scope is honestly bounded. Third — and this separates a pass from a distinction — a steelmanned opposition: the strongest version of the case against you, stated so well that a thoughtful theist would recognise their own view and nod. You then answer that strong version, not a weakened caricature. Charity here is not politeness; it is the only way to test whether your thesis survives real pressure rather than convenient pressure.",
-   "The oral defence is where the essay becomes yours. You face questions you did not script, and the assessment turns on response rather than rehearsal: do you grant a fair point, distinguish a bad objection from a good one, and revise without abandoning the core claim under mere social pressure? The debate implication is direct. A thesis that can only win on paper, where you control every move, has not been tested the way a live exchange tests it. Route B trains the rarer skill — holding a considered position while remaining genuinely open to being wrong — which is the disposition this school exists to produce, and the one a serious interlocutor on either side of the God question should expect of you."
+   "Route B asks you to do what a debate stage cannot: sustain a single argument across 3,000 to 5,000 words and then defend it aloud under questioning. The thesis is not a survey of secular thought and not a polemic against religion. It is one defensible claim, narrow enough to argue rigorously, large enough to matter, pursued from premises through to a conclusion you are prepared to own. The format exists because expertise is measured less by the conclusions you reach than by the quality of the path you take to reach them. A graduate of this school should be able to think in public, slowly, and be corrected without collapse.",
+   "A strong submission has three load-bearing parts. First, a clear thesis stated early, with the key terms defined so a reader cannot mistake what you are and are not claiming. Second, a chain of argument where each step earns the next, evidence is cited rather than gestured at, and the scope is honestly bounded. Third, and this separates a pass from a distinction, a steelmanned opposition: the strongest version of the case against you, stated so well that a thoughtful theist would recognise their own view and nod. You then answer that strong version, not a weakened caricature. Charity here is not politeness; it is the only way to test whether your thesis survives real pressure rather than convenient pressure.",
+   "The oral defence is where the essay becomes yours. You face questions you did not script, and the assessment turns on response rather than rehearsal: do you grant a fair point, distinguish a bad objection from a good one, and revise without abandoning the core claim under mere social pressure? The debate implication is direct. A thesis that can only win on paper, where you control every move, has not been tested the way a live exchange tests it. Route B trains the rarer skill: holding a considered position while remaining genuinely open to being wrong, which is the disposition this school exists to produce, and the one a serious interlocutor on either side of the God question should expect of you."
   ],
   "terms": [
    [
@@ -3081,6 +3317,10 @@ window.SEED_LESSON_CONTENT = {
     "ans": 1,
     "ex": "The defence tests <b>live response</b>, granting fair objections and revising under questioning while holding the core claim, not rehearsed performance."
    }
+  ],
+  "sources": [
+   "Graham Oppy, <i>Arguing about Gods</i> (2006).",
+   "Wayne C. Booth, Gregory G. Colomb &amp; Joseph M. Williams, <i>The Craft of Research, 4th ed.</i> (2016)."
   ]
  }
 };

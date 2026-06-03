@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Ilu's School of Thoughts — Animated Component Library</title>
+<title>Ilu's School of Thoughts · Animated Component Library</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Spectral:wght@300;400;500;600&family=Spline+Sans+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 /* =====================================================================
-   ILU · ANIMATED COMPONENT LIBRARY  (html-it Level 3 — Two-Way Interactive)
+   ILU · ANIMATED COMPONENT LIBRARY  (html-it Level 3 - Two-Way Interactive)
    Gallery chrome only. Each component carries its OWN self-contained
    CSS+JS inside its copy snippet, so pasting one card into the LMS works
    with zero dependencies.
@@ -51,7 +51,7 @@ body{margin:0; font-family:var(--ff-b); color:var(--parch); -webkit-font-smoothi
 .card__head h3{font-family:var(--ff-d); font-weight:600; font-size:clamp(1.1rem,2vw,1.35rem); margin:.3rem 0 .25rem;}
 .card__head p{margin:0; color:var(--muted); font-size:.82rem; line-height:1.5;}
 
-/* preview surface — dark, mirrors the LMS */
+/* preview surface - dark, mirrors the LMS */
 .preview{margin:clamp(.6rem,1.5vw,1rem) clamp(1.1rem,2.4vw,1.5rem); border:1px solid var(--line); border-radius:10px; min-height:190px; display:grid; place-items:center; padding:1.4rem; position:relative; overflow:hidden;
   background:radial-gradient(600px 300px at 70% -20%, rgba(184,137,59,.08), transparent 60%), linear-gradient(180deg,#13110b,#0d0c08);}
 .preview::after{content:""; position:absolute; inset:0; pointer-events:none; opacity:.04; mix-blend-mode:overlay;
@@ -99,7 +99,7 @@ footer{max-width:1180px; margin:0 auto; padding:0 clamp(1.2rem,4vw,2.5rem) 4rem;
   <div>
     <div class="eyebrow">Ilu's School of Thoughts · Component Library</div>
     <h1>Animated parts you can <em>drop in</em> &amp; tune.</h1>
-    <p>Eight brand-matched components for the LMS. Each one previews live, takes a few knobs, and copies as a single self-contained block of HTML + CSS + JS — no libraries, no build step. Tune it here, paste it there.</p>
+    <p>Eight brand-matched components for the LMS. Each one previews live, takes a few knobs, and copies as a single self-contained block of HTML + CSS + JS: no libraries, no build step. Tune it here, paste it there.</p>
   </div>
 </header>
 
@@ -183,7 +183,7 @@ const COMPONENTS = [
 /* 3 ─ SKILL RADAR ───────────────────────────────────────────────────── */
 {
   id:'radar', tag:'Data-viz · SVG', name:'Six-Axis Skill Radar',
-  desc:'The debate competencies as an animated radar. Edit the six values (0–100), comma-separated.',
+  desc:'The debate competencies as an animated radar. Edit the six values (0 to 100), comma-separated.',
   controls:[
     {key:'vals', type:'text',  label:'Values (Logic,Evidence,Rebuttal,Charity,Rhetoric,Composure)', value:'78,64,71,82,55,69'},
     {key:'acc',  type:'color', label:'Accent', value:'#B8893B'},
@@ -252,7 +252,7 @@ const COMPONENTS = [
 /* 6 ─ DEBATE TIMER ──────────────────────────────────────────────────── */
 {
   id:'timer', tag:'Arena · countdown', name:'Debate Phase Timer',
-  desc:'A live countdown ring with phase label — the heartbeat of the Debate Arena. Counts real mm:ss.',
+  desc:'A live countdown ring with phase label, the heartbeat of the Debate Arena. Counts real mm:ss.',
   controls:[
     {key:'min',   type:'number', label:'Minutes', value:10},
     {key:'phase', type:'text',   label:'Phase label', value:'Opening Statement'},
@@ -303,7 +303,7 @@ const COMPONENTS = [
 /* 8 ─ CERTIFICATE / SEAL REVEAL ─────────────────────────────────────── */
 {
   id:'seal', tag:'Reward · reveal', name:'Achievement Seal',
-  desc:'A wax-style seal that stamps in with a shine sweep — for completing a level or earning a certificate.',
+  desc:'A wax-style seal that stamps in with a shine sweep, for completing a level or earning a certificate.',
   controls:[
     {key:'word', type:'text',  label:'Seal word', value:'ILU'},
     {key:'cap',  type:'text',  label:'Caption', value:'Level I · Conferred'},
@@ -330,7 +330,7 @@ const COMPONENTS = [
 ];
 
 /* =====================================================================
-   RUNTIME — build cards, wire controls, run live previews, copy snippets
+   RUNTIME - build cards, wire controls, run live previews, copy snippets
    ===================================================================== */
 const grid = document.getElementById('grid');
 const toast = document.getElementById('toast');
@@ -413,7 +413,7 @@ COMPONENTS.forEach(comp=>{
     navigator.clipboard.writeText(code).then(()=>{
       btn.textContent = '✓ Copied';
       btn.classList.add('copied');
-      showToast('✓ '+comp.name+' copied — paste into your page');
+      showToast('✓ '+comp.name+' copied. Paste into your page');
       setTimeout(()=>{ btn.textContent='Copy snippet'; btn.classList.remove('copied'); }, 1800);
     }).catch(()=>{
       // clipboard blocked (e.g. file://) → fall back to a selectable prompt
