@@ -560,7 +560,12 @@ footer .base b{color:var(--gold-soft)}
    ============================================================ */
 .ep{margin-bottom:8px}
 #view-admin .wrap{max-width:1340px}   /* admin console uses more of the screen, matching the dashboard */
-#view-admin .admin-grid{align-items:start}   /* columns size to their own content */
+/* Right column is just the lesson list now; let it grow to match the taller left column */
+@media(min-width:881px){
+  #view-admin .admin-grid > div:last-child{display:flex; flex-direction:column}
+  #view-admin .admin-grid > div:last-child > .panel{flex:1; display:flex; flex-direction:column; min-height:0}
+  #view-admin #adminLessonList{flex:1 1 auto; min-height:240px; max-height:none !important}
+}
 .ep-head{display:flex; align-items:flex-end; justify-content:space-between; gap:18px; flex-wrap:wrap; margin-bottom:22px}
 .ep-head h2{font-size:clamp(24px,3vw,34px); margin-top:6px}
 .ep-refresh{display:inline-flex; align-items:center; gap:8px; font-family:var(--mono); font-size:12px; color:var(--gold-deep);
@@ -1383,6 +1388,31 @@ footer .base b{color:var(--gold-soft)}
           <button class="btn gold" id="createUserBtn" style="width:100%;justify-content:center;margin-top:8px" onclick="adminCreateUser()">Create account</button>
           <div id="createUserResult" style="display:none;margin-top:14px"></div>
         </div>
+
+        <!-- Account access — lock / unlock / reset (any admin) -->
+        <div class="panel" style="padding:24px 26px;margin-top:24px">
+          <h3 style="margin-bottom:6px">Account access</h3>
+          <p style="font-size:13.5px;color:var(--muted);margin-bottom:16px">Accounts lock automatically after 5 failed sign-in attempts. Lock or unlock an account here, and trigger a password reset (the user receives an email to set a new password).</p>
+          <div id="lockList" style="margin-bottom:14px"></div>
+          <input id="lockEmail" class="adm-input" style="margin:0 0 10px" type="email" placeholder="user@email.com">
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <button class="btn lt" onclick="adminLockAccount()">🔒 Lock</button>
+            <button class="btn lt" onclick="adminUnlockAccount()">🔓 Unlock</button>
+            <button class="btn gold" style="margin-left:auto" onclick="adminResetUserPassword()">Send password reset</button>
+          </div>
+        </div>
+
+        <!-- Manage admins — founder only -->
+        <div id="adminTeamPanel" class="panel" style="padding:24px 26px;margin-top:24px;display:none">
+          <h3 style="margin-bottom:6px">Roles &amp; access</h3>
+          <p style="font-size:13.5px;color:var(--muted);margin-bottom:16px">Grant a student account admin rights — they'll be able to edit lessons, videos, and quizzes. Only you (the founder) can manage this list.</p>
+          <div id="adminTeamList" style="margin-bottom:14px"></div>
+          <input id="newAdminEmail" class="adm-input" style="margin:0 0 10px" type="email" placeholder="person@email.com — must have an account already">
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <button class="btn gold" onclick="addAdminEmail()">Grant admin →</button>
+          </div>
+          <p style="font-size:12px;color:var(--muted);margin-top:10px;font-style:italic">The person must create an account first (Google or email/password). Granting admin to an email that hasn't signed up yet works the moment they do.</p>
+        </div>
       </div>
       <!-- Right: all lessons list -->
       <div>
@@ -1392,31 +1422,6 @@ footer .base b{color:var(--gold-soft)}
             <span style="font-family:var(--mono);font-size:11px;color:var(--muted)" id="admLessonCount"></span>
           </div>
           <div id="adminLessonList" style="max-height:560px;overflow-y:auto;margin:-6px -8px;padding:6px 8px"></div>
-        </div>
-
-        <!-- Account access — lock / unlock / reset (any admin) -->
-        <div class="panel" style="padding:24px 26px;margin-top:24px">
-          <h3 style="margin-bottom:4px">Account access</h3>
-          <p style="font-size:13.5px;color:var(--muted);margin-bottom:16px">Accounts lock automatically after 5 failed sign-in attempts. Lock or unlock an account here, and trigger a password reset (the user receives an email to set a new password).</p>
-          <div id="lockList" style="margin-bottom:16px"></div>
-          <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
-            <input id="lockEmail" class="adm-input" style="flex:1;min-width:220px;margin:0" type="email" placeholder="user@email.com">
-            <button class="btn lt" onclick="adminLockAccount()">🔒 Lock</button>
-            <button class="btn lt" onclick="adminUnlockAccount()">🔓 Unlock</button>
-            <button class="btn gold" onclick="adminResetUserPassword()">Send password reset</button>
-          </div>
-        </div>
-
-        <!-- Manage admins — founder only -->
-        <div id="adminTeamPanel" class="panel" style="padding:24px 26px;margin-top:24px;display:none">
-          <h3 style="margin-bottom:4px">Roles &amp; access</h3>
-          <p style="font-size:13.5px;color:var(--muted);margin-bottom:16px">Grant a student account admin rights — they'll be able to edit lessons, videos, and quizzes. Only you (the founder) can manage this list.</p>
-          <div id="adminTeamList" style="margin-bottom:16px"></div>
-          <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
-            <input id="newAdminEmail" class="adm-input" style="flex:1;min-width:220px;margin:0" type="email" placeholder="person@email.com — must have an account already">
-            <button class="btn gold" onclick="addAdminEmail()">Grant admin →</button>
-          </div>
-          <p style="font-size:12px;color:var(--muted);margin-top:10px;font-style:italic">The person must create an account first (Google or email/password). Granting admin to an email that hasn't signed up yet works the moment they do.</p>
         </div>
       </div>
     </div>
