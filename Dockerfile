@@ -6,4 +6,4 @@ COPY nginx.conf /etc/nginx/conf.d/default.conf
 EXPOSE 7575
 
 HEALTHCHECK --interval=30s --timeout=3s \
-  CMD wget -q --spider http://localhost:7575/ || exit 1
+  CMD wget -qO /dev/null http://127.0.0.1:7575/ || exit 1
