@@ -2897,9 +2897,10 @@ function runInit(){
 <script type="module">
 import { initializeApp, deleteApp } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-app.js";
 import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged,
-  createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail, updateProfile, updatePassword }
+  createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail, updateProfile, updatePassword,
+  connectAuthEmulator }
   from "https://www.gstatic.com/firebasejs/12.14.0/firebase-auth.js";
-import { getFirestore, doc, getDoc, setDoc, updateDoc, serverTimestamp }
+import { getFirestore, doc, getDoc, setDoc, updateDoc, serverTimestamp, connectFirestoreEmulator }
   from "https://www.gstatic.com/firebasejs/12.14.0/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -2916,6 +2917,22 @@ const app  = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db   = getFirestore(app);
 window._db = db; // expose for overridden saveProgress
+
+/* ── Local development: route Auth + Firestore to the Firebase Emulator Suite ──
+   Activates ONLY on loopback hosts, and fails closed to production: the deployed
+   site (Render / GitHub Pages) never has a loopback hostname, so live users are
+   never affected. The AI-judge is a Firestore *trigger* (onDocumentUpdated), so no
+   client Functions-emulator wiring is needed — the co-running emulators dispatch it
+   server-side when the client's Firestore writes land in the Firestore emulator.
+   These connect() calls must run before any auth/firestore use (they are here at init). */
+if(['localhost','127.0.0.1','::1','[::1]'].includes(location.hostname)){
+  try{
+    connectAuthEmulator(auth, 'http://127.0.0.1:9099', { disableWarnings:true });
+    connectFirestoreEmulator(db, '127.0.0.1', 8080);
+    console.info('[Ilu] Local dev: connected to Firebase Auth + Firestore emulators.');
+  }catch(e){ console.warn('[Ilu] Emulator connect skipped:', e); }
+}
+
 const provider = new GoogleAuthProvider();
 
 /* ---- Expose helpers to global scope so inline JS can call them ---- */

@@ -6,4 +6,9 @@ node_modules/
 admin-dashboard-preview.html
 .firebase/
 firebase-debug.log
+firestore-debug.log
 ui-debug.log
+# Local secrets for the Functions emulator — never commit
+.secret.local
+functions/.secret.local
+.env.local
