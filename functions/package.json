@@ -1,0 +1,19 @@
+{
+  "name": "ilus-school-functions",
+  "description": "Cloud Functions for Ilu's School of Thoughts — AI debate adjudicator",
+  "type": "module",
+  "engines": {
+    "node": "20"
+  },
+  "main": "index.js",
+  "scripts": {
+    "serve": "firebase emulators:start --only functions,firestore",
+    "logs": "firebase functions:log"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.70.0",
+    "firebase-admin": "^13.0.0",
+    "firebase-functions": "^6.4.0"
+  },
+  "private": true
+}

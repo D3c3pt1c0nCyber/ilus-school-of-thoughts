@@ -4,3 +4,6 @@ node_modules/
 .env
 *.bak-preadmin
 admin-dashboard-preview.html
+.firebase/
+firebase-debug.log
+ui-debug.log

@@ -80,5 +80,43 @@ service cloud.firestore {
     match /{path=**}/profile/{pid} {
       allow read: if isAdmin();
     }
+
+    // ============================================================
+    // Social layer: searchable directory, friendships, live debates
+    // ============================================================
+
+    // ---- Public-ish member directory ----
+    // A minimal mirror of each user's profile (name, photo, rank) so any
+    // signed-in user can search for others to befriend. Owner writes only.
+    match /directory/{uid} {
+      allow read:  if signedIn();
+      allow write: if signedIn() && request.auth.uid == uid;
+    }
+
+    // ---- Friendships ----
+    // One shared doc per pair, id = sorted "uidA__uidB". Either member may
+    // read/update/delete; creation requires the caller to be one of the two
+    // members. This avoids cross-user writes into another user's subtree.
+    match /friendships/{pid} {
+      allow create: if signedIn()
+        && request.resource.data.members is list
+        && request.resource.data.members.size() == 2
+        && request.auth.uid in request.resource.data.members;
+      allow read, update, delete: if signedIn()
+        && request.auth.uid in resource.data.members;
+    }
+
+    // ---- Live debates ----
+    // Shared doc for the two debaters. Either participant may read/update
+    // (write their own statements, advance phases). The AI verdict is written
+    // by the Cloud Function via the Admin SDK, which bypasses these rules.
+    match /debates/{id} {
+      allow create: if signedIn()
+        && request.resource.data.members is list
+        && request.resource.data.members.size() == 2
+        && request.auth.uid in request.resource.data.members;
+      allow read, update: if signedIn()
+        && request.auth.uid in resource.data.members;
+    }
   }
 }

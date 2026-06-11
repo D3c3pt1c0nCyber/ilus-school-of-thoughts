@@ -906,6 +906,8 @@ footer .base b{color:var(--gold-soft)}
       <a data-nav="curriculum" onclick="go('curriculum')">Curriculum</a>
       <a data-nav="dashboard" onclick="go('dashboard')">Dashboard</a>
       <a data-nav="arena" onclick="go('arena')">Debate Arena</a>
+      <a data-nav="versus" onclick="go('versus')">Live Debate</a>
+      <a data-nav="friends" onclick="go('friends')">Friends <span id="friendsNavBadge" style="display:none;background:var(--garnet);color:#fff;border-radius:10px;padding:1px 6px;font-size:10px;font-family:var(--mono);margin-left:2px;vertical-align:middle">0</span></a>
       <a data-nav="certificate" onclick="go('certificate')">Certificate</a>
       <a data-nav="admin" id="adminNavLink" onclick="go('admin')" style="display:none;color:var(--gold-deep)">✎ Admin</a>
     </nav>
@@ -1537,6 +1539,65 @@ footer .base b{color:var(--gold-soft)}
     </div>
   </div>
 </section>
+
+<!-- ============ FRIENDS ============ -->
+<section id="view-friends" class="view">
+  <div class="pagehd">
+    <div class="wrap">
+      <div class="eyebrow">Community</div>
+      <h1>Your <span class="it">circle</span></h1>
+      <p>Find fellow students, send a request, and challenge a friend to a live debate judged by the school&rsquo;s AI adjudicator.</p>
+    </div>
+  </div>
+  <div class="wrap" style="padding:34px 28px 80px">
+    <div id="friendsSignedOut" class="panel" style="display:none;text-align:center">Sign in to find friends and start debates.</div>
+    <div id="friendsBody">
+      <div class="panel" style="margin-bottom:22px">
+        <h3 style="margin:0 0 4px">Find people</h3>
+        <p style="margin:0 0 14px;color:var(--muted)">Search the school directory by name.</p>
+        <input id="friendSearch" type="text" placeholder="Search by name…" maxlength="40" autocomplete="off"
+          style="width:100%;padding:.72em 1em;border:1px solid var(--line-2);border-radius:6px;font-family:var(--serif);font-size:15px;outline:none" oninput="searchDirectory(this.value)">
+        <div id="friendSearchResults" style="margin-top:16px"></div>
+      </div>
+      <div class="panel" id="friendRequestsPanel" style="margin-bottom:22px;display:none">
+        <h3 style="margin:0 0 14px">Friend requests</h3>
+        <div id="friendRequests"></div>
+      </div>
+      <div class="panel">
+        <h3 style="margin:0 0 14px">Your friends</h3>
+        <div id="friendList"><div style="color:var(--muted)">No friends yet — search above to add some.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LIVE DEBATE ============ -->
+<section id="view-versus" class="view">
+  <div class="pagehd">
+    <div class="wrap">
+      <div class="eyebrow">Live Debate</div>
+      <h1>Argue <span class="it">live</span> &mdash; the AI decides</h1>
+      <p>Challenge a friend to a real-time, three-phase debate. When the closing bell rings, Claude reads both cases and delivers the verdict.</p>
+    </div>
+  </div>
+  <div class="wrap" style="padding:34px 28px 80px">
+    <div id="versusSignedOut" class="panel" style="display:none;text-align:center">Sign in to start a live debate.</div>
+    <!-- Lobby: shown when there is no active debate -->
+    <div id="versusLobby">
+      <div class="panel" id="versusInvitesPanel" style="margin-bottom:22px;display:none">
+        <h3 style="margin:0 0 14px">Debate invitations</h3>
+        <div id="versusInvites"></div>
+      </div>
+      <div class="panel">
+        <h3 style="margin:0 0 4px">Challenge a friend</h3>
+        <p style="margin:0 0 16px;color:var(--muted)">Pick a friend, choose a motion and your side, then send the challenge. They join from their own <b>Live Debate</b> page.</p>
+        <div id="versusChallengeForm"></div>
+      </div>
+    </div>
+    <!-- Room: rendered live from the shared debate doc (dark, mirrors the Arena) -->
+    <div id="versusRoom" class="featmotion" style="display:none"></div>
+  </div>
+</section>
 </main>
 
 <!-- ====== FOOTER ====== -->
@@ -1843,6 +1904,9 @@ function go(view,arg){
   if(view==='admin'){ if(!isAdmin){ go('home'); return; } if(typeof renderAdmin==='function') renderAdmin(); }
   if(view==='dashboard') setTimeout(animateDashboard, 60);
   if(view==='certificate') updateCertGate();
+  if(view==='friends' && typeof window.openFriends==='function') window.openFriends();
+  if(view==='versus' && typeof window.openVersus==='function') window.openVersus();
+  if(view!=='versus' && typeof window.leaveVersusView==='function') window.leaveVersusView(); // detach live debate listener when leaving
   if(view!=='arena' && typeof window.stopArenaTimer==='function') window.stopArenaTimer();  // pause debate clock when leaving
   if(view!=='admin' && typeof stopRosterLive==='function') stopRosterLive();                // drop the live roster listener when leaving admin
   revealScan();
@@ -3218,6 +3282,14 @@ async function writeProfileSummary(){
       quizCount: scores.length, quizAvg, wins,
       lastActive: serverTimestamp()
     }, { merge:true });
+    // Mirror a minimal public record into the searchable directory (used by Friends).
+    const dispName = currentUser.displayName || certName || (currentUser.email||'').split('@')[0] || 'Student';
+    await setDoc(doc(db,'directory',currentUser.uid),{
+      name: dispName, nameLower: dispName.toLowerCase(),
+      photoURL: currentUser.photoURL || '',
+      rank: rankFor(state.rp||0)[0], rp: state.rp||0,
+      updatedAt: serverTimestamp()
+    }, { merge:true });
   }catch(e){ console.warn('writeProfileSummary failed',e); }
 }
 window.writeProfileSummary = writeProfileSummary;
@@ -3750,7 +3822,8 @@ onAuthStateChanged(auth, async user => {
     const staleDone = reconcileDone();              // drop un-passed completions
     const prevRP = state.rp; recomputeRP();         // RP is derived from real achievements
     if(staleDone || state.rp!==prevRP){ refreshProgress(); if(typeof saveProgress==='function') saveProgress(); }
-    writeProfileSummary();                          // ensure this user appears in the admin roster
+    writeProfileSummary();                          // ensure this user appears in the admin roster + directory
+    if(typeof window.startSocial==='function') window.startSocial(user.uid);  // live friends + debate-invite listeners
     const firstName = user.displayName ? user.displayName.split(' ')[0] : 'scholar';
     const dashName = document.getElementById('dashUserName');
     if(dashName) dashName.textContent = firstName;
@@ -3764,6 +3837,7 @@ onAuthStateChanged(auth, async user => {
     if(idleSignedOut){ gateErr('You were signed out after 10 minutes of inactivity. Please sign in again.'); idleSignedOut = false; }
     isAdmin = false; isFounder = false; siteAdmins = [];
     if(typeof stopRosterLive==='function') stopRosterLive(); EP_STUDENTS=[]; EP_LOADED=false;   // tear down live roster on sign-out
+    if(typeof window.stopSocial==='function') window.stopSocial();   // tear down friends + debate listeners on sign-out
     const adminLink = document.getElementById('adminNavLink');
     if(adminLink) adminLink.style.display = 'none';
     if(btn){
@@ -4257,6 +4331,475 @@ window.saveProgress = async function(){
   } catch(e){ console.warn('saveProgress failed',e); }
   if(typeof writeProfileSummary==='function') writeProfileSummary();   // keep the admin roster summary fresh
 };
+
+/* ============================================================
+   SOCIAL LAYER — Friends + Live human-vs-human debates (AI judged)
+   Uses window._db (the Firestore instance exposed by the module) and a
+   dynamically-imported set of Firestore helpers, mirroring the app's pattern.
+   ============================================================ */
+(function(){
+  const FB_URL = 'https://www.gstatic.com/firebasejs/12.14.0/firebase-firestore.js';
+  let _fs = null;
+  async function fs(){ return _fs || (_fs = await import(FB_URL)); }
+  function db(){ return window._db; }
+  const pairId = (a,b)=>[a,b].sort().join('__');
+  function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+  // Fallback motions if the arena topic list isn't available.
+  const MOTIONS = (window.DEBATE_TOPICS && window.DEBATE_TOPICS.length
+      ? window.DEBATE_TOPICS.map(t=>t.motion)
+      : [
+        'The problem of evil makes an all-good, all-powerful God improbable.',
+        'Moral facts can exist without God.',
+        'Faith is not a reliable path to truth.',
+        'The universe shows no evidence of design.',
+        'Religion does more good than harm for society.',
+        'Free will is incompatible with an all-knowing God.',
+        'Science and religion are fundamentally incompatible.',
+        'A meaningful life does not require belief in the afterlife.'
+      ]);
+
+  const SOCIAL = { uid:null, friends:[], pending:[], invites:[],
+    unsubFriends:null, unsubInvites:null, unsubDebate:null,
+    activeDebateId:null, debate:null, tick:null, _searchT:null, _toasted:{} };
+  const RECORDED = new Set();   // debate ids already folded into local progress
+
+  /* ---- Lifecycle (called from onAuthStateChanged) ---- */
+  window.startSocial = async function(uid){
+    window.stopSocial();
+    SOCIAL.uid = uid;
+    const { onSnapshot, collection, query, where } = await fs();
+    SOCIAL.unsubFriends = onSnapshot(
+      query(collection(db(),'friendships'), where('members','array-contains',uid)),
+      snap=>{ const accepted=[], pending=[];
+        snap.forEach(s=>{ const x={id:s.id, ...s.data()};
+          if(x.status==='accepted') accepted.push(x);
+          else if(x.status==='pending') pending.push(x); });
+        SOCIAL.friends=accepted; SOCIAL.pending=pending;
+        updateFriendsBadge(); renderFriends(); renderVersusChallengeForm();
+      }, err=>console.warn('friends listener',err));
+    SOCIAL.unsubInvites = onSnapshot(
+      query(collection(db(),'debates'), where('members','array-contains',uid)),
+      snap=>{ const invites=[]; let live=null;
+        snap.forEach(s=>{ const x={id:s.id, ...s.data()};
+          if(['invited','active','judging','complete','declined','error'].includes(x.status)) invites.push(x);
+          if((x.status==='active'||x.status==='judging') && x.id!==SOCIAL.activeDebateId) live=x; });
+        SOCIAL.invites=invites; updateFriendsBadge(); renderVersusInvites();
+        if(live){ // a debate just went live (opponent accepted, or both joined) — subscribe + nudge
+          const onVersus = document.getElementById('view-versus').classList.contains('show');
+          enterDebate(live.id, onVersus);
+          if(!SOCIAL._toasted[live.id]){ SOCIAL._toasted[live.id]=1; toast('Your live debate has started!',''); }
+        }
+      }, err=>console.warn('invites listener',err));
+  };
+  window.stopSocial = function(){
+    ['unsubFriends','unsubInvites','unsubDebate'].forEach(k=>{ if(SOCIAL[k]){ try{SOCIAL[k]();}catch(e){} SOCIAL[k]=null; } });
+    stopTick();
+    SOCIAL.uid=null; SOCIAL.friends=[]; SOCIAL.pending=[]; SOCIAL.invites=[];
+    SOCIAL.activeDebateId=null; SOCIAL.debate=null;
+    updateFriendsBadge();
+  };
+
+  function updateFriendsBadge(){
+    const b=document.getElementById('friendsNavBadge'); if(!b) return;
+    const reqs=(SOCIAL.pending||[]).filter(p=>p.requestedBy && p.requestedBy!==SOCIAL.uid).length;
+    const invs=(SOCIAL.invites||[]).filter(iv=>iv.status==='invited' && iv.createdBy!==SOCIAL.uid).length;
+    const n=reqs+invs;
+    if(n>0){ b.textContent=n; b.style.display=''; } else { b.style.display='none'; }
+  }
+
+  /* ---- FRIENDS ---- */
+  window.openFriends = function(){
+    const out=document.getElementById('friendsSignedOut'), body=document.getElementById('friendsBody');
+    if(!currentUser){ out.style.display=''; body.style.display='none'; return; }
+    out.style.display='none'; body.style.display='';
+    if(typeof window.writeProfileSummary==='function') window.writeProfileSummary(); // make sure I'm in the directory
+    renderFriends();
+  };
+
+  window.searchDirectory = function(q){
+    clearTimeout(SOCIAL._searchT);
+    const box=document.getElementById('friendSearchResults');
+    const ql=(q||'').trim().toLowerCase();
+    if(ql.length<2){ box.innerHTML='<div style="color:var(--muted);font-size:13.5px">Type at least two letters to search.</div>'; return; }
+    SOCIAL._searchT = setTimeout(async ()=>{
+      try{
+        const { collection, query, where, orderBy, limit, getDocs } = await fs();
+        const snap = await getDocs(query(collection(db(),'directory'),
+          orderBy('nameLower'), where('nameLower','>=',ql), where('nameLower','<=',ql+''), limit(15)));
+        const linked = new Set([SOCIAL.uid,
+          ...SOCIAL.friends.flatMap(f=>f.members), ...SOCIAL.pending.flatMap(p=>p.members)]);
+        SOCIAL._lastSearch={};
+        const rows=[];
+        snap.forEach(d=>{ if(d.id!==SOCIAL.uid){ const x={uid:d.id, ...d.data()}; rows.push(x); SOCIAL._lastSearch[d.id]=x; } });
+        if(!rows.length){ box.innerHTML='<div style="color:var(--muted);font-size:13.5px">No one found by that name.</div>'; return; }
+        box.innerHTML = rows.map(r=>{
+          const already = linked.has(r.uid);
+          return personRow(r.photoURL, r.name, r.rank||'Inquirer',
+            already ? `<span style="color:var(--muted);font-size:12.5px">Connected</span>`
+                    : `<button class="btn sm gold" onclick="addFriendFromSearch('${r.uid}')">Add friend</button>`);
+        }).join('');
+      }catch(e){ console.warn('search failed',e); box.innerHTML='<div style="color:var(--garnet);font-size:13px">Search failed — check the directory index/rules.</div>'; }
+    }, 280);
+  };
+  window.addFriendFromSearch = function(uid){ const r=(SOCIAL._lastSearch||{})[uid]; if(r) window.sendFriendRequest(uid, r.name||'', r.photoURL||''); };
+
+  function personRow(photo, name, sub, actionsHtml){
+    const av = photo
+      ? `<img src="${esc(photo)}" alt="" style="width:40px;height:40px;border-radius:50%;object-fit:cover;flex:none">`
+      : `<div style="width:40px;height:40px;border-radius:50%;background:var(--line);display:flex;align-items:center;justify-content:center;flex:none;font-family:var(--disp);color:var(--ink-soft)">${esc((name||'?').charAt(0).toUpperCase())}</div>`;
+    return `<div style="display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--line)">
+      ${av}<div style="flex:1;min-width:0"><div style="font-weight:600">${esc(name||'Student')}</div>
+      <div style="font-size:12.5px;color:var(--muted)">${esc(sub||'')}</div></div>
+      <div style="display:flex;gap:8px;align-items:center;flex:none">${actionsHtml||''}</div></div>`;
+  }
+
+  window.sendFriendRequest = async function(otherUid, name, photo){
+    const uid=SOCIAL.uid; if(!uid || uid===otherUid) return;
+    try{
+      const { doc, setDoc, getDoc, serverTimestamp } = await fs();
+      const ref = doc(db(),'friendships', pairId(uid,otherUid));
+      if((await getDoc(ref)).exists()){ toast('Already connected or pending',''); return; }
+      const me=currentUser; const myName=me.displayName||(me.email||'').split('@')[0]||'Student';
+      await setDoc(ref,{ members:[uid,otherUid], requestedBy:uid, status:'pending',
+        names:{[uid]:myName,[otherUid]:name||''}, photos:{[uid]:me.photoURL||'',[otherUid]:photo||''},
+        createdAt:serverTimestamp(), updatedAt:serverTimestamp() });
+      toast('Friend request sent','');
+      const si=document.getElementById('friendSearch'); if(si) searchDirectory(si.value);
+    }catch(e){ console.warn('sendFriendRequest',e); toast('Could not send request',''); }
+  };
+  window.acceptFriend = async function(id){
+    try{ const { doc, updateDoc, serverTimestamp } = await fs();
+      await updateDoc(doc(db(),'friendships',id),{ status:'accepted', updatedAt:serverTimestamp() });
+      toast('Friend added','');
+    }catch(e){ console.warn('acceptFriend',e); }
+  };
+  window.removeFriend = async function(id){
+    try{ const { doc, deleteDoc } = await fs(); await deleteDoc(doc(db(),'friendships',id)); }
+    catch(e){ console.warn('removeFriend',e); }
+  };
+
+  function renderFriends(){
+    const uid=SOCIAL.uid;
+    // Requests (incoming + outgoing pending)
+    const reqPanel=document.getElementById('friendRequestsPanel'), reqBox=document.getElementById('friendRequests');
+    const incoming=SOCIAL.pending.filter(p=>p.requestedBy!==uid);
+    const outgoing=SOCIAL.pending.filter(p=>p.requestedBy===uid);
+    if(reqBox){
+      if(incoming.length||outgoing.length){
+        reqPanel.style.display='';
+        reqBox.innerHTML = incoming.map(p=>{ const ou=p.members.find(m=>m!==uid);
+          return personRow((p.photos||{})[ou], (p.names||{})[ou], 'wants to connect',
+            `<button class="btn sm gold" onclick="acceptFriend('${p.id}')">Accept</button>
+             <button class="btn sm ghost" onclick="removeFriend('${p.id}')">Decline</button>`);
+        }).join('') + outgoing.map(p=>{ const ou=p.members.find(m=>m!==uid);
+          return personRow((p.photos||{})[ou], (p.names||{})[ou], 'request sent',
+            `<span style="color:var(--muted);font-size:12.5px">Pending</span>
+             <button class="btn sm ghost" onclick="removeFriend('${p.id}')">Cancel</button>`);
+        }).join('');
+      } else { reqPanel.style.display='none'; reqBox.innerHTML=''; }
+    }
+    // Accepted friends
+    const list=document.getElementById('friendList');
+    if(list){
+      if(!SOCIAL.friends.length){ list.innerHTML='<div style="color:var(--muted)">No friends yet — search above to add some.</div>'; }
+      else { list.innerHTML = SOCIAL.friends.map(f=>{ const ou=f.members.find(m=>m!==uid);
+        const nm=(f.names||{})[ou]||'Student'; const ph=(f.photos||{})[ou]||'';
+        return personRow(ph, nm, 'Friend',
+          `<button class="btn sm gold" onclick="challengeQuick('${ou}')">Debate →</button>
+           <button class="btn sm ghost" onclick="removeFriend('${f.id}')">Remove</button>`);
+      }).join(''); }
+    }
+  }
+
+  window.challengeQuick = function(ou){ go('versus'); setTimeout(()=>{ const sel=document.getElementById('versusFriendSel'); if(sel){ sel.value=ou; } }, 80); };
+
+  /* ---- LIVE DEBATE: lobby ---- */
+  window.openVersus = function(){
+    const out=document.getElementById('versusSignedOut'), lobby=document.getElementById('versusLobby'), room=document.getElementById('versusRoom');
+    if(!currentUser){ out.style.display=''; lobby.style.display='none'; room.style.display='none'; return; }
+    out.style.display='none';
+    const d=SOCIAL.debate;
+    const inRoom = SOCIAL.activeDebateId && d && (['active','judging','complete'].includes(d.status) || (d.status==='invited' && d.createdBy===SOCIAL.uid));
+    if(inRoom){ renderDebateRoom(); }
+    else { room.style.display='none'; lobby.style.display=''; renderVersusInvites(); renderVersusChallengeForm(); }
+  };
+  window.leaveVersusView = function(){ stopTick(); };
+
+  function renderVersusChallengeForm(){
+    const box=document.getElementById('versusChallengeForm'); if(!box) return;
+    if(!SOCIAL.friends.length){ box.innerHTML='<div style="color:var(--muted)">Add a friend first (on the <a style="color:var(--gold-deep)" onclick="go(\'friends\')">Friends</a> page), then challenge them here.</div>'; return; }
+    const uid=SOCIAL.uid;
+    const opts=SOCIAL.friends.map(f=>{ const ou=f.members.find(m=>m!==uid); const nm=(f.names||{})[ou]||'Student';
+      return `<option value="${ou}">${esc(nm)}</option>`; }).join('');
+    const motions=MOTIONS.map((m,i)=>`<option value="${i}">${esc(m)}</option>`).join('');
+    box.innerHTML = `
+      <div style="display:grid;gap:14px;max-width:640px">
+        <label style="font-size:12.5px;color:var(--muted)">Opponent
+          <select id="versusFriendSel" style="display:block;width:100%;margin-top:5px;padding:.6em .8em;border:1px solid var(--line-2);border-radius:6px;font-family:var(--serif);font-size:15px">${opts}</select></label>
+        <label style="font-size:12.5px;color:var(--muted)">Motion
+          <select id="versusMotionSel" style="display:block;width:100%;margin-top:5px;padding:.6em .8em;border:1px solid var(--line-2);border-radius:6px;font-family:var(--serif);font-size:15px">${motions}</select></label>
+        <div>
+          <div style="font-size:12.5px;color:var(--muted);margin-bottom:6px">Your side</div>
+          <label style="margin-right:18px"><input type="radio" name="versusSide" value="aff" checked> For the motion</label>
+          <label><input type="radio" name="versusSide" value="neg"> Against the motion</label>
+        </div>
+        <div><button class="btn gold" onclick="sendChallenge()">Send challenge <span class="arrow">→</span></button></div>
+      </div>`;
+  }
+
+  window.sendChallenge = async function(){
+    const uid=SOCIAL.uid; if(!uid) return;
+    const sel=document.getElementById('versusFriendSel'); const ms=document.getElementById('versusMotionSel');
+    const sideEl=document.querySelector('input[name="versusSide"]:checked');
+    if(!sel||!sel.value){ toast('Pick a friend',''); return; }
+    const ou=sel.value; const motion=MOTIONS[parseInt(ms.value,10)]||MOTIONS[0]; const side=sideEl?sideEl.value:'aff';
+    const fr=SOCIAL.friends.find(f=>f.members.includes(ou)); const frName=fr?((fr.names||{})[ou]||'Student'):'Student'; const frPhoto=fr?((fr.photos||{})[ou]||''):'';
+    const me=currentUser; const myName=me.displayName||(me.email||'').split('@')[0]||'Student';
+    try{
+      const { collection, addDoc, serverTimestamp } = await fs();
+      const ref = await addDoc(collection(db(),'debates'),{
+        members:[uid,ou], createdBy:uid, motion,
+        sideOf:{[uid]:side,[ou]: side==='aff'?'neg':'aff'},
+        names:{[uid]:myName,[ou]:frName}, photos:{[uid]:me.photoURL||'',[ou]:frPhoto},
+        status:'invited', phaseIdx:0, statements:{}, submitted:{}, createdAt:serverTimestamp()
+      });
+      toast('Challenge sent — waiting for them to accept','');
+      enterDebate(ref.id, true);
+    }catch(e){ console.warn('sendChallenge',e); toast('Could not send challenge',''); }
+  };
+
+  function renderVersusInvites(){
+    const panel=document.getElementById('versusInvitesPanel'), box=document.getElementById('versusInvites'); if(!box) return;
+    const uid=SOCIAL.uid;
+    const incoming=SOCIAL.invites.filter(iv=>iv.status==='invited' && iv.createdBy!==uid);
+    const outgoing=SOCIAL.invites.filter(iv=>iv.status==='invited' && iv.createdBy===uid);
+    if(!incoming.length && !outgoing.length){ panel.style.display='none'; box.innerHTML=''; return; }
+    panel.style.display='';
+    box.innerHTML = incoming.map(iv=>{ const ou=iv.members.find(m=>m!==uid); const nm=(iv.names||{})[ou]||'Someone';
+      const mySide=(iv.sideOf||{})[uid];
+      return personRow((iv.photos||{})[ou], nm, `challenges you · you argue ${mySide==='aff'?'FOR':'AGAINST'} · “${(iv.motion||'').slice(0,60)}…”`,
+        `<button class="btn sm gold" onclick="acceptDebate('${iv.id}')">Accept</button>
+         <button class="btn sm ghost" onclick="declineDebate('${iv.id}')">Decline</button>`);
+    }).join('') + outgoing.map(iv=>{ const ou=iv.members.find(m=>m!==uid); const nm=(iv.names||{})[ou]||'Someone';
+      return personRow((iv.photos||{})[ou], nm, `awaiting their acceptance · “${(iv.motion||'').slice(0,60)}…”`,
+        `<button class="btn sm gold" onclick="enterDebate('${iv.id}', true)">Open</button>
+         <button class="btn sm ghost" onclick="declineDebate('${iv.id}')">Cancel</button>`);
+    }).join('');
+  }
+
+  window.acceptDebate = async function(id){
+    try{
+      const { doc, updateDoc, Timestamp } = await fs();
+      await updateDoc(doc(db(),'debates',id),{ status:'active', phaseIdx:0,
+        phaseEndsAt: Timestamp.fromMillis(Date.now()+PHASES[0].secs*1000) });
+      enterDebate(id, true);
+    }catch(e){ console.warn('acceptDebate',e); toast('Could not accept',''); }
+  };
+  window.declineDebate = async function(id){
+    try{ const { doc, updateDoc } = await fs(); await updateDoc(doc(db(),'debates',id),{ status:'declined' }); }
+    catch(e){ console.warn('declineDebate',e); }
+  };
+
+  /* ---- LIVE DEBATE: the room ---- */
+  window.enterDebate = async function(id, nav){
+    if(SOCIAL.activeDebateId===id && SOCIAL.unsubDebate){ if(nav) go('versus'); return; }
+    if(SOCIAL.unsubDebate){ try{SOCIAL.unsubDebate();}catch(e){} SOCIAL.unsubDebate=null; }
+    SOCIAL.activeDebateId=id;
+    const { onSnapshot, doc } = await fs();
+    SOCIAL.unsubDebate = onSnapshot(doc(db(),'debates',id), ds=>{
+      if(!ds.exists()){ window.leaveDebate(); return; }
+      SOCIAL.debate={ id:ds.id, ...ds.data() };
+      if(document.getElementById('view-versus').classList.contains('show')) renderDebateRoom();
+      recordIfComplete();
+      maybeAdvancePhase();
+    }, err=>console.warn('debate listener',err));
+    if(nav) go('versus');
+  };
+  window.leaveDebate = function(){
+    if(SOCIAL.unsubDebate){ try{SOCIAL.unsubDebate();}catch(e){} SOCIAL.unsubDebate=null; }
+    SOCIAL.activeDebateId=null; SOCIAL.debate=null; stopTick(); openVersus();
+  };
+
+  function startTick(){ stopTick(); SOCIAL.tick=setInterval(()=>{ updateTimerDisplay(); maybeAdvancePhase(); }, 1000); }
+  function stopTick(){ if(SOCIAL.tick){ clearInterval(SOCIAL.tick); SOCIAL.tick=null; } }
+  function updateTimerDisplay(){
+    const d=SOCIAL.debate, el=document.getElementById('versusTimer');
+    if(!d||!el||d.status!=='active'||!d.phaseEndsAt) return;
+    const total=PHASES[d.phaseIdx].secs;
+    const left=Math.max(0, Math.round((d.phaseEndsAt.toMillis()-Date.now())/1000));
+    const t=el.querySelector('.atr-t'); if(t) t.textContent=fmtClock(left);
+    const fg=el.querySelector('.atr-fg'); if(fg){ const C=2*Math.PI*26; fg.style.strokeDasharray=C.toFixed(1); fg.style.strokeDashoffset=(C*(1-left/total)).toFixed(1); }
+    if(left<=15) el.classList.add('low'); else el.classList.remove('low');
+  }
+
+  async function maybeAdvancePhase(){
+    const d=SOCIAL.debate; if(!d || d.status!=='active' || d.phaseIdx==null) return;
+    const k=PHASES[d.phaseIdx].key; const sub=(d.submitted&&d.submitted[k])||{};
+    const bothIn = sub.aff && sub.neg;
+    const timeUp = d.phaseEndsAt && (d.phaseEndsAt.toMillis()-Date.now()<=0);
+    if(!bothIn && !timeUp) return;
+    try{
+      const { doc, runTransaction, Timestamp } = await fs();
+      const ref=doc(db(),'debates',d.id);
+      await runTransaction(db(), async tx=>{
+        const snap=await tx.get(ref); if(!snap.exists()) return;
+        const cur=snap.data();
+        if(cur.status!=='active' || cur.phaseIdx!==d.phaseIdx) return;   // already advanced by the other client
+        const ck=PHASES[cur.phaseIdx].key; const cs=(cur.submitted&&cur.submitted[ck])||{};
+        const both=cs.aff&&cs.neg; const up=cur.phaseEndsAt && (cur.phaseEndsAt.toMillis()-Date.now()<=0);
+        if(!both && !up) return;
+        const next=cur.phaseIdx+1;
+        if(next>=PHASES.length) tx.update(ref,{ status:'judging' });
+        else tx.update(ref,{ phaseIdx:next, phaseEndsAt: Timestamp.fromMillis(Date.now()+PHASES[next].secs*1000) });
+      });
+    }catch(e){ /* a benign contention/permission hiccup; the other client advances */ }
+  }
+
+  window.submitVersusStatement = async function(){
+    const d=SOCIAL.debate, uid=SOCIAL.uid; if(!d||d.status!=='active') return;
+    const mySide=(d.sideOf||{})[uid]; const ph=PHASES[d.phaseIdx];
+    const ta=document.getElementById('versusInput'); const text=(ta?ta.value:'').trim();
+    if(text.length<10){ toast('Write at least a sentence before submitting',''); return; }
+    try{
+      const { doc, updateDoc } = await fs();
+      const upd={}; upd['statements.'+ph.key+'.'+mySide]=text; upd['submitted.'+ph.key+'.'+mySide]=true;
+      await updateDoc(doc(db(),'debates',d.id), upd);
+      maybeAdvancePhase();
+    }catch(e){ console.warn('submitVersusStatement',e); toast('Could not submit',''); }
+  };
+
+  function recordIfComplete(){
+    const d=SOCIAL.debate, uid=SOCIAL.uid;
+    if(!d || d.status!=='complete' || !d.verdict || RECORDED.has(d.id)) return;
+    RECORDED.add(d.id);
+    const mySide=(d.sideOf||{})[uid]; const ou=d.members.find(m=>m!==uid); const oppName=(d.names||{})[ou]||'Opponent';
+    const won=d.verdict.winnerSide===mySide; const draw=d.verdict.winnerSide==='draw';
+    try{
+      state.debateHistory = state.debateHistory||[];
+      state.debateHistory.push({ ts:Date.now(), result: won?'win':(draw?'draw':'loss'), motion:d.motion, vs:oppName, mode:'live' });
+      if(won && typeof award==='function') award('live-debate-'+d.id, 60, 'Live debate won!');
+      if(typeof saveProgress==='function') saveProgress();
+    }catch(e){ console.warn('record live debate',e); }
+  }
+
+  function statementBlock(label, who, text, accent){
+    return `<div style="margin-bottom:10px;padding:10px 13px;background:rgba(0,0,0,.18);border-left:3px solid ${accent};border-radius:0 3px 3px 0">
+      <div style="font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#cdbfa0;margin-bottom:5px">${esc(label)} · ${esc(who)}</div>
+      <div style="font-size:14.5px;line-height:1.6;color:#E8DDCA;white-space:pre-wrap">${esc(text||'(no statement submitted)')}</div></div>`;
+  }
+
+  function renderDebateRoom(){
+    const d=SOCIAL.debate, uid=SOCIAL.uid;
+    const room=document.getElementById('versusRoom'), lobby=document.getElementById('versusLobby');
+    if(!d){ room.style.display='none'; lobby.style.display=''; return; }
+    room.style.display=''; lobby.style.display='none';
+    const mySide=(d.sideOf||{})[uid]; const ou=(d.members||[]).find(m=>m!==uid);
+    const names=d.names||{}, photos=d.photos||{};
+    const myName=names[uid]||'You', oppName=names[ou]||'Opponent';
+    const affName = mySide==='aff'?myName:oppName, negName = mySide==='aff'?oppName:myName;
+
+    const header = `
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px">
+        <span class="live" style="background:rgba(123,44,44,.2);color:#e8a0a0;border-color:rgba(123,44,44,.4)"><span class="dot" style="background:#e8a0a0"></span>Live debate · AI adjudicated</span>
+        <button class="btn lt sm" onclick="leaveDebate()">← Back to lobby</button>
+      </div>
+      <h2 id="arenaMotion" style="margin:0 0 14px">&ldquo;${esc(d.motion||'')}&rdquo;</h2>
+      <div class="sides">
+        <div class="side"><div class="lab">Proposition · For</div><b>${esc(affName)}</b></div>
+        <div class="side"><div class="lab">Opposition · Against</div><b>${esc(negName)}</b></div>
+      </div>`;
+
+    let body='';
+    if(d.status==='invited'){
+      body = `<div style="text-align:center;padding:30px 10px;color:#cdbfa0">Waiting for <b>${esc(oppName)}</b> to accept the challenge…</div>`;
+      stopTick();
+    } else if(d.status==='declined'){
+      body = `<div style="text-align:center;padding:30px 10px;color:#e8a0a0">This challenge was declined.</div>`;
+      stopTick();
+    } else if(d.status==='error'){
+      body = `<div style="text-align:center;padding:24px 10px;color:#e8a0a0">The adjudicator hit an error.<br><span style="font-size:12.5px;color:#cdbfa0">${esc(d.judgeError||'')}</span></div>`;
+      stopTick();
+    } else if(d.status==='judging'){
+      body = `<div style="text-align:center;padding:34px 10px"><div class="ep-spinner" style="margin:0 auto 14px"></div><div style="color:#E8DDCA;font-family:var(--disp);font-size:18px">The adjudicator is deliberating…</div><div style="color:#cdbfa0;font-size:13px;margin-top:6px">Claude is reading both cases and scoring the debate.</div></div>`;
+      stopTick();
+      // transcript for context
+      body += '<div style="margin-top:20px">'+transcriptHtml(d, affName, negName)+'</div>';
+    } else if(d.status==='complete'){
+      stopTick();
+      body = verdictHtml(d, mySide, affName, negName) + '<div style="margin-top:22px">'+transcriptHtml(d, affName, negName)+'</div>';
+    } else if(d.status==='active'){
+      const ph=PHASES[d.phaseIdx];
+      const sub=(d.submitted&&d.submitted[ph.key])||{};
+      const iSubmitted=sub[mySide], oppSubmitted=sub[mySide==='aff'?'neg':'aff'];
+      // phase tracker
+      const tracker = '<div class="arena-phases" style="margin:16px 0">'+PHASES.map((p,i)=>{
+        const cls=i<d.phaseIdx?'done':i===d.phaseIdx?'active':''; return `<div class="arena-phase ${cls}"><span class="pn">${i<d.phaseIdx?'✓':i+1}</span>${p.label}</div>`;
+      }).join('')+'</div>';
+      // completed-phase transcript
+      let trans=''; for(let i=0;i<d.phaseIdx;i++){ const k=PHASES[i].key; const st=(d.statements||{})[k]||{};
+        trans += `<div style="margin-bottom:12px"><div style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-soft);margin-bottom:6px">${PHASES[i].label}</div>`
+          + statementBlock(affName, 'For', st.aff, 'var(--gold)') + statementBlock(negName, 'Against', st.neg, 'var(--garnet)') + '</div>'; }
+      // current-phase UI
+      const timer = `<div id="versusTimer" class="arena-timer-ring"><svg viewBox="0 0 64 64"><circle class="atr-bg" cx="32" cy="32" r="26"/><circle class="atr-fg" cx="32" cy="32" r="26"/></svg><span class="atr-t">--:--</span></div>`;
+      let cur = `<div style="margin-top:18px;background:rgba(0,0,0,.25);border:1px solid rgba(231,207,148,.18);border-radius:4px;padding:18px">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px;flex-wrap:wrap">
+          <div style="font-family:var(--disp);font-size:18px;font-weight:600;color:#F0E6CE">${ph.label}</div>${timer}</div>`;
+      if(iSubmitted){
+        cur += `<div style="color:#7ecfa4;font-size:14.5px;margin-bottom:6px">✓ You've submitted your ${ph.label.toLowerCase()}.</div>
+          <div style="color:#cdbfa0;font-size:13.5px">${oppSubmitted?'Both in — moving to the next phase…':esc(oppName)+' is still writing. The phase advances when they submit or the timer ends.'}</div>`;
+      } else {
+        cur += `<div style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-soft);margin-bottom:8px">You argue ${mySide==='aff'?'FOR':'AGAINST'} the motion</div>
+          <textarea id="versusInput" rows="6" style="width:100%;background:rgba(0,0,0,.3);border:1px solid rgba(231,207,148,.25);border-radius:3px;color:#E8DDCA;font-family:var(--serif);font-size:15px;line-height:1.6;padding:12px;resize:vertical;outline:none" placeholder="Make your ${esc(ph.label.toLowerCase())} before the timer runs out…"></textarea>
+          <div style="margin-top:12px;display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+            <button class="btn gold" onclick="submitVersusStatement()">Submit ${esc(ph.label.toLowerCase())} <span class="arrow">→</span></button>
+            <span style="font-size:13px;color:#cdbfa0">${oppSubmitted?esc(oppName)+' has submitted — your turn.':''}</span></div>`;
+      }
+      cur += '</div>';
+      body = tracker + (trans?('<div style="margin-bottom:6px">'+trans+'</div>'):'') + cur;
+      startTick();
+    }
+    room.innerHTML = header + body;
+    if(d.status==='active') updateTimerDisplay();
+  }
+
+  function transcriptHtml(d, affName, negName){
+    let h='<div style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-soft);margin-bottom:10px">Full transcript</div>';
+    PHASES.forEach((p)=>{ const st=(d.statements||{})[p.key]||{};
+      h += `<div style="margin-bottom:14px"><div style="font-family:var(--disp);color:#F0E6CE;font-size:15px;margin-bottom:6px">${p.label}</div>`
+        + statementBlock(affName,'For',st.aff,'var(--gold)') + statementBlock(negName,'Against',st.neg,'var(--garnet)') + '</div>'; });
+    return h;
+  }
+
+  function verdictHtml(d, mySide, affName, negName){
+    const v=d.verdict||{}; const sc=v.scores||{aff:{},neg:{}};
+    const winName = v.winnerSide==='draw'?'Draw' : (v.winnerSide==='aff'?affName:negName);
+    const youWon = v.winnerSide===mySide; const draw=v.winnerSide==='draw';
+    const banner = draw
+      ? `<div style="font-family:var(--disp);font-size:26px;color:var(--gold-soft)">It's a draw</div>`
+      : `<div style="font-family:var(--disp);font-size:26px;color:${youWon?'#7ecfa4':'#e8a0a0'}">${youWon?'You win! 🏆':esc(winName)+' wins'}</div>`;
+    const crit=['argumentation','evidence','rebuttal','clarity'];
+    const scoreTable = `<table style="width:100%;max-width:460px;margin:14px auto;border-collapse:collapse;font-size:14px">
+      <thead><tr><th></th><th style="padding:6px 10px;color:var(--gold-soft)">${esc(affName)} (For)</th><th style="padding:6px 10px;color:var(--gold-soft)">${esc(negName)} (Against)</th></tr></thead>
+      <tbody>${crit.map(c=>`<tr style="border-top:1px solid rgba(231,207,148,.15)"><td style="padding:6px 10px;color:#cdbfa0;text-transform:capitalize">${c}</td>
+        <td style="padding:6px 10px;text-align:center;color:#E8DDCA">${(sc.aff||{})[c]??'–'}</td>
+        <td style="padding:6px 10px;text-align:center;color:#E8DDCA">${(sc.neg||{})[c]??'–'}</td></tr>`).join('')}
+        <tr style="border-top:1px solid rgba(231,207,148,.35)"><td style="padding:8px 10px;font-weight:700;color:#F0E6CE">Total</td>
+        <td style="padding:8px 10px;text-align:center;font-weight:700;color:#F0E6CE">${(sc.aff||{}).total??'–'}</td>
+        <td style="padding:8px 10px;text-align:center;font-weight:700;color:#F0E6CE">${(sc.neg||{}).total??'–'}</td></tr></tbody></table>`;
+    return `<div style="text-align:center;padding:22px 10px 6px">${banner}</div>
+      ${scoreTable}
+      <div style="max-width:620px;margin:10px auto 0">
+        <div style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-soft);margin-bottom:6px">The adjudicator's reasoning</div>
+        <div style="font-size:14.5px;line-height:1.62;color:#E8DDCA">${esc(v.summary||'')}</div>
+        <div style="margin-top:14px;display:grid;gap:10px">
+          <div style="padding:10px 13px;background:rgba(184,137,59,.12);border-radius:4px"><b style="color:var(--gold-soft)">${esc(affName)} (For):</b> <span style="color:#E8DDCA">${esc((v.feedback||{}).aff||'')}</span></div>
+          <div style="padding:10px 13px;background:rgba(123,44,44,.14);border-radius:4px"><b style="color:#e8a0a0">${esc(negName)} (Against):</b> <span style="color:#E8DDCA">${esc((v.feedback||{}).neg||'')}</span></div>
+        </div>
+        <div style="text-align:center;margin-top:18px"><button class="btn lt sm" onclick="leaveDebate()">← Back to lobby</button></div>
+      </div>`;
+  }
+})();
 
 /* Boot the app now that every helper is defined, including renderBotQueue /
    renderDebateRecord declared above in this block. Runs during parse (this is a classic

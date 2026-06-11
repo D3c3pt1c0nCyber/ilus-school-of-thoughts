@@ -29,17 +29,54 @@ Each lesson follows the **Learn → Drill → Spar → Reflect** pedagogy:
 ## Structure
 
 ```
-index.html              ← the entire LMS (single file, ~88 KB)
+index.html              ← the entire LMS (single file)
 lesson-drafts/          ← 18 long-form essay drafts (source material)
   INDEX.md              ← index of all drafts
   tier-I-course-*.md
   tier-II-course-*.md
   tier-III-course-*.md
+firestore.rules         ← Firestore security rules (progress, directory, friendships, debates)
+functions/              ← Firebase Cloud Functions
+  index.js              ← AI debate adjudicator (Claude judges live debates)
+  package.json
+firebase.json           ← Firebase deploy config (rules + functions)
+.firebaserc             ← Firebase project alias (iluschoolotthoughts)
 Dockerfile              ← nginx:alpine container
 nginx.conf              ← static file serving config
 docker-compose.yml      ← one-command local run
 render.yaml             ← Render static site config
 ```
+
+---
+
+## Social features (Friends + Live Debate)
+
+Logged-in students can connect and debate each other, with **Claude as the adjudicator**:
+
+- **Friends** — search the member directory by name, send/accept friend requests.
+- **Live Debate** — challenge a friend to a real-time, three-phase debate (Opening → Cross-Examination → Closing) on a chosen motion, each side on a synchronized timer.
+- **AI adjudicator** — when the closing bell rings, a Firebase Cloud Function sends both transcripts to Claude (`claude-opus-4-8`), which scores each side (argumentation, evidence, rebuttal, clarity), declares a winner, and returns written reasoning — shown live to both debaters.
+
+Data lives in three Firestore collections: `directory/{uid}`, `friendships/{pairId}`, and `debates/{debateId}`. The Anthropic API key is held server-side in the Cloud Function as a Secret — it never touches the client.
+
+### Deploying the backend (one-time)
+
+The static site deploys as before; the social/AI features additionally need Firestore rules + the Cloud Function:
+
+```bash
+# 1. Firebase project must be on the Blaze plan (Functions requires it; free tier covers light use)
+# 2. Install the Firebase CLI and log in
+npm i -g firebase-tools && firebase login
+
+# 3. Install function deps and set the Anthropic key as a secret
+cd functions && npm install && cd ..
+firebase functions:secrets:set ANTHROPIC_API_KEY     # paste your Anthropic API key
+
+# 4. Deploy rules + functions
+firebase deploy --only firestore:rules,functions
+```
+
+> The Firestore directory search needs a single-field index on `directory.nameLower` (Firestore usually auto-creates it; if a query errors, follow the console link it prints).
 
 ---
 
@@ -101,7 +138,9 @@ These serve as both standalone reading and source material for the structured le
 
 ## Tech
 
-- **Zero dependencies** — pure HTML, CSS, JavaScript
+- **Frontend** — single-file HTML/CSS/JavaScript (no build step)
+- **Auth + data** — Firebase Auth (Google + email) and Cloud Firestore (modular SDK 12.x)
+- **AI adjudicator** — Firebase Cloud Function (Node 20) calling the Anthropic API (`@anthropic-ai/sdk`, `claude-opus-4-8`) with structured JSON output
 - **Fonts** — Fraunces (display), Spectral (body), Spline Sans Mono (meta) via Google Fonts
 - **Design** — dark academia: warm parchment, oxblood, brass, ink-black
 - **Data** — curriculum defined in a single `CURRICULUM` JS array in `index.html`
@@ -113,8 +152,10 @@ These serve as both standalone reading and source material for the structured le
 
 - [ ] Populate all 54 lesson slots with `read` + `terms` + `quiz` content
 - [ ] Record narration audio for the audio player
-- [ ] User accounts and progress tracking
-- [ ] Arena (debate / Socratic sparring) feature
+- [x] User accounts and progress tracking
+- [x] Arena (debate / Socratic sparring) feature — vs-bot practice **and** live human-vs-human debates
+- [x] Friends / social graph
+- [x] AI adjudicator for live debates
 - [ ] Custom domain
 
 ---
